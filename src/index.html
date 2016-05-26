@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>pubar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="description" content="NG6-Starter by @AngularClass">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <base href="/">
+    <script>
+        (function (win, doc) {
+            win.isMobile = ! ! /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|MicroMessenger/i.test(navigator.userAgent);
+            win.isIOS = ! ! /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            win.isIOS7 = ! ! /(iPhone|iPad|iPod) OS 7/i.test(navigator.userAgent);
+            win.isAndroid = ! ! /Android/i.test(navigator.userAgent);
+            win.isWechat = ! ! /MicroMessenger/i.test(navigator.userAgent);
+            win.isIE = ! ! /Trident|Edge/i.test(navigator.userAgent);
+
+            var baseWidth = 640;
+            var documentHTML = doc.documentElement;
+
+            function setRootFont () {
+                var docWidth = documentHTML.getBoundingClientRect().width;
+                var scale = docWidth / baseWidth;
+                if (docWidth > 640) {
+                    scale = 0.5;
+                }
+                documentHTML.style.fontSize = scale * 100 + 'px';
+            }
+
+            setRootFont();
+            win.addEventListener('resize', setRootFont, false);
+        })(window, document);
+    </script>
+</head>
+<body ng-app="pubarApp" ng-cloak style="font-size: 14px">
+<div ui-view>
+    loading
+</div>
+</body>
+</html>
