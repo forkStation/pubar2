@@ -25,13 +25,13 @@ let resolveToApp = (glob = '') => {
     return path.join(root, 'app', glob); // app/{glob}
 };
 
-let resolveToComponents = (glob = '') => {
-    return path.join(root, 'app/components', glob); // app/components/{glob}
+let resolveToPages = (glob = '') => {
+    return path.join(root, 'app/pages', glob); // app/pages/{glob}
 };
 
 // map of all paths
 let paths = {
-    js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
+    // js: resolveToComponents('**/*!(.spec.js).js'), // exclude spec files
     scss: resolveToApp('**/*.scss'), // stylesheets
     html: [
         resolveToApp('**/*.html'),
@@ -42,7 +42,7 @@ let paths = {
         path.join(__dirname, root, 'app/app.js')
     ],
     output: root,
-    blankTemplates: path.join(__dirname, 'generator', 'component/**/*.**'),
+    blankTemplates: path.join(__dirname, 'template', 'page/**/*.**'),
     dest: path.join(__dirname, 'dist')
 };
 
@@ -131,13 +131,13 @@ gulp.task('serveLocal', () => {
     bs.reload("*.html");
 });
 
-gulp.task('component', () => {
+gulp.task('page', () => {
     const cap = (val) => {
         return val.charAt(0).toUpperCase() + val.slice(1);
     };
     const name = yargs.argv.name;
     const parentPath = yargs.argv.parent || '';
-    const destPath = path.join(resolveToComponents(), parentPath, name);
+    const destPath = path.join(resolveToPages(), parentPath, name);
 
     return gulp.src(paths.blankTemplates)
         .pipe(template({
@@ -145,7 +145,7 @@ gulp.task('component', () => {
             upCaseName: cap(name)
         }))
         .pipe(rename((path) => {
-            path.basename = path.basename.replace('temp', name);
+            path.basename = path.basename.replace('page', name);
         }))
         .pipe(gulp.dest(destPath));
 });

@@ -7,6 +7,7 @@ import 'ngAnimate';
 import 'ngSanitize';
 import 'uiRouter'
 import 'ionic/ionic-angular'
+import '../../library/scss/ionic.scss'
 
 let angular=window.angular;
 let ionic='ionic';

@@ -20,6 +20,6 @@ class HomeController {
         "ngInject"
         console.log("dasd dasd");
         
-        this.name = 'wj'
+        this.name = 'wjdas'
     }
 }
