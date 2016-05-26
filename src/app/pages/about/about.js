@@ -13,6 +13,7 @@ export default angular.module('about', [ionic])
                 controller: AboutController,
                 template: `
                     <h1>{{vm.name}}</h1>
+                    <h2>{{vm.name2}}</h2>
                 `
             })
     });

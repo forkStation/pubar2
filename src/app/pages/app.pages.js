@@ -4,8 +4,9 @@
 import { angular, ionic } from 'library'
 import home from './home/home'
 import about from './about/about'
+//@import
 
 export default angular.module('app.pages', [
     home.name,
-    about.name
+    about.name//@register
 ]);

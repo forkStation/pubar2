@@ -17,6 +17,7 @@ import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 import mockMiddleware from './gulp/middleware';
+import autoRegister from './gulp/autoRegister'
 
 let root = 'src';
 
@@ -68,7 +69,7 @@ gulp.task('webpack', ['clean'], (cb) => {
 });
 
 //init bs
-function initBs(bs, isloacl, compiler, config) {
+function initBs (bs, isloacl, compiler, config) {
     let conf = {
         port: process.env.PORT || 3000,
         open: isloacl ? "local" : "external",
@@ -132,13 +133,18 @@ gulp.task('serveLocal', () => {
 });
 
 gulp.task('page', () => {
+    
+
     const cap = (val) => {
         return val.charAt(0).toUpperCase() + val.slice(1);
     };
     const name = yargs.argv.name;
     const parentPath = yargs.argv.parent || '';
     const destPath = path.join(resolveToPages(), parentPath, name);
+    const pagefile = path.join(resolveToPages(), 'app.pages.js');
 
+    autoRegister(name, pagefile);
+    
     return gulp.src(paths.blankTemplates)
         .pipe(template({
             name: name,
@@ -147,7 +153,8 @@ gulp.task('page', () => {
         .pipe(rename((path) => {
             path.basename = path.basename.replace('page', name);
         }))
-        .pipe(gulp.dest(destPath));
+        .pipe(gulp.dest(destPath))
+       
 });
 
 gulp.task('clean', (cb) => {
