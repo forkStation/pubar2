@@ -1,0 +1,79 @@
+@import "../../../styles/color.scss";
+
+@mixin prop-set($font-size,$color) {
+  font-size: $font-size;
+  color: $color;
+}
+
+$left:.22rem;
+
+.productList {
+  .header-warp {
+    position: relative;
+
+    height: 2.7rem;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+    p{
+      margin: 0;
+    }
+
+
+    .ion-chevron-left {
+      @include prop-set(.36rem, white);
+      position: absolute;
+      top: .67rem;
+      left: $left;
+    }
+    .ion-android-share-alt {
+      @include prop-set(.54rem, white);
+      position: absolute;
+      top: .53rem;
+      right: .25rem;
+    }
+
+    .pubname {
+      @include prop-set(.3rem, white);
+      position: absolute;
+      left: $left;
+      bottom: .45rem;
+    }
+    .address {
+      @include prop-set(.23rem, $assistant-color);
+      position: absolute;
+      left: $left;
+      bottom: .08rem;
+    }
+    .distance {
+      @include prop-set(.2rem, $assistant-color);
+      position: absolute;
+      right: $left;
+      bottom: .13rem;
+    }
+
+  }
+
+
+  .main-warp{
+    h5,p{
+      color: white;
+    }
+    .scroll-content{
+      position: static;
+    }
+    .category{
+      &-warp{
+        overflow-y: hidden;
+      }
+      height: 1.2rem;
+      p{
+        line-height: 1.2rem;
+      }
+    }
+  }
+
+}
+
+

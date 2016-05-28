@@ -1,0 +1,31 @@
+/*
+scss文件 cart
+*/
+@import "../../../styles/color.scss";
+
+.cart {
+  height: 1rem;
+  width: 1rem;
+  background: $active-background-color;
+  border-radius: 1rem;
+  .badge {
+    font-size: .15rem;
+    height: .32rem;
+    width: .32rem;
+    background: $cart-number;
+    color: white;
+    padding: 0;
+    float: right;
+    position: relative;
+    right: 0;
+    top: 0;
+
+  }
+  .icon {
+    position: relative;
+    left: .28rem;
+    top: .23rem;
+    font-size: .5rem;
+    color: white;
+  }
+}
