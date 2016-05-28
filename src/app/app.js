@@ -1,11 +1,13 @@
 'use strict';
 import { angular, ionic } from 'library'
+import appComponent from './app.component'
 import pagesModule from './pages/app.pages'
 
 angular
     .module('pubarApp', [
         ionic,
-        pagesModule.name
+        pagesModule.name,
+        appComponent.name
     ])
     .config(($locationProvider, $urlRouterProvider) => {
         "ngInject";
