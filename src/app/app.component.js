@@ -8,7 +8,7 @@ import location from './component/location/location'
 import filter from './component/filter/filter.tpl'
 
 export default angular.module('app.component', [ionic])
-    .component('cart', cart)
-    .component('numberPick',numberPick)
+    .directive('cart', cart)
+    .directive('numberPick',numberPick)
     .component('filter',filter)
     .component('location',location)

@@ -6,7 +6,7 @@ scss文件 numberPick
 .numberPick{
   display: inline-block;
   .reduce,.add{
-    font-size: .46rem;
+    font-size: .4rem;
     font-weight:bolder;
     height: .46rem;
     width: .46rem;
@@ -15,9 +15,10 @@ scss文件 numberPick
     color: white;
     display: inline-block;
     text-align: center;
+    line-height: .4rem;
   }
   .number{
-    font-size: .35rem;
+    font-size: .3rem;
     height: .46rem;
     width: .55rem;
     line-height: .46rem;

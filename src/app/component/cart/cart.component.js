@@ -1,37 +1,62 @@
 import template from './cart.jade';
 import './cart.scss';
 
-let cartComponent = {
-  restrict: 'E',
-  bindings: {
-    number:'<'
-  },
-  template:template(),
-  CartController,
-  controllerAs: 'vm'
+export default function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            number: '<'
+        },
+        template: template(),
+        controller: CartController,
+        controllerAs: 'vm',
+        link: function (scope, ele, attr, ctrl) {
+            let orginTop = - 0.2;
+            let toTop;
+            let isBottom=true;
+
+            let cartItem=[
+                {
+                    name:'蓝带',
+                    price:'1288',
+                    number:2
+                },
+                {
+                    name:'蓝带',
+                    price:'1288',
+                    number:2
+                },
+                {
+                    name:'蓝带',
+                    price:'1288',
+                    number:2
+                }
+            ];
+            
+            scope.cartItem=cartItem;
+
+            scope.popup = function () {
+                isBottom?moveTop():moveBottom();
+                isBottom=!isBottom;
+            };
+
+
+            function moveTop () {
+                ele[0].style.top = "-5.1rem"
+            }
+            function moveBottom () {
+                ele[0].style.top = "-0.2rem"
+            }
+        }
+    }
 };
 
-export default cartComponent;
 
 class CartController {
-  constructor($element){
-    "ngInject";
-
-  }
-  $onInit(){
-    //此函数用于初始化数据
-    this.name = 'cart';
-  }
-  $onChanges(obj){
-    //此函数会在this上绑定的值发生改变时调用
-
-  }
-  $onDestory(){
-    //当前控制器的scope被销毁时调用
-
-  }
-  $postLink(){
-    //非常重要的函数，所有对dom的操作都应该放在这里
-  }
-
+    constructor ($scope, $ionicBackdrop) {
+        "ngInject";
+        console.log("ddsds");
+        // $ionicBackdrop.retain();
+    }
 }

@@ -12,10 +12,28 @@ div.productList
     .main-warp
         .row
             ion-content.col-25
-                .category(ng-repeat="cate in vm.category")
+                .category(ng-repeat="cate in vm.category" ng-class="{active:cate.isActive}" ng-click="vm.setActive(cate)")
                     .cate {{cate.name}}
-            ion-content.col-75
-                .product-title 新品推荐
-                .product(ng-repeat="item in vm.items")
-                    .item
+            .col-75.col-offset-25
+                .product-title {{vm.activeCate}}
+                ion-content.pro
+                    .product(ng-repeat="item in vm.items")
+                        .product-item.row
+                            .col-30
+                                img(ng-src="{{item.img | img}}")
+                            .col-70
+                                .product-name {{item.title}}
+                                .product-detail {{item._title}}
+                                .price {{item.price | currency : '￥'}}
+                                number-pick(number=0)
+
+    .bar.bar-footer
+        cart(number="vm.total" )
+        .row(ng-if="vm.total !== 0")
+            .col-67.price {{vm.price | currency : '￥'}}
+            .col-33.buy 去结算
+        .row(ng-if="vm.total === 0")
+            .col-67.empty
+                i.icon.ion-android-cart
+                | 您的购物车是空的
 

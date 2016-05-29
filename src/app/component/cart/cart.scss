@@ -3,11 +3,17 @@ scss文件 cart
 */
 @import "../../../styles/color.scss";
 
-.cart {
+
+.cart{
+  transition: top 0.5s ease-in-out;
+}
+.cart-btn {
   height: 1rem;
   width: 1rem;
   background: $active-background-color;
   border-radius: 1rem;
+
+
   .badge {
     font-size: .15rem;
     height: .32rem;
@@ -21,11 +27,62 @@ scss文件 cart
     top: 0;
 
   }
-  .icon {
+  .ion-android-cart {
     position: relative;
     left: .28rem;
     top: .23rem;
     font-size: .5rem;
     color: white;
   }
+
 }
+
+
+
+//弹出框
+.cart-list {
+  z-index: -999;
+  position: absolute;
+  left: -.2rem;
+  top: 1rem;
+  width: 6.4rem;
+  background: $background-list-color;
+
+  .left{
+    float: left;
+    padding-left: .2rem;
+  }
+  .right{
+    float: right;
+    padding-right: .2rem;
+  }
+
+  .cart-list-title{
+    height: .8rem;
+    line-height: .8rem;
+    background: #282828;
+    color: $assistant-color;
+    font-size: .24rem;
+    .ion-trash-a{
+      color: $assistant-color;
+      font-size: .24rem;
+    }
+  }
+  .cart-item{
+    height: 1.1rem;
+    border-bottom:$assistant-color 1px solid ;
+    font-size: .32rem;
+    color: white;
+    .row{
+      .pri{
+        color: $price
+      }
+      height: .46rem;
+      padding: .32rem .2rem !important;
+    }
+    number-pick{
+     padding-left: .2rem;
+    }
+  }
+}
+
