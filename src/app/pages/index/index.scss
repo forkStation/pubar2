@@ -1,0 +1,237 @@
+@import "../../../sass/color";
+.index{
+  overflow:hidden;
+  position:relative;
+  .header-menu{
+    margin-top:10px;
+    position: relative;
+    button{
+      position: absolute;
+      color:#fff;
+      top:3px;
+      font-size:14px;
+
+      padding:4px 16px;
+      &.left{
+        left:0;
+      }
+      &.right{
+        right:0;
+      }
+    }
+  }
+
+  .header-menu-tabs{
+    display: flex;
+    display: -moz-flex;
+    width:140px;
+    height:32px;
+    margin:0 auto;
+    color:$title-color;
+    text-align:center;
+    line-height:32px;
+    .menu-tab{
+      background: $background-color;
+      flex:1;
+      border:$border-line;
+      -moz-flex:1;
+      &:first-child{
+        border-radius:4px 0 0 4px;
+        border-right:none;
+      }
+      &:last-child{
+        border-radius: 0 4px 4px 0;
+        border-left:none;
+      }
+      &.on{
+        background: $active-background-color;
+        border-color:$active-background-color;
+      }
+    }
+  }
+  .bar-list-stores{
+
+
+  }
+
+
+
+}
+ul.group-list{
+  li{
+    margin:0.2rem;
+
+  }
+  div.group{
+    border:1px solid #000;
+    box-shadow:0 4px 4px #100e0e;
+    border-radius:6px;
+    .status-bar{
+      padding:0.14rem 0.17rem;
+      color:#fff;
+      overflow:hidden;
+
+      span{
+        display: inline-block;
+        line-height:2.5;
+      }
+      .find-detail{
+        background: #A7264D;
+        border-radius: 3px;
+        font-size: 12px;
+        color: #FFFFFF;
+        border:none;
+        float: right;
+        padding:0.14rem 0.12rem;
+      }
+    }
+  }
+  div.pub-user{
+    border-bottom:$border-line;
+    overflow:hidden;
+    position:relative;
+    min-height:1.96rem;
+    padding-left:2.1rem;
+    color:$assistant-color;
+    .avatar-section{
+      width:1.96rem;
+      height:1.96rem;
+      background: url(http://www.wallcoo.com/paint/space_1600/wallpapers/1440x900/wallcoo.com_Space_Art_wc.jpg) no-repeat;
+      background-size:cover ;
+      position: absolute;
+      left:0;
+      top:0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+      img{
+        width:0.96rem;
+        height:0.96rem;
+        display: block;
+        margin: .3rem auto 0;
+        border-radius:50%;
+        border:1px solid #fff;
+      }
+      p{
+        color:#fff;
+        font-size: 14px;
+        padding:0 10px;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+    }
+    .group-info{
+      p{
+        font-size:16px;
+        color:$title-color;
+        margin-top:.3rem;
+      }
+      .type{
+        overflow:hidden;
+        padding-right:10px;
+        text-align: left;
+        span{
+          &:first-child{
+            float: left;
+          }
+          &:last-child{
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}
+.store{
+  position: relative;
+  overflow:hidden;
+  border-bottom:1px solid #736F78;
+  &:last-child{
+    border-bottom:none;
+
+  }
+  img{
+    width:100%;
+    display: block;
+  }
+  .tip{
+    position: absolute;
+    top:10px;
+    left:10px;
+    color:$title-color;
+    font-size:.3rem;
+  }
+  .bar-info{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    box-sizing: border-box;
+    padding:.1rem .2rem;
+    background: -webkit-gradient(linear,center top,center bottom,from(rgba(42,24,24,0.0)),to(rgba(0,0,0,1)));
+    .bar-name{
+      color:$title-color;
+      font-size:.3rem;
+      margin-bottom:5px;
+    }
+
+  }
+  .bar-position{
+    color:$assistant-color;
+    font-size:.2rem;
+    position: relative;
+
+    span{
+      position: absolute;
+      right:.2rem;
+      bottom:0;
+    }
+  }
+}
+.sort-section{
+  display: flex;
+  display: -moz-flex;
+  border:1px solid #736F78;
+  margin:0 -1px;
+  .sort-item{
+    flex:1;
+    -moz-flex:1;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    color:#736F78;
+    &.on{
+      background: #A7264D;
+      color:#fff;
+    }
+  }
+}
+.sort-content{
+  overflow:hidden;
+  margin-top:-1px;
+  margin-right:-3px;
+  .content-item{
+    float: left;
+    width:33.333%;
+    height:40px;
+    font-size:14px;
+    color:#736F78;
+    text-align:center;
+    line-height:40px;
+    border:1px solid #736F78;
+    margin-top:-1px;
+    margin-left:-1px;
+    border-collapse: collapse;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    &.on{
+      background: #736F78;
+      color:#fff;
+    }
+  }
+}

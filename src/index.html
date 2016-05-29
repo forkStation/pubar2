@@ -3,13 +3,24 @@
 <head>
     <meta charset="utf-8">
     <title>pubar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="description" content="NG6-Starter by @AngularClass">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <base href="/">
+    <style>
+        ion-tabs .tabs{
+            background:#736F78;
+            font-size:10px;
+            color:#fff;
+        }
+        ion-tabs .tabs span{
+            font-size:10px;
+            color:#fff;
+        }
+    </style>
     <script>
         (function (win, doc) {
             win.isMobile = ! ! /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|MicroMessenger/i.test(navigator.userAgent);
@@ -37,8 +48,19 @@
     </script>
 </head>
 <body ng-app="pubarApp" ng-cloak style="font-size: 14px">
-<div ui-view>
-    loading
-</div>
+    <div ui-view>
+        loading
+    </div>
+
+
+
+    <ion-tabs class="tabs-icon-top bar-stable  " ng-class="{'tabs-item-hide': $root.hideTabs}" >
+        <ion-tab title="酒局" icon-off="icon-index-off" icon-on="icon-index-on" href="#/index"></ion-tab>
+        <ion-tab title="好友" icon-off="icon-group-off" icon-on="icon-group-on" href="#/location"></ion-tab>
+        <ion-tab title="我的" icon-off="icon-order-off" icon-on="icon-order-on" href="#/mine"></ion-tab>
+
+    </ion-tabs>
+
+
 </body>
 </html>

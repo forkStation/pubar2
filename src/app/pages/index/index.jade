@@ -1,0 +1,112 @@
+div.index
+    div.header-menu
+        button.left.clear(ng-click='openLocationModal()') 广州
+        div.header-menu-tabs
+            div.menu-tab(ng-click='goSlide(0)' class="menu-tab {{slideIndex==0?'on':''}}") 酒吧
+            div.menu-tab(ng-click='goSlide(1)' class="menu-tab {{slideIndex==1?'on':''}}") 酒局
+        button.right.clear 搜索
+
+    ion-slide-box(show-pager='false' active-slide='slideIndex')
+        ion-slide
+            div.sort-section(style='margin-top:10px')
+                div.sort-item <i class='by-asc'></i>排序
+                div.sort-item <i class='by-type'></i>类型
+                div.sort-item.on <i class='by-range'></i>商圈
+            div.sort-content
+                div.content-item  兴盛路
+                div.content-item  沿江路
+                div.content-item  跑马场
+                div.content-item.on  珠江北
+                div.content-item  淘金
+                div.content-item(ng-click='openFilterModal()') 更多...
+            div.bar-list-stores
+                location-nav-bar(title='兴盛路')
+                div.store(ng-click='vm.goBarDetail()')
+                    div.tip 3个酒局进行中
+                    img(src='images/bar-avatar-demo.png')
+                    div.bar-info
+                        div.bar-name 春色满园酒吧
+                        div.bar-position 广州市天河区风行东路108号3楼
+                            span 4.32km
+                div.store
+                    div.tip 3个酒局进行中
+                    img(src='images/bar-avatar-demo.png')
+                    div.bar-info
+                        div.bar-name 春色满园酒吧
+                        div.bar-position 广州市天河区风行东路108号3楼
+                            span 4.32km
+                div.store
+                    div.tip 3个酒局进行中
+                    img(src='images/bar-avatar-demo.png')
+                    div.bar-info
+                        div.bar-name 春色满园酒吧
+                        div.bar-position 广州市天河区风行东路108号3楼
+                            span 4.32km
+        ion-slide
+            div.sort-section(style='margin-top:10px')
+                div.sort-item <i class='recommend'></i>推荐
+                div.sort-item <i class='time'></i>时间
+                div.sort-item.on <i class='distance'></i>距离
+            div.sort-content
+                div.content-item(ng-click='sortContent()')  兴盛路
+                div.content-item  沿江路
+                div.content-item  跑马场
+                div.content-item.on  珠江北
+                div.content-item  淘金
+                div.content-item  更多...
+
+            ul.group-list
+                li(ng-click='vm.goGroupDetail()')
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(src='images/bar-avatar-demo.png')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ico-user'></i> 3/6
+                                    span <i class='icon ico-money'></i> AA
+                                div.type
+                                    span <i class='icon ico-clock'></i> 还剩8小时
+                                    span <i class='icon ico-distance'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局
+                li
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(src='images/bar-avatar-demo.png')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ico-user'></i> 3/6
+                                    span <i class='icon ico-money'></i> AA
+                                div.type
+                                    span <i class='icon ico-clock'></i> 还剩8小时
+                                    span <i class='icon ico-distance'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局
+                li
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(src='images/bar-avatar-demo.png')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ico-user'></i> 3/6
+                                    span <i class='icon ico-money'></i> AA
+                                div.type
+                                    span <i class='icon ico-clock'></i> 还剩8小时
+                                    span <i class='icon ico-distance'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局
+
+
+
