@@ -1,0 +1,13 @@
+@import "../../../sass/color";
+
+.short-btn-active{
+  display: block;
+  background: $active-background-color;
+  color: $title-color;
+  font-size:14px;
+  border-radius:3px;
+  border:none;
+  -webkit-appearance: none;
+  outline: none;
+  padding:.1rem .2rem;
+}

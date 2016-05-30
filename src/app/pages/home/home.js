@@ -7,7 +7,7 @@ export default angular.module('home',[ionic])
         "ngInject"
         $stateProvider
             .state('home', {
-                url: '/',
+                url: '/home',
                 controllerAs: 'vm',
                 controller: HomeController,
                 template: tpl()

@@ -5,13 +5,18 @@
   .header-menu{
     margin-top:10px;
     position: relative;
-    button{
+    a{
       position: absolute;
+      display: block;
       color:#fff;
       top:3px;
       font-size:14px;
-
+      -webkit-appearance:none;
+      outline:none;
       padding:4px 16px;
+      border:none;
+      background-color:transparent;
+      text-decoration: none;
       &.left{
         left:0;
       }
@@ -233,5 +238,18 @@ ul.group-list{
       background: #736F78;
       color:#fff;
     }
+  }
+}
+
+#search-bar{
+  button{
+    color:#fff;
+  }
+  .ion-search{
+    color:$background-color;
+    font-size:20px;
+  }
+  ::-webkit-input-placeholder{
+    color:$background-color;
   }
 }

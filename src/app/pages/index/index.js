@@ -61,8 +61,10 @@ class IndexController {
         };
         this.goBarDetail = function(){
             $state.go('barDetail')
+        };
+        this.goGroupDetail = function(){
+            $state.go('groupDetail');
         }
     }
-
 }
 

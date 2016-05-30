@@ -7,6 +7,9 @@ import about from './about/about'
 import productList from './productList/productList'
 import index from './index/index'
 import barDetail from './barDetail/barDetail'
+import groupDetail from './groupDetail/groupDetail'
+import search from './search/search'
+import location from './location/location'
 //@import
 
 export default angular.module('app.pages', [
@@ -14,5 +17,8 @@ export default angular.module('app.pages', [
     about.name,
     productList.name,
     index.name,
-    barDetail.name
+    barDetail.name,
+    groupDetail.name,
+    search.name,
+    location.name
 ]);

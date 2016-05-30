@@ -2,15 +2,17 @@ import tpl from './location.jade'
 import './location.scss'
 import { angular, ionic } from 'library'
 
-export default function(){
-    'ngInject';
-    return {
-        restrict:'E',
-        template:tpl(),
-        controller:LocationController,
-        controllerAs:'vm'
-    }
-}
+export default angular.module('location',[ionic])
+    .config(function ($stateProvider) {
+        "ngInject"
+        $stateProvider
+            .state('location', {
+                url: '/location',
+                controllerAs: 'vm',
+                controller: LocationController,
+                template: tpl()
+            })
+    });
 
 
 class LocationController {

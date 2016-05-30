@@ -1,6 +1,6 @@
 
 //全站背景色
-$background-color:#242424;
+$background-color:#2F2F2F;
 
 //副文本颜色
 $assistant-color:#736F78;
@@ -10,6 +10,14 @@ $active-background-color:#A7264D;
 
 //标题颜色
 $title-color:#fff;
+
+//边框色
+$border-line:1px solid #424242;
+
+//重置ionic部分样式
+.modal{
+  background-color: $background-color;
+}
 
 //cart 数字背景色
 $cart-number:#FF3B30;

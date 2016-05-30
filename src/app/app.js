@@ -23,7 +23,7 @@ angular
         $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
         $ionicConfigProvider.platform.ios.views.transition('ios');
         $ionicConfigProvider.platform.android.views.transition('android');
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/index');
         // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
         // #how-to-configure-your-server-to-work-with-html5mode
         $locationProvider.html5Mode(true).hashPrefix('!');

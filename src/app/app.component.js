@@ -4,11 +4,15 @@
 import { angular, ionic } from "library"
 import cart from './component/cart/cart.component'
 import numberPick from './component/numberPick/numberPick.component'
-import location from './component/location/location'
-import filter from './component/filter/filter.tpl'
+import location from './directive/location/location'
+import filter from './directive/filter/filter.tpl'
+import shortBtn from './directive/shortBtn/shortBtn.directive'
+import share from './directive/share/share.directive'
 
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
     .directive('numberPick',numberPick)
-    .component('filter',filter)
-    .component('location',location)
+    .directive('filter',filter)
+    .directive('location',location)
+    .directive('sBtn',shortBtn)
+    .directive('share',share)

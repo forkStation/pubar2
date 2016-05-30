@@ -4,3 +4,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@mixin vertical{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
