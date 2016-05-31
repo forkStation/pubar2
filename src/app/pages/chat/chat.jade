@@ -2,7 +2,7 @@ ion-content.body(hide-tabs='true')
     div.chat
         .comment-box
             ul
-                li(ng-repeat='chat in vm.chatsMsg' ng-class='{my:chat.user_id==0}')
+                li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.user_id==0}')
                     img.avatar(ng-src='{{::chat.avatar}}')
                     .nickname {{::chat.nickname}}
                     div.msg-content {{::chat.msg}}
