@@ -1,0 +1,14 @@
+ion-content.body(hide-tabs='true')
+    div.chat
+        .comment-box
+            ul
+                li(ng-repeat='chat in vm.chatsMsg' ng-class='{my:chat.user_id==0}')
+                    img.avatar(ng-src='{{chat.avatar}}')
+                    .nickname {{chat.nickname}}
+                    div.msg-content {{chat.msg}}
+    div.bar.bar-footer.bc
+        div.col-80
+            form.comment-form
+                input(type='text' class='textComment' placeholder='说点什么吧' ng-model='vm.msgInfo.msg')
+        div.col-20
+            s-btn(text='发送' ng-click='vm.sendMsg()')

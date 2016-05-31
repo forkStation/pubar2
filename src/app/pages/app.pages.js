@@ -10,6 +10,7 @@ import barDetail from './barDetail/barDetail'
 import groupDetail from './groupDetail/groupDetail'
 import search from './search/search'
 import location from './location/location'
+import chat from './chat/chat'
 //@import
 
 export default angular.module('app.pages', [
@@ -20,5 +21,6 @@ export default angular.module('app.pages', [
     barDetail.name,
     groupDetail.name,
     search.name,
-    location.name
+    location.name,
+    chat.name
 ]);

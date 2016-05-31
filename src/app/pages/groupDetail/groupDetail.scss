@@ -71,21 +71,25 @@
     color:#fff;
     overflow:hidden;
     span{
-      width:5rem;
+      width:4.5rem;
       display: inline-block;
+      float: left;
       @include ellipsis();
     }
     i{
-      width:.4rem;
-      height:.4rem;
+      width:.41rem;
+      height:.41rem;
       border-radius:50%;
       background: #736F78;
       color:$background-color;
       text-align:center;
       line-height:.4rem;
+      margin-right:5px;
+      vertical-align: middle;
+      float: left;
     }
     .ctrl-btn{
-      width:1rem;
+      padding:0 .2rem;
       display: inline-block;
       text-align:center;
       height:.48rem;
@@ -93,6 +97,68 @@
       background: #736F78;
       border-radius:3px;
       color:#000;
+      float: right;
+      margin-right:5px;
     }
   }
+
+
+
+}
+.bar.bc{
+  background: #736F78;
+  height:50px;
+  padding:0;
+  div{
+    text-align:center;
+    @include vertical();
+    p{
+      margin:0;
+      color:#242424;
+      .ion{
+        font-size:25px;
+      }
+      &:first-child{
+        height:25px;
+        line-height:25px;
+        font-size:16px;
+      }
+      &:last-child{
+        font-size:10px;
+      }
+    }
+    &.on{
+      background:$active-background-color;
+      p{
+        color:#fff;
+      }
+    }
+  }
+  form{
+    width:100%;
+  }
+}
+.bar.comment{
+  div{
+    padding:0 10px;
+    color:#fff;
+  }
+  text-align:center;
+  form{
+    width:100%;
+  }
+  input[type='checkbox']{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right:3px;
+    border:none;
+  }
+  input[type='text']{
+    @include normalTextBox();
+  }
+}
+.chat-box{
+  margin:.2rem .2rem 1rem .2rem;
+  padding:.3rem .12rem;
+  @include chatBox();
 }

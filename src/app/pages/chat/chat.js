@@ -1,34 +1,25 @@
-import tpl from './groupDetail.jade'
-import './groupDetail.scss'
+import tpl from './chat.jade'
+import './chat.scss'
 import { angular, ionic } from 'library'
 
-export default angular.module('groupDetail',[ionic])
+export default angular.module('chat',[ionic])
     .config(function ($stateProvider) {
         "ngInject"
         $stateProvider
-            .state('groupDetail', {
-                url: '/groupDetail',
+            .state('chat', {
+                url: '/chat',
                 controllerAs: 'vm',
-                controller: GroupDetailController,
+                controller: ChatController,
                 template: tpl()
             })
     });
 
 
-class GroupDetailController {
-    constructor ($scope) {
+class ChatController {
+    constructor () {
         "ngInject"
-        this.name = 'groupDetail';
-
-        var _this = this;
-        _this.flag = false;
-
-        this.showComment = function(){
-            _this.flag = true;
-
-        };
-
-        $scope.chatsMsg = [{
+        this.name = 'chat';
+        this.chatsMsg = [{
             id:'1',
             msg:'你好',
             avatar:'assets/img/product-item.png',
@@ -58,6 +49,21 @@ class GroupDetailController {
             avatar:'assets/img/product-item.png',
             user_id:'1124',
             nickname:'李锋染'
-        }]
+        }];
+        
+        this.msgInfo = {
+            user_id:'00',
+            nickname:'Anna sui',
+            msg:'',
+            avatar:'assets/img/product-item.png',
+            id:'sdf'
+        }
+        
+    }
+
+    
+    sendMsg(){
+        var item = this.msgInfo;
+        this.chatsMsg.push(item);
     }
 }
