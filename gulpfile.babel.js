@@ -111,7 +111,7 @@ gulp.task('serve', () => {
 
     initBs(bs, false, compiler, config)
 
-    bs.reload();
+    bs.reload()
 });
 
 gulp.task('serveLocal', () => {
