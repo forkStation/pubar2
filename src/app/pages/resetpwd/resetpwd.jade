@@ -1,0 +1,12 @@
+div.resetpwd
+    div.sending
+        p.tit 验证码已发送到137****5203
+        div.row
+            div.col-67
+                input(type='text' placeholder='请输入验证码' ng-model='vm.formData.valid')
+            div.col-33
+                input(type='button' ng-value="vm.buttonText" ng-click='vm.getCode()' ng-class='{disabled:!vm.flag}')
+
+        div.b-area
+            button.button.button-block 确定
+

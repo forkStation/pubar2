@@ -1,0 +1,46 @@
+@import "../../../styles/color";
+@import "../../../styles/util-mixin";
+.resetpwd{
+  p.tit{
+    margin:.4rem .2rem;
+    color:#fff;
+    font-size:.3rem;
+  }
+  .row{
+    background: #2F2F2F;
+    padding:.2rem;
+    input[type=text]{
+      width:100%;
+      background: transparent;
+      color:#d1d1d1;
+      &::-webkit-input-placeholder{
+        color:$assistant-color;
+      }
+    }
+    input[type=button]{
+      display: inline-block;
+      padding:.16rem .2rem;
+      background: $active-background-color;
+      color:#fff;
+      border:none;
+      border-radius:3px;
+      font-size:.25rem;
+      &.disabled{
+        background: #736F78;
+        color:#fff;
+      }
+    }
+    div{
+      @include vertical();
+    }
+  }
+  .b-area{
+    margin:.2rem .15rem;
+    .button{
+      background: $active-background-color;
+      color:$title-color;
+
+    }
+  }
+
+}

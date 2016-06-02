@@ -1,0 +1,25 @@
+@import "../../../styles/color";
+.setting{
+  .item{
+    background: transparent;
+    margin-left:.2rem;
+    border:none;
+    border-bottom:$border-line;
+    color:#fff;
+    padding:.34rem .2rem .34rem 0;
+    i{
+      width:.3rem;
+
+      &:last-child{
+        color:#aaa;
+        font-size:.5rem;
+      }
+    }
+    .item-note{
+      margin-right:.5rem;
+      &.cache{
+        margin-right:0;
+      }
+    }
+  }
+}

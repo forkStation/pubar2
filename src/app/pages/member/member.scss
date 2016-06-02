@@ -1,0 +1,73 @@
+@import "../../../styles/color";
+.member{
+  .user-section{
+    width:6.4rem;
+    height:3.6rem;
+    background: url('../../../assets/img/member-bg.png');
+    background-size: cover;
+    position: relative;
+    .item{
+      background: transparent;
+      border:none;
+      padding:.5rem 0 .5rem 1.6rem;
+      min-height:1.6rem;
+      h2{
+        color:#fff;
+      }
+      p{
+        color:#fff;
+      }
+      i{
+        color:#fff;
+        font-size:.4rem;
+        right:0;
+      }
+    }
+    .avatar{
+      border-radius:50%;
+      width:1.2rem;
+      height:1.2rem;
+      border:1px solid #fff;
+      max-width: none;
+      max-height: none;
+      left:.2rem;
+    }
+    .list{
+      position: absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+
+    }
+    .settings{
+      position: absolute;
+      right:.1rem;
+      top:.2rem;
+      width:.6rem;
+      height:.6rem;
+      text-align:center;
+      line-height:.6rem;
+      display: block;
+      i{
+        color:#fff;
+        font-size:.5rem;
+      }
+    }
+  }
+  .serivces{
+    .item{
+      background: transparent;
+      margin-left:.2rem;
+      border:none;
+      border-bottom:$border-line;
+      color:#fff;
+      padding:.34rem .2rem .2rem 0;
+      i{
+        width:.3rem;
+        &:first-child{
+          margin-right:10px;
+        }
+      }
+    }
+  }
+}
