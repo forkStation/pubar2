@@ -20,4 +20,5 @@ class shortBtnController{
     constructor(){
         this.name='shortBtn'
     }
+  
 }
