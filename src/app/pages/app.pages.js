@@ -11,6 +11,9 @@ import groupDetail from './groupDetail/groupDetail'
 import search from './search/search'
 import location from './location/location'
 import chat from './chat/chat'
+import member from './member/member'
+import setting from './setting/setting'
+import resetpwd from './resetpwd/resetpwd'
 //@import
 
 export default angular.module('app.pages', [
@@ -22,5 +25,8 @@ export default angular.module('app.pages', [
     groupDetail.name,
     search.name,
     location.name,
-    chat.name
+    chat.name,
+    member.name,
+    setting.name,
+    resetpwd.name
 ]);

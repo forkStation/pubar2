@@ -5,6 +5,7 @@
 .chat{
   padding:.23rem;
   @include chatBox();
+  margin-bottom:55px;
 }
 .comment-form{
   padding:0 10px;

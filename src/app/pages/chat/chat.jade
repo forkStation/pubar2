@@ -1,4 +1,4 @@
-ion-content.body(hide-tabs='true')
+ion-content.body.has-tabs(hide-tabs='true' delegate-handle='chatBox')
     div.chat
         .comment-box
             ul
@@ -6,9 +6,10 @@ ion-content.body(hide-tabs='true')
                     img.avatar(ng-src='{{::chat.avatar}}')
                     .nickname {{::chat.nickname}}
                     div.msg-content {{::chat.msg}}
-    div.bar.bar-footer.bc
-        div.col-80
-            form.comment-form
-                input(type='text' class='textComment' placeholder='说点什么吧' ng-model='vm.msgInfo.msg')
-        div.col-20
-            s-btn(text='发送' ng-click='vm.sendMsg()')
+
+div.bar.bar-footer.bc
+    div.col-80
+        form.comment-form(ng-submit='vm.sendMsg()' action='javascript:;')
+            input(type='text' class='textComment' placeholder='说点什么吧' id='textComment' ng-model='vm.msgInfo.msg')
+    div.col-20
+        s-btn(text='发送' ng-click='vm.sendMsg()')

@@ -16,9 +16,10 @@ export default angular.module('chat',[ionic])
 
 
 class ChatController {
-    constructor () {
+    constructor ($ionicScrollDelegate,$timeout) {
         "ngInject"
         this.name = 'chat';
+        this.scrollHandle = $ionicScrollDelegate;
         this.chatsMsg = [{
             id:'1',
             msg:'你好',
@@ -57,13 +58,22 @@ class ChatController {
             msg:'',
             avatar:'assets/img/product-item.png',
             id:'sdf'
+        };
+
+        var _t = this;
+        var input = document.getElementById('textComment');
+        input.onfocus = function () {
+            _t.scrollHandle.resize();
+
         }
-        
     }
 
-    
+
     sendMsg(){
         var item = this.msgInfo;
         this.chatsMsg.push(item);
+        document.getElementById('textComment').value='';
+        this.scrollHandle.resize();
+        this.scrollHandle.scrollBottom(true);
     }
 }
