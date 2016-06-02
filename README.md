@@ -2,14 +2,14 @@
 
 ### 第一步:安装node.js  官方网址:https://nodejs.org/en/
 
-###$ node.js会自动安装npm包管理工具.
+#### node.js会自动安装npm包管理工具.
 
 ### 第二步:全局安装工具
 
-    npm install gulp
-    npm install webpack
-    npm install cnpm  //淘宝镜像环境
-    npm install bower
+    npm install gulp -g
+    npm install webpack -g
+    npm install cnpm  -g //淘宝镜像环境
+    npm install bower -g
     npm install webpack gulp webpack-dev-server -g
 
 ### 第三步:添加es6的配置文件
