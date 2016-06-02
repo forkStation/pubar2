@@ -20,7 +20,13 @@
       "plugins": ["transform-runtime"],
       "presets": ["es2015", "stage-0"]
     }
-### 第四步:在项目根目录输入 gulp 启动项目
+
+### 第四步:在项目根目录安装包依赖管理
+    cnpm i
+    bower i
+
+
+### 第五步:在项目根目录输入 gulp 启动项目
 
 
 ## usage
