@@ -28,5 +28,5 @@ export default angular.module('app.pages', [
     chat.name,
     member.name,
     setting.name,
-    resetpwd.name
+    resetpwd.name//@register
 ]);

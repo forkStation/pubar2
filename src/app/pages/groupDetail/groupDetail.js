@@ -27,6 +27,7 @@ class GroupDetailController {
             _this.flag = true;
 
         };
+        
 
         $scope.chatsMsg = [{
             id:'1',
@@ -60,12 +61,12 @@ class GroupDetailController {
             nickname:'李锋染'
         }];
 
-        this.goChat = function(){
-            alert(11);
-        }
+        // this.goChat = function(){
+        //     alert(11);
+        // }
     }
     goChat(){
-        alert(123)
+        console.log("12");
     }
 
 

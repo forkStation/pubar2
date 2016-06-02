@@ -8,6 +8,7 @@ export default function(){
     return{
         restrict:'E',
         replace:true,
+        scope:true,
         controllerAs:'vm',
         controller:shareController,
         template:'<i ng-click="vm.share()" class="ion-android-share-alt icon"></i>'
@@ -22,5 +23,7 @@ class shareController{
         this.share = function () {
             console.log(1);
         }
+        
+
     }
 }

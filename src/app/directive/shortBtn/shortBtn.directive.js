@@ -6,7 +6,7 @@ export default function(){
     'ngInject';
     return {
         restrict:'E',
-        template:'<button class="short-btn-active">{{text}}</button>',
+        template:'<button type="button" class="short-btn-active">{{text}}</button>',
         scope:{
           text:'@text'
         },
