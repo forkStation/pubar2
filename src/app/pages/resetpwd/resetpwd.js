@@ -26,7 +26,9 @@ class ResetpwdController {
         this.buttonText = '获取验证码';
         this.formData = {
             valid:''
-        }
+        };
+
+        this.initPwd = [];
     }
 
 
@@ -56,5 +58,15 @@ class ResetpwdController {
         _t.timeout(function(){
             _t.loading.hide();
         },1000)
+    }
+
+    setNum(num){
+        var _t = this,_pwd = _t.initPwd;
+        if(_pwd.length>=6)return false;
+        _pwd.push(num);
+    }
+    delNum(){
+        var _t = this,_pwd = _t.initPwd;
+        _pwd.pop();
     }
 }
