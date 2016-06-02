@@ -1,11 +1,11 @@
-div.groupDetail(hide-tabs='true')
+div.groupDetail.has-tabs(hide-tabs='true')
     ion-content
         div.group-info
             img.bg(src='images/bar-avatar-demo.png')
             .group-section
                 img.avatar(src='./assets/img/product-item.png')
                 .intro 本色帅哥美女局美女局巴拉限制最长20个中文字
-                s-btn(text='勾搭局长')
+                s-btn(text='勾搭局长' ng-click='vm.goChat()')
                 share(class='corner')
 
         .joiner

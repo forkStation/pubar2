@@ -58,6 +58,16 @@ class GroupDetailController {
             avatar:'assets/img/product-item.png',
             user_id:'1124',
             nickname:'李锋染'
-        }]
+        }];
+
+        this.goChat = function(){
+            alert(11);
+        }
     }
+    goChat(){
+        alert(123)
+    }
+
+
+
 }
