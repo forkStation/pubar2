@@ -1,0 +1,21 @@
+div.recharge(hide-tabs='true')
+    label
+        div.row
+            div.col-34 充值金额(元):
+            div.col-66
+                input.recharge(placeholder='请输入充值金额' type='number')
+
+    nav-tip-bar(title='选择支付方式')
+    div.list.paylist
+        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(0)')
+            i.icon-alipay.ico
+            span 支付宝
+            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==0}")
+
+        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(1)')
+            i.icon-wechat.ico
+            span 支付宝
+            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==1}")
+
+    div.card
+        button.button.button-active.button-block 确认提现

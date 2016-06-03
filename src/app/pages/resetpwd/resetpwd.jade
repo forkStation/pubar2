@@ -1,5 +1,5 @@
 div.resetpwd(hide-tabs='true')
-    div.sending(ng-show='false')
+    div.sending(ng-show='vm.codeState')
         p.tit 验证码已发送到137****5203
         div.row
             div.col-67
@@ -8,9 +8,9 @@ div.resetpwd(hide-tabs='true')
                 input(type='button' ng-value="vm.buttonText" ng-click='vm.getCode()' ng-class='{disabled:!vm.flag}')
 
         div.b-area
-            button.button.button-block 确定
+            button.button.button-block(ng-click='vm.nextStep()') 确定
 
-    div.ste-pwd
+    div.ste-pwd(ng-show='!vm.codeState')
         p.tit 请输入您的支付密码
         div.attach-pwdbox
             div.fa-box.row
@@ -20,10 +20,11 @@ div.resetpwd(hide-tabs='true')
                 span
                 span
                 span
-            div.hide-board.row(ng-repeat='tag in vm.initPwd track by $index')
-                i.ion.ion-record
+            div.hide-board.row
+                i.ion.ion-record(ng-repeat='tag in vm.initPwd track by $index')
 
-
+        div.fix-position
+            button.button.button-block.button-active(ng-click='vm.resetPwd()') 确定
 
         div.attach-keyboard
             div.keyboard.row

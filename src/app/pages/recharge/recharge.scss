@@ -1,0 +1,67 @@
+@import "../../../styles/util-mixin";
+@import "../../../styles/color";
+.recharge{
+  .row{
+    color:#fff;
+    padding:.3rem .2rem;
+    margin:.3rem 0;
+    background: #2F2F2F;
+    line-height:.65rem;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
+  .recharge{
+    @include normalTextBox();
+    background: none;
+    color:#999;
+    height:100%;
+
+  }
+
+  .paylist{
+    .item{
+      padding:.3rem 0;
+      margin-left:.2rem;
+      background: none;
+      border:none;
+      border-bottom:$border-line;
+      color:#fff;
+
+    }
+  }
+  .ico{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right:.2rem;
+    width:.4rem;
+    height:.4rem;
+    &.icon-alipay{
+      background: url('../../../assets/img/ion-alipay.png');
+      background-size: 100%;
+    }
+    &.icon-wechat{
+      background: url('../../../assets/img/ion-wechat.png');
+      background-size: 100%;
+    }
+    &.icon-select{
+      border-radius:50%;
+      border:$border-line;
+      float: right;
+      text-align:center;
+      line-height:.4rem;
+      font-size:.4rem;
+      &.on{
+        background: $active-background-color;
+        color:#fff;
+        border:1px solid $active-background-color;
+      }
+    }
+  }
+  .card{
+    background: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,58 @@
+@import "../../../styles/color";
+.pocket{
+  .item-avatar{
+    border:none;
+    background: none;
+    padding:.4rem .2rem;
+    h1{
+      color:#fff;
+    }
+    div.row{
+      padding:0;
+      div{
+        padding:0 .1rem;
+      }
+    }
+    .get{
+      background: #FF6E8F;
+      color:#fff;
+    }
+    .set{
+      background: #6CA9FF;
+      color:#fff;
+    }
+  }
+  .no-data{
+    text-align:center;
+    padding:1rem 0;
+    .ion{
+      color:$assistant-color;
+      font-size:1.5rem;
+    }
+    p{
+      font-size:.32rem;
+      color:$assistant-color;
+    }
+  }
+  div.list{
+    padding:.2rem 0;
+    border-bottom:$border-line;
+    margin:0 0 0 .16rem;
+    .item{
+      border:none;
+      background: none;
+      padding:.1rem .16rem;
+      padding-left:0;
+      color:#fff;
+      .change,.item-note{
+        color:$assistant-color;
+        &.out{
+          color:#FF6E8F;
+        }
+        &.in{
+          color:#6CA9FF;
+        }
+      }
+    }
+  }
+}

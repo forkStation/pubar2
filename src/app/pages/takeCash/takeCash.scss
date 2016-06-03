@@ -1,0 +1,42 @@
+@import "../../../styles/util-mixin";
+.takeCash{
+  .tit{
+    color:$title-color;
+    padding:.3rem .2rem;
+    span{
+      color:#FF6E8F;
+    }
+  }
+  .con{
+    background: #2F2F2F;
+    padding:.2rem 0;
+    input{
+      @include normalTextBox();
+      background: none;
+      height:.5rem;
+      font-size:.3rem;
+    }
+  }
+  .tip-box{
+    background: #2F2F2F;
+    padding:.3rem .2rem .3rem .6rem;
+    margin-top:.2rem;
+    .tip{
+      color:#fff;
+      font-size:.3rem;
+    }
+    i{
+      float: left;
+      margin-left:-.4rem;
+    }
+    .ctx{
+      color:$assistant-color;
+      font-size:.25rem;
+    }
+  }
+  .card{
+    background: none;
+    border:none;
+    box-shadow: none;
+  }
+}

@@ -16,9 +16,10 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($scope) {
+    constructor ($scope,$state) {
         "ngInject"
         this.name = 'groupDetail';
+        this.state = $state;
 
         var _this = this;
         _this.flag = false;
@@ -66,7 +67,7 @@ class GroupDetailController {
         // }
     }
     goChat(){
-        console.log("12");
+        this.state.go('chat')
     }
 
 

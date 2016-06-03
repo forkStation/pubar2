@@ -16,7 +16,7 @@ export default angular.module('barDetail',[ionic])
 
 
 class BarDetailController {
-    constructor ($ionicSlideBoxDelegate) {
+    constructor ($ionicSlideBoxDelegate,$state) {
         "ngInject"
         this.name = 'barDetail';
         this.slideIndex = 0;
@@ -25,5 +25,9 @@ class BarDetailController {
         this.goSlide = function(index){
             $ionicSlideBoxDelegate._instances[1].slide(index);
         };
+        this.goGroupDetail = function(item){
+            $state.go('groupDetail');
+        }
+
     }
 }

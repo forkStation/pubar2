@@ -18,7 +18,10 @@ $border-line:1px solid #424242;
 .modal{
   background-color: $background-color;
 }
-
+.button-active{
+  background-color: $active-background-color;
+  color:#fff;
+}
 //cart 数字背景色
 $cart-number:#FF3B30;
 

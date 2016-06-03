@@ -16,45 +16,45 @@ export default angular.module('resetpwd',[ionic])
 
 
 class ResetpwdController {
-    constructor ($ionicLoading,$timeout,$interval) {
+    constructor ($ionicLoading,$timeout,$interval,$ionicPopup,$location,$ionicHistory) {
         "ngInject"
         this.name = 'resetpwd';
         this.loading = $ionicLoading;
         this.timeout = $timeout;
         this.interval = $interval;
+        this.loc = $ionicHistory;
         this.flag = true;
         this.buttonText = '获取验证码';
+        this.popup = $ionicPopup;
         this.formData = {
             valid:''
         };
 
         this.initPwd = [];
+        this.codeState = true;
+
     }
 
+    nextStep(){
+        this.codeState = false;
+    }
 
     getCode(){
         var _t = this;
         var phoneNumber = _t.formData.valid;
         var _sec = 60;
         if(!_t.flag) return false;
-        if(!phoneNumber){
-            _t.loading.show({
-                template:'请输入验证码'
-            });
-
-        }else{
-            _t.flag = false;
+        _t.flag = false;
+        _t.buttonText = _sec+'重新获取';
+        var interval =_t.interval(function(){
+            _sec -- ;
             _t.buttonText = _sec+'重新获取';
-            var interval =_t.interval(function(){
-                _sec -- ;
-                _t.buttonText = _sec+'重新获取';
-                if(_sec == 0){
-                    _t.flag = true;
-                    _t.buttonText = '获取验证码';
-                    _t.interval.cancel(interval);
-                }
-            },1000)
-        }
+            if(_sec == 0){
+                _t.flag = true;
+                _t.buttonText = '获取验证码';
+                _t.interval.cancel(interval);
+            }
+        },1000);
         _t.timeout(function(){
             _t.loading.hide();
         },1000)
@@ -64,9 +64,26 @@ class ResetpwdController {
         var _t = this,_pwd = _t.initPwd;
         if(_pwd.length>=6)return false;
         _pwd.push(num);
+        console.log(_pwd);
     }
     delNum(){
         var _t = this,_pwd = _t.initPwd;
         _pwd.pop();
+        console.log(_pwd);
+    }
+    resetPwd(){
+        this.popup.show({
+            title:'xx',
+            template:'xx',
+            buttons:[{
+                text:'确定',
+                onTap:function(){
+
+                }
+            }]
+        })
+    }
+    back(){
+        window.history.go(-1);
     }
 }

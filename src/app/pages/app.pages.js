@@ -14,6 +14,9 @@ import chat from './chat/chat'
 import member from './member/member'
 import setting from './setting/setting'
 import resetpwd from './resetpwd/resetpwd'
+import pocket from './pocket/pocket'
+import recharge from './recharge/recharge'
+import takeCash from './takeCash/takeCash'
 //@import
 
 export default angular.module('app.pages', [
@@ -28,5 +31,8 @@ export default angular.module('app.pages', [
     chat.name,
     member.name,
     setting.name,
-    resetpwd.name//@register
+    resetpwd.name,
+    pocket.name,
+    recharge.name,
+    takeCash.name//@register
 ]);
