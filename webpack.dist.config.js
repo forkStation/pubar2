@@ -10,6 +10,12 @@ config.output = {
 //生产环境代码去除alert和console
 config.module.loaders[0]= {test: /\.js$/, exclude: [/app\/lib/,/library/, /node_modules/,/bower_components/], loader: 'strip-debug!ng-annotate!babel'};
 
+config.module.loaders.push({
+      test: /\.(gif|jpg|png)\??.*$/,
+      loader: 'url-loader?limit=10000&name=assets/img/[name].[ext]'
+    }
+)
+
 config.plugins = config.plugins.concat([
 
   // Reduces bundles total size

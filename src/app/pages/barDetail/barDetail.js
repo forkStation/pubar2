@@ -18,6 +18,8 @@ export default angular.module('barDetail',[ionic])
 class BarDetailController {
     constructor ($ionicSlideBoxDelegate,$state) {
         "ngInject"
+        require('assets/img/bar-avatar-demo.png')
+
         this.name = 'barDetail';
         this.slideIndex = 0;
 

@@ -16,7 +16,7 @@ module.exports = {
             {test: /\.jade$/, loader: 'jade'},
             {test: /\.scss$/, loader: 'style!css!sass'},
             // {test: /\.css$/, loader: 'style!css'},
-            {test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=10000&name=[path][name].[ext]'}
+            {test: /\.(woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=10000&name=library/fonts/[name].[ext]'}
         ]
     },
     resolve: {
@@ -28,7 +28,8 @@ module.exports = {
             ngSanitize: path.resolve(__dirname, 'bower_components/angular-sanitize/angular-sanitize.min'),
             uiRouter: path.resolve(__dirname, 'bower_components/angular-ui-router/release/angular-ui-router.min'),
             library: path.resolve(__dirname, 'src/assets/dep'),
-            sass: path.resolve(__dirname, 'src/styles')
+            sass: path.resolve(__dirname, 'src/styles'),
+            img: path.join(__dirname, 'src/assets/img')
         }
     },
     plugins: [
