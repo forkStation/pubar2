@@ -29,7 +29,8 @@ module.exports = {
             uiRouter: path.resolve(__dirname, 'bower_components/angular-ui-router/release/angular-ui-router.min'),
             library: path.resolve(__dirname, 'src/assets/dep'),
             sass: path.resolve(__dirname, 'src/styles'),
-            img: path.join(__dirname, 'src/assets/img')
+            img: path.join(__dirname, 'src/assets/img'),
+            assets:path.join(__dirname, 'src/assets/')
         }
     },
     plugins: [

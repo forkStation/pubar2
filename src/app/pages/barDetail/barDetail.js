@@ -1,6 +1,7 @@
 import tpl from './barDetail.jade'
 import './barDetail.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
 
 export default angular.module('barDetail',[ionic])
     .config(function ($stateProvider) {
@@ -18,7 +19,7 @@ export default angular.module('barDetail',[ionic])
 class BarDetailController {
     constructor ($ionicSlideBoxDelegate,$state) {
         "ngInject"
-        require('img/bar-avatar-demo.png')
+        this.barAvatarDemo=imgResource.barAvatarDemo
 
         this.name = 'barDetail';
         this.slideIndex = 0;

@@ -1,6 +1,8 @@
 import tpl from './index.jade'
 import './index.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
+
 
 
 export default angular.module('index',[ionic])
@@ -20,6 +22,8 @@ class IndexController {
     constructor ($scope,$ionicSlideBoxDelegate,$ionicModal,$state) {
         "ngInject"
         this.name = 'index';
+        this.barAvatarDemo=imgResource.barAvatarDemo
+
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);

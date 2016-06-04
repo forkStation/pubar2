@@ -1,6 +1,7 @@
 import tpl from './productList.jade'
 import './productList.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
 
 export default angular.module('productList', [ionic])
     .config(function ($stateProvider) {
@@ -22,6 +23,7 @@ class ProductListController {
         this.pubname = 'The color 本色酒吧'
         this.address = '市民中心'
         this.distance = '4.32km'
+        this.barAvatarDemo=imgResource.barAvatarDemo
 
         this.category = [
             {name: '热销'},
