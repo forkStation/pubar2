@@ -1,6 +1,7 @@
 import tpl from './chat.jade'
 import './chat.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
 
 export default angular.module('chat',[ionic])
     .config(function ($stateProvider) {
@@ -20,35 +21,35 @@ class ChatController {
         "ngInject"
         this.name = 'chat';
         this.scrollHandle = $ionicScrollDelegate;
-        require('img/product-item.png')
+        this.productItem = imgResource.productItem;
         this.chatsMsg = [{
             id:'1',
             msg:'你好',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'你好啊',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna Sui'
         },{
             id:'1',
             msg:'怎么称呼,美女?',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'Anna',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna sui'
         },{
             id:'1',
             msg:'Anna你好',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         }];
@@ -57,7 +58,7 @@ class ChatController {
             user_id:'00',
             nickname:'Anna sui',
             msg:'',
-            avatar:'src/assets/img/product-item.png',
+            avatar:this.productItem,
             id:'sdf'
         };
 

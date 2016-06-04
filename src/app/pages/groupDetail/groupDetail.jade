@@ -35,7 +35,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
 
         .chat-box
             ul
-                li(ng-repeat='chat in chatsMsg' ng-class='{my:chat.user_id==0}')
+                li(ng-repeat='chat in this.chatsMsg' ng-class='{my:chat.user_id==0}')
                     img.avatar(ng-src='{{chat.avatar}}')
                     .nickname {{chat.nickname}}
                     div.msg-content {{chat.msg}}

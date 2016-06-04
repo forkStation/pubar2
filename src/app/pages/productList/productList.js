@@ -19,11 +19,11 @@ export default angular.module('productList', [ionic])
 class ProductListController {
     constructor ($ionicBackdrop) {
         "ngInject";
-        ProductListController.$ionicBackdrop=$ionicBackdrop
-        this.pubname = 'The color 本色酒吧'
-        this.address = '市民中心'
-        this.distance = '4.32km'
-        this.barAvatarDemo=imgResource.barAvatarDemo
+        ProductListController.$ionicBackdrop=$ionicBackdrop;
+        this.pubname = 'The color 本色酒吧';
+        this.address = '市民中心';
+        this.distance = '4.32km';
+        this.barAvatarDemo=imgResource.barAvatarDemo;
 
         this.category = [
             {name: '热销'},

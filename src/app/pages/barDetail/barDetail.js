@@ -19,7 +19,7 @@ export default angular.module('barDetail',[ionic])
 class BarDetailController {
     constructor ($ionicSlideBoxDelegate,$state) {
         "ngInject"
-        this.barAvatarDemo=imgResource.barAvatarDemo
+        this.barAvatarDemo=imgResource.barAvatarDemo;
 
         this.name = 'barDetail';
         this.slideIndex = 0;

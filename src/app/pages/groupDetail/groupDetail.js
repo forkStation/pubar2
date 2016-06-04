@@ -1,6 +1,7 @@
 import tpl from './groupDetail.jade'
 import './groupDetail.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
 
 export default angular.module('groupDetail',[ionic])
     .config(function ($stateProvider) {
@@ -23,48 +24,51 @@ class GroupDetailController {
 
         var _this = this;
         _this.flag = false;
-
+        this.productItem = imgResource.productItem;
         this.showComment = function(){
             _this.flag = true;
 
         };
-        
 
-        $scope.chatsMsg = [{
+        this.chatsMsg = [{
             id:'1',
             msg:'你好',
-            avatar:'assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'你好啊',
-            avatar:'assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna Sui'
         },{
             id:'1',
             msg:'怎么称呼,美女?',
-            avatar:'assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'Anna',
-            avatar:'assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna sui'
         },{
             id:'1',
             msg:'Anna你好',
-            avatar:'assets/img/product-item.png',
+            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         }];
 
-        // this.goChat = function(){
-        //     alert(11);
-        // }
+        this.msgInfo = {
+            user_id:'00',
+            nickname:'Anna sui',
+            msg:'',
+            avatar:this.productItem,
+            id:'sdf'
+        };
     }
     goChat(){
         this.state.go('chat')
