@@ -19,10 +19,14 @@ export default angular.module('index',[ionic])
 
 
 class IndexController {
-    constructor ($scope,$ionicSlideBoxDelegate,$ionicModal,$state) {
+    constructor ($scope,$ionicSlideBoxDelegate,$ionicModal,$state , $http) {
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo=imgResource.barAvatarDemo
+
+        $http.get('./app/app.js').success(res=>{
+            console.log(res);
+        })
 
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){

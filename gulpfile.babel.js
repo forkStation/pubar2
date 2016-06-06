@@ -22,12 +22,12 @@ import autoRegister from './gulp/autoRegister'
 let root = 'src';
 
 // helper method for resolving paths
-let resolveToApp = (glob = '') => {
-    return path.join(root, 'app', glob); // app/{glob}
+let resolveToApp = (glob = '') =>{
+    return path.join(root,'app',glob); // app/{glob}
 };
 
-let resolveToPages = (glob = '') => {
-    return path.join(root, 'app/pages', glob); // app/pages/{glob}
+let resolveToPages = (glob = '') =>{
+    return path.join(root,'app/pages',glob); // app/pages/{glob}
 };
 
 // map of all paths
@@ -36,29 +36,29 @@ let paths = {
     scss: resolveToApp('**/*.scss'), // stylesheets
     html: [
         resolveToApp('**/*.html'),
-        path.join(root, 'index.html')
+        path.join(root,'index.html')
     ],
     entry: [
         'babel-polyfill',
-        path.join(__dirname, root, 'app/app.js')
+        path.join(__dirname,root,'app/app.js')
     ],
     output: root,
-    blankTemplates: path.join(__dirname, 'template', 'page/**/*.**'),
-    dest: path.join(__dirname, 'dist')
+    blankTemplates: path.join(__dirname,'template','page/**/*.**'),
+    dest: path.join(__dirname,'dist')
 };
 
 
 // use webpack.config.js to build modules
-gulp.task('webpack', ['clean'], (cb) => {
+gulp.task('webpack',['clean'],(cb) =>{
     const config = require('./webpack.dist.config');
     config.entry.app = paths.entry;
 
-    webpack(config, (err, stats) => {
-        if (err) {
-            throw new gutil.PluginError("webpack", err);
+    webpack(config,(err,stats) =>{
+        if(err){
+            throw new gutil.PluginError("webpack",err);
         }
 
-        gutil.log("[webpack]", stats.toString({
+        gutil.log("[webpack]",stats.toString({
             colors: colorsSupported,
             chunks: false,
             errorDetails: true
@@ -69,17 +69,17 @@ gulp.task('webpack', ['clean'], (cb) => {
 });
 
 //init bs
-function initBs (bs, isloacl, compiler, config) {
+function initBs(bs,compiler,config){
     let conf = {
         port: process.env.PORT || 3000,
-        open: isloacl ? "local" : "external",
+        open:  "external",
         server: {
             baseDir: root,
             directory: true
         },
         middleware: [
             historyApiFallback(),
-            webpackDevMiddelware(compiler, {
+            webpackDevMiddelware(compiler,{
                 stats: {
                     colors: colorsSupported,
                     chunks: false,
@@ -92,11 +92,11 @@ function initBs (bs, isloacl, compiler, config) {
         ]
     };
 
-    bs.watch("proxy.yml").on("change", bs.reload);
+    bs.watch("proxy.yml").on("change",bs.reload);
     bs.init(conf);
 }
 
-gulp.task('serve', () => {
+gulp.task('serve',() =>{
     const config = require('./webpack.dev.config');
     config.entry.app = [
         // this modules required to make HRM working
@@ -109,59 +109,42 @@ gulp.task('serve', () => {
 
     let bs = serve.create();
 
-    initBs(bs, false, compiler, config)
+    initBs(bs,compiler,config)
 
     bs.reload()
 });
 
-gulp.task('serveLocal', () => {
-    const config = require('./webpack.dev.config');
-    config.entry.app = [
-        // this modules required to make HRM working
-        // it responsible for all this webpack magic
-        'webpack-hot-middleware/client?reload=true',
-        // application entry point
-    ].concat(paths.entry);
 
-    var compiler = webpack(config);
+gulp.task('page',() =>{
 
-    let bs = serve.create();
 
-    initBs(bs, true, compiler, config)
-
-    bs.reload("*.html");
-});
-
-gulp.task('page', () => {
-    
-
-    const cap = (val) => {
+    const cap = (val) =>{
         return val.charAt(0).toUpperCase() + val.slice(1);
     };
     const name = yargs.argv.name;
     const parentPath = yargs.argv.parent || '';
-    const destPath = path.join(resolveToPages(), parentPath, name);
-    const pagefile = path.join(resolveToPages(), 'app.pages.js');
+    const destPath = path.join(resolveToPages(),parentPath,name);
+    const pagefile = path.join(resolveToPages(),'app.pages.js');
 
-    autoRegister(name, pagefile);
-    
+    autoRegister(name,pagefile);
+
     return gulp.src(paths.blankTemplates)
         .pipe(template({
             name: name,
             upCaseName: cap(name)
         }))
-        .pipe(rename((path) => {
-            path.basename = path.basename.replace('page', name);
+        .pipe(rename((path) =>{
+            path.basename = path.basename.replace('page',name);
         }))
         .pipe(gulp.dest(destPath))
-       
+
 });
 
-gulp.task('clean', (cb) => {
-    del([paths.dest]).then(function (paths) {
-        gutil.log("[clean]", paths);
+gulp.task('clean',(cb) =>{
+    del([paths.dest]).then(function(paths){
+        gutil.log("[clean]",paths);
         cb();
     })
 });
 
-gulp.task('default', ['serve']);
+gulp.task('default',['serve']);

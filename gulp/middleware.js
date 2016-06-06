@@ -28,8 +28,13 @@ function mockMiddleware(req, res, next) {
         return next()
     }
 
-    console.log('----------------------request from client:' + req.url);
     var apiRoot = getApiRoot();
+
+    if(!apiRoot){
+        console.log('----------------------request from local:' + req.url);
+        return next()
+    }
+    console.log('----------------------request from client:' + req.url);
     return doProxy(apiRoot)(req, res, next);
 }
 
