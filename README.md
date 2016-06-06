@@ -32,3 +32,4 @@
 ## usage
 
     gulp page --name 模块名  新建页面
+

@@ -3,13 +3,15 @@ import { angular, ionic } from 'library'
 import appComponent from './app.component'
 import pagesModule from './pages/app.pages'
 import appFilter from './app.filter'
+import appServer from './app.service'
 
 angular
     .module('pubarApp', [
         ionic,
         pagesModule.name,
         appComponent.name,
-        appFilter.name
+        appFilter.name,
+        appServer.name
     ])
     .config(($locationProvider, $urlRouterProvider,$ionicConfigProvider) => {
         "ngInject";

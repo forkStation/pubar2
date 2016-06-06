@@ -34,7 +34,11 @@ function mockMiddleware(req, res, next) {
         console.log('----------------------request from local:' + req.url);
         return next()
     }
-    console.log('----------------------request from client:' + req.url);
+
+    if(apiRoot=='http://rap.taobao.org/mockjsdata/4327'){
+        req.url=req.url.replace('/api','')
+    }
+    console.log('--request from client:' + req.url);
     return doProxy(apiRoot)(req, res, next);
 }
 

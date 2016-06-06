@@ -1,15 +1,15 @@
 import tpl from './index.jade'
 import './index.scss'
-import { angular, ionic } from 'library'
+import { angular,ionic } from 'library'
 import imgResource from 'assets/images'
 
 
 
 export default angular.module('index',[ionic])
-    .config(function ($stateProvider) {
+    .config(function($stateProvider){
         "ngInject"
         $stateProvider
-            .state('index', {
+            .state('index',{
                 url: '/index',
                 controllerAs: 'vm',
                 controller: IndexController,
@@ -19,52 +19,59 @@ export default angular.module('index',[ionic])
 
 
 class IndexController {
-    constructor ($scope,$ionicSlideBoxDelegate,$ionicModal,$state , $http) {
+    constructor($scope,$ionicSlideBoxDelegate,$ionicModal,$state,$http,token){
         "ngInject"
         this.name = 'index';
-        this.barAvatarDemo=imgResource.barAvatarDemo
+        this.barAvatarDemo = imgResource.barAvatarDemo
 
-        $http.get('./app/app.js').success(res=>{
+        $http.get('api/bar/barfriend_list').success(res=>{
             console.log(res);
         })
+
+        token.getToken()
+        token.userId = 123
+        token.getToken('dsa')
+        token.getToken('dadass')
+        token.getToken('dsadasdsadsac')
+        console.log(token.loginToken);
 
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);
         };
 
-        $scope.filterModal = $ionicModal.fromTemplate('<filter>', {
+        $scope.filterModal = $ionicModal.fromTemplate('<filter>',{
             scope: $scope,
             animation: 'slide-in-up'
         });
-        $scope.openFilterModal = function() {
+        $scope.openFilterModal = function(){
             $scope.filterModal.show();
         };
-        $scope.closeFilterModal = function() {
+        $scope.closeFilterModal = function(){
             $scope.filterModal.hide();
         };
         //当我们用到模型时，清除它！
-        $scope.$on('$destroy', function() {
+        $scope.$on('$destroy',function(){
             $scope.filterModal.remove();
         });
         // 当隐藏的模型时执行动作
-        $scope.$on('modal.hide', function() {
+        $scope.$on('modal.hide',function(){
             // 执行动作
         });
         // 当移动模型时执行动作
-        $scope.$on('modal.removed', function() {
+        $scope.$on('modal.removed',function(){
             // 执行动作
         });
 
 
-        $scope.locationModal = $ionicModal.fromTemplate('<location>', {
+        $scope.locationModal = $ionicModal.fromTemplate('<location>',{
             scope: $scope,
             animation: 'slide-in-up'
         });
-        $scope.openLocationModal = function() {
+        $scope.openLocationModal = function(){
             $scope.locationModal.show();
         };
-        $scope.closeLocationModal = function() {
+        $scope.closeLocationModal = function(){
             $scope.locationModal.hide();
         };
         this.goBarDetail = function(){
