@@ -16,6 +16,8 @@ import pocket from './pocket/pocket'
 import recharge from './recharge/recharge'
 import takeCash from './takeCash/takeCash'
 import friend from './friend/friend'
+import collect from './collect/collect'
+import myGroup from './myGroup/myGroup'
 //@import
 
 export default angular.module('app.pages', [
@@ -32,5 +34,7 @@ export default angular.module('app.pages', [
     pocket.name,
     recharge.name,
     takeCash.name,
-    friend.name//@register
+    friend.name,
+    collect.name,
+    myGroup.name//@register
 ]);

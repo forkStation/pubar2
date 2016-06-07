@@ -1,0 +1,16 @@
+.myGroup{
+  .row{
+    padding:0;
+    div{
+      text-align:center;
+      color:#736F78;
+      font-size:.32rem;
+      border-bottom:1px solid #736F78;
+      padding:.2rem 0;
+      &.on{
+        color:#fff;
+        border-bottom:3px solid #fff;
+      }
+    }
+  }
+}

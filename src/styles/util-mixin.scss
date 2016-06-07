@@ -105,6 +105,25 @@
   line-height:.6rem;
   z-index:5;
 }
+.collect{
+  color:#98959E;
+  position:absolute;
+  right:0.2rem;
+  top:0.2rem;
+  font-size:.44rem;
+  border:1px solid #98959E;
+  border-radius:50%;
+  width:.6rem;
+  height:.6rem;
+  text-align:center;
+  line-height:.6rem;
+  z-index:5;
+  &.ion-ios-star{
+    border:$active-background-color;
+    background: $active-background-color;
+    color:#fff;
+  }
+}
 @-webkit-keyframes slideInRight {
   from{-webkit-transform: translateX(100%);}
   to{-webkit-transform: translateX(0);}
