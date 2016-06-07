@@ -8,7 +8,7 @@ import location from './directive/location/location'
 import filter from './directive/filter/filter.tpl'
 import shortBtn from './directive/shortBtn/shortBtn.directive'
 import share from './directive/share/share.directive'
-
+import collect from './directive/collect/collect.directive'
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
     .directive('numberPick',numberPick)
@@ -16,3 +16,4 @@ export default angular.module('app.component', [ionic])
     .directive('location',location)
     .directive('sBtn',shortBtn)
     .directive('share',share)
+    .directive('collect',collect)

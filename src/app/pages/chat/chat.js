@@ -17,48 +17,49 @@ export default angular.module('chat',[ionic])
 
 
 class ChatController {
-    constructor ($ionicScrollDelegate,$timeout) {
+    constructor ($ionicScrollDelegate) {
         "ngInject"
         this.name = 'chat';
         this.scrollHandle = $ionicScrollDelegate;
-        this.productItem = imgResource.productItem;
+        ChatController.productItem = imgResource.productItem;
         this.chatsMsg = [{
             id:'1',
             msg:'你好',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'你好啊',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             user_id:'00',
             nickname:'Anna Sui'
         },{
             id:'1',
             msg:'怎么称呼,美女?',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'Anna',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             user_id:'00',
             nickname:'Anna sui'
         },{
             id:'1',
             msg:'Anna你好',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             user_id:'1124',
             nickname:'李锋染'
         }];
-        
+
+
         this.msgInfo = {
             user_id:'00',
             nickname:'Anna sui',
             msg:'',
-            avatar:this.productItem,
+            avatar:ChatController.productItem,
             id:'sdf'
         };
 

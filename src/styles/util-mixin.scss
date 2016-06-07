@@ -105,3 +105,17 @@
   line-height:.6rem;
   z-index:5;
 }
+@-webkit-keyframes slideInRight {
+  from{-webkit-transform: translateX(100%);}
+  to{-webkit-transform: translateX(0);}
+}
+@-webkit-keyframes slideInLeft {
+  from{-webkit-transform: translateX(0);}
+  to{-webkit-transform: translateX(-100%);}
+}
+.page.ng-enter{
+  -webkit-animation: slideInRight .5s ease-in;z-index:8888;
+}
+.page.ng-leave{
+  -webkit-animation: slideInLeft .5s ease-in;z-index:9999;
+}

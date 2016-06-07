@@ -25,6 +25,7 @@ class GroupDetailController {
         var _this = this;
         _this.flag = false;
         this.productItem = imgResource.productItem;
+        this.barAvatarDemo = imgResource.barAvatarDemo;
         this.showComment = function(){
             _this.flag = true;
 

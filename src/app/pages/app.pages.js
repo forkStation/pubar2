@@ -15,6 +15,7 @@ import resetpwd from './resetpwd/resetpwd'
 import pocket from './pocket/pocket'
 import recharge from './recharge/recharge'
 import takeCash from './takeCash/takeCash'
+import friend from './friend/friend'
 //@import
 
 export default angular.module('app.pages', [
@@ -30,5 +31,6 @@ export default angular.module('app.pages', [
     resetpwd.name,
     pocket.name,
     recharge.name,
-    takeCash.name//@register
+    takeCash.name,
+    friend.name//@register
 ]);

@@ -1,9 +1,110 @@
 div.search(hide-tabs='true')
-    div#search-bar
-        div.item-input-inset
-            label.item-input-wrapper
-                i.icon.ion-search.placeholder-icon
-                input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
-            button.button.button-clear 取消
+    ion-content
+        div#search-bar
+            div.item-input-inset
+                label.item-input-wrapper
+                    i.icon.ion-search.placeholder-icon
+                    input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
+                button.button.button-clear 取消
 
 
+        div.row
+            div.col-33
+                div
+                    i.icon.ion-wineglass
+                    p 酒局
+            div.col-33
+                div
+                    i.icon.ion-ios-rose
+                    p 酒吧
+            div.col-33
+                div
+                    i.icon.ion-ios-personadd
+                    p 酒友
+
+
+        div.result
+            nav-tip-bar(title='相关的酒吧')
+            div.list
+                a.item.item-avatar
+                    img(ng-src='{{vm.barAvatar}}')
+                    h2 本色酒吧
+                    p 广州市天河区兴盛路巴拉巴拉...
+                    span.item-note
+                       i.icon.ion-location
+                       em 2.2km
+
+                a.item.item-avatar
+                    img(ng-src='{{vm.barAvatar}}')
+                    h2 本色酒吧
+                    p 广州市天河区兴盛路巴拉巴拉...
+                    span.item-note
+                        i.icon.ion-location
+                        em 2.2km
+            div.tip
+                span 还有25间酒吧,查看
+                i.icon.ion-ios-arrow-right
+
+            nav-tip-bar(title='相关的蒲友')
+            div.list
+                a.item.item-avatar
+                    img(ng-src='{{vm.userAvatar}}')
+                    h2 大飞
+                    p 寂寞求约...
+            div.tip
+                span 还有25个蒲友,查看
+                i.icon.ion-ios-arrow-right
+
+            nav-tip-bar(title='相关的酒局')
+            ul.group-list
+                li(ng-click='vm.goGroupDetail()')
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(ng-src='{{vm.barAvatarDemo}}')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ion-person-stalker'></i> 3/6
+                                    span  AA
+                                div.type
+                                    span <i class='icon ion-clock'></i> 还剩8小时
+                                    span <i class='icon ion-location'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局
+                li(ng-click='vm.goGroupDetail()')
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(ng-src='{{vm.barAvatarDemo}}')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ion-person-stalker'></i> 3/6
+                                    span  AA
+                                div.type
+                                    span <i class='icon ion-clock'></i> 还剩8小时
+                                    span <i class='icon ion-location'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局
+                li(ng-click='vm.goGroupDetail()')
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(ng-src='{{vm.barAvatarDemo}}')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ion-person-stalker'></i> 3/6
+                                    span  AA
+                                div.type
+                                    span <i class='icon ion-clock'></i> 还剩8小时
+                                    span <i class='icon ion-location'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            button.find-detail 查看酒局

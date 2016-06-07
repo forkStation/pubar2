@@ -1,4 +1,4 @@
-ion-content
+ion-content.has-tabs
     div.index
         div.header-menu
             a.left.clear(ng-href='/location') 广州
@@ -24,6 +24,7 @@ ion-content
                 div.bar-list-stores
                     location-nav-bar(title='兴盛路')
                     div.store(ng-click='vm.goBarDetail()')
+                        collect
                         div.tip 3个酒局进行中
                         img(ng-src='{{vm.barAvatarDemo}}')
                         div.bar-info

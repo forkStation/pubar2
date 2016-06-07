@@ -1,6 +1,7 @@
 import tpl from './member.jade'
 import './member.scss'
 import { angular, ionic } from 'library'
+import imgResource from 'assets/images'
 
 export default angular.module('member',[ionic])
     .config(function ($stateProvider) {
@@ -18,6 +19,7 @@ export default angular.module('member',[ionic])
 class MemberController {
     constructor () {
         "ngInject"
-        this.name = 'member'
+        this.name = 'member';
+        this.productItem = imgResource.productItem
     }
 }

@@ -1,22 +1,23 @@
 div.location(hide-tabs='true')
-    div#search-bar
-        div.item-input-inset
-            label.item-input-wrapper
-                i.icon.ion-search.placeholder-icon
-                input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
-            button.button.button-clear 取消
+    ion-content
+        div#search-bar
+            div.item-input-inset
+                label.item-input-wrapper
+                    i.icon.ion-search.placeholder-icon
+                    input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
+                button.button.button-clear 取消
 
 
 
-    nav-tip-bar(title='当前定位城市')
-    div.current-city
-        button 广州
-    nav-tip-bar(title='热门城市')
-    div.hot-cities
-        a.city-item 广州
-        a.city-item 北京
-        a.city-item 深圳
-    div.location-city-list
-        div(ng-repeat='(key,value) in vm.data')
-            nav-tip-bar(title='{{key}}')
-            p(ng-repeat='item in vm.data[key]') {{item.text}}
+        nav-tip-bar(title='当前定位城市')
+        div.current-city
+            button 广州
+        nav-tip-bar(title='热门城市')
+        div.hot-cities
+            a.city-item 广州
+            a.city-item 北京
+            a.city-item 深圳
+        div.location-city-list
+            div(ng-repeat='(key,value) in vm.data')
+                nav-tip-bar(title='{{key}}')
+                p(ng-repeat='item in vm.data[key]') {{item.text}}

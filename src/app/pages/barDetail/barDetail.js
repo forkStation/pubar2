@@ -23,8 +23,7 @@ class BarDetailController {
 
         this.name = 'barDetail';
         this.slideIndex = 0;
-
-        console.log($ionicSlideBoxDelegate);
+        this.state = $state;
         this.goSlide = function(index){
             $ionicSlideBoxDelegate._instances[1].slide(index);
         };
@@ -32,5 +31,8 @@ class BarDetailController {
             $state.go('groupDetail');
         }
 
+    }
+    applyMe(){
+        this.state.go('productList')
     }
 }

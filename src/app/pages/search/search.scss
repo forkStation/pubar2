@@ -1,0 +1,67 @@
+@import "../../../styles/color";
+.search{
+  .item-input-inset{
+    border-bottom:1px solid $assistant-color;
+  }
+  .row{
+    text-align:center;
+    margin-top:.91rem;
+    .icon{
+      color:#282828;
+      width:.96rem;
+      height:.96rem;
+      border-radius:50%;
+      background-color: $assistant-color;
+      display: block;
+      margin:0 auto;
+      line-height:.96rem;
+      font-size:.5rem;
+    }
+    p{
+      font-size:.3rem;
+      color:$assistant-color;
+      margin-top:.2rem;
+    }
+  }
+  .result{
+    .list{
+      margin-bottom:0;
+    }
+    .item{
+      background: none;
+      border:none;
+      border-bottom:1px solid $assistant-color;
+      padding:.3rem 1.5rem .3rem 1.2rem;
+      min-height:.8rem;
+      h2{
+        color:#fff;
+      }
+      p{
+        color: $assistant-color;
+      }
+      img{
+        width:.8rem;
+        height:.8rem;
+        left:.2rem;
+        top:.3rem;
+        max-height: none;
+        max-width: none;
+      }
+      .item-note{
+        position: absolute;
+        right: .1rem;
+        top: .70rem;
+        i{
+          margin-right:5px;
+          font-size:.35rem;
+        }
+      }
+    }
+    .tip{
+      color:$assistant-color;
+      text-align:center;
+      font-size:.3rem;
+      padding:.15rem 0;
+    }
+  }
+}

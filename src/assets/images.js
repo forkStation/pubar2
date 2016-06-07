@@ -2,7 +2,7 @@
  * Created by wj on 2016/6/4.
  * happy erverday!
  */
-'use strict'
+'use strict';
 
 export default {
     barAvatarDemo:require('img/bar-avatar-demo.png'),
