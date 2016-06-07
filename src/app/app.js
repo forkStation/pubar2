@@ -4,6 +4,7 @@ import appComponent from './app.component'
 import pagesModule from './pages/app.pages'
 import appFilter from './app.filter'
 import appServer from './app.service'
+import appConfig from './app.config'
 
 angular
     .module('pubarApp', [
@@ -11,7 +12,8 @@ angular
         pagesModule.name,
         appComponent.name,
         appFilter.name,
-        appServer.name
+        appServer.name,
+        appConfig.name
     ])
     .config(($locationProvider, $urlRouterProvider,$ionicConfigProvider) => {
         "ngInject";

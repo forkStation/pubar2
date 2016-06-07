@@ -4,8 +4,12 @@
  */
 'use strict'
 
-import { angular, ionic } from "library"
+import { angular,ionic } from "library"
 import Token from './service/token'
+import resource from './service/resource'
+import resourcePool from  './service/resourcePool'
 
-export default angular.module('app.service', ['ionic'])
+export default angular.module('app.service',['ionic'])
     .service('token',Token)
+    .service('resource',resource)
+    .factory('resourcePool',resourcePool)

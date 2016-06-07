@@ -22,14 +22,12 @@ export default class Token {
 
     tokenString(module){
         if(module !== 'Meb' && this._userId === 0) throw new Error('未登陆时要获取登录token')
+        if(!!this._userId && !this.loginToken) throw new Error('没有取到loginToken，请检查')
 
         let timeStamp = this.timeStamp
         let str = module + this._userId + timeStamp + this.loginToken
         let token = md5(str.trim())
-        if(!this.loginToken){
-            console.log(`set loginToken [${token}]`);
-            this.loginToken = token
-        }
+        
         console.info(`get token from
             module: ${module},
             userId: ${this._userId},
@@ -42,6 +40,7 @@ export default class Token {
     // setter and getter for loginToken
     // 也许要从localStorage 里面取值
     set loginToken(t){
+        console.log(`set loginToken [${t}]`);
         this._token = t
     }
 
@@ -73,6 +72,11 @@ export default class Token {
     _reset(){
         this._userId = 0
         this.loginToken = ''
+    }
+    
+    loginAfter(id,token){
+        this.userId=id
+        this.loginToken=token
     }
 
 }
