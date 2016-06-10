@@ -57,9 +57,9 @@
         })(window, document);
     </script>
 </head>
-<body ng-app="pubarApp" ng-cloak style="background: #404040">
+<body ng-app="pubarApp" ng-cloak style="background: #282828">
 
-        <div ui-view class="page">
+        <div ui-view>
             loading
         </div>
 
@@ -67,7 +67,8 @@
 
     <ion-tabs class="tabs-icon-top bar-stable  " ng-class="{'tabs-item-hide': $root.hideTabs}" >
         <ion-tab title="酒局" icon-off="ion-ios-wineglass-outline" icon-on="ion-ios-wineglass" href="#/index"></ion-tab>
-        <ion-tab title="好友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#"></ion-tab>
+        <ion-tab title="聊天" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/index"></ion-tab>
+        <ion-tab title="好友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/friend"></ion-tab>
         <ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/member"></ion-tab>
 
     </ion-tabs>

@@ -31,7 +31,8 @@ class IndexController {
     constructor($scope,$ionicSlideBoxDelegate,$ionicModal,$state,login){
         "ngInject"
         this.name = 'index';
-        this.barAvatarDemo = imgResource.barAvatarDemo
+        this.barAvatarDemo = imgResource.barAvatarDemo;
+        
 
 
         $scope.slideIndex = 0;

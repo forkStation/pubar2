@@ -9,6 +9,7 @@ import filter from './directive/filter/filter.tpl'
 import shortBtn from './directive/shortBtn/shortBtn.directive'
 import share from './directive/share/share.directive'
 import collect from './directive/collect/collect.directive'
+import sex from './directive/sex/sex.directive'
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
     .directive('numberPick',numberPick)
@@ -17,3 +18,4 @@ export default angular.module('app.component', [ionic])
     .directive('sBtn',shortBtn)
     .directive('share',share)
     .directive('collect',collect)
+    .directive('sex',sex)

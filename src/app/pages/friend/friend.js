@@ -1,7 +1,7 @@
 import tpl from './friend.jade'
 import './friend.scss'
 import { angular, ionic } from 'library'
-
+import img from 'assets/images'
 export default angular.module('friend',[ionic])
     .config(function ($stateProvider) {
         "ngInject"
@@ -18,6 +18,8 @@ export default angular.module('friend',[ionic])
 class FriendController {
     constructor () {
         "ngInject"
-        this.name = 'friend'
+        this.name = 'friend';
+        this.chatGroupImg = img.chatGroupImg;
+        this.chatFansImg = img.chatFansImg;
     }
 }
