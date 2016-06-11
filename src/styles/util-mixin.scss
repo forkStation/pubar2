@@ -90,51 +90,32 @@
   padding:0 10px;
   box-sizing: border-box;
 }
-
-.corner{
-  color:#fff;
-  position:absolute;
-  right:0.2rem;
-  top:0.2rem;
-  font-size:.44rem;
-  border:1px solid #fff;
-  border-radius:50%;
-  width:.6rem;
-  height:.6rem;
-  text-align:center;
-  line-height:.6rem;
-  z-index:5;
-}
-.collect{
-  color:#98959E;
-  position:absolute;
-  right:0.2rem;
-  top:0.2rem;
-  font-size:.44rem;
-  border:1px solid #98959E;
-  border-radius:50%;
-  width:.6rem;
-  height:.6rem;
-  text-align:center;
-  line-height:.6rem;
-  z-index:5;
-  &.ion-ios-star{
-    border:$active-background-color;
-    background: $active-background-color;
+@mixin sex($left,$top){
+  .sex{
+    display: block;
+    width:.35rem;
+    height:.35rem;
+    position: absolute;
+    left:$left;
+    top:$top;
     color:#fff;
+    border-radius:50%;
+    font-size:.1rem;
+    text-align:center;
+    line-height:.35rem;
+    &.male{
+      background: #FF6E8F;
+    }
+    &.female{
+      background: #6CA9FF;
+      transform: rotate(45deg);
+    }
   }
 }
-@-webkit-keyframes slideInRight {
-  from{-webkit-transform: translateX(100%);}
-  to{-webkit-transform: translateX(0);}
-}
-@-webkit-keyframes slideInLeft {
-  from{-webkit-transform: translateX(0);}
-  to{-webkit-transform: translateX(-100%);}
-}
-.page.ng-enter{
-  -webkit-animation: slideInRight .5s ease-in;z-index:8888;
-}
-.page.ng-leave{
-  -webkit-animation: slideInLeft .5s ease-in;z-index:9999;
+
+
+
+
+a{
+  text-decoration:none;
 }

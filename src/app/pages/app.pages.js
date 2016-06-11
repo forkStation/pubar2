@@ -18,6 +18,8 @@ import takeCash from './takeCash/takeCash'
 import friend from './friend/friend'
 import collect from './collect/collect'
 import myGroup from './myGroup/myGroup'
+import chatList from './chatList/chatList'
+import fans from './fans/fans'
 //@import
 
 export default angular.module('app.pages', [
@@ -36,5 +38,7 @@ export default angular.module('app.pages', [
     takeCash.name,
     friend.name,
     collect.name,
-    myGroup.name//@register
+    myGroup.name,
+    chatList.name,
+    fans.name//@register
 ]);

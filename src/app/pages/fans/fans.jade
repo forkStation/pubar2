@@ -1,0 +1,41 @@
+div.friend.myGroup
+    div.row
+        div.col-50(ng-click='vm.goSlide(0)' class="menu-tab {{vm.slideIndex==0?'on':''}}") 关注
+        div.col-50(ng-click='vm.goSlide(1)' class="menu-tab {{vm.slideIndex==1?'on':''}}") 粉丝
+    ion-content.has-header
+        ion-slide-box(show-pager='false' active-slide='vm.slideIndex')
+            ion-slide
+                div.list
+                    nav-tip-bar(title='A')
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        sex(type='1')
+                        h2 昂电饭锅
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatGroupImg}}')
+                        sex(type='0')
+                        h2 俺媳妇
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        h2 爱国心
+                    nav-tip-bar(title='B')
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        h2 不舒服
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatGroupImg}}')
+                        h2 不好好让他
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        h2 八十
+            ion-slide
+                div.list
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        h2 昂电饭锅
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatGroupImg}}')
+                        h2 俺媳妇
+                    a.item.item-avatar
+                        img(ng-src='{{vm.chatFansImg}}')
+                        h2 爱国心
