@@ -22,7 +22,7 @@ export default angular.module('app.config',[ionic])
             }
 
             function executeToken(req){
-                const module=req.url.split('/')[2]
+                const module = req.url.split('/')[2]
                 console.log(module);
                 return Object.assign(req.params,token.getToken(module))
             }
@@ -63,6 +63,41 @@ export default angular.module('app.config',[ionic])
                     // do something on error
                     return $q.reject(rejection);
                 }
-            };
+            }
+        })
+    })
+    .constant('global', {
+        version: Date.now()
+    })
+    .run(function(global,$ionicLoading){
+        global.loading=$ionicLoading
+    })
+    .config(function($httpProvider,global){
+        'ngInject'
+        let count=0
+        let loading=false
+        // global loading start
+        $httpProvider.defaults.transformRequest.push(function(data){
+            count += 1
+            if(!loading){
+                window.setTimeout(function(){
+                    if(!loading && count > 0){
+                        loading = true
+                        global.loading.show({
+                            template: '<ion-spinner></ion-spinner>'
+                        })
+                    }
+                },500) // if no response in 1000ms, begin loading
+            }
+            return data;
         });
+        // global loading end
+        $httpProvider.defaults.transformResponse.push(function(data){
+            count -= 1;
+            if(loading && count === 0){
+                global.loading.hide()
+            }
+            return data;
+        });
+
     })

@@ -15,12 +15,8 @@ export default angular.module('index',[ionic])
                 template: tpl(),
                 resolve: {
                     login: function(resourcePool){
-                        const login = resourcePool.login;
-                        return login.request({ a: '2' })
-                    },
-                    add: function(resourcePool,login,token){
-                        const add = resourcePool.getBarList;
-                        return add.request({ userId:token.userId })
+                        let login=resourcePool.login
+                        return login.request({})
                     }
                 }
             })
