@@ -20,6 +20,10 @@ import collect from './collect/collect'
 import myGroup from './myGroup/myGroup'
 import chatList from './chatList/chatList'
 import fans from './fans/fans'
+import member_view from './member_view/member_view'
+import member_edit from './member_edit/member_edit'
+import edittxt from './edittxt/edittxt'
+import morectrl from './morectrl/morectrl'
 //@import
 
 export default angular.module('app.pages', [
@@ -40,5 +44,9 @@ export default angular.module('app.pages', [
     collect.name,
     myGroup.name,
     chatList.name,
-    fans.name//@register
+    fans.name,
+    member_view.name,
+    member_edit.name,
+    edittxt.name,
+    morectrl.name//@register
 ]);

@@ -1,3 +1,33 @@
+@import "../../../styles/util-mixin";
 .chatList{
 
+}
+.chat-list{
+  .item{
+    background: none;
+    margin-left:.2rem;
+    border:none;
+    border-bottom:$border-line;
+    padding:.3rem .2rem .3rem 1.3rem;
+
+    img{
+      max-width: none;
+      max-height: none;
+      width:.72rem;
+      height:.72rem;
+      left:.2rem;
+    }
+    em{
+      font-size:.1rem;
+      color:$assistant-color;
+      float: right;
+    }
+    h2{
+      color:#fff;
+      font-size:.32rem;
+    }
+    p{
+      color:$assistant-color;
+    }
+  }
 }

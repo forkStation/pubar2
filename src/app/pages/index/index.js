@@ -15,28 +15,22 @@ export default angular.module('index',[ionic])
                 template: tpl(),
                 resolve: {
                     login: function(resourcePool){
-                        let login=resourcePool.login
+                        let login=resourcePool.login;
                         return login.request({})
                     }
                 }
             })
     });
 
-
 class IndexController {
     constructor($scope,$ionicSlideBoxDelegate,$ionicModal,$state,login){
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
-        
-
-
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);
         };
-
-
     }
 }
 
