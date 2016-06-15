@@ -1,6 +1,7 @@
 #如何启动项目
 
-### 第一步:安装node.js  官方网址:https://nodejs.org/en/  安装git客户端，如果是windows可能会需要配置git环境变量
+### 第一步:安装node.js  官方网址:https://nodejs.org/en/  
+    安装git客户端，如果是windows可能会需要配置git环境变量
 
 #### node.js会自动安装npm包管理工具.
 
