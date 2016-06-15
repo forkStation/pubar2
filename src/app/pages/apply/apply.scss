@@ -1,0 +1,34 @@
+.apply{
+  .pic-wall{
+    .avatar-bg{
+      position: relative;
+    }
+    .sex{
+      position: absolute;
+      bottom:.1rem;
+      right:0;
+    }
+    .msg{
+      color:#ccc;
+      font-size:.26rem;
+    }
+  }
+  .buttons{
+    margin:.2rem;
+    .row{
+      padding:0;
+      div{
+        .dis{
+          background: #c1c1c1;
+          color:#000;
+        }
+        &:last-child{
+          padding-left:.2rem;
+        }
+        &:first-child{
+          padding-right:.2rem;
+        }
+      }
+    }
+  }
+}

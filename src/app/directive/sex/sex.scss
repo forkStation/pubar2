@@ -1,0 +1,17 @@
+.sex{
+  display: block;
+  width: .35rem;
+  height: .35rem;
+  color: #fff;
+  border-radius: 50%;
+  font-size: .1rem;
+  text-align: center;
+  line-height: .35rem;
+  &.female{
+    background: #6CA9FF;
+    transform: rotate(45deg);
+  }
+  &.male{
+    background: #FF6E8F;
+  }
+}

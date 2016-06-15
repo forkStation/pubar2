@@ -1,0 +1,83 @@
+@import "../../../styles/util-mixin";
+.member_edit{
+  .gallery-wall{
+    position:relative;
+    img{
+      width:6.4rem;
+      height:4rem;
+      display: block;
+    }
+
+    .gallery{
+      position: absolute;
+      bottom:0;
+      left:0;
+      width:100%;
+    }
+    .change-wall{
+      position: absolute;
+      top:.2rem;
+      left:50%;
+      display: inline-block;
+      padding:0 .1rem;
+      margin:0 auto 0 -34px;
+      color:#fff;
+      border-radius: 3px;
+      border:1px solid #ccc;
+      background: rgba(0,0,0,0.4);
+      font-size:.1rem;
+      i{
+        font-size:.3rem;
+        margin-right:3px;
+      }
+    }
+    input[type=file]{
+      position: absolute;
+      top:.2rem;
+      width:75px;
+      height:35px;
+      left:50%;
+      margin:0 auto 0 -34px;
+      z-index:5;
+      opacity: 0;
+    }
+  }
+  .list{
+    .item{
+      background: none;
+      border:none;
+      border-bottom:$border-line;
+      padding:.3rem .2rem .3rem .2rem;
+      &.avatar{
+        padding:.4rem .2rem .4rem .2rem;
+      }
+      color:#fff;
+      img{
+        width:.68rem;
+        height:.68rem;
+        display: block;
+        border-radius:50%;
+        position: absolute;
+        right:.7rem;
+        top:.28rem;
+        border:1px solid #ccc;
+      }
+      i{
+        color:$assistant-color;
+        font-size:.48rem;
+        right:0;
+      }
+      .item-note{
+        margin-right:.5rem;
+        &.bars{
+          display: inline-block;
+          padding:0.05rem .3rem;
+          background: $assistant-color;
+          color:#000;
+          font-size:.1rem;
+          border-radius:2px;
+        }
+      }
+    }
+  }
+}

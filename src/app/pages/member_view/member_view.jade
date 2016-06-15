@@ -1,0 +1,53 @@
+div.member_view(hide-tabs='true')
+    ion-content.has-tabs
+        div.gallery
+            div.row
+                div.col-25
+                    img
+                div.col-25
+                    img
+                div.col-25
+                    img
+                div.col-25
+                    img
+            div.row
+                div.col-25
+                    img
+                div.col-25
+                    img
+                div.col-25
+                    img
+                div.col-25
+                    img
+
+        div.tags
+            span.male
+                i.icon.ion-male
+                em 22
+            span 水瓶座
+            span 单身
+        div.tags
+            div.title 个人签名
+            div.desc 今天天气真的很好，可惜要上班，可惜了，可惜了，听说明天会下暴雨
+        div.tags
+            div.title 蒲友号
+            div.desc 188241
+        div.tags
+            div.title 兴趣爱好
+            div.desc 吃饭睡觉打豆豆
+        div.tags
+            div.title 活跃酒吧
+            div.desc.visit
+                span <em>#</em>本色酒吧
+                span <em>#</em>本色酒吧
+                span <em>#</em>本色酒吧
+        a.tags.item-icon-right(ng-href='/morectrl') 更多
+            i.icon.ion-ios-arrow-right
+
+    div.bar.bar-footer.row
+        a.col-50(ng-href='/chat')
+            i.icon.ion-ios-chatbubble
+            em 聊天
+        a.col-50
+            i.icon.ion-android-bar
+            em 请喝酒

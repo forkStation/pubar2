@@ -1,0 +1,87 @@
+@import "../../../styles/util-mixin";
+.create{
+  .pic-wall{
+    position: relative;
+    .background{
+      width:6.4rem;
+      height:3.8rem;
+      display: block;
+    }
+    .user-behavior{
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      @include vertical();
+      .avatar{
+        width:1.4rem;
+        height:1.4rem;
+        border:1px solid #ccc;
+        border-radius:50%;
+        display: block;
+      }
+      .name{
+        color:#ccc;
+        font-size:.32rem;
+        margin-top: 5px;;
+      }
+    }
+  }
+  .bar{
+    height: auto;
+    background: $assistant-color;
+    border:none;
+    .button{
+      font-size: .28rem;
+      margin:5px 0;
+      padding:.1rem 0;
+    }
+  }
+  .comment-form{
+    dl{
+      overflow:hidden;
+      padding:.2rem .2rem .2rem 1rem;
+      margin-bottom:0;
+      color:$assistant-color;
+      font-size:.28rem;
+      border-bottom:#000 1px solid ;
+      dt{
+        float: left;
+        margin-left:-.9rem;
+        height:.5rem;
+        @include vertical();
+        font-weight: normal;
+      }
+      dd{
+        height:.5rem;
+        @include vertical();
+        -webkit-box-align:inherit;
+        input{
+          @include normalTextBox();
+          background: none;
+          color:$assistant-color;
+          font-size:.28rem;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          line-height:.5rem;
+          &::-webkit-input-placeholder{
+            color:$assistant-color;
+          }
+
+        }
+        select{
+          height:.5rem;
+          color:$assistant-color;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background: none;
+          border:none;
+          font-size:.28rem;
+        }
+      }
+    }
+  }
+}

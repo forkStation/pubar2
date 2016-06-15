@@ -1,0 +1,39 @@
+div.apply.create(hide-tabs='true')
+    ion-content
+        div.pic-wall
+            img.background(ng-src='{{vm.picWall}}')
+
+            div.user-behavior
+                div.avatar-bg
+                    sex(type='0')
+                    img.avatar
+                p.name 哒哒
+                p.msg 锅锅能让我参加么...
+                s-btn(text='勾搭她' ng-href='/member_view')
+        nav-tip-bar(title='酒局信息')
+        ul.group-list
+            li
+                div.group
+                    div.pub-user
+                        div.avatar-section
+                            img(ng-src='{{vm.barAvatarDemo}}')
+                            p.name 大彬大大彬
+                        div.group-info
+                            p 本色帅哥美女局美女局...
+                            div.type
+                                span <i class='icon ion-person-stalker'></i> 3/6
+                                span <i class='icon ion-ios-pricetag-outline'></i> AA
+                            div.type
+                                span <i class='icon ion-ios-clock-outline'></i> 还剩8小时
+                                span <i class='icon ion-ios-location'></i> 3km
+                    div.status-bar
+                        span 状态:正在组居中
+                        button.find-detail 查看酒局
+
+        div.buttons
+            button.button.button-block.button-active 同意
+            div.row
+                div.col-50
+                    button.button.button-block.dis(ng-click='vm.blacklist()') 加入黑名单
+                div.col-50
+                    button.button.button-block.dis(ng-click='vm.reject()') 拒绝

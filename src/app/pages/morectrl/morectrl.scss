@@ -1,0 +1,53 @@
+@import "../../../styles/color";
+.morectrl{
+  .list{
+    background: #444;
+    padding-left:.2rem;
+    margin:.4rem 0;
+  }
+  .item{
+    background: none;
+    margin-left:.2rem;
+    border:none;
+    border-bottom:1px solid #0F111B;
+    padding:.3rem .8rem .3rem .2rem;
+    color:#fff;
+    &:last-child{
+      border:none;
+    }
+    i{
+      font-size:.4rem;
+      color:$assistant-color;
+    }
+    img{
+      max-width: none;
+      max-height: none;
+      width:.72rem;
+      height:.72rem;
+      left:.2rem;
+    }
+    em{
+      font-size:.1rem;
+      color:$assistant-color;
+      float: right;
+    }
+    h2{
+      color:#fff;
+      font-size:.32rem;
+    }
+    p{
+      color:$assistant-color;
+    }
+  }
+  .ctrl{
+    margin:0 .3rem;
+    button{
+      margin-bottom:.3rem;
+    }
+  }
+}
+
+.button.button-gray{
+  background: $assistant-color;
+  color:$title-color;
+}

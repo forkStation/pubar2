@@ -1,0 +1,22 @@
+@import "../../../styles/util-mixin";
+.edittxt{
+  .edit{
+    display: block;
+    @include normalTextBox();
+    height:.88rem;
+    font-size:.32rem;
+    background:#444 !important;
+    border-radius:0;
+    margin:.3rem 0;
+    color:#f1f1f1;
+    -webkit-appearance: none;
+  }
+  .tips{
+    margin:0 .1rem .3rem;
+    color:$assistant-color;
+
+  }
+  .button{
+    margin:0 .1rem;
+  }
+}

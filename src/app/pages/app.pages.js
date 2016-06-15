@@ -24,6 +24,8 @@ import member_view from './member_view/member_view'
 import member_edit from './member_edit/member_edit'
 import edittxt from './edittxt/edittxt'
 import morectrl from './morectrl/morectrl'
+import create from './create/create'
+import apply from './apply/apply'
 //@import
 
 export default angular.module('app.pages', [
@@ -48,5 +50,7 @@ export default angular.module('app.pages', [
     member_view.name,
     member_edit.name,
     edittxt.name,
-    morectrl.name//@register
+    morectrl.name,
+    create.name,
+    apply.name//@register
 ]);

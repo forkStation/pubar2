@@ -10,7 +10,7 @@
       display: block;
       color:#fff;
       top:3px;
-      font-size:14px;
+      font-size:.28rem;
       -webkit-appearance:none;
       outline:none;
       padding:4px 16px;
@@ -29,12 +29,13 @@
   .header-menu-tabs{
     display: flex;
     display: -moz-flex;
-    width:140px;
-    height:32px;
+    width:2.8rem;
+    height:.64rem;
     margin:0 auto;
+    font-size:.28rem;
     color:$title-color;
     text-align:center;
-    line-height:32px;
+    line-height:.64rem;
     .menu-tab{
       background: $background-color;
       flex:1;
@@ -206,10 +207,11 @@ ul.group-list{
   .sort-item{
     flex:1;
     -moz-flex:1;
-    height:40px;
+    padding:.1rem 0;
     line-height:40px;
     text-align:center;
     color:#736F78;
+    font-size:.28rem;
     &.on{
       background: #A7264D;
       color:#fff;
@@ -223,8 +225,8 @@ ul.group-list{
   .content-item{
     float: left;
     width:33.333%;
-    height:40px;
-    font-size:14px;
+    padding:.1rem 0;
+    font-size:.28rem;
     color:#736F78;
     text-align:center;
     line-height:40px;
@@ -286,4 +288,12 @@ ul.group-list{
   text-align:center;
   line-height:.6rem;
   z-index:5;
+}
+.tabs.tab-nav {
+  .tab-item{
+    font-size:.1rem;
+  }
+  .icon{
+    font-size:.48rem;
+  }
 }

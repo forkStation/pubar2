@@ -1,0 +1,55 @@
+div.member_edit
+    ion-content.has-tabs
+        div.gallery-wall
+            div.opa
+                input(type='file' accept='images/*')
+                a.change-wall
+                    i.icon.ion-image
+                    em 更换背景
+            img(ng-src='{{vm.wall}}')
+            div.gallery
+                div.row
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+                div.row
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+                    div.col-25
+                        img
+
+        nav-tip-bar(title='基本资料')
+        div.list
+            a.item.item-icon-right.avatar 123
+                img(ng-src='{{vm.wall}}')
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right 昵称
+                span.item-note 老实人
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right 年龄
+                span.item-note 22
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right(ng-click='vm.changeSex()') 性别
+                span.item-note 男
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right(ng-click='vm.changeStatus()') 情感状况
+                span.item-note 22
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right 个人签名
+                span.item-note 时间是一把杀猪刀
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right 兴趣爱好
+                span.item-note 时间是一把杀猪刀
+                i.icon.ion-ios-arrow-right
+            a.item.item-icon-right 活跃酒吧
+                span.item-note.bars 本色酒吧
+                i.icon.ion-ios-arrow-right

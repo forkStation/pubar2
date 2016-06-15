@@ -1,7 +1,7 @@
 /**
  * Created by apple on 16/6/10.
  */
-
+import './sex.scss'
 export default function(){
     return{
         restrict:'E',

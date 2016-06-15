@@ -1,0 +1,75 @@
+@import "../../../styles/util-mixin";
+.member_view{
+
+  .tags{
+    padding:.15rem .2rem;
+    background: #444;
+    margin-bottom:.1rem;
+    color:#fff;
+    position:relative;
+    display: block;
+    .ion-ios-arrow-right{
+      font-size:.48rem;
+      color:$assistant-color;
+    }
+    span{
+      display: inline-block;
+      background: $assistant-color;
+      color:$title-color;
+      padding:.01rem .2rem;
+      margin:.1rem .1rem .1rem 0;
+      font-size:.1rem;
+      i{
+        margin-right:.1rem;
+      }
+      &.male{
+        background: #FF6E8F;
+      }
+      &.female{
+        background: #4b8bf4;
+      }
+    }
+    .title{
+      font-size:.32rem;
+      color:#fff;
+      margin-bottom:.2rem;
+    }
+    .desc{
+      color:$assistant-color;
+      font-size:.28rem;
+      &.visit{
+        span{
+          font-size:.28rem;
+          padding:.1rem .2rem;
+          color:#000;
+        }
+        em{
+          color:#A7264D;
+        }
+      }
+    }
+  }
+  .bar-footer{
+    padding:0;
+
+    a{
+      @include vertical();
+      background: $assistant-color;
+      font-size:.32rem;
+      color:#fff;
+      i{
+        margin:0 .15rem;
+      }
+    }
+  }
+}
+.gallery{
+  .row{
+    div{
+      img{
+        width:1.44rem;
+        height:1.44rem;
+      }
+    }
+  }
+}
