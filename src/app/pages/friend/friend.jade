@@ -6,7 +6,7 @@ div.friend
                 input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
 
     div.list
-        a.item.item-avatar
+        a.item.item-avatar(ng-href='/addFriend')
             img(ng-src='{{vm.chatFansImg}}')
             h2 新的朋友
         a.item.item-avatar

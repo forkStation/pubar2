@@ -26,6 +26,9 @@ import edittxt from './edittxt/edittxt'
 import morectrl from './morectrl/morectrl'
 import create from './create/create'
 import apply from './apply/apply'
+import addFriend from './addFriend/addFriend'
+import onme from './onme/onme'
+import onme_result from './onme_result/onme_result'
 //@import
 
 export default angular.module('app.pages', [
@@ -52,5 +55,8 @@ export default angular.module('app.pages', [
     edittxt.name,
     morectrl.name,
     create.name,
-    apply.name//@register
+    apply.name,
+    addFriend.name,
+    onme.name,
+    onme_result.name//@register
 ]);

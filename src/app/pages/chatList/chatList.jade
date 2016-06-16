@@ -1,4 +1,10 @@
 div.chatList
+    div#search-bar
+        div.item-input-inset
+            label.item-input-wrapper
+                i.icon.ion-search.placeholder-icon
+                input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
+
     div.list.chat-list
         a.item.item-avatar(ng-href='/chat')
             img
@@ -7,6 +13,7 @@ div.chatList
             p this is content
         a.item.item-avatar(ng-href='/chat')
             img
+            sex(type='0')
             h2 nickname
                 em 昨天
             p this is content
