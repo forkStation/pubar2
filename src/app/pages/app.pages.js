@@ -29,6 +29,7 @@ import apply from './apply/apply'
 import addFriend from './addFriend/addFriend'
 import onme from './onme/onme'
 import onme_result from './onme_result/onme_result'
+import onme_detail from './onme_detail/onme_detail'
 //@import
 
 export default angular.module('app.pages', [
@@ -58,5 +59,6 @@ export default angular.module('app.pages', [
     apply.name,
     addFriend.name,
     onme.name,
-    onme_result.name//@register
+    onme_result.name,
+    onme_detail.name//@register
 ]);

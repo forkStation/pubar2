@@ -1,0 +1,24 @@
+div.onme.create
+
+    ion-content( style='bottom:60px;')
+        div.pic-wall
+            img.background(ng-src='{{vm.picWall}}')
+            div.user-behavior
+                img.avatar
+                p.name 哒哒
+        nav-tip-bar(title='本色酒吧酒局')
+        div.comment-form
+            dl
+                dt 主题
+                dd
+                    input(placeholder='请输入酒局的主题' ng-model='form.title' type='text')
+            dl
+                dt 日期
+                dd
+                    input(placeholder='请选择日期' value='date' type='datetime-local')
+            dl
+                dt 付款
+                dd
+                    span 我请客
+    div.bar.bar-footer
+        button.button.button-block.button-active 确定

@@ -1,0 +1,16 @@
+div.addFriend
+    ion-content
+        div#search-bar
+            div.item-input-inset
+                label.item-input-wrapper
+                    i.icon.ion-search.placeholder-icon
+                    input(type="search" placeholder="请输入蒲吧号/昵称" name="" ng-model="form.key" autocorrect="off")
+                button.button.button-clear 取消
+
+        div.result
+            nav-tip-bar(title='相关的蒲友')
+            div.list
+                a.item.item-avatar
+                    img(ng-src='{{vm.userAvatar}}')
+                    h2 大飞
+                    p 寂寞求约..

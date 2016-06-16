@@ -1,0 +1,27 @@
+@import "../../../styles/color";
+.addFriend{
+  .list{
+    margin-bottom:0;
+  }
+  .item{
+    background: none;
+    border:none;
+    border-bottom:1px solid $assistant-color;
+    padding:.3rem 1.5rem .3rem 1.2rem;
+    min-height:.8rem;
+    h2{
+      color:#fff;
+    }
+    p{
+      color: $assistant-color;
+    }
+    img{
+      width:.8rem;
+      height:.8rem;
+      left:.2rem;
+      top:.3rem;
+      max-height: none;
+      max-width: none;
+    }
+  }
+}

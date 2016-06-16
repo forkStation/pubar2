@@ -1,0 +1,37 @@
+div.onme_detail.create.apply(hide-tabs='true')
+    ion-content.groupDetail
+        div.pic-wall
+            img.background(ng-src='{{vm.picWall}}')
+
+            div.user-behavior
+                div.avatar-bg
+                    sex(type='0')
+                    img.avatar
+                p.name 哒哒
+                p.msg 锅锅能让我参加么...
+                s-btn(text='勾搭她' ng-href='/member_view')
+        nav-tip-bar(title='酒局信息')
+        .hoz-item
+            span.l-content <i class='ion ion-android-bar'></i>  本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧
+            a.ctrl-btn(href='/barDetail')  详情
+        .hoz-item
+            span.l-content <i class='ion ion-ios-location'></i>  广州市沿江路20310号巴拉巴兰吧拉巴兰...
+            a.ctrl-btn  详情
+
+        .hoz-item
+            span.l-content <i class='ion ion-ios-bell-outline'></i>  2015-05-22 15:22
+
+        .hoz-item
+            span.l-content <i class='ion'>&yen;</i>  男A女免
+
+        .hoz-item
+            span.l-content <i class='ion ion-ios-wineglass'></i>  酒单总价 &yen;3888.0
+            a.ctrl-btn 酒单详情
+
+    div.bar.bar-footer
+        div.col-33
+            a.button.button-block.button-gray 加入黑名单
+        div.col-33
+            a.button.button-block.button-gray 拒绝
+        div.col-33
+            a.button.button-block.button-active 同意
