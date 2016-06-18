@@ -10,6 +10,7 @@
  * @returns {{addBarFriend: *, getBarInfo: *, getBarList: *, getBarFriendList: *, getCities: *, getDrinkInfo: *, getDrinkList: *, getDrinkCate: *, getSmsCode: *, register: *, login: *, postOrder: *, getOrderList: *, getOrderPayList: *, getOrderDetail: *, getPartyUserInfo: *, getPartyInfo: *, getPartyList: *}}
  */
 export default function(resource){
+    'ngInject'
     return {
         // bar
         'addBarFriend':resource.bar('barfriend_add'),

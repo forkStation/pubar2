@@ -8,7 +8,7 @@
 import md5 from 'md5'
 
 
-export default class Token {
+class Token {
     // 用户名默认为0
     constructor(){
         this._userId = 0
@@ -80,3 +80,5 @@ export default class Token {
     }
 
 }
+let token = new Token()
+export default token 

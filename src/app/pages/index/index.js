@@ -15,6 +15,7 @@ export default angular.module('index',[ionic])
                 template: tpl(),
                 resolve: {
                     login: function(resourcePool){
+                        'ngInject'
                         let login=resourcePool.login;
                         return login.request({})
                     },
