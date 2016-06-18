@@ -8,7 +8,7 @@ export default angular.module('barDetail',[ionic])
         "ngInject"
         $stateProvider
             .state('barDetail', {
-                url: '/barDetail',
+                url: '/barDetail/:id',
                 controllerAs: 'vm',
                 controller: BarDetailController,
                 template: tpl()

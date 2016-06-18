@@ -1,5 +1,5 @@
 div.groupDetail.has-tabs(hide-tabs='true')
-    ion-content
+    ion-content.has-tabs
         div.group-info
             img.bg(ng-src='{{vm.barAvatarDemo}}')
             .group-section
@@ -40,26 +40,20 @@ div.groupDetail.has-tabs(hide-tabs='true')
                     .nickname {{chat.nickname}}
                     div.msg-content {{chat.msg}}
 
-        div.col-33 1
 
-div.bar.bar-footer.bc(ng-show='!vm.flag')
-    div.col-33
-        p
-            i.ion.ion-ios-heart-outline
-        p 感兴趣
-    div.col-33
-        p 报名&yen;200
-        p 组局中
-    div.col-33.on(ng-click='vm.showComment()')
-        p
-            i.ion.ion-android-textsms
-        p 评论
-div.bar.bar-footer.comment.bc(ng-show='vm.flag')
+    div.bar.bar-footer.bc(ng-show='!vm.flag')
+        div.col-66.status(ng-click='vm.showComment()')
+                i.ion.ion-android-textsms
+                h2 正在组局中...
+                p 距离开始还有8小时
+        div.col-33.on
+            p
+                i.ion.ion-android-textsms
+            p 评论
+    div.bar.bar-footer.comment.bc(ng-show='vm.flag')
 
-    div.col-67
-        form
-            input(type='text' placeholder='说点什么吧' id='txtComment')
-    div.col-33
-        label
-            input(type='checkbox')
-            em 匿名评论
+        div.col-75
+            form
+                input(type='text' placeholder='说点什么吧' id='txtComment')
+        div.col-25
+            s-btn(text='取消')

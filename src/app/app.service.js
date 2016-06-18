@@ -8,8 +8,10 @@ import { angular,ionic } from "library"
 import Token from './service/token'
 import resource from './service/resource'
 import resourcePool from  './service/resourcePool'
+import app from './service/application'
 
 export default angular.module('app.service',['ionic'])
     .service('token',Token)
     .service('resource',resource)
     .factory('resourcePool',resourcePool)
+    .factory('application',app)

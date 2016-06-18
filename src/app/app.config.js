@@ -78,16 +78,16 @@ export default angular.module('app.config',[ionic])
         let loading=false
         // global loading start
         $httpProvider.defaults.transformRequest.push(function(data){
-            count += 1
+            count += 1;
             if(!loading){
                 window.setTimeout(function(){
                     if(!loading && count > 0){
-                        loading = true
+                        loading = true;
                         global.loading.show({
                             template: '<ion-spinner></ion-spinner>'
                         })
                     }
-                },500) // if no response in 1000ms, begin loading
+                },500); // if no response in 1000ms, begin loading
             }
             return data;
         });

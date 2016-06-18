@@ -30,6 +30,7 @@ import addFriend from './addFriend/addFriend'
 import onme from './onme/onme'
 import onme_result from './onme_result/onme_result'
 import onme_detail from './onme_detail/onme_detail'
+import couponList from './couponList/couponList'
 //@import
 
 export default angular.module('app.pages', [
@@ -60,5 +61,6 @@ export default angular.module('app.pages', [
     addFriend.name,
     onme.name,
     onme_result.name,
-    onme_detail.name//@register
+    onme_detail.name,
+    couponList.name//@register
 ]);

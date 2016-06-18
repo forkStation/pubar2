@@ -1,7 +1,6 @@
 import tpl from './location.jade'
 import './location.scss'
 import { angular, ionic } from 'library'
-
 export default angular.module('location',[ionic])
     .config(function ($stateProvider) {
         "ngInject"
@@ -10,47 +9,60 @@ export default angular.module('location',[ionic])
                 url: '/location',
                 controllerAs: 'vm',
                 controller: LocationController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getCity:function(resourcePool){
+                        let cities = resourcePool.getCities;
+                        return cities.request({})
+                    }
+                }
             })
     });
 
 
 class LocationController {
-    constructor () {
+    constructor (getCity,storedb,$ionicPopup,$ionicViewSwitcher,$ionicLoading) {
         "ngInject"
         this.name = 'location';
-        var data = [
-            {id:'aeafda-f1daff','text':'北京',key:'B'},
-            {id:'zedwdsdaadaeaen','text':'上海',key:'S'},
-            {id:'opomams ','text':'广州',key:'G'},
-            {id:'dqqesada','text':'深圳',key:'S'},
-            {id:'opomadn','text':'杭州',key:'H'},
-            {id:'gerd-qwdsadad','text':'南京',key:'N'},
-            {id:'grgwaa','text':'武汉',key:'W'},
-            {id:'fsdfsdf','text':'昆明',key:'K'},
-            {id:'lklkads','text':'成都',key:'C'}
+        this.cities = getCity.data.info;
+        this.popup = $ionicPopup;
+        this.storeDB = storedb;
+        this.initCity = '广州';
+        let t = this;
+        t.viewSwitcher = $ionicViewSwitcher;
+        t.loading = $ionicLoading;
+        let currentCity = storedb.key('city').find();
+        if(!currentCity){
+            storedb.key('city').insert({'cityName':t.initCity});
+        }else{
+            t.initCity = currentCity[0]['cityName'];
+        }
+    }
+    changeCity(city){
+        let t = this;
+        t.popup.show({
+            title:'温馨提示',
+            template:'是否将当前城市修改为'+city,
+            buttons:[{
+                text:'确定',
+                onTap:function(){
+                    let curName = t.storeDB.key('city').find()[0]['cityName'];
+                    t.initCity = city;
+                    t.storeDB.key('city').update({'cityName':curName},{'$set':{'cityName':city}},function (err, result) {
+                        if(!err){
+                            history.go(-1);
+                        }
+                    });
 
-        ];
-        var _sortRule = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var _sortKey = _sortRule.split('');
-        var _tempArray = new Array(_sortKey.length);
-        var _resultMap = {};
-        var i = 0,_len;
-        for(_len=data.length;i<_len;i++){
-            var _index = _sortRule.indexOf(data[i]['key']);
-            if(!(_tempArray[_index] instanceof Array)){
-                _tempArray[_index] = [];
-            }
-            _tempArray[_index].push({
-                'id':data[i]['id'],
-                'text':data[i]['text']
-            })
-        }
-        for(i=0,_len=_sortKey.length;i<_len;i++){
-            if(_tempArray[i]!==undefined){
-                _resultMap[_sortKey[i]] = _tempArray[i];
-            }
-        }
-        this.data = _resultMap;
+                    return true;
+                }
+            },{
+                text:'取消'
+            }]
+        })
+    }
+    goBack(){
+        let t = this;
+        t.viewSwitcher.nextDirection('back');
     }
 }

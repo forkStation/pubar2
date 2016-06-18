@@ -95,11 +95,35 @@
 }
 .bar.bc{
   background: #736F78;
-  height:50px;
+  height:1rem;
   padding:0;
   div{
-    text-align:center;
+
     @include vertical();
+    position: relative;
+    &.status{
+      padding-left:1.16rem;
+      -webkit-box-align: initial;
+      color:#ccc;
+      i{
+        text-align:center;
+        font-size:.48rem;
+        color:#fff;
+        width:.7rem;
+        height:.7rem;
+        background: #444;
+        border-radius:50%;
+        line-height:.7rem;
+        position:absolute;
+        left:.2rem;
+        top:.13rem;
+      }
+      h2{
+        font-size:.32rem;
+        font-weight:normal;
+        margin:0;
+      }
+    }
     p{
       margin:0;
       color:#242424;

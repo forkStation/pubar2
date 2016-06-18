@@ -1,7 +1,7 @@
 ion-content.has-tabs
     div.index
         div.header-menu
-            a.left.clear(ng-href='/location') 广州
+            a.left.clear(ng-href='/location') {{vm.cityName}}
             div.header-menu-tabs
                 div.menu-tab(ng-click='goSlide(0)' class="menu-tab {{slideIndex==0?'on':''}}") 酒吧
                 div.menu-tab(ng-click='goSlide(1)' class="menu-tab {{slideIndex==1?'on':''}}") 酒局
@@ -9,7 +9,7 @@ ion-content.has-tabs
 
 
         ion-slide-box(show-pager='false' active-slide='slideIndex')
-            ion-slide
+            ion-slide(style='height:auto')
                 div.sort-section(style='margin-top:10px')
                     div.sort-item <i class='by-asc'></i>排序
                     div.sort-item <i class='by-type'></i>类型
@@ -23,30 +23,15 @@ ion-content.has-tabs
                     div.content-item(ng-click='openFilterModal()') 更多...
                 div.bar-list-stores
                     location-nav-bar(title='兴盛路')
-                    a.store(href='/barDetail')
+                    a.store(ng-repeat='item in vm.bars track by $index' ng-href='/barDetail/{{item.id}}')
                         collect(ng-class='{"ion-ios-star-outline":true}')
-                        div.tip 3个酒局进行中
-                        img(ng-src='{{vm.barAvatarDemo}}')
+                        div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
+                        img(ng-src='{{vm.imgHost + item.cover}}')
                         div.bar-info
-                            div.bar-name 春色满园酒吧
+                            div.bar-name(ng-bind='item.name')
                             div.bar-position 广州市天河区风行东路108号3楼
-                                span 4.32km
-                    div.store
-                        collect(ng-class='{"ion-ios-star":true}')
-                        div.tip 3个酒局进行中
-                        img(ng-src='{{vm.barAvatarDemo}}')
-                        div.bar-info
-                            div.bar-name 春色满园酒吧
-                            div.bar-position 广州市天河区风行东路108号3楼
-                                span 4.32km
-                    div.store
-                        collect(ng-class='{"ion-ios-star":true}')
-                        div.tip 3个酒局进行中
-                        img(ng-src='{{vm.barAvatarDemo}}')
-                        div.bar-info
-                            div.bar-name 春色满园酒吧
-                            div.bar-position 广州市天河区风行东路108号3楼
-                                span 4.32km
+                                span(ng-if='item.distance' ng-bind='item.distance')
+
             ion-slide
                 div.sort-section(style='margin-top:10px')
                     div.sort-item <i class='recommend'></i>推荐
