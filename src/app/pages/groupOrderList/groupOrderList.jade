@@ -4,12 +4,8 @@ div.groupOrderList
         h2 samp
     nav-tip-bar(title='本色酒吧')
     div.list
-        div.row
-            div.col-60 马爹利蓝带
-            div.col-20 x1
-            div.col-20 &yen;1288.0
-        div.row
-            div.col-60 马爹利蓝带
-            div.col-20 x1
-            div.col-20 &yen;1288.0
+        div.row(ng-repeat='item in vm.detail.drinklist')
+            div.col-60(ng-bind='item.name')
+            div.col-20(ng-bind='"x"+item.count')
+            div.col-20(ng-bind='item.party.money | currency "￥"')
         div.total 合计&yen;3000.0

@@ -4,8 +4,8 @@ div.groupDetail.has-tabs(hide-tabs='true')
             img.bg(ng-src='{{vm.barAvatarDemo}}')
             .group-section
                 img.avatar(ng-src='{{vm.productItem}}')
-                .intro 本色帅哥美女局美女局巴拉限制最长20个中文字
-                s-btn(text='勾搭局长' ng-click='vm.goChat()')
+                .intro(ng-bind='vm.detail.party.subject')
+                s-btn(text='勾搭局长' ng-click='vm.goChat(vm.detail.ownerinfo.id)')
                 share(class='corner')
 
         .joiner
@@ -16,14 +16,14 @@ div.groupDetail.has-tabs(hide-tabs='true')
                 img(ng-src='{{vm.productItem}}')
                 img(ng-src='{{vm.productItem}}')
         .hoz-item
-            span.l-content <i class='ion ion-android-bar'></i>  本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧
+            span.l-content <i class='ion ion-android-bar'></i>  {{vm.detail.party.subject}}
             a.ctrl-btn(href='/barDetail')  详情
         .hoz-item
             span.l-content <i class='ion ion-ios-location'></i>  广州市沿江路20310号巴拉巴兰吧拉巴兰...
             a.ctrl-btn  详情
 
         .hoz-item
-            span.l-content <i class='ion ion-ios-bell-outline'></i>  2015-05-22 15:22
+            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.detail.party.startTime}}
 
         .hoz-item
             span.l-content <i class='ion'>&yen;</i>  男A女免
@@ -31,7 +31,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
             span.l-content <i class='ion ion-cube'></i>  审核
         .hoz-item
             span.l-content <i class='ion ion-ios-wineglass'></i>  酒单总价
-            a.ctrl-btn 酒单详情
+            a.ctrl-btn(ng-href='/groupOrderList/{{vm.detail.party.id}}') 酒单详情
 
         .chat-box
             ul
@@ -44,7 +44,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
     div.bar.bar-footer.bc(ng-show='!vm.flag')
         div.col-66.status(ng-click='vm.showComment()')
                 i.ion.ion-android-textsms
-                h2 正在组局中...
+                h2 {{vm.detail.party.step}}
                 p 距离开始还有8小时
         div.col-33.on
             p

@@ -7,17 +7,26 @@ export default angular.module('groupOrderList',[ionic])
         "ngInject"
         $stateProvider
             .state('groupOrderList', {
-                url: '/groupOrderList',
+                url: '/groupOrderList/:id',
                 controllerAs: 'vm',
                 controller: GroupOrderListController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    detail:function(resourcePool,$stateParams){
+                        return resourcePool.getPartyInfo.request({
+                            id:$stateParams.id
+                        })
+                    }
+                }
             })
     });
 
 
 class GroupOrderListController {
-    constructor () {
+    constructor (detail) {
         "ngInject"
-        this.name = 'groupOrderList'
+        this.name = 'groupOrderList';
+        this.detail = detail.data.info;
+
     }
 }

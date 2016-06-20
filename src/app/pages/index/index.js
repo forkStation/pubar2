@@ -47,6 +47,7 @@ class IndexController {
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);
         };
+
         let city = storedb.key('city').find();
         if(!city){
             this.cityName = '广州';
@@ -56,6 +57,10 @@ class IndexController {
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
+    }
+    goGroupDetail(id){
+        let t = this;
+        t.state.go('groupDetail',{id:id});
     }
 
 }

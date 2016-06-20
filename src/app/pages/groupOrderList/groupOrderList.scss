@@ -29,6 +29,12 @@
     padding:.28rem 0;
     color:#fff;
     border-bottom:1px solid $assistant-color;
+    div{
+      @include ellipsis();
+      &:nth-child(2){
+        text-align:center;
+      }
+    }
     &:last-child{
       border:none;
     }

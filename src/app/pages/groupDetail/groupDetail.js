@@ -8,16 +8,23 @@ export default angular.module('groupDetail',[ionic])
         "ngInject"
         $stateProvider
             .state('groupDetail', {
-                url: '/groupDetail',
+                url: '/groupDetail/:id',
                 controllerAs: 'vm',
                 controller: GroupDetailController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    detail:function(resourcePool,$stateParams){
+                        return resourcePool.getPartyInfo.request({
+                            id:$stateParams.id
+                        })
+                    }
+                }
             })
     });
 
 
 class GroupDetailController {
-    constructor ($scope,$state) {
+    constructor ($state,detail) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -28,8 +35,9 @@ class GroupDetailController {
         this.barAvatarDemo = imgResource.barAvatarDemo;
         this.showComment = function(){
             _this.flag = true;
-
         };
+        this.detail = detail.data.info;
+
 
         this.chatsMsg = [{
             id:'1',
