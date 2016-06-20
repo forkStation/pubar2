@@ -26,17 +26,19 @@ export default angular.module('index',[ionic])
                         }else{
                             city = city[0]['cityName'];
                         }
-                        let list = resourcePool.getBarList;
-                        return list.request({
+                        return resourcePool.getBarList.request({
                             city:city
                         })
+                    },
+                    partyList:function(resourcePool,login){
+                        return resourcePool.getPartyList.request({});
                     }
                 }
             })
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,storedb,$state,barList,application){
+    constructor($scope,$ionicSlideBoxDelegate,storedb,$state,barList,application,partyList){
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
@@ -53,7 +55,9 @@ class IndexController {
         }
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
+        this.partyList = partyList.data.info;
     }
+
 }
 
 

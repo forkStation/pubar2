@@ -7,6 +7,12 @@
       color: $title-color;
       margin-bottom:5px;
     }
+    .map{
+      padding-top:.3rem;
+      border-top:$border-line;
+      margin:0 .2rem;
+      height:2rem;
+    }
     .desc{
       color:$assistant-color;
       font-size:14px;
@@ -24,28 +30,13 @@ ul.puf-list{
     position:relative;
     padding:.2rem .15rem .2rem 1.2rem;
     border-bottom: $border-line;
+    .sex{
+      position: absolute;
+      left:.8rem;
+      top:.5rem;
+    }
   }
-  em.sex{
-    position: absolute;
-    left:.7rem;
-    top:.2rem;
-    display: block;
-    border-radius:50%;
-    width:.3rem;
-    height:.3rem;
-    text-align:center;
-    line-height:.3rem;
-    color:#fff;
-    font-size:10px;
 
-    &.female{
-      background: pink;
-      transform: rotate(45deg);
-    }
-    &.male{
-      background: skyblue;
-    }
-  }
   img{
     display: block;
     width:0.8rem;

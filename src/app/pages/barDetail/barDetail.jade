@@ -1,15 +1,16 @@
 div.barDetail(hide-tabs='true')
+
     div.store(style='border:none')
         share.corner
         ion-slide-box
             ion-slide
-                img(ng-src='{{vm.barAvatarDemo}}')
-            ion-slide
-                img(ng-src='{{vm.barAvatarDemo}}')
+                img(ng-src='{{vm.imgHost + vm.barInfo.cover}}')
+
         div.bar-info
-            div.bar-name 春色满园酒吧
+            div.bar-name(ng-bind='vm.barInfo.name')
             div.bar-position 广州市天河区风行东路108号3楼
                 span <i class='icon ion-location'></i> 4.32km
+
 
     div.sort-section(style='margin-top:-1px')
         div.sort-item(ng-click='vm.goSlide(0)' class="sort-item {{vm.slideIndex == 0?'on':''}}") 酒局
@@ -17,70 +18,40 @@ div.barDetail(hide-tabs='true')
         div.sort-item(ng-click='vm.goSlide(2)' class="sort-item {{vm.slideIndex == 2?'on':''}}") 酒吧资料
 
 
-    ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
-        ion-slide
-            ul.group-list
-                li
-                    a(ng-href='/groupDetail')
-                        div.group
-                            div.pub-user
-                                div.avatar-section
-                                    img(ng-src='{{vm.barAvatarDemo}}')
-                                    p.name 大彬大大彬
-                                div.group-info
-                                    p 本色帅哥美女局美女局...
-                                    div.type
-                                        span <i class='icon ion-person-stalker'></i> 3/6
-                                        span  AA
-                                    div.type
-                                        span <i class='icon ion-clock'></i> 还剩8小时
-                                        span <i class='icon ion-location'></i> 3km
-                            div.status-bar
-                                span 状态:正在组居中
-                                button.find-detail 查看酒局
-                li
-                    a(ng-href='/groupDetail')
-                        div.group
-                            div.pub-user
-                                div.avatar-section
-                                    img(ng-src='{{vm.barAvatarDemo}}')
-                                    p.name 大彬大大彬
-                                div.group-info
-                                    p 本色帅哥美女局美女局...
-                                    div.type
-                                        span <i class='icon ion-person-stalker'></i> 3/6
-                                        span  AA
-                                    div.type
-                                        span <i class='icon ion-clock'></i> 还剩8小时
-                                        span <i class='icon ion-location'></i> 3km
-                            div.status-bar
-                                span 状态:正在组居中
-                                button.find-detail 查看酒局
-        ion-slide
-            ul.puf-list
-                li
-                    img(ng-src='{{vm.barAvatarDemo}}')
-                    em.sex.ion-female.ion.female
-                    p.name 小飞飞
-                    p.sign 快请我喝酒!
-                    a.apply(ng-click='vm.applyMe()') 请Ta喝
-                li
-                    img(ng-src='{{vm.barAvatarDemo}}')
-                    em.sex.ion-female.ion.female
-                    p.name 小飞飞
-                    p.sign 快请我喝酒!
-                    a.apply(ng-click='vm.applyMe()') 请Ta喝
-                li
-                    img(ng-src='{{vm.barAvatarDemo}}')
-                    em.sex.ion-male.ion.male
-                    p.name 小飞飞
-                    p.sign 快请我喝酒!
-                    a.apply(ng-click='vm.applyMe()') 请Ta喝
-        ion-slide
-            div.bar-information
-                h3.bar-name sexColor本色酒吧
-                p.desc 中国夜生活名片LEANDING BRAND OF NOBLE NIGHT CLUB IN CHINA本色TrueCOLOR，中国夜生活的领导品牌。被誉为“城市夜生活的名片”。
-                button.button.button-block.button-active 查看酒单
+    div.list
+        ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
+            ion-slide
+                ul.group-list
+                    li(ng-repeat='item in vm.groupList track by $index')
+                        a(ng-href='/groupDetail/{{item.id}}')
+                            div.group
+                                div.pub-user
+                                    div.avatar-section
+                                        img(ng-src='{{vm.barAvatarDemo}}')
+                                        p.name 大彬大大彬
+                                    div.group-info
+                                        p(ng-bind='item.subject')
+                                        div.type
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span  AA
+                                        div.type <i class='icon ion-clock'></i> {{item.startTime}}
+                                div.status-bar
+                                    span 状态:{{item.step}}
+                                    button.find-detail 查看酒局
+            ion-slide
+                ul.puf-list
+                    li(ng-repeat = 'item in vm.friends track by $index')
+                        img(ng-src='{{vm.imgHost + item.headIcon}}')
+                        sex.sex(type='{{item.sex}}')
+                        p.name(ng-bind='item.nickname')
+                        p.sign(ng-bind='item.career')
+                        a.apply(ng-click='vm.applyMe(item.id)') 请Ta喝
+            ion-slide
+                div.bar-information
+                    h3.bar-name(ng-bind='vm.barInfo.name')
+                    p.desc(ng-bind='vm.barInfo.details')
+                    button.button.button-block.button-active 查看酒单
+                    div(id='map' class='map')
 
     div.active-section(ng-show='show')
         button.button.button-block.button-active 我要组局
