@@ -31,6 +31,7 @@ import onme from './onme/onme'
 import onme_result from './onme_result/onme_result'
 import onme_detail from './onme_detail/onme_detail'
 import couponList from './couponList/couponList'
+import groupOrderList from './groupOrderList/groupOrderList'
 //@import
 
 export default angular.module('app.pages', [
@@ -62,5 +63,6 @@ export default angular.module('app.pages', [
     onme.name,
     onme_result.name,
     onme_detail.name,
-    couponList.name//@register
+    couponList.name,
+    groupOrderList.name//@register
 ]);

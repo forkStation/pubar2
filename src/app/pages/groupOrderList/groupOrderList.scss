@@ -1,0 +1,41 @@
+@import "../../../styles/util-mixin";
+.groupOrderList{
+  .item{
+    img{
+      width:.8rem;
+      height:.8rem;
+      max-width: none;
+      max-height: none;
+      left:.32rem;
+      top:.32rem;
+    }
+    min-height: 1.5rem;
+    padding:.32rem .2rem .32rem 1.4rem;
+    @include vertical();
+    -webkit-box-align:start;
+    background: none;
+    border:none;
+    h2{
+      font-size:.36rem;
+      color:#fff;
+    }
+  }
+  .list{
+    padding:0 .2rem;
+    background: #444;
+    font-size:.28rem;
+  }
+  .row{
+    padding:.28rem 0;
+    color:#fff;
+    border-bottom:1px solid $assistant-color;
+    &:last-child{
+      border:none;
+    }
+  }
+  .total{
+    text-align:right;
+    color:#fff;
+    padding:.2rem 0;
+  }
+}
