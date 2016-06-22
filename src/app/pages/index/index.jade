@@ -1,4 +1,4 @@
-ion-content.has-tabs
+ion-content(delegate-handle="mainScroll")
     div.index
         div.header-menu
             a.left.clear(ng-href='/location') {{vm.cityName}}
@@ -6,7 +6,6 @@ ion-content.has-tabs
                 div.menu-tab(ng-click='goSlide(0)' class="menu-tab {{slideIndex==0?'on':''}}") 酒吧
                 div.menu-tab(ng-click='goSlide(1)' class="menu-tab {{slideIndex==1?'on':''}}") 酒局
             a.right.clear(ng-href='/search') 搜索
-
 
         ion-slide-box(show-pager='false' active-slide='slideIndex')
             ion-slide(style='height:auto')

@@ -2,40 +2,49 @@
 .chatList{
 
 }
-.chat-list{
+.chatList{
   background: #444;
   .item{
     background: none;
-    margin-left:.2rem;
     border:none;
-    border-bottom:1px solid #000;
-    padding:.3rem .2rem .3rem 1.3rem;
+    border-bottom:1px solid #333;
+    margin:0 0 0 .2rem;
+    .item-content{
+      background: #444;
+      border:none;
+      padding:.3rem .2rem .3rem 1.3rem;
+      img{
+        max-width: none;
+        max-height: none;
+        width:.72rem;
+        height:.72rem;
+        left:.2rem;
+      }
+      .sex{
+        position: absolute;
+        left:.7rem;
+        top:.7rem;
+      }
+      em{
+        font-size:.1rem;
+        color:$assistant-color;
+        float: right;
+      }
+      h2{
+        color:#fff;
+        font-size:.32rem;
+      }
+      p{
+        color:$assistant-color;
+      }
+
+    }
     &:last-child{
       border:none;
+      .item-content{
+        border:none;
+      }
     }
-    img{
-      max-width: none;
-      max-height: none;
-      width:.72rem;
-      height:.72rem;
-      left:.2rem;
-    }
-    .sex{
-      position: absolute;
-      left:.7rem;
-      top:.7rem;
-    }
-    em{
-      font-size:.1rem;
-      color:$assistant-color;
-      float: right;
-    }
-    h2{
-      color:#fff;
-      font-size:.32rem;
-    }
-    p{
-      color:$assistant-color;
-    }
+
   }
 }

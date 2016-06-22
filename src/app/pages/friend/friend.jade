@@ -1,30 +1,24 @@
 div.friend
-    div#search-bar
-        div.item-input-inset
-            label.item-input-wrapper
-                i.icon.ion-search.placeholder-icon
-                input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
+    ion-content.has-footer
+        div#search-bar
+            div.item-input-inset
+                label.item-input-wrapper
+                    i.icon.ion-search.placeholder-icon
+                    input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
 
-    div.list
-        a.item.item-avatar(ng-href='/addFriend')
-            img(ng-src='{{vm.chatFansImg}}')
-            h2 新的朋友
-        a.item.item-avatar
-            img(ng-src='{{vm.chatGroupImg}}')
-            h2 酒局群聊
-        a.item.item-avatar(ng-href='/fans')
-            img(ng-src='{{vm.chatFansImg}}')
-            h2 关注和粉丝
-    nav-tip-bar(title='A')
-    div.list
-        a.item.item-avatar(ng-href='/chat')
-            img(ng-src='{{vm.chatFansImg}}')
-            sex(type='1')
-            h2 昂电饭锅
-        a.item.item-avatar(ng-href='/chat')
-            img(ng-src='{{vm.chatGroupImg}}')
-            sex(type='0')
-            h2 俺媳妇
-        a.item.item-avatar(ng-href='/chat')
-            img(ng-src='{{vm.chatFansImg}}')
-            h2 爱国心
+        div.list
+            a.item.item-avatar(ng-href='/addFriend')
+                img(ng-src='{{vm.chatFansImg}}')
+                h2 新的朋友
+            a.item.item-avatar
+                img(ng-src='{{vm.chatGroupImg}}')
+                h2 酒局群聊
+            a.item.item-avatar(ng-href='/fans')
+                img(ng-src='{{vm.chatFansImg}}')
+                h2 关注和粉丝
+        nav-tip-bar(title='A')
+        div.list
+            a.item.item-avatar(ng-href='/member_view/{{item.id}}' ng-repeat='item in vm.friendList')
+                img(ng-src='{{vm.imgHost + item.headIcon}}')
+                sex(type='{{item.sex}}')
+                h2(ng-bind='item.nickname')

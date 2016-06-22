@@ -38,6 +38,17 @@ export default function(resource){
         'getPartyList':resource.party('party_list'),
         //weixin
 
+        //friend
+        'rejectFriend':resource.friend('un_friend'),
+        'friendFollow':resource.friend('friend_follow'),
+        'addFriend':resource.friend('add_friendreg'),
+        'getFriendList':resource.friend('friend_list'),
+        'getFriendReg':resource.friend('get_friendreg_list'),
+        'getBlackFriend':resource.friend('black_friend'),
+        'receiveFreind':resource.friend('add_friend'),
+        //user
+        'getUserInfo':resource.user('user_info')
+
 
     }
 }

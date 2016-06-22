@@ -53,6 +53,12 @@ export default class Resource {
     party(apiName) {
         return this.create('party', apiName)
     }
+    friend(apiName){
+        return this.create('friend',apiName)
+    }
+    user(apiName){
+        return this.create('user',apiName)
+    }
 
 
 }

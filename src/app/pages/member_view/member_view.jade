@@ -23,9 +23,9 @@ div.member_view(hide-tabs='true')
         div.tags
             span.male
                 i.icon.ion-male
-                em 22
+                em(ng-bind='vm.item.age')
             span 水瓶座
-            span 单身
+            span(ng-if='vm.item.career' ng-bind='vm.item.career')
         div.tags
             div.title 个人签名
             div.desc 今天天气真的很好，可惜要上班，可惜了，可惜了，听说明天会下暴雨
@@ -34,7 +34,7 @@ div.member_view(hide-tabs='true')
             div.desc 188241
         div.tags
             div.title 兴趣爱好
-            div.desc 吃饭睡觉打豆豆
+            div.desc(ng-bind='vm.item.hobby')
         div.tags
             div.title 活跃酒吧
             div.desc.visit
@@ -45,12 +45,12 @@ div.member_view(hide-tabs='true')
             i.icon.ion-ios-arrow-right
 
     div.bar.bar-footer.row
-        a.col-33(ng-href='/chat')
+        a.col-33(ng-href='/chat/{{vm.item.id}}')
             i.icon.ion-ios-chatbubble
             em 聊天
-        a.col-33(ng-href='/chat')
+        a.col-33(ng-click='addFriend(vm.item.id)')
             i.icon.ion-person-add
             em 关注
-        a.col-33
+        a.col-33(ng-href='/apply/{{vm.item.id}}')
             i.icon.ion-android-bar
             em 请喝酒

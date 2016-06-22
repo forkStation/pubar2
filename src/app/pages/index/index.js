@@ -38,7 +38,7 @@ export default angular.module('index',[ionic])
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,storedb,$state,barList,application,partyList){
+    constructor($scope,$ionicSlideBoxDelegate,storedb,$state,barList,application,partyList,$ionicScrollDelegate){
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
@@ -46,6 +46,7 @@ class IndexController {
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
         };
 
         let city = storedb.key('city').find();

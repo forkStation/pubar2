@@ -16,6 +16,7 @@ export default function(){
 
             }
         },
-        'assets':'http://h5.pubar.me/lib/images/'
+        'assets':'http://h5.pubar.me/lib/images/',
+        'userId':10059
     }
 }

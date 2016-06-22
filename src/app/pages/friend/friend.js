@@ -10,16 +10,25 @@ export default angular.module('friend',[ionic])
                 url: '/friend',
                 controllerAs: 'vm',
                 controller: FriendController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    friendList:function(resourcePool,application){
+                        return resourcePool.getFriendList.request({
+                            userid:application.userId
+                        })
+                    }
+                }
             })
     });
 
 
 class FriendController {
-    constructor () {
+    constructor (friendList,application) {
         "ngInject"
         this.name = 'friend';
         this.chatGroupImg = img.chatGroupImg;
         this.chatFansImg = img.chatFansImg;
+        this.friendList = friendList.data.info;
+        this.imgHost = application.imgHost;
     }
 }

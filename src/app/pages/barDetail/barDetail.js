@@ -35,15 +35,17 @@ export default angular.module('barDetail',[ionic])
 
 
 class BarDetailController {
-    constructor ($ionicSlideBoxDelegate,$state,detail,application,groupList,getBarFriendList) {
+    constructor ($ionicSlideBoxDelegate,$state,detail,application,groupList,getBarFriendList,$ionicScrollDelegate) {
         "ngInject"
         this.barAvatarDemo=imgResource.barAvatarDemo;
 
         this.name = 'barDetail';
         this.slideIndex = 0;
         this.state = $state;
+        $ionicSlideBoxDelegate.$getByHandle('listSlide').stop();
         this.goSlide = function(index){
-            $ionicSlideBoxDelegate._instances[1].slide(index);
+            $ionicSlideBoxDelegate.$getByHandle('listSlide').slide(index);
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
         };
         this.goGroupDetail = function(item){
             $state.go('groupDetail');
