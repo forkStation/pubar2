@@ -24,16 +24,14 @@ export default angular.module('app.config', [ionic])
             }
 
             function executeToken(req) {
-                const module = req.url.split('/')[2]
-                console.log(module);
+                const module = req.url.split('/')[2];
                 return Object.assign(req.params, token.getToken(module))
             }
 
             return {
                 // optional method
                 'request': function (config) {
-                    console.log(config);
-                    executeToken(config)
+                    executeToken(config);
                     return config;
                 },
 

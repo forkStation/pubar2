@@ -8,18 +8,14 @@ export default function(){
         'imgHost':'http://app.pubar.me/mgr/uploadImages/barImg/',
         'map':{
             open:function(args){
-                let _t = this;
-                _t.args = {};
-                angular.forEach(args,function(value,key){
-                    _t.args[key] = value;
-                });
-
                 var map = new AMap.Map(args.container,{
                     zoom: 10,
                     center: [args.longitude,args.latitude]
                 });
+                console.log(map);
 
             }
-        }
+        },
+        'assets':'http://h5.pubar.me/lib/images/'
     }
 }

@@ -57,6 +57,8 @@ class IndexController {
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
+
+        console.log(this.partyList);
     }
     goGroupDetail(id){
         let t = this;

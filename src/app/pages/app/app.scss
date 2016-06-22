@@ -1,0 +1,65 @@
+@import "../../../styles/util-mixin";
+.app{
+  .bitmap{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+  }
+  .logo{
+    display: block;
+    width:1.28rem;
+    height:1.28rem;
+    margin:3.7rem auto .2rem;
+  }
+  h1{
+    margin-bottom:1.8rem;
+    font-size:.36rem;
+    color:#fff;
+    text-align:center;
+
+  }
+  .magnet{
+    margin:0 .3rem;
+  }
+  .row{
+    .col{
+      padding:0 .2rem;
+      text-align:center;
+      a{
+        display: block;
+        color:#8091A5;
+        font-size:.28rem;
+      }
+      .icon-wechat{
+        background: url($assetUrl +'login-wechat.png');
+        display: inline-block;
+        width:.48rem;
+        height:.48rem;
+        background-size:100% ;
+        vertical-align: middle;
+        margin-right:5px;
+      }
+      .icon-visitor{
+        background: url($assetUrl +'login-visitor.png');
+        display: inline-block;
+        width:.48rem;
+        height:.48rem;
+        background-size:100% ;
+        vertical-align: middle;
+        margin-right:5px;
+      }
+    }
+  }
+  .license{
+    color:#A7264D;
+    font-size:.24rem;
+    text-align:center;
+    a{
+      color:#A7264D;
+      text-decoration: underline;
+    }
+  }
+}

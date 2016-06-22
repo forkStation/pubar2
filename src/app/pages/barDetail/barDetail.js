@@ -53,13 +53,7 @@ class BarDetailController {
         this.groupList = groupList.data.info;
         this.friends = getBarFriendList.data.info;
         console.log(this.barInfo);
-        var mapArgs = {
-            container:'map',
-            longitude:this.barInfo.longitude,
-            latitude:this.barInfo.latitude
-        };
-        application.map.open(mapArgs);
-
+   
     }
     applyMe(){
         this.state.go('productList')

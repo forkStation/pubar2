@@ -17,6 +17,11 @@ export default angular.module('groupDetail',[ionic])
                         return resourcePool.getPartyInfo.request({
                             id:$stateParams.id
                         })
+                    },
+                    users:function(resourcePool,$stateParams){
+                        return resourcePool.getPartyUser.request({
+                            id:$stateParams.id
+                        })
                     }
                 }
             })
@@ -24,7 +29,7 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail) {
+    constructor ($state,detail,application) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -33,11 +38,12 @@ class GroupDetailController {
         _this.flag = false;
         this.productItem = imgResource.productItem;
         this.barAvatarDemo = imgResource.barAvatarDemo;
+
         this.showComment = function(){
             _this.flag = true;
         };
         this.detail = detail.data.info;
-
+        this.imgHost = application.imgHost;
 
         this.chatsMsg = [{
             id:'1',

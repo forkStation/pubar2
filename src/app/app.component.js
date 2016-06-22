@@ -10,6 +10,7 @@ import shortBtn from './directive/shortBtn/shortBtn.directive'
 import share from './directive/share/share.directive'
 import collect from './directive/collect/collect.directive'
 import sex from './directive/sex/sex.directive'
+import map from './directive/map/map.directive'
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
     .directive('numberPick',numberPick)
@@ -19,3 +20,4 @@ export default angular.module('app.component', [ionic])
     .directive('share',share)
     .directive('collect',collect)
     .directive('sex',sex)
+    .directive('map',map)

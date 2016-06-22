@@ -3,7 +3,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
         div.group-info
             img.bg(ng-src='{{vm.barAvatarDemo}}')
             .group-section
-                img.avatar(ng-src='{{vm.productItem}}')
+                img.avatar(ng-src='{{vm.imgHost + vm.detail.ownerinfo.headIcon}}')
                 .intro(ng-bind='vm.detail.party.subject')
                 s-btn(text='勾搭局长' ng-click='vm.goChat(vm.detail.ownerinfo.id)')
                 share(class='corner')

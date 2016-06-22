@@ -27,13 +27,6 @@ class Token {
         let timeStamp = this.timeStamp
         let str = module + this._userId + timeStamp + this.loginToken
         let token = md5(str.trim())
-        
-        console.info(`get token from
-            module: ${module},
-            userId: ${this._userId},
-            timeStamp : ${timeStamp},
-            loginToken: ${this.loginToken}
-            [get token ${token} from time ${timeStamp}]`);
         return { token,timeStamp }
     }
 

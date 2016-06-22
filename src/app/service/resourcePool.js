@@ -33,7 +33,7 @@ export default function(resource){
         'getOrderPayList':resource.order('order_paylist'),
         'getOrderDetail':resource.order('order_info'),
         // party
-        'getPartyUserInfo':resource.party('get_party_user'),
+        'getPartyUser':resource.party('get_party_user'),
         'getPartyInfo':resource.party('get_party_info'),
         'getPartyList':resource.party('party_list'),
         //weixin

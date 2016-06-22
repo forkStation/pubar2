@@ -51,7 +51,8 @@ div.barDetail(hide-tabs='true')
                     h3.bar-name(ng-bind='vm.barInfo.name')
                     p.desc(ng-bind='vm.barInfo.details')
                     button.button.button-block.button-active 查看酒单
-                    div(id='map' class='map')
+                    map.map(longitude='{{vm.barInfo.longitude}}' latitude='{{vm.barInfo.latitude}}')
 
     div.active-section(ng-show='show')
         button.button.button-block.button-active 我要组局
+
