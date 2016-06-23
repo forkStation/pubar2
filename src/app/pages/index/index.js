@@ -19,15 +19,10 @@ export default angular.module('index',[ionic])
                         let login=resourcePool.login;
                         return login.request({})
                     },
-                    barList:function(resourcePool,storedb,login){
-                        var city = storedb.key('city').find();
-                        if(!city){
-                            city = '广州';
-                        }else{
-                            city = city[0]['cityName'];
-                        }
+                    barList:function(resourcePool,application,login){
+
                         return resourcePool.getBarList.request({
-                            city:city
+                            city:application.getMyCity
                         })
                     },
                     partyList:function(resourcePool,login){
@@ -38,7 +33,7 @@ export default angular.module('index',[ionic])
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,storedb,$state,barList,application,partyList,$ionicScrollDelegate){
+    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,$ionicScrollDelegate){
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
@@ -48,24 +43,15 @@ class IndexController {
             $ionicSlideBoxDelegate.slide(index);
             $ionicScrollDelegate.$getByHandle('mainScroll').resize();
         };
-
-        let city = storedb.key('city').find();
-        if(!city){
-            this.cityName = '广州';
-        }else{
-            this.cityName = city[0].cityName;
-        }
+        this.cityName = application.getMyCity;
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
-
-        console.log(this.partyList);
     }
     goGroupDetail(id){
         let t = this;
         t.state.go('groupDetail',{id:id});
     }
-
 }
 
 
