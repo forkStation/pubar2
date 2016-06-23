@@ -47,7 +47,10 @@ export default function(resource){
         'getBlackFriend':resource.friend('black_friend'),
         'receiveFreind':resource.friend('add_friend'),
         //user
-        'getUserInfo':resource.user('user_info')
+        'getUserInfo':resource.user('user_info'),
+
+        //msg
+        'getMsgList':resource.msg('msg_list')
 
 
     }

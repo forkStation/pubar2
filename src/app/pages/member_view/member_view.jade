@@ -28,29 +28,27 @@ div.member_view(hide-tabs='true')
             span(ng-if='vm.item.career' ng-bind='vm.item.career')
         div.tags
             div.title 个人签名
-            div.desc 今天天气真的很好，可惜要上班，可惜了，可惜了，听说明天会下暴雨
-        div.tags
-            div.title 蒲友号
-            div.desc 188241
+            div.desc(ng-bind='vm.item.sign')
+        //div.tags
+        //    div.title 蒲友号
+        //    div.desc 188241
         div.tags
             div.title 兴趣爱好
             div.desc(ng-bind='vm.item.hobby')
         div.tags
             div.title 活跃酒吧
             div.desc.visit
-                span <em>#</em>本色酒吧
-                span <em>#</em>本色酒吧
-                span <em>#</em>本色酒吧
-        a.tags.item-icon-right(ng-href='/morectrl') 更多
+                span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar}}
+        a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
 
     div.bar.bar-footer.row
-        a.col-33(ng-href='/chat/{{vm.item.id}}')
+        a.col(ng-href='/chat/{{vm.item.id}}' ng-if='vm.item.isfriend==1')
             i.icon.ion-ios-chatbubble
             em 聊天
-        a.col-33(ng-click='addFriend(vm.item.id)')
+        a.col(ng-click='addFriend(vm.item.id)' ng-if='vm.item.isfriend==0')
             i.icon.ion-person-add
             em 关注
-        a.col-33(ng-href='/apply/{{vm.item.id}}')
+        a.col(ng-href='/apply/{{vm.item.id}}')
             i.icon.ion-android-bar
             em 请喝酒

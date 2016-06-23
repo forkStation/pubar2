@@ -42,7 +42,8 @@ div.barDetail(hide-tabs='true')
                 ion-slide
                     ul.puf-list
                         li(ng-repeat = 'item in vm.friends track by $index')
-                            img(ng-src='{{vm.imgHost + item.headIcon}}')
+                            a(ng-href='/member_view/item.user.id')
+                                img(ng-src='{{vm.imgHost + item.headIcon}}')
                             sex.sex(type='{{item.sex}}')
                             p.name(ng-bind='item.nickname')
                             p.sign(ng-bind='item.career')

@@ -10,16 +10,26 @@ export default angular.module('chatList',[ionic])
                 url: '/chatList',
                 controllerAs: 'vm',
                 controller: ChatListController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getChatList:function(resourcePool,application){
+                        return resourcePool.getMsgList.request({
+                            userid:application.userId
+                        })
+                    }
+                }
             })
     });
 
 
 class ChatListController {
-    constructor ($ionicPopup) {
+    constructor ($ionicPopup,getChatList,application,$state) {
         "ngInject"
         this.name = 'chatList';
         this.popup = $ionicPopup;
+        this.chatList = getChatList.data.info;
+        this.state = $state;
+        this.headHost = application.imgHost;
     }
     deleteChat(){
         let t = this;
@@ -35,5 +45,8 @@ class ChatListController {
                 text:'取消'
             }]
         })
+    }
+    goChat(id){
+        this.state.go('chat',{id:id})
     }
 }

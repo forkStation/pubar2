@@ -59,6 +59,9 @@ export default class Resource {
     user(apiName){
         return this.create('user',apiName)
     }
+    msg(apiName){
+        return this.create('msg',apiName)
+    }
 
 
 }

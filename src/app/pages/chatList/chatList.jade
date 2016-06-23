@@ -5,16 +5,12 @@ div.chatList
                 i.icon.ion-search.placeholder-icon
                 input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
 
-    ion-list
-        ion-item.item-remove-animate.item.item-avatar(type='item-text-wrap')
-            img
-            h2 nickname
-                em 昨天
-            p this is content
-            ion-option-button.button-active(ng-click='vm.deleteChat()') 删除
-        ion-item.item-remove-animate.item.item-avatar(type='item-text-wrap')
-            img
-            h2 nickname
-                em 昨天
-            p this is content
-            ion-option-button.button-active(ng-click='vm.deleteChat()') 删除
+    ion-content.has-footer.has-header
+        ion-list
+            ion-item.item-remove-animate.item.item-avatar(type='item-text-wrap' ng-click='vm.goChat(chat.id)' ng-repeat='chat in vm.chatList track by $index')
+                img(ng-src='{{vm.headHost+chat.headIcon}}')
+                h2(ng-bind='chat.nickname')
+                    em(ng-bind='chat.genTime')
+                p this is content
+                ion-option-button.button-active(ng-click='vm.deleteChat(chat.id)') 删除
+
