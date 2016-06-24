@@ -62,6 +62,9 @@ export default class Resource {
     msg(apiName){
         return this.create('msg',apiName)
     }
+    wallet(apiName){
+        return this.create('wellet',apiName)
+    }
 
 
 }

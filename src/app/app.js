@@ -46,7 +46,7 @@ angular
     })
 
     .directive('hideTabs', function($rootScope) {
-
+        'ngInject';
         return {
 
             restrict: 'A',

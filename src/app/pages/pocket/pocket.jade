@@ -1,7 +1,7 @@
-div.pocket
+div.pocket(hide-tabs='true')
     nav-tip-bar(title='当前余额')
     div.item.item-avatar
-        h1 0.00
+        h1(ng-bind='vm.walletInfo.money | number:2')
         div.row
             div.col-50
                 a.button.button-block.get(href='/takeCash') 提现

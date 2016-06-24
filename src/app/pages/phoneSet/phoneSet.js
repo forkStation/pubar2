@@ -21,5 +21,14 @@ class PhoneSetController {
         this.name = 'phoneSet';
         this.bitmap = application.assets+'bitmap.png';
         this.logo = application.assets+'bar-logo.png';
+        this.form = {
+            nickname:'',
+            sex:1
+        }
+    }
+
+    submit(){
+        let t = this;
+        console.log(t.form);
     }
 }

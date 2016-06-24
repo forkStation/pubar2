@@ -4,12 +4,12 @@ div.phoneSet
     h1 蒲吧
 
     div.hor
-        input(placeholder='请输入昵称')
+        input(placeholder='请输入昵称' ng-model='vm.form.nickname')
     div.hor
         div.row
             div.col-50
-                button.button.button-block.dis 我是女生
+                button.button.button-block.male(ng-class='{dis:vm.form.sex==1}' ng-click='vm.form.sex=0') 我是女生
             div.col-50
-                button.button.button-block.dis 我是男生
+                button.button.button-block.female(ng-class='{dis:vm.form.sex==0}' ng-click='vm.form.sex=1') 我是男生
     div.hor
-        button.button.button-block.dis 进入蒲吧
+        button.button.button-block.button-active(ng-click='vm.submit()') 进入蒲吧

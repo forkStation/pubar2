@@ -50,7 +50,11 @@ export default function(resource){
         'getUserInfo':resource.user('user_info'),
 
         //msg
-        'getMsgList':resource.msg('msg_list')
+        'getMsgList':resource.msg('msg_list'),
+
+        //wallet
+        'getWalletInfo':resource.wallet('wellet_info'),
+        'getWalletList':resource.wallet('wellet_list')
 
 
     }

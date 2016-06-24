@@ -36,6 +36,15 @@
         &:last-child{
           padding-left:.2rem;
         }
+
+      }
+      .male{
+        background: deeppink;
+        color:#fff;
+      }
+      .female{
+        background: deepskyblue;
+        color:#fff;
       }
     }
     line-height:.8rem;
@@ -45,9 +54,9 @@
       font-size: .28rem;
     }
   }
-
   button.dis{
-    background: #999;
-    color:#fff
+    background: #999 !important;
+    color:#fff !important;
   }
+
 }
