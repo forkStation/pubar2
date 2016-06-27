@@ -15,12 +15,12 @@ export default angular.module('groupDetail',[ionic])
                 resolve:{
                     detail:function(resourcePool,$stateParams){
                         return resourcePool.getPartyInfo.request({
-                            id:$stateParams.id
+                            partyid:$stateParams.id
                         })
                     },
                     users:function(resourcePool,$stateParams){
                         return resourcePool.getPartyUser.request({
-                            id:$stateParams.id
+                            partyid:$stateParams.id
                         })
                     }
                 }
@@ -29,7 +29,7 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail,application) {
+    constructor ($state,detail,application,resourcePool) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -45,6 +45,14 @@ class GroupDetailController {
         this.detail = detail.data.info;
         this.imgHost = application.imgHost;
 
+        let xhr = resourcePool.getBarInfo.request({
+            barid:_this.detail.party.barID
+        });
+        xhr.then(res=>{
+            _this.barAddress = res.data.info.address;
+        },res=>{
+            // error
+        });
         this.chatsMsg = [{
             id:'1',
             msg:'你好',

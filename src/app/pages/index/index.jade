@@ -22,15 +22,15 @@ ion-content(delegate-handle="mainScroll")
                     div.content-item(ng-click='openFilterModal()') 更多...
                 div.bar-list-stores
                     location-nav-bar(title='兴盛路')
-                    a.store(ng-repeat='item in vm.bars track by $index' ng-href='/barDetail/{{item.id}}')
+                    nodata(ng-if='vm.bars.length==0')
+                    a.store(ng-repeat='item in vm.bars track by item.id' ng-href='/barDetail/{{item.id}}')
                         collect(ng-class='{"ion-ios-star-outline":true}')
                         div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
                         img(ng-src='{{vm.imgHost + item.cover}}')
                         div.bar-info
                             div.bar-name(ng-bind='item.name')
-                            div.bar-position 广州市天河区风行东路108号3楼
+                            div.bar-position(ng-bind='item.address')
                                 span(ng-if='item.distance' ng-bind='item.distance')
-
             ion-slide
                 div.sort-section(style='margin-top:10px')
                     div.sort-item <i class='recommend'></i>推荐
@@ -43,13 +43,14 @@ ion-content(delegate-handle="mainScroll")
                     div.content-item.on  珠江北
                     div.content-item  淘金
                     div.content-item  更多...
+                nodata(ng-if='vm.partyList.length==0')
                 ul.group-list
                     li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.partyList')
                         div.group
                             div.pub-user
                                 div.avatar-section
-                                    img(ng-src='{{vm.barAvatarDemo}}')
-                                    p.name 大彬大大彬
+                                    img(ng-src='{{vm.headHost + item.user.headIcon}}')
+                                    p.name(ng-bind='item.user.nickname')
                                 div.group-info
                                     p(ng-bind='item.subject')
                                     div.type

@@ -42,20 +42,36 @@ class BarDetailController {
         this.name = 'barDetail';
         this.slideIndex = 0;
         this.state = $state;
-        $ionicSlideBoxDelegate.$getByHandle('listSlide').stop();
         this.goSlide = function(index){
             $ionicSlideBoxDelegate.$getByHandle('listSlide').slide(index);
-            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
         };
         this.goGroupDetail = function(item){
             $state.go('groupDetail');
         };
         this.barInfo = detail.data.info;
+
+        /**
+         * 去掉空图片
+         * @type {Array|*}
+         */
+        this.imagesArray = this.barInfo.pic.split('||');
+        let images = this.imagesArray;
+        let length = images.length;
+        for(var i = 0;i<length;i++){
+            if(!images[i]){
+                images.splice(i,1)
+            }
+        }
+
+        /**
+         * 页面渲染的初始赋值
+         * @type {string|*}
+         */
+        this.headHost = application.headHost;
         this.imgHost = application.imgHost;
         this.groupList = groupList.data.info;
         this.friends = getBarFriendList.data.info;
-        console.log(this.barInfo);
-   
+
     }
     applyMe(){
         this.state.go('productList')

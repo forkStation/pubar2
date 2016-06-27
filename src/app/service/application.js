@@ -3,9 +3,11 @@
  */
 
 import {angular,ionic} from 'library'
-export default function(){
+export default function(storedb){
+    'ngInject'
     return {
-        'imgHost':'http://app.pubar.me/mgr/uploadImages/barImg/',
+        'imgHost':'http://h5admin.pubar.me/public/images/pic/',
+        'headHost':'http://api.pubar.me/Uploads/png/',
         'map':{
             open:function(args){
                 var map = new AMap.Map(args.container,{
@@ -18,6 +20,13 @@ export default function(){
         },
         'assets':'http://h5.pubar.me/lib/images/',
         'userId':10059,
-        'getMyCity':'广州'
+        'getMyCity':function(){
+            var st = storedb.key('city').find();
+            if(st){
+                return st[0]['cityName'];
+            }else{
+                return '广州'
+            }
+        }
     }
 }

@@ -22,9 +22,6 @@ class mapController{
         'ngInject';
         this.name = 'map.directive';
 
-        console.log($scope);
-
-
         var map = new AMap.Map('map',{
             zoom: 14,
             center: [$scope.longitude,$scope.latitude]

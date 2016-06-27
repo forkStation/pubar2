@@ -16,10 +16,10 @@ export default angular.module('app.config', [ionic])
         $httpProvider.interceptors.push(function ($q) {
             'ngInject'
             function executeLogin(res) {
-                let url = res.config.url
-                if (url.indexOf('login') === -1) return
-                let userId = res.data.info.id
-                let loginToken = res.data.info.token
+                let url = res.config.url;
+                if (url.indexOf('login') === -1) return;
+                let userId = res.data.info.id;
+                let loginToken = res.data.info.token;
                 token.loginAfter(userId, loginToken)
             }
 

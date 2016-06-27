@@ -5,7 +5,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
             .group-section
                 a(ng-href='/member_view/{{vm.detail.ownerinfo.id}}')
                     img.avatar(ng-src='{{vm.imgHost + vm.detail.ownerinfo.headIcon}}')
-                .intro(ng-bind='vm.detail.party.subject')
+                .intro
                 s-btn(text='勾搭局长' ng-click='vm.goChat(vm.detail.ownerinfo.id)')
                 share(class='corner')
 
@@ -20,14 +20,14 @@ div.groupDetail.has-tabs(hide-tabs='true')
             span.l-content <i class='ion ion-android-bar'></i>  {{vm.detail.party.subject}}
             a.ctrl-btn(href='/barDetail')  详情
         .hoz-item
-            span.l-content <i class='ion ion-ios-location'></i>  广州市沿江路20310号巴拉巴兰吧拉巴兰...
-            a.ctrl-btn  详情
+            span.l-content <i class='ion ion-ios-location'></i>  {{vm.barAddress}}
+            a.ctrl-btn(ng-href='/barDetail/{{vm.detail.party.barID}}')  详情
 
         .hoz-item
             span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.detail.party.startTime}}
 
         .hoz-item
-            span.l-content <i class='ion'>&yen;</i>  男A女免
+            span.l-content <i class='ion'>&yen;</i>  {{vm.detail.party.type}}
         .hoz-item
             span.l-content <i class='ion ion-cube'></i>  审核
         .hoz-item

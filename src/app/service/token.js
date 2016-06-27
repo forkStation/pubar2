@@ -21,12 +21,15 @@ class Token {
     }
 
     tokenString(module){
-        if(module !== 'Meb' && this._userId === 0) throw new Error('未登陆时要获取登录token')
-        if(!!this._userId && !this.loginToken) throw new Error('没有取到loginToken，请检查')
+        if(module !== 'Meb' && this._userId === 0){
 
-        let timeStamp = this.timeStamp
-        let str = module + this._userId + timeStamp + this.loginToken
-        let token = md5(str.trim())
+        }
+        if(!!this._userId && !this.loginToken) throw new Error('没有取到loginToken，请检查');
+
+        let timeStamp = this.timeStamp;
+        let str = module + this._userId + timeStamp + this.loginToken;
+        console.log(this.loginToken);
+        let token = md5(str.trim());
         return { token,timeStamp }
     }
 
@@ -50,7 +53,7 @@ class Token {
     }
 
     getToken(module = 'Meb'){
-        if(this._check(module)) this._reset()
+        if(this._check(module)) this._reset();
         return this.tokenString(module)
     }
 
@@ -63,15 +66,15 @@ class Token {
      * 重置_userId和loginToken
      */
     _reset(){
-        this._userId = 0
+        this._userId = 0;
         this.loginToken = ''
     }
     
     loginAfter(id,token){
-        this.userId=id
+        this.userId=id;
         this.loginToken=token
     }
 
 }
-let token = new Token()
+let token = new Token();
 export default token 

@@ -29,6 +29,7 @@ class FriendController {
         this.chatGroupImg = img.chatGroupImg;
         this.chatFansImg = img.chatFansImg;
         this.friendList = friendList.data.info;
-        this.imgHost = application.imgHost;
+        console.log(this.friendList)
+        this.imgHost = application.headHost;
     }
 }

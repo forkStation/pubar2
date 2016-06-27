@@ -17,6 +17,7 @@ export default function(resource){
         'getBarInfo':resource.bar('bar_info'),
         'getBarList':resource.bar('bar_list'),
         'getBarFriendList':resource.bar('barfriend_list'),
+        'getCollectList':resource.bar('bar_follow'),
         // city
         'getCities':resource.city('get_city'),
         // drink
@@ -42,7 +43,7 @@ export default function(resource){
         'rejectFriend':resource.friend('un_friend'),
         'friendFollow':resource.friend('friend_follow'),
         'addFriend':resource.friend('add_friendreg'),
-        'getFriendList':resource.friend('friend_list'),
+        'getFriendList':resource.friend('get_friends'),
         'getFriendReg':resource.friend('get_friendreg_list'),
         'getBlackFriend':resource.friend('black_friend'),
         'receiveFreind':resource.friend('add_friend'),

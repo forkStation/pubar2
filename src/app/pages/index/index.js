@@ -22,11 +22,13 @@ export default angular.module('index',[ionic])
                     barList:function(resourcePool,application,login){
 
                         return resourcePool.getBarList.request({
-                            city:application.getMyCity
+                            city:application.getMyCity()
                         })
                     },
-                    partyList:function(resourcePool,login){
-                        return resourcePool.getPartyList.request({});
+                    partyList:function(resourcePool,application,login){
+                        return resourcePool.getPartyList.request({
+                            city:application.getMyCity()
+                        });
                     }
                 }
             })
@@ -43,10 +45,11 @@ class IndexController {
             $ionicSlideBoxDelegate.slide(index);
             $ionicScrollDelegate.$getByHandle('mainScroll').resize();
         };
-        this.cityName = application.getMyCity;
+        this.cityName = application.getMyCity();
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
+        this.headHost = application.headHost;
     }
     goGroupDetail(id){
         let t = this;

@@ -21,8 +21,8 @@ div.member_view(hide-tabs='true')
                     img
 
         div.tags
-            span.male
-                i.icon.ion-male
+            span(ng-class='{male:vm.item.sex==0,female:vm.item.sex==1}')
+                i.icon(ng-class='{"ion-male":vm.item.sex==0,"ion-female":vm.item.sex==1}')
                 em(ng-bind='vm.item.age')
             span 水瓶座
             span(ng-if='vm.item.career' ng-bind='vm.item.career')
@@ -41,12 +41,14 @@ div.member_view(hide-tabs='true')
                 span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar}}
         a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
+        div.add
+           button.button-block.button.button-active(ng-click='vm.addFriend()') 加为好友
 
     div.bar.bar-footer.row
         a.col(ng-href='/chat/{{vm.item.id}}' ng-if='vm.item.isfriend==1')
             i.icon.ion-ios-chatbubble
             em 聊天
-        a.col(ng-click='addFriend(vm.item.id)' ng-if='vm.item.isfriend==0')
+        a.col(ng-click='vm.follow(vm.item.id)' ng-if='vm.item.isFollow==0')
             i.icon.ion-person-add
             em 关注
         a.col(ng-href='/apply/{{vm.item.id}}')
