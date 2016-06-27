@@ -22,7 +22,7 @@ ion-content(delegate-handle="mainScroll")
                     div.content-item(ng-click='openFilterModal()') 更多...
                 div.bar-list-stores
                     location-nav-bar(title='兴盛路')
-                    nodata(ng-if='vm.bars.length==0')
+                    nodata(ng-if='vm.bars.length==0 || !vm.bars')
                     a.store(ng-repeat='item in vm.bars track by item.id' ng-href='/barDetail/{{item.id}}')
                         collect(ng-class='{"ion-ios-star-outline":true}')
                         div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
@@ -43,7 +43,7 @@ ion-content(delegate-handle="mainScroll")
                     div.content-item.on  珠江北
                     div.content-item  淘金
                     div.content-item  更多...
-                nodata(ng-if='vm.partyList.length==0')
+                nodata(ng-if='vm.partyList.length==0 || !vm.bars')
                 ul.group-list
                     li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.partyList')
                         div.group

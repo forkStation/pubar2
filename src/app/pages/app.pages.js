@@ -35,6 +35,7 @@ import groupOrderList from './groupOrderList/groupOrderList'
 import app from './app/app'
 import phoneLogin from './phoneLogin/phoneLogin'
 import phoneSet from './phoneSet/phoneSet'
+import longText from './longText/longText'
 //@import
 
 export default angular.module('app.pages', [
@@ -70,5 +71,6 @@ export default angular.module('app.pages', [
     groupOrderList.name,
     app.name,
     phoneLogin.name,
-    phoneSet.name//@register
+    phoneSet.name,
+    longText.name//@register
 ]);

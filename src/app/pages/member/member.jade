@@ -3,10 +3,10 @@ div.member
         a.settings(href='/setting')
             i.ion.ion-ios-gear-outline
         div.list
-            a.item.item-avatar.item-icon-right(href='#')
+            a.item.item-avatar.item-icon-right(href='/member_edit')
                 img(ng-src='{{vm.productItem}}').avatar
-                h2 MMerry
-                p get the fuck off , I am the god
+                h2(ng-bind='vm.userInfo.nickname')
+                p(ng-bind-html='!vm.userInfo.sign ? "&nbsp;":vm.userInfo.sign')
                 i.icon.ion-ios-arrow-right
     nav-tip-bar(title='我的')
     .list.serivces

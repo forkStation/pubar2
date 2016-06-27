@@ -32,14 +32,14 @@ div.member_edit
             a.item.item-icon-right.avatar 123
                 img(ng-src='{{vm.wall}}')
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 昵称
-                span.item-note 老实人
+            a.item.item-icon-right(ng-href='/edittxt/nickname') 昵称
+                span.item-note(ng-bind='vm.userInfo.nickname')
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 年龄
                 span.item-note 22
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 性别
-                span.item-note(ng-bind='vm.sexDesc' ng-click='vm.changeSex()')
+                span.item-note(ng-bind='vm.userInfo.sex==1?"男":"女"' ng-click='vm.changeSex()')
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right(ng-click='vm.changeStatus()') 情感状况
                 span.item-note
@@ -49,7 +49,7 @@ div.member_edit
                         option 离异
                         option 保密
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 个人签名
+            a.item.item-icon-right(ng-href='/longText/sign') 个人签名
                 span.item-note 时间是一把杀猪刀
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 兴趣爱好

@@ -1,21 +1,22 @@
 @import "../../../styles/util-mixin";
-.edittxt{
+.longText{
+  margin:0 .1rem .3rem;
   .edit{
     display: block;
     @include normalTextBox();
-    height:.88rem;
+    height:2.5rem;
     font-size:.32rem;
     background:#444 !important;
-    border-radius:0;
+    border-radius:2px;
     margin:.3rem 0;
-    padding:.3rem;
     color:#f1f1f1;
     -webkit-appearance: none;
+    resize: none;
+    padding:.2rem;
   }
   .tips{
     margin:0 .1rem .3rem;
     color:$assistant-color;
-
   }
   .button{
     margin:0 .1rem;

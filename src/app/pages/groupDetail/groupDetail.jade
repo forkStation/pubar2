@@ -18,7 +18,6 @@ div.groupDetail.has-tabs(hide-tabs='true')
                 img(ng-src='{{vm.productItem}}')
         .hoz-item
             span.l-content <i class='ion ion-android-bar'></i>  {{vm.detail.party.subject}}
-            a.ctrl-btn(href='/barDetail')  详情
         .hoz-item
             span.l-content <i class='ion ion-ios-location'></i>  {{vm.barAddress}}
             a.ctrl-btn(ng-href='/barDetail/{{vm.detail.party.barID}}')  详情

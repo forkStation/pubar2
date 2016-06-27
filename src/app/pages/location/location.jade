@@ -14,9 +14,9 @@ div.location(hide-tabs='true')
             button {{vm.initCity}}
         nav-tip-bar(title='热门城市')
         div.hot-cities
-            a.city-item 广州
-            a.city-item 北京
-            a.city-item 深圳
+            a.city-item(ng-click='vm.changeCity("广州")') 广州
+            a.city-item(ng-click='vm.changeCity("北京")') 北京
+            a.city-item(ng-click='vm.changeCity("深圳")') 深圳
         div.location-city-list
             div(ng-repeat='(key,value) in vm.cities')
                 nav-tip-bar(title='{{key | uppercase}}' id='{{key | uppercase}}')

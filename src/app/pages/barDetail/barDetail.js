@@ -28,6 +28,12 @@ export default angular.module('barDetail',[ionic])
                         return resourcePool.getBarFriendList.request({
                             'barid':$stateParams.id
                         })
+                    },
+                    barFriendAdd:function(resourcePool,$stateParams,application){
+                        return resourcePool.addBarFriend.request({
+                            barid:$stateParams.id,
+                            userid:application.userId
+                        })
                     }
                 }
             })
@@ -38,7 +44,6 @@ class BarDetailController {
     constructor ($ionicSlideBoxDelegate,$state,detail,application,groupList,getBarFriendList,$ionicScrollDelegate) {
         "ngInject"
         this.barAvatarDemo=imgResource.barAvatarDemo;
-
         this.name = 'barDetail';
         this.slideIndex = 0;
         this.state = $state;

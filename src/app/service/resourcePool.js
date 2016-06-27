@@ -49,7 +49,7 @@ export default function(resource){
         'receiveFreind':resource.friend('add_friend'),
         //user
         'getUserInfo':resource.user('user_info'),
-
+        'userEdit':resource.user('user_edit'),
         //msg
         'getMsgList':resource.msg('msg_list'),
 

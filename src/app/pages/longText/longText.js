@@ -1,27 +1,24 @@
-import tpl from './edittxt.jade'
-import './edittxt.scss'
+import tpl from './longText.jade'
+import './longText.scss'
 import { angular, ionic } from 'library'
 
-export default angular.module('edittxt',[ionic])
+export default angular.module('longText',[ionic])
     .config(function ($stateProvider) {
         "ngInject"
         $stateProvider
-            .state('edittxt', {
-                url: '/edittxt/:type',
+            .state('longText', {
+                url: '/longText/:type',
                 controllerAs: 'vm',
-                controller: EdittxtController,
-                template: tpl(),
-                resolve:{
-
-                }
+                controller: LongTextController,
+                template: tpl()
             })
     });
 
 
-class EdittxtController {
+class LongTextController {
     constructor ($stateParams,resourcePool,application,$ionicLoading,$timeout,$state) {
         "ngInject"
-        this.name = 'edittxt';
+        this.name = 'longText';
         let t = this;
         t.params = $stateParams;
         t.form = {};
@@ -31,20 +28,19 @@ class EdittxtController {
         t.timeout = $timeout;
         t.state = $state;
         switch (t.params.type){
-            case 'nickname':
-                t.tips = '请输入昵称';
+            case 'sign':
+                t.tips = '请输入修改的签名';
                 t.form.content='';
                 break;
         }
-       
     }
     SaveInfo(){
         let t = this;
         switch (t.params.type){
-            case 'nickname':
+            case 'sign':
                 t.resource.userEdit.request({
                     userid:t.application.userId,
-                    nickname:t.form.content
+                    sign:t.form.content
                 }).then(res=>{
                     if(res.data.status==1){
                         const loading = t.loading.show({
@@ -70,3 +66,4 @@ class EdittxtController {
         }
     }
 }
+

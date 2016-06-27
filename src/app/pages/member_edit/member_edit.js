@@ -13,19 +13,32 @@ export default angular.module('member_edit',[ionic])
                 controller: Member_editController,
                 template: tpl(),
                 resolve:{
-
+                    userInfo:function(application,resourcePool){
+                        return resourcePool.getUserInfo.request({
+                            userid:application.userId
+                        })
+                    }
                 }
             })
     });
 
 
 class Member_editController {
-    constructor ($ionicActionSheet) {
+    constructor ($ionicActionSheet,userInfo,$ionicLoading,resourcePool) {
         "ngInject"
         this.name = 'member_edit';
         this.wall = imgSrc.barAvatarDemo;
         this.actionSheet = $ionicActionSheet;
-        this.sexDesc = '男';
+        this.resource = resourcePool;
+        this.loading = $ionicLoading;
+        if(userInfo.data.status==1){
+            this.userInfo = userInfo.data.info;
+        }else{
+            $ionicLoading.show({
+                template:'系统繁忙，请稍后再试',
+                duration:2000
+            })
+        }
     }
     changeSex(){
         let t = this;
@@ -39,11 +52,29 @@ class Member_editController {
             cancelText: '取消',
             buttonClicked: function(index) {
                 if(index===0){
-                    t.sexDesc='男'
+                    t.userInfo.sex=1;
                 }
                 if(index===1){
-                    t.sexDesc='女'
+                    t.userInfo.sex=0;
                 }
+                t.resource.userEdit.request({
+                    sex:t.userInfo.sex,
+                    userid:t.userInfo.id
+                }).then(res=>{
+                    console.log(res);
+                    if(res.data.status != 1){
+                        t.loading.show({
+                            template:'Error：'+res.data.info,
+                            duration:1500
+                        })
+                    }
+                },()=>{
+                    t.loading.show({
+                        template:'系统繁忙，请稍后再试',
+                        duration:1500
+                    })
+                });
+
                 return true;
             }
         });
