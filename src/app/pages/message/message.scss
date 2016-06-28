@@ -1,0 +1,44 @@
+.message{
+  .card{
+    background: #444;
+    border:1px solid rgba(0, 0, 0, 0.76);
+    .item-divider{
+      background: rgba(34, 34, 34, 0.56);
+      border:none;
+      color:#999;
+    }
+    .item-text-wrap{
+      background:#282828;
+      color:#999;
+      border:none;
+    }
+    .item-avatar{
+      min-height:1.5rem;
+      padding:.32rem .2rem .32rem 1.4rem;
+      img{
+        width:1rem;
+        height:1rem;
+        top:.25rem;
+        left:.25rem;
+        max-height: none;
+        max-width:none;
+      }
+      h2{
+        color:#ccc;
+      }
+      p{
+        margin-top:.2rem;
+        font-size:.2rem;
+        button{
+          font-size:.24rem;
+          display: inline-block;
+          margin-right:10px;
+          &.reject{
+            background: #83797d;
+            color:#fff;
+          }
+        }
+      }
+    }
+  }
+}
