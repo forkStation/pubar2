@@ -1,11 +1,12 @@
 div(hide-tabs='true')
     ion-content.has-tabs
         div.bar-list-stores
-            div.store(ng-click='vm.goBarDetail(item.id)' ng-repeat='item in vm.collects')
+            div.store( ng-repeat='item in vm.collects track by $index')
+                nodata(ng-if='vm.collects.length==0 || !vm.collects')
                 collect(ng-class='{"ion-ios-star":true}')
                 div.tip(ng-bind='item.partyCount+"个酒局进行中"')
-                img(ng-src='{{vm.imgHost + item.cover}}' style='height:3rem;')
+                img(ng-src='{{vm.imgHost + item.cover}}' style='width:6.4rem;' ng-click='vm.goBarDetail(item.id)')
                 div.bar-info
                     div.bar-name(ng-bind='item.name')
-                    div.bar-position 广州市天河区风行东路108号3楼
-                        span 4.32km
+                    div.bar-position(ng-bind='item.address')
+

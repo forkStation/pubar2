@@ -36,7 +36,7 @@ export default angular.module('index',[ionic])
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,$ionicScrollDelegate){
+    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,$ionicScrollDelegate,resourcePool,$ionicLoading){
         "ngInject"
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
@@ -51,10 +51,52 @@ class IndexController {
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
         this.headHost = application.headHost;
+        this.resource = resourcePool;
+        this.application = application;
+        this.loading = $ionicLoading;
     }
     goGroupDetail(id){
         let t = this;
         t.state.go('groupDetail',{id:id});
+    }
+
+    goBarDetail(id){
+        this.state.go('barDetail',{id:id});
+    }
+    collect(item){
+        var status = item.isfollow;
+        console.log(item);
+        let t = this;
+        if(status==1){
+            t.resource.cancelBarFollow.request({
+                userid:t.application.userId,
+                barid:item.id
+            })
+            .then(res=>{
+                if(res.data.status ==1){
+                    t.loading.show({
+                        template:'已取消收藏',
+                        duration:1500
+                    });
+                    item.isfollow = 0;
+                }
+            })
+        }else{
+            t.resource.addBarFollow.request({
+                    userid:t.application.userId,
+                    barid:item.id
+                })
+                .then(res=>{
+                    if(res.data.status ==1){
+                        t.loading.show({
+                            template:'收藏成功',
+                            duration:1500
+                        });
+                        item.isfollow = 1;
+                    }
+                })
+        }
+        return false;
     }
 }
 

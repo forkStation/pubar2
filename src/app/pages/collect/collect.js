@@ -14,7 +14,7 @@ export default angular.module('collect',[ionic])
                 template: tpl(),
                 resolve:{
                     collects:function(resourcePool,application){
-                        return resourcePool.getCollectList.request({
+                        return resourcePool.getBarFollow.request({
                             userid:application.userId
                         })
 
@@ -25,7 +25,7 @@ export default angular.module('collect',[ionic])
 
 
 class CollectController {
-    constructor (collects,application) {
+    constructor (collects,application,$state) {
         "ngInject"
         this.name = 'collect';
         this.barAvatarDemo = imgResource.barAvatarDemo;
@@ -35,6 +35,7 @@ class CollectController {
         }
 
         this.imgHost = application.imgHost;
+        this.state = $state;
     }
 
     goBarDetail(id){

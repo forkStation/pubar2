@@ -5,8 +5,8 @@ div.avatar(hide-tabs='true')
         input.upload(img-cropper-fileread image="cropper.sourceImage" type="file" )
         button.icon.ion-more.button
 
-    ion-content.has-header
-        .preview(style='width:6.4rem')
-            canvas(width="{{windowWidth}}" height="{{windowWidth}}" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="320" crop-height="320" max-width="320" max-height="320" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds")
+    .preview(style='width:6.4rem')
+
+        canvas(width="{{windowWidth}}" height="{{windowWidth}}" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="320" crop-height="320" max-width="320" max-height="320" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds")
 
 

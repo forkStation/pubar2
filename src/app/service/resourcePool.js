@@ -17,7 +17,9 @@ export default function(resource){
         'getBarInfo':resource.bar('bar_info'),
         'getBarList':resource.bar('bar_list'),
         'getBarFriendList':resource.bar('barfriend_list'),
-        'getCollectList':resource.bar('bar_follow'),
+        'getBarFollow':resource.bar('bar_follow'),
+        'cancelBarFollow':resource.bar('up_bar_follow'),
+        'addBarFollow':resource.bar('add_bar_follow'),
         // city
         'getCities':resource.city('get_city'),
         // drink
