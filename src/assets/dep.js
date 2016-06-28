@@ -8,7 +8,7 @@ import 'ngSanitize';
 import 'uiRouter'
 import 'ionic/ionic-angular'
 import '../../library/scss/ionic.scss'
-
+import 'cropper'
 let angular=window.angular;
 let ionic='ionic';
 

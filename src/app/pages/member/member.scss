@@ -22,6 +22,7 @@
         font-size:.4rem;
         right:0;
       }
+
     }
     .avatar{
       border-radius:50%;
@@ -67,6 +68,20 @@
         &:first-child{
           margin-right:10px;
         }
+      }
+      em{
+        width:.32rem;
+        height:.32rem;
+        background: #f00;
+        color:#fff;
+        font-size:.2rem;
+        text-align:center;
+        line-height:.32rem;
+        border-radius:50%;
+        display: block;
+        position: absolute;
+        top:.34rem;
+        right:.55rem;
       }
     }
   }

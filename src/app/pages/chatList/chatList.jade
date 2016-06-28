@@ -6,6 +6,7 @@ div.chatList
                 input(type="search" placeholder="搜索" name="" ng-model="form.key" autocorrect="off")
 
     ion-content.has-footer.has-header
+        nodata(ng-if='!vm.chatList || vm.chatList.length==0')
         ion-list
             ion-item.item-remove-animate.item.item-avatar(type='item-text-wrap' ng-click='vm.goChat(chat.id)' ng-repeat='chat in vm.chatList track by $index')
                 img(ng-src='{{vm.headHost+chat.headIcon}}')

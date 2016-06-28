@@ -18,6 +18,7 @@ div.friend
                 h2 关注和粉丝
         nav-tip-bar(title='A')
         div.list
+            nodata(ng-if='!vm.friendList || vm.friendList.length==0')
             a.item.item-avatar(ng-href='/member_view/{{item.id}}' ng-repeat='item in vm.friendList')
                 img(ng-src='{{vm.imgHost + item.headIcon}}')
                 sex(type='{{item.sex}}')

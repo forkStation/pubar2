@@ -6,7 +6,6 @@ import appFilter from './app.filter'
 import appServer from './app.service'
 import appConfig from './app.config'
 import appStoreDB from './app.storedb'
-
 angular
     .module('pubarApp', [
         ionic,
@@ -15,7 +14,8 @@ angular
         appFilter.name,
         appServer.name,
         appConfig.name,
-        appStoreDB.name
+        appStoreDB.name,
+        'angular-img-cropper'
     ])
     .config(($locationProvider, $urlRouterProvider,$ionicConfigProvider) => {
         "ngInject";

@@ -28,6 +28,7 @@ module.exports = {
             ngAnimate: path.resolve(__dirname, 'bower_components/angular-animate/angular-animate.min'),
             ngSanitize: path.resolve(__dirname, 'bower_components/angular-sanitize/angular-sanitize.min'),
             uiRouter: path.resolve(__dirname, 'bower_components/angular-ui-router/release/angular-ui-router.min'),
+            cropper:path.resolve(__dirname,'bower_components/angular-img-cropper/dist/angular-img-cropper.min'),
             library: path.resolve(__dirname, 'src/assets/dep'),
             sass: path.resolve(__dirname, 'src/styles'),
             img: path.join(__dirname, 'src/assets/img'),

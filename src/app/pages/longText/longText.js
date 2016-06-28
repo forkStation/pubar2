@@ -43,11 +43,11 @@ class LongTextController {
                     sign:t.form.content
                 }).then(res=>{
                     if(res.data.status==1){
-                        const loading = t.loading.show({
+                        t.loading.show({
                             template:'修改成功'
                         });
                         t.timeout(function(){
-                            loading.hide();
+                            t.loading.hide();
                             t.state.go('member_edit')
                         },1500)
                     }else{

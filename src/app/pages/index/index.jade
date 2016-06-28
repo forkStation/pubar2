@@ -23,7 +23,7 @@ ion-content(delegate-handle="mainScroll")
                 div.bar-list-stores
                     location-nav-bar(title='兴盛路')
                     nodata(ng-if='vm.bars.length==0 || !vm.bars')
-                    a.store(ng-repeat='item in vm.bars track by item.id' ng-href='/barDetail/{{item.id}}')
+                    a.store(ng-repeat='item in vm.bars track by $index' ng-href='/barDetail/{{item.id}}')
                         collect(ng-class='{"ion-ios-star-outline":true}')
                         div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
                         img(ng-src='{{vm.imgHost + item.cover}}')

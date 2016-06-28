@@ -19,10 +19,11 @@ export default angular.module('index',[ionic])
                         let login=resourcePool.login;
                         return login.request({})
                     },
-                    barList:function(resourcePool,application,login){
+                    barList:function(resourcePool,application){
 
                         return resourcePool.getBarList.request({
-                            city:application.getMyCity()
+                            city:application.getMyCity(),
+                            userid:application.userId
                         })
                     },
                     partyList:function(resourcePool,application,login){

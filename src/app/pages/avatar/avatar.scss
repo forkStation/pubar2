@@ -1,0 +1,25 @@
+@import "../../../styles/color";
+.avatar{
+  .bar-header{
+    background: #282828;
+    color:#fff;
+    .upload{
+      width:.8rem;
+      height:.8rem;
+      display: block;
+      position: absolute;
+      right:10px;
+      top:10px;
+      z-index:10;
+      opacity: 0;
+    }
+    .ion-more{
+      background: transparent;
+      color:#fff;
+      position: absolute;
+      right:10px;
+      top:8px;
+      font-size:.56rem;
+    }
+  }
+}

@@ -36,6 +36,7 @@ import app from './app/app'
 import phoneLogin from './phoneLogin/phoneLogin'
 import phoneSet from './phoneSet/phoneSet'
 import longText from './longText/longText'
+import avatar from './avatar/avatar'
 //@import
 
 export default angular.module('app.pages', [
@@ -72,5 +73,6 @@ export default angular.module('app.pages', [
     app.name,
     phoneLogin.name,
     phoneSet.name,
-    longText.name//@register
+    longText.name,
+    avatar.name//@register
 ]);
