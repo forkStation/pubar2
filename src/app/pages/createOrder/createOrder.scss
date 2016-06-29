@@ -1,0 +1,36 @@
+.createOrder{
+  .list{
+    border:none;
+    margin-left:.2rem;
+    .item{
+      padding:.32rem .2rem .32rem .8rem;
+      background: transparent;
+      border:none;
+      border-bottom:1px solid #666;
+      color:#fff;
+      min-height:1.2rem;
+      .icon{
+        top:.32rem;
+      }
+      .icon-wallet{
+        background: url(http://h5.pubar.me/lib/images/icon-wallet.png) no-repeat;
+        background-size: 100%;
+        width:.4rem;
+        height:.4rem;
+      }
+      .icon-alipay{
+        background: url(http://h5.pubar.me/lib/images/icon-ali-gray.png) no-repeat;
+        background-size: 100%;
+        width:.4rem;
+        height:.4rem;
+        top:.32rem;
+      }
+      .icon-circle{
+        width:.6rem;
+        height:.6rem;
+        border-radius:50%;
+        border:1px solid #666;
+      }
+    }
+  }
+}

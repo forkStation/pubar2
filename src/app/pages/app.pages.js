@@ -38,6 +38,8 @@ import phoneSet from './phoneSet/phoneSet'
 import longText from './longText/longText'
 import avatar from './avatar/avatar'
 import message from './message/message'
+import productInfo from './productInfo/productInfo'
+import createOrder from './createOrder/createOrder'
 //@import
 
 export default angular.module('app.pages', [
@@ -76,5 +78,7 @@ export default angular.module('app.pages', [
     phoneSet.name,
     longText.name,
     avatar.name,
-    message.name//@register
+    message.name,
+    productInfo.name,
+    createOrder.name//@register
 ]);

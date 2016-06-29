@@ -1,0 +1,63 @@
+@import "../../../styles/color";
+$left: .22rem;
+$bar-height: 1rem;
+.productInfo{
+  .slider-slide{
+    img{
+      width:100%;
+    }
+  }
+  h1{
+    color:#fff;
+    font-size:.34rem;
+    margin:.2rem;
+  }
+  p{
+    color:$assistant-color;
+    margin:.2rem;
+    font-size:.28rem;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .pricetag{
+    margin:0 .2rem;
+    color:$active-background-color;
+    font-size:.3rem;
+  }
+
+  .bar-footer {
+    height: $bar-height;
+    &, .row {
+      padding: 0;
+    }
+    .cart {
+      position: absolute;
+      left: .2rem;
+      top: -.2rem;
+    }
+    .price {
+      padding-left: 1.38rem;
+      line-height: $bar-height;
+      height: $bar-height;
+      font-size: .36rem;
+      background: $assistant-color;
+
+    }
+    .buy {
+      font-size: .36rem;
+      background: $active-background-color;
+      text-align: center;
+      color: white;
+      line-height: $bar-height;
+    }
+    .empty {
+      margin-left: .2rem;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: .35rem;
+    }
+  }
+}

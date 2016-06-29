@@ -1,0 +1,21 @@
+div.productInfo(hide-tabs='true')
+    ion-slide-box
+        ion-slide
+            img(ng-src='http://h5admin.pubar.me/public/images/pic/14664915182102864683.jpg')
+
+    h1.product-name 轩尼诗V.S.O.P
+    p.desc V.S.O.P500年珍藏限量馥郁荟萃至臻品鉴馥郁馥郁荟萃...
+    div.pricetag
+        span &yen;1288.0
+        span(style='float:right')
+            number-pick(number=1)
+
+    div.bar.bar-footer
+        cart(number="vm.total" )
+        .row(ng-if="vm.total !== 0")
+            .col-67.price {{vm.price | currency : '￥'}}
+            .col-33.buy 去结算
+        .row(ng-if="vm.total === 0")
+            .col-67.empty
+                i.icon.ion-android-cart
+                | 您的购物车是空的
