@@ -18,6 +18,11 @@ export default angular.module('createOrder',[ionic])
 class CreateOrderController {
     constructor () {
         "ngInject"
-        this.name = 'createOrder'
+        this.name = 'createOrder';
+        this.payWays = 0;
+    }
+    changePay(type){
+        this.payWays = type;
+
     }
 }

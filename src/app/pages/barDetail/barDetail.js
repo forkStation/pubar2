@@ -81,4 +81,7 @@ class BarDetailController {
     applyMe(){
         this.state.go('productList')
     }
+    createParty(id){
+        this.state.go('create',{barid:id})
+    }
 }

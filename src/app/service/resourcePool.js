@@ -39,6 +39,7 @@ export default function(resource){
         'getPartyUser':resource.party('get_party_user'),
         'getPartyInfo':resource.party('get_party_info'),
         'getPartyList':resource.party('party_list'),
+        'createParty':resource.party('create_party'),
         //weixin
 
         //friend

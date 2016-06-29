@@ -10,34 +10,28 @@ div.create(hide-tabs='true')
             dl
                 dt 主题
                 dd
-                    input(placeholder='请输入酒局的主题' ng-model='form.title' type='text')
+                    input(placeholder='请输入酒局的主题' ng-model='vm.form.subject' type='text')
             dl
                 dt 日期
                 dd
-                    input(placeholder='请选择日期' value='date' type='datetime-local')
+                    input(placeholder='请选择日期' value='date' ng-model='vm.form.startTime' type='datetime-local')
             dl
                 dt 人数
                 dd
-                    input(placeholder='最多参与人数' ng-model='form.count' type='text')
+                    input(placeholder='最多参与人数' ng-model='vm.form.num' type='number')
             dl
                 dt 限制
                 dd
-                    select
-                        option 无限制
-                        option 只允许女生
-                        option 只允许男生
+                    select(ng-model='vm.borgValue' ng-options='option.text for option in vm.borg track by option.id')
+
             dl
                 dt 付款
                 dd
-                    select
-                        option 本大爷买单
-                        option AA
-                        option 男A女免
+                    select(ng-model='vm.typeValue' ng-options='option.text for option in vm.type track by option.id')
             dl
                 dt 审核
                 dd
-                    select
-                        option 无需审核
-                        option 需要我的审核
+                    select(ng-model='vm.auditValue' ng-options='option.text for option in vm.audit track by option.id')
+
     div.bar.bar-footer
-        button.button.button-block.button-active 确定组局
+        button.button.button-block.button-active(ng-click='vm.submitParty()') 确定组局

@@ -1,7 +1,14 @@
+@import "../../../styles/util-mixin";
 .createOrder{
+  .title{
+    font-size:.32rem;
+    color:#fff;
+    margin:.2rem;
+    font-weight:normal;
+  }
   .list{
     border:none;
-    margin-left:.2rem;
+    margin:0 0 0 .2rem;
     .item{
       padding:.32rem .2rem .32rem .8rem;
       background: transparent;
@@ -9,8 +16,22 @@
       border-bottom:1px solid #666;
       color:#fff;
       min-height:1.2rem;
+      &:last-child{
+        border:none;
+      }
+      .change{
+        font-size:.2rem;
+      }
       .icon{
         top:.32rem;
+        &.ion-ios-checkmark-empty{
+          border:1px solid $active-background-color;
+          background: $active-background-color;
+          color:#fff;
+        }
+        &.ion-ios-arrow-right{
+          top:0;
+        }
       }
       .icon-wallet{
         background: url(http://h5.pubar.me/lib/images/icon-wallet.png) no-repeat;
@@ -25,12 +46,38 @@
         height:.4rem;
         top:.32rem;
       }
+      .icon-wechat{
+        background: url(http://h5.pubar.me/lib/images/icon-wechat-gray.png) no-repeat;
+        background-size: 100%;
+        width:.4rem;
+        height:.4rem;
+        top:.32rem;
+      }
       .icon-circle{
         width:.6rem;
         height:.6rem;
         border-radius:50%;
         border:1px solid #666;
       }
+    }
+    .row{
+      padding:.28rem 0;
+      color:#fff;
+      border-bottom:1px solid $assistant-color;
+      div{
+        @include ellipsis();
+        &:nth-child(2){
+          text-align:center;
+        }
+      }
+      &:last-child{
+        border:none;
+      }
+    }
+    .total{
+      text-align:right;
+      color:#fff;
+      padding:.2rem .3rem;
     }
   }
 }

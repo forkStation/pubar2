@@ -2,12 +2,33 @@ div.createOrder(hide-tabs='true')
     h1.title 订单号 20150404214124
     nav-tip-bar(title='支付方式')
     div.list
-        a.item.item-icon-left.item-icon-right
+        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(0)')
             i.icon.icon-wallet
             span 钱包支付
-                p 余额
-            i.icon.icon-circle
-        a.item.item-icon-left.item-icon-right
+                p.change 余额:1878.0
+            i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==0}')
+        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(1)')
             i.icon.icon-alipay
             span 支付宝
-            i.icon.icon-circle
+            i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==1}')
+        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(2)')
+            i.icon.icon-wechat
+            span 微信支付
+            i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==2}')
+    nav-tip-bar(title='优惠券')
+    div.list
+        a.item-icon-left.item.item-icon-right
+            i.icon.ion-arrow-b
+            span 满100减50
+            i.icon.ion-ios-arrow-right
+    nav-tip-bar(title='订单详情')
+    div.list
+        div.row
+            div.col-60 轩尼诗轩尼诗轩尼诗轩尼诗轩尼诗轩尼诗
+            div.col-20 x1
+            div.col-20 &yen;188.0
+        div.row
+            div.col-60 新娘是
+            div.col-20 x1
+            div.col-20 &yen;188.0
+        div.total 合计：&yen;3000.0

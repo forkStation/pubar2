@@ -58,5 +58,5 @@ div.barDetail(hide-tabs='true')
                         map.map(longitude='{{vm.barInfo.longitude}}' latitude='{{vm.barInfo.latitude}}')
 
     div.active-section
-        button.button.button-block.button-active 我要组局
+        button.button.button-block.button-active(ng-click='vm.createParty(vm.barInfo.id)') 我要组局
 
