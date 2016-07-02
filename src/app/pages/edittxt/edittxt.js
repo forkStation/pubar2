@@ -7,7 +7,7 @@ export default angular.module('edittxt',[ionic])
         "ngInject"
         $stateProvider
             .state('edittxt', {
-                url: '/edittxt/:type',
+                url: '/edittxt/:type/:content',
                 controllerAs: 'vm',
                 controller: EdittxtController,
                 template: tpl(),
@@ -24,7 +24,9 @@ class EdittxtController {
         this.name = 'edittxt';
         let t = this;
         t.params = $stateParams;
-        t.form = {};
+        t.form = {
+            content:$stateParams.content
+        };
         t.resource = resourcePool;
         t.application = application;
         t.loading = $ionicLoading;
@@ -33,10 +35,8 @@ class EdittxtController {
         switch (t.params.type){
             case 'nickname':
                 t.tips = '请输入昵称';
-                t.form.content='';
                 break;
         }
-       
     }
     SaveInfo(){
         let t = this;
@@ -52,7 +52,7 @@ class EdittxtController {
                         });
                         t.timeout(function(){
                             t.loading.hide();
-                            t.state.go('member_edit')
+                            window.history.go(-1);
                         },1500)
                     }else{
                         t.loading.show({

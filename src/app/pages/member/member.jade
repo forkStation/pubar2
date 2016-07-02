@@ -4,7 +4,7 @@ div.member
             i.ion.ion-ios-gear-outline
         div.list
             a.item.item-avatar.item-icon-right(href='/member_edit')
-                img(ng-src='{{vm.productItem}}').avatar
+                img(ng-src='{{vm.headHost + vm.userInfo.headIcon}}').avatar
                 h2(ng-bind='vm.userInfo.nickname')
                 p(ng-bind-html='!vm.userInfo.sign ? "&nbsp;":vm.userInfo.sign')
                 i.icon.ion-ios-arrow-right

@@ -1,4 +1,4 @@
-div.phoneLogin
+div.phoneLogin(hide-tabs='true')
     img.bitmap(ng-src='{{vm.bitmap}}')
     img.logo(ng-src='{{vm.logo}}')
     h1 蒲吧
@@ -8,8 +8,8 @@ div.phoneLogin
     div.hor
         div.row
             div.col-66
-                input(placeholder='请输入验证码')
+                input(placeholder='请输入验证码' ng-model = 'vm.form.code')
             div.col-34
                 a(ng-click='vm.getCode()' ng-bind='vm.form.codeDesc' data='{{vm.form.timeStatus}}' )
     div.hor
-        button.button.button-block.button-active 确定
+        button.button.button-block.button-active(ng-click='vm.doLogin()') 确定

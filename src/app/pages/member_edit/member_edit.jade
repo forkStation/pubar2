@@ -29,10 +29,10 @@ div.member_edit
 
         nav-tip-bar(title='基本资料')
         div.list
-            a.item.item-icon-right.avatar(ng-href='/avatar') 123
-                img(ng-src='{{vm.wall}}')
+            a.item.item-icon-right.avatar(ng-href='/avatar') 头像
+                img(ng-src='{{vm.headHost+vm.userInfo.headIcon}}')
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right(ng-href='/edittxt/nickname') 昵称
+            a.item.item-icon-right(ng-href='/edittxt/nickname/{{vm.userInfo.nickname}}') 昵称
                 span.item-note(ng-bind='vm.userInfo.nickname')
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 年龄
@@ -49,8 +49,8 @@ div.member_edit
                         option 离异
                         option 保密
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right(ng-href='/longText/sign') 个人签名
-                span.item-note(bg-bind='vm.userInfo.sign')
+            a.item.item-icon-right(ng-href='/longText/sign/{{vm.userInfo.sign}}') 个人签名
+                span.item-note(ng-bind='vm.userInfo.sign')
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 兴趣爱好
                 span.item-note 时间是一把杀猪刀

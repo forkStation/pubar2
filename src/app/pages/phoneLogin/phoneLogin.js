@@ -27,6 +27,7 @@ class PhoneLoginController {
         this.form = {
             user:'',
             codeDesc:'获取验证码',
+            code:'',
             timeStatus:false
         };
         /**
@@ -34,10 +35,26 @@ class PhoneLoginController {
          */
 
     }
+    validPhone(){
+        let t = this;
+        if(!/^1\d{10}$/.test(t.form.user)){
+            return false;
+        }else{
+            return true
+        }
+    }
+    validCode(){
+        let t = this;
+        if(!/^\d{6}$/.test(t.form.code)){
+            return false;
+        }else{
+            return true;
+        }
+    }
     getCode(){
 
         let t = this,sec = 4;
-        if(!/^1\d{10}$/.test(t.form.user)){
+        if(!t.validPhone()){
             t.loading.show({
                 template:'请输入正确的手机号码',
                 duration:1000
@@ -52,7 +69,7 @@ class PhoneLoginController {
             });
             xhr.then(res=>{
                 console.log(res);
-                if(res.data.info.status==1){
+                if(res.data.status==1){
                     t.loading.show({
                         template:'验证码发送成功',
                         duration:1000
@@ -69,7 +86,10 @@ class PhoneLoginController {
                         }
                     },1000)
                 }else{
-                    console.log('err')
+                    t.loading.show({
+                        template:'系统繁忙,请稍后重试',
+                        duration:1000
+                    })
                 }
             },res=>{
                 console.log(res);
@@ -78,5 +98,32 @@ class PhoneLoginController {
             console.log(xhr);
 
         }
+    }
+    doLogin(){
+
+        let t = this;
+        if(!t.validPhone()){
+            t.loading.show({
+                template:'请输入正确的手机号码',
+                duration:1000
+            });
+            return false;
+        }
+        if(!t.validCode()){
+            t.loading.show({
+                template:'请输入验证码',
+                duration:1000
+            });
+            return false;
+        }
+         t.resourcePool.login.request({
+            ftype:1,
+            code:t.form.code,
+            user:t.form.user
+        }).then(res=>{
+             console.log(res);
+         });
+
+
     }
 }

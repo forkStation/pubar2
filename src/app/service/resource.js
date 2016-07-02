@@ -20,16 +20,15 @@ export default class Resource {
     }
 
     create(module, apiName) {
-        const url = this._create(module, apiName)
+        const url = this._create(module, apiName);
 
         return {
             request: (params, method = 'get', config)=> {
-                let opt = Object.assign({params, method, url})
+                let opt = Object.assign({params, method, url});
                 return this.$http(opt, config)
             }
         }
     }
-
     bar(apiName) {
         return this.create('bar', apiName)
     }
@@ -64,6 +63,9 @@ export default class Resource {
     }
     wallet(apiName){
         return this.create('wellet',apiName)
+    }
+    avatar(apiName){
+        return this.create('user',apiName)
     }
 
 

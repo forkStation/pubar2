@@ -7,7 +7,7 @@ export default angular.module('longText',[ionic])
         "ngInject"
         $stateProvider
             .state('longText', {
-                url: '/longText/:type',
+                url: '/longText/:type/:content',
                 controllerAs: 'vm',
                 controller: LongTextController,
                 template: tpl()
@@ -21,7 +21,9 @@ class LongTextController {
         this.name = 'longText';
         let t = this;
         t.params = $stateParams;
-        t.form = {};
+        t.form = {
+            content:$stateParams.content
+        };
         t.resource = resourcePool;
         t.application = application;
         t.loading = $ionicLoading;
@@ -30,9 +32,9 @@ class LongTextController {
         switch (t.params.type){
             case 'sign':
                 t.tips = '请输入修改的签名';
-                t.form.content='';
                 break;
         }
+
     }
     SaveInfo(){
         let t = this;
@@ -48,7 +50,7 @@ class LongTextController {
                         });
                         t.timeout(function(){
                             t.loading.hide();
-                            t.state.go('member_edit')
+                            window.history.go(-1);
                         },1500)
                     }else{
                         t.loading.show({

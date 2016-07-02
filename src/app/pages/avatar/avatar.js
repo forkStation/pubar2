@@ -17,11 +17,12 @@ export default angular.module('avatar',[ionic])
 
 
 class AvatarController {
-    constructor ($scope,$window) {
+    constructor ($scope,$window,application,resourcePool,$http) {
         "ngInject"
         this.name = 'avatar';
-
-        console.log(cropper);
+        this.resource = resourcePool;
+        this.application = application;
+        this.http = $http;
         $scope.cropper = {};
         $scope.cropper.sourceImage = null;
         $scope.cropper.croppedImage   = null;
@@ -30,9 +31,29 @@ class AvatarController {
         $scope.bounds.right = 0;
         $scope.bounds.top = 0;
         $scope.bounds.bottom = 0;
-
-        
         $scope.windowWidth = $window.document.documentElement.clientWidth;
+    }
+    save(){
+
+        let t = this;
+        var http = t.http;
+
+        var form = new FormData();
+        form.append('uploadFile',document.getElementById('uploadFile').files[0]);
+
+        http({
+            url:'api/user/upload_headIcon',
+            params:{
+                userid:t.application.userId
+            },
+            data:form,
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity,
+            method:'post'
+        }).then(res=>{
+            console.log(res);
+        });
+
 
     }
 }

@@ -24,10 +24,11 @@ export default angular.module('member',[ionic])
 
 
 class MemberController {
-    constructor (userInfo,$ionicLoading) {
+    constructor (userInfo,$ionicLoading,application) {
         "ngInject"
         this.name = 'member';
         this.productItem = imgResource.productItem;
+        this.headHost = application.headHost;
         if(userInfo.data.status==1){
             this.userInfo = userInfo.data.info;
         }else{

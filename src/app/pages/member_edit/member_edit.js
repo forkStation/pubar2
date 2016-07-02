@@ -24,13 +24,14 @@ export default angular.module('member_edit',[ionic])
 
 
 class Member_editController {
-    constructor ($ionicActionSheet,userInfo,$ionicLoading,resourcePool) {
+    constructor ($ionicActionSheet,userInfo,$ionicLoading,resourcePool,application) {
         "ngInject"
         this.name = 'member_edit';
         this.wall = imgSrc.barAvatarDemo;
         this.actionSheet = $ionicActionSheet;
         this.resource = resourcePool;
         this.loading = $ionicLoading;
+        this.headHost = application.headHost;
         if(userInfo.data.status==1){
             this.userInfo = userInfo.data.info;
         }else{
@@ -39,6 +40,7 @@ class Member_editController {
                 duration:2000
             })
         }
+        console.log(this.userInfo.sign);
     }
     changeSex(){
         let t = this;

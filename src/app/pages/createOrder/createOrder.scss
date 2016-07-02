@@ -1,14 +1,17 @@
 @import "../../../styles/util-mixin";
 .createOrder{
-  .title{
+  h1.title{
     font-size:.32rem;
     color:#fff;
     margin:.2rem;
     font-weight:normal;
+    height:.6rem;
   }
   .list{
     border:none;
-    margin:0 0 0 .2rem;
+    padding:0 0 0 .2rem;
+    margin:0;
+    background: #444;
     .item{
       padding:.32rem .2rem .32rem .8rem;
       background: transparent;
@@ -32,6 +35,12 @@
         &.ion-ios-arrow-right{
           top:0;
         }
+        &.ion-cash{
+          top:-.1rem;
+          font-size:.48rem;
+          left:0;
+        }
+
       }
       .icon-wallet{
         background: url(http://h5.pubar.me/lib/images/icon-wallet.png) no-repeat;
@@ -68,6 +77,7 @@
         @include ellipsis();
         &:nth-child(2){
           text-align:center;
+          color:#999;
         }
       }
       &:last-child{
@@ -78,6 +88,12 @@
       text-align:right;
       color:#fff;
       padding:.2rem .3rem;
+    }
+  }
+  .bar{
+    &.bar-active{
+      background: $active-background-color;
+      color:#fff;
     }
   }
 }

@@ -69,12 +69,16 @@
       }
       .item-note{
         margin-right:.5rem;
+        width:3.5rem;
+        @include ellipsis();
+        text-align:right;
         &.bars{
           display: inline-block;
           padding:0.05rem .3rem;
           background: $assistant-color;
           color:#000;
           font-size:.1rem;
+          width:inherit;;
           border-radius:2px;
         }
         select{

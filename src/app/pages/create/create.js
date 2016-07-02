@@ -16,13 +16,14 @@ export default angular.module('create',[ionic])
 
 
 class CreateController {
-    constructor ($stateParams,resourcePool) {
+    constructor ($stateParams,resourcePool,$ionicLoading) {
         "ngInject"
         this.name = 'create';
         this.picWall = imgSrc.barAvatarDemo;
         let t = this;
         t.params = $stateParams;
         t.resource = resourcePool;
+        t.loading = $ionicLoading;
         t.borg = [
             {id:0, text:'半男半女'},
             {id:1,text:'只限女性'},
@@ -45,7 +46,7 @@ class CreateController {
         console.log(t.auditValue);
         t.form = {
             subject:'',
-            startTime:'',
+            startTime:0,
             num:0,
             borg:0,
             type:0,
@@ -57,6 +58,30 @@ class CreateController {
         t.form.borg = t.borgValue.id;
         t.form.type = t.typeValue.id;
         t.form.audit = t.auditValue.id;
-        console.log(t.form);
+        console.log(t.form.startTime);
+
+        if(!t.form.subject){
+            t.loading.show({
+                template:'酒局主题不能为空',
+                duration:1000
+            });
+            return false;
+        }
+        if(!t.form.num){
+            t.loading.show({
+                template:'请输入限制人数',
+                duration:1000
+            });
+            return false;
+        }
+
+        t.resource.createParty.request(t.form).then(res=>{
+            if(res.data.status === 1){
+                t.loading.show({
+                    template:'酒局创建成功',
+                    duration:1500
+                })
+            }
+        })
     }
 }

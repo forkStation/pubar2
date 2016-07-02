@@ -50,9 +50,11 @@ export default function(resource){
         'getFriendReg':resource.friend('get_friendreg_list'),
         'getBlackFriend':resource.friend('black_friend'),
         'receiveFreind':resource.friend('add_friend'),
+
         //user
         'getUserInfo':resource.user('user_info'),
         'userEdit':resource.user('user_edit'),
+        'uploadHeadIcon':resource.user('upload_headIcon'),
         //msg
         'getMsgList':resource.msg('msg_list'),
 

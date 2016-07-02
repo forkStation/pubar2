@@ -26,7 +26,7 @@ export default angular.module('index',[ionic])
                             userid:application.userId
                         })
                     },
-                    partyList:function(resourcePool,application,login){
+                    partyList:function(resourcePool,application){
                         return resourcePool.getPartyList.request({
                             city:application.getMyCity()
                         });
@@ -69,18 +69,18 @@ class IndexController {
         let t = this;
         if(status==1){
             t.resource.cancelBarFollow.request({
-                userid:t.application.userId,
-                barid:item.id
-            })
-            .then(res=>{
-                if(res.data.status ==1){
-                    t.loading.show({
-                        template:'已取消收藏',
-                        duration:1500
-                    });
-                    item.isfollow = 0;
-                }
-            })
+                    userid:t.application.userId,
+                    barid:item.id
+                })
+                .then(res=>{
+                    if(res.data.status ==1){
+                        t.loading.show({
+                            template:'已取消收藏',
+                            duration:1500
+                        });
+                        item.isfollow = 0;
+                    }
+                })
         }else{
             t.resource.addBarFollow.request({
                     userid:t.application.userId,
