@@ -8,7 +8,7 @@ export default angular.module('chat',[ionic])
         "ngInject"
         $stateProvider
             .state('chat', {
-                url: '/chat',
+                url: '/chat/:id',
                 controllerAs: 'vm',
                 controller: ChatController,
                 template: tpl()

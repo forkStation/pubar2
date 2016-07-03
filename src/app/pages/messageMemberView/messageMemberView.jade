@@ -41,16 +41,8 @@ div.member_view(hide-tabs='true')
                 span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar}}
         a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
-        div.add(ng-if='vm.item.isfriend==0')
-           button.button-block.button.button-active(ng-click='vm.addFriend()') 加为好友
-
-    div.bar.bar-footer.row
-        a.col(ng-href='/chat/{{vm.item.id}}' ng-if='vm.item.isfriend==1')
-            i.icon.ion-ios-chatbubble
-            em 聊天
-        a.col(ng-click='vm.addFollow(vm.item.id)' ng-if='vm.item.isfollow==0')
-            i.icon.ion-person-add
-            em 关注
-        a.col(ng-href='/apply/{{vm.item.id}}')
-            i.icon.ion-android-bar
-            em 请喝酒
+        div.row
+            div.col
+                button.button-block.button.button-active(ng-click='vm.confirm(vm.item.id)') 同意
+            div.col
+                button.button-block.button.button-dark(ng-click='vm.reject(vm.item.id)') 拒绝

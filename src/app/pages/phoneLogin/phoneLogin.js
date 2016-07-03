@@ -121,7 +121,19 @@ class PhoneLoginController {
             code:t.form.code,
             user:t.form.user
         }).then(res=>{
-             console.log(res);
+             if(res.data.status ==1){
+                 if(res.data.info.newuser===1){
+                     window.location.replace('/phoneSet')
+                 }else{
+                     window.location.replace('/index')
+                 }
+             }else{
+                 t.loading.show({
+                     template:res.data.info,
+                     duration:1000
+                 });
+                 return false;
+             }
          });
 
 

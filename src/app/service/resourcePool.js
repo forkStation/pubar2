@@ -40,6 +40,8 @@ export default function(resource){
         'getPartyInfo':resource.party('get_party_info'),
         'getPartyList':resource.party('party_list'),
         'createParty':resource.party('create_party'),
+        'getMyCreateParty':resource.party('my_add_party'),
+        'getMyJoinParty':resource.party('my_join_party'),
         //weixin
 
         //friend
@@ -50,6 +52,7 @@ export default function(resource){
         'getFriendReg':resource.friend('get_friendreg_list'),
         'getBlackFriend':resource.friend('black_friend'),
         'receiveFreind':resource.friend('add_friend'),
+        'getFollowList':resource.friend('friend_list'),
 
         //user
         'getUserInfo':resource.user('user_info'),

@@ -11,18 +11,30 @@ export default angular.module('avatar',[ionic])
                 url: '/avatar',
                 controllerAs: 'vm',
                 controller: AvatarController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getDefaultAvatar:function(resourcePool,application){
+                        return　resourcePool.getUserInfo.request({
+                            userid:application.userId
+                        })
+                    }
+                }
             })
     });
 
 
 class AvatarController {
-    constructor ($scope,$window,application,resourcePool,$http) {
+    constructor ($scope,$window,application,resourcePool,$http,getDefaultAvatar,$ionicLoading,$timeout) {
         "ngInject"
         this.name = 'avatar';
         this.resource = resourcePool;
         this.application = application;
         this.http = $http;
+        this.headHost = application.headHost;
+        this.defaultAvatar = getDefaultAvatar.data.info.headIcon;
+        this.loading = $ionicLoading;
+        this.timeout = $timeout;
+        console.log(this.defaultAvatar);
         $scope.cropper = {};
         $scope.cropper.sourceImage = null;
         $scope.cropper.croppedImage   = null;
@@ -51,7 +63,17 @@ class AvatarController {
             transformRequest: angular.identity,
             method:'post'
         }).then(res=>{
-            console.log(res);
+
+            if(res.data.status ==1){
+                t.loading.show({
+                    template:'修改成功',
+                    duration:1500
+                });
+                t.timeout(function(){
+                    t.loading.hide();
+                    window.history.go(-1);
+                },1500)
+            }
         });
 
 

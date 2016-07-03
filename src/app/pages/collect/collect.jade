@@ -1,5 +1,5 @@
 div(hide-tabs='true')
-    ion-content.has-tabs
+    ion-content
         div.bar-list-stores
             div.store( ng-repeat='item in vm.collects track by $index')
                 nodata(ng-if='vm.collects.length==0 || !vm.collects')

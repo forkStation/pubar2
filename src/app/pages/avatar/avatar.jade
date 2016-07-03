@@ -6,8 +6,8 @@ div.avatar(hide-tabs='true')
         button.icon.ion-more.button
 
     .preview(style='width:6.4rem')
+        img(ng-src='{{vm.headHost+vm.defaultAvatar}}' class='defaultAvatar' ng-if='cropper.sourceImage==null' style='max-width:{{windowWidth}}px;max-height:{{windowWidth}}px;')
+        canvas(width="{{windowWidth}}" ng-show='cropper.sourceImage!=null' height="{{windowWidth}}" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="320" crop-height="320" max-width="320" max-height="320" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds")
 
-        canvas(width="{{windowWidth}}" height="{{windowWidth}}" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="320" crop-height="320" max-width="320" max-height="320" keep-aspect="true" touch-radius="30" crop-area-bounds="bounds")
-
-    div.bar.bar-footer
+    div.bar.bar-footer(ng-if='cropper.sourceImage!=null')
         button.button.button-block.button-active(ng-click='vm.save()') 保存头像

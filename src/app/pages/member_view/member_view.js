@@ -62,4 +62,19 @@ class Member_viewController {
             }]
         })
     }
+    addFollow(){
+        let t = this;
+        t.resourcePool.friendFollow.request({
+            userid:t.application.userId,
+            fid:id
+        }).then(res=>{
+            if(res.data.status==1){
+                t.loading.show({
+                    template:'已关注',
+                    duration:1000
+                });
+                t.item.isfollow = 1;
+            }
+        })
+    }
 }

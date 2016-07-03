@@ -40,6 +40,7 @@ import avatar from './avatar/avatar'
 import message from './message/message'
 import productInfo from './productInfo/productInfo'
 import createOrder from './createOrder/createOrder'
+import messageMemberView from './messageMemberView/messageMemberView'
 //@import
 
 export default angular.module('app.pages', [
@@ -80,5 +81,6 @@ export default angular.module('app.pages', [
     avatar.name,
     message.name,
     productInfo.name,
-    createOrder.name//@register
+    createOrder.name,
+    messageMemberView.name//@register
 ]);
