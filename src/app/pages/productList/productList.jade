@@ -25,7 +25,7 @@ div.productList
                                 .product-name {{item.title}}
                                 .product-detail {{item._title}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number='item.num' id='item.id' getNumber='vm.getNumber(item)')
+                                number-pick(number='item.num' id='item.id' barid='vm.barInfo.id' )
 
     .bar.bar-footer
         cart(number="vm.total" )

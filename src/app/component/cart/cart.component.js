@@ -56,7 +56,6 @@ export default function () {
 class CartController {
     constructor ($scope, $ionicBackdrop) {
         "ngInject";
-        console.log("ddsds");
         // $ionicBackdrop.retain();
     }
 }

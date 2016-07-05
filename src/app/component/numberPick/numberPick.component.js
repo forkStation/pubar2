@@ -8,7 +8,8 @@ export default function () {
     scope: {
       number:"=",
       getNumber:'&',
-      id:"="
+      id:"=",
+      barid:'='
     },
     template:template(),
     controller:NumberPickController,
@@ -18,27 +19,47 @@ export default function () {
 
 
 class NumberPickController {
-  constructor($scope) {
+  constructor($scope,storedb) {
     "ngInject";
     this.name = 'numberPick';
     this.number=$scope.number;
     this.scope = $scope;
+    this.barid=$scope.barid;
+    this.storedb = storedb;
+
     this._check();
   }
 
-  _check() {
+  _check(productId) {
     this.needShowReduce = this.number !== 0;
+
   }
 
+  setLocal(productId){
+    let t = this;
+    let barProduct = t.storedb.key('product:'+t.scope.barid);
+
+    if(barProduct.find()){
+      console.log(barProduct.find({'productId':productId}));
+      if(barProduct.find({'productId':productId})){
+        barProduct.update({'num':t.number})
+      }else{
+        barProduct.insert({'productId':productId,'num':t.number});
+      }
+    }else{
+      t.storedb.key('product:'+t.scope.barid).insert({'productId':productId,'num':t.number});
+    }
+  }
   add() {
     this.number++;
     this._check();
-    console.log(this.scope.id)
+    this.setLocal(this.scope.id);
   }
 
   reduce() {
     this.number--;
     this._check();
+    this.setLocal(this.scope.id);
   }
 }
 
