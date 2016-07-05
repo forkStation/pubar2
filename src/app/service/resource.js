@@ -9,10 +9,11 @@ import token from './token'
  * 资源处理文件
  */
 export default class Resource {
-    constructor($http) {
+    constructor($http,storedb) {
         'ngInject'
         this.token = token
         this.$http = $http
+        this.storedb = storedb;
     }
 
     _create(module, apiName) {
@@ -21,9 +22,25 @@ export default class Resource {
 
     create(module, apiName) {
         const url = this._create(module, apiName);
-
+        let t = this;
         return {
             request: (params, method = 'get', config)=> {
+                var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms'];
+                
+                if(defaultAllowApi.indexOf(apiName)==-1){
+                    if(t.storedb.key('userInfo').find()){
+                        params.userid = t.storedb.key('userInfo').find()[0]['id'];
+                    }else{
+                        location.href='/phoneLogin'
+                    }
+                }else{
+                    if(t.storedb.key('userInfo').find()){
+                        params.userid = t.storedb.key('userInfo').find()[0]['id'];
+                    }else{
+                        params.userid = 0;
+                    }
+                }
+
                 let opt = Object.assign({params, method, url});
                 return this.$http(opt, config)
             }

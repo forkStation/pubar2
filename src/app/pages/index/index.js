@@ -14,11 +14,7 @@ export default angular.module('index',[ionic])
                 controller: IndexController,
                 template: tpl(),
                 resolve: {
-                    login: function(resourcePool){
-                        'ngInject'
-                        let login=resourcePool.login;
-                        return login.request({})
-                    },
+
                     barList:function(resourcePool,application){
 
                         return resourcePool.getBarList.request({
@@ -41,6 +37,7 @@ class IndexController {
         this.name = 'index';
         this.barAvatarDemo = imgResource.barAvatarDemo;
         this.state = $state;
+        
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);

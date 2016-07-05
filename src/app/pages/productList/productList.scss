@@ -45,6 +45,8 @@ $bar-height: 1rem;
       position: absolute;
       left: $left;
       bottom: .08rem;
+      width:4.5rem;
+      @include ellipsis();
     }
     .distance {
       @include prop-set(.2rem, $assistant-color);

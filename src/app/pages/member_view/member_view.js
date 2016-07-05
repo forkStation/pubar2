@@ -14,7 +14,6 @@ export default angular.module('member_view',[ionic])
                 resolve:{
                     userInfo: function(resourcePool,$stateParams,application){
                         return resourcePool.getUserInfo.request({
-                            userid:$stateParams.id,
                             myid:application.userId
                         })
                     }

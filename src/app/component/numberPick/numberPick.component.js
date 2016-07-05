@@ -6,7 +6,9 @@ export default function () {
   return {
     restrict: 'E',
     scope: {
-      number:"="
+      number:"=",
+      getNumber:'&',
+      id:"="
     },
     template:template(),
     controller:NumberPickController,
@@ -20,6 +22,7 @@ class NumberPickController {
     "ngInject";
     this.name = 'numberPick';
     this.number=$scope.number;
+    this.scope = $scope;
     this._check();
   }
 
@@ -30,6 +33,7 @@ class NumberPickController {
   add() {
     this.number++;
     this._check();
+    console.log(this.scope.id)
   }
 
   reduce() {

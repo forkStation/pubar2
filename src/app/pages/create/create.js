@@ -16,7 +16,7 @@ export default angular.module('create',[ionic])
 
 
 class CreateController {
-    constructor ($stateParams,resourcePool,$ionicLoading) {
+    constructor ($stateParams,resourcePool,$ionicLoading,application) {
         "ngInject"
         this.name = 'create';
         this.picWall = imgSrc.barAvatarDemo;
@@ -50,7 +50,8 @@ class CreateController {
             num:0,
             borg:0,
             type:0,
-            audit:0
+            audit:0,
+            userid:application.userId
         }
     }
     submitParty(){

@@ -46,14 +46,11 @@ div.groupDetail.has-tabs(hide-tabs='true')
                 i.ion.ion-android-textsms
                 h2 {{vm.detail.party.step}}
                 p 距离开始还有8小时
-        div.col-33.on
-            p
-                i.ion.ion-android-textsms
-            p 评论
-    div.bar.bar-footer.comment.bc(ng-show='vm.flag')
+        div.col-33.on(ng-click='vm.joinParty(vm.detail.party.id)') 参与酒局
 
+    div.bar.bar-footer.comment.bc(ng-show='vm.flag')
         div.col-75
             form
                 input(type='text' placeholder='说点什么吧' id='txtComment')
         div.col-25
-            s-btn(text='取消')
+            s-btn(text='取消' ng-click='vm.flag = false')

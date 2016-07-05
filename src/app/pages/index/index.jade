@@ -24,7 +24,7 @@ ion-content(delegate-handle="mainScroll")
                     location-nav-bar(title='兴盛路')
                     nodata(ng-if='vm.bars.length==0 || !vm.bars')
                     a.store(ng-repeat='item in vm.bars track by $index')
-                        collect(ng-class='{"ion-ios-star-outline":item.isfollow==0,"ion-ios-star":item.isfollow==1}' ng-click='vm.collect(item)')
+                        collect.ion-ios-star-outline(ng-class='{"ion-ios-star":item.isfollow==1}' ng-click='vm.collect(item)')
                         div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
                         img(ng-src='{{vm.imgHost + item.cover}}' ng-click='vm.goBarDetail(item.id)')
                         div.bar-info

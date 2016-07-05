@@ -1,10 +1,10 @@
 div.productList
     .header-warp
-        img(ng-src='{{vm.barAvatarDemo}}')
+        img(ng-src='{{vm.imgHost + vm.barInfo.cover}}')
         i.ion-chevron-left.icon
         i.ion-android-share-alt.icon
-        p.pubname {{vm.pubname}}
-        p.address {{vm.address}}
+        p.pubname {{vm.barInfo.name}}
+        p.address {{vm.barInfo.address}}
         p.distance
             i.ion-ios-location.icon
             |   {{vm.distance}}
@@ -25,7 +25,7 @@ div.productList
                                 .product-name {{item.title}}
                                 .product-detail {{item._title}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number=0)
+                                number-pick(number='item.num' id='item.id' getNumber='vm.getNumber(item)')
 
     .bar.bar-footer
         cart(number="vm.total" )

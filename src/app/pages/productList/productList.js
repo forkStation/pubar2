@@ -8,23 +8,35 @@ export default angular.module('productList', [ionic])
         "ngInject"
         $stateProvider
             .state('productList', {
-                url: '/productList',
+                url: '/productList/:id',
                 controllerAs: 'vm',
                 controller: ProductListController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    'getDrinkList':function(resourcePool,$stateParams){
+                        return resourcePool.getDrinkList.request({
+                            barid:$stateParams.id
+                        })
+                    },
+                    'getBarInfo':function(resourcePool,$stateParams){
+                        return resourcePool.getBarInfo.request({
+                            barid:$stateParams.id
+                        })
+                    }
+                }
             })
     });
 
 
 class ProductListController {
-    constructor ($ionicBackdrop) {
+    constructor ($ionicBackdrop,getDrinkList,getBarInfo,application,storedb) {
         "ngInject";
         ProductListController.$ionicBackdrop=$ionicBackdrop;
-        this.pubname = 'The color 本色酒吧';
-        this.address = '市民中心';
         this.distance = '4.32km';
         this.barAvatarDemo=imgResource.barAvatarDemo;
-
+        this.list = getDrinkList;
+        this.barInfo = getBarInfo.data.info;
+        this.imgHost = application.imgHost;
         this.category = [
             {name: '热销'},
             {name: '新品推荐'},
@@ -40,8 +52,8 @@ class ProductListController {
             {name: '新品推荐'}
         ];
 
-        this.total = 10
-        this.price = 10000
+        this.total = 10;
+        this.price = 10000;
 
         //设置现在的标签
         this.activeCate = this.category[0].name;
@@ -49,41 +61,53 @@ class ProductListController {
 
         this.items = [
             {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: ''
+                title: '鸡腿堡',
+                _title: '好吃的大鸡',
+                price: 18.0,
+                img: '',
+                id:'dsf324123dae144',
+                num:1
             },
             {
                 title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
                 _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 price: 100000,
-                img: ''
+                img: '',
+                id:'ga12sdafaacacs441',
+                num:3
             },
             {
                 title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
                 _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 price: 100000,
-                img: ''
+                img: '',
+                id:'f123aasd',
+                num:0
             },
             {
                 title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
                 _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 price: 100000,
-                img: ''
+                img: '',
+                id:'123',
+                num:1
             },
             {
                 title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
                 _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 price: 100000,
-                img: ''
+                img: '',
+                id:'321312',
+                num:2
             },
             {
                 title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
                 _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
                 price: 100000,
-                img: ''
-            },
+                img: '',
+                id:'01212312412412',
+                num:10
+            }
         ]
     }
 
@@ -94,5 +118,8 @@ class ProductListController {
         cate.isActive = true;
         this.activeCate = cate.name;
     }
-    
+    getNumber(item){
+        console.log(item)
+    }
+
 }

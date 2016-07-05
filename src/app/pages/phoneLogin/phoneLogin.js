@@ -16,7 +16,7 @@ export default angular.module('phoneLogin',[ionic])
 
 
 class PhoneLoginController {
-    constructor (application,$interval,resourcePool,$ionicLoading) {
+    constructor (application,$interval,resourcePool,$ionicLoading,storedb) {
         "ngInject"
         this.name = 'phoneLogin';
         this.bitmap = application.assets+'bitmap.png';
@@ -24,12 +24,14 @@ class PhoneLoginController {
         this.interval = $interval;
         this.resourcePool = resourcePool;
         this.loading = $ionicLoading;
+        this.storedb = storedb;
         this.form = {
             user:'',
             codeDesc:'获取验证码',
             code:'',
             timeStatus:false
         };
+        
         /**
          *
          */
@@ -123,8 +125,17 @@ class PhoneLoginController {
         }).then(res=>{
              if(res.data.status ==1){
                  if(res.data.info.newuser===1){
-                     window.location.replace('/phoneSet')
+                     window.location.replace('/phoneSet');
+                     t.storedb.key('userInfo').remove();
+                     t.storedb.key('userInfo').insert(res.data.info);
                  }else{
+                     if(!t.storedb.key('userInfo').find()){
+                         t.storedb.key('userInfo').insert(res.data.info);
+                     }else{
+                         t.storedb.key('userInfo').remove();
+                         t.storedb.key('userInfo').insert(res.data.info);
+                     }
+
                      window.location.replace('/index')
                  }
              }else{

@@ -29,11 +29,13 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail,application,resourcePool) {
+    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
-
+        this.popup = $ionicPopup;
+        this.loading = $ionicLoading;
+        this.resourcePool = resourcePool;
         var _this = this;
         _this.flag = false;
         this.productItem = imgResource.productItem;
@@ -96,7 +98,59 @@ class GroupDetailController {
     goChat(){
         this.state.go('chat')
     }
-
+    joinParty(id){
+        let t = this;
+        var audit = t.detail.party.audit;
+        var barid = t.detail.party.barID;
+        if(audit){
+            t.popup.show({
+                template:'当前酒局需要创建者的审核,确定申请加入吗',
+                title:'提示信息',
+                buttons:[{
+                    text:'确定',
+                    onTap:function(){
+                        t.resourcePool.joinParty.request({
+                            barid:barid,
+                            partyid:id
+                        }).then(res=>{
+                            if(res.data.status ==1 ){
+                                t.loading.show({
+                                    template:res.data.info,
+                                    duration:1000
+                                })
+                            }
+                        })
+                    }
+                },{text:'取消'}]
+            })
+        }else{
+            t.popup.show({
+                template:'确定加入该酒局吗?',
+                title:'提示信息',
+                buttons:[{
+                    text:'确定',
+                    onTap:function(){
+                        t.resourcePool.joinParty.request({
+                            barid:barid,
+                            partyid:id
+                        }).then(res=>{
+                            if(res.data.status ==1 ){
+                                t.loading.show({
+                                    template:res.data.info,
+                                    duration:1000
+                                })
+                            }else{
+                                t.loading.show({
+                                    template:res.data.info,
+                                    duration:1000
+                                })
+                            }
+                        })
+                    }
+                },{text:'取消'}]
+            })
+        }
+    }
 
 
 }
