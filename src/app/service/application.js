@@ -29,7 +29,6 @@ export default function(storedb){
             }
         },
         'assets':'http://h5.pubar.me/lib/images/',
-        'userId':10000,
         'getMyCity':function(){
             var st = storedb.key('city').find();
             if(st){

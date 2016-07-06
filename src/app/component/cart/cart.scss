@@ -45,6 +45,7 @@ scss文件 cart
   position: absolute;
   left: -.2rem;
   top: 1rem;
+  height:5rem;
   width: 6.4rem;
   background: $background-list-color;
 
@@ -83,6 +84,9 @@ scss文件 cart
     number-pick{
      padding-left: .2rem;
     }
+  }
+  .cart-content{
+    top:.8rem;
   }
 }
 

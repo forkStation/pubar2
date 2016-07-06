@@ -20,15 +20,15 @@ div.productList
                     .product(ng-repeat="item in vm.items")
                         .product-item.row
                             .col-30
-                                img(ng-src="{{item.img | img}}")
+                                img(ng-src="{{vm.imgHost + item.cover}}")
                             .col-70
-                                .product-name {{item.title}}
-                                .product-detail {{item._title}}
+                                .product-name {{item.name}}
+                                .product-detail {{item.detail}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number='item.num' id='item.id' barid='vm.barInfo.id' )
+                                number-pick(number='item.num' on-state='vm.getChange()' id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
 
     .bar.bar-footer
-        cart(number="vm.total" )
+        cart(number="vm.total" barid='vm.barInfo.id')
         .row(ng-if="vm.total !== 0")
             .col-67.price {{vm.price | currency : '￥'}}
             .col-33.buy 去结算

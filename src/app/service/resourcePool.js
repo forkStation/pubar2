@@ -24,8 +24,8 @@ export default function(resource){
         'getCities':resource.city('get_city'),
         // drink
         'getDrinkInfo':resource.drink('drink_info'),
-        'getDrinkList':resource.drink('drink_list'),
-        'getDrinkCate':resource.drink('drink_cate'),
+        'getDrinkList':resource.drink('get_drink_list'),
+        'getDrinkCate':resource.drink('get_drink_cate'),
         // meb
         'getSmsCode':resource.Meb('regsms'),
         'register':resource.Meb('reg'),

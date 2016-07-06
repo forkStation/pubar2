@@ -6,7 +6,8 @@ export default function () {
         restrict: 'E',
         replace: true,
         scope: {
-            number: '<'
+            number: '<',
+            barid:'='
         },
         template: template(),
         controller: CartController,
@@ -16,32 +17,18 @@ export default function () {
             let toTop;
             let isBottom=true;
 
-            let cartItem=[
-                {
-                    name:'蓝带',
-                    price:'1288',
-                    number:2
-                },
-                {
-                    name:'蓝带',
-                    price:'1288',
-                    number:2
-                },
-                {
-                    name:'蓝带',
-                    price:'1288',
-                    number:2
-                }
-            ];
-            
-            scope.cartItem=cartItem;
 
             scope.popup = function () {
                 isBottom?moveTop():moveBottom();
                 isBottom=!isBottom;
+                var storage = window.localStorage;
+                scope.cartItem = JSON.parse(storage.getItem('bar'+scope.barid));
+                console.log(scope.cartItem);
             };
 
-
+            scope.myFilter = function(item){
+                return item.num > 0;
+            };
             function moveTop () {
                 ele[0].style.top = "-5.1rem"
             }

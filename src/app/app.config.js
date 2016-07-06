@@ -88,7 +88,7 @@ export default angular.module('app.config', [ionic])
                             template: '<ion-spinner></ion-spinner>'
                         })
                     }
-                }, 500) // if no response in 1000ms, begin loading
+                }, 100) // if no response in 1000ms, begin loading
             }
             return data;
         });

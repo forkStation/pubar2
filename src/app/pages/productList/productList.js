@@ -1,7 +1,6 @@
 import tpl from './productList.jade'
 import './productList.scss'
 import { angular, ionic } from 'library'
-import imgResource from 'assets/images'
 
 export default angular.module('productList', [ionic])
     .config(function ($stateProvider) {
@@ -13,8 +12,8 @@ export default angular.module('productList', [ionic])
                 controller: ProductListController,
                 template: tpl(),
                 resolve:{
-                    'getDrinkList':function(resourcePool,$stateParams){
-                        return resourcePool.getDrinkList.request({
+                    'getDrinkCate':function(resourcePool,$stateParams){
+                        return resourcePool.getDrinkCate.request({
                             barid:$stateParams.id
                         })
                     },
@@ -29,87 +28,51 @@ export default angular.module('productList', [ionic])
 
 
 class ProductListController {
-    constructor ($ionicBackdrop,getDrinkList,getBarInfo,application,storedb) {
+    constructor ($ionicBackdrop,getBarInfo,application,getDrinkCate,resourcePool,$stateParams) {
         "ngInject";
         ProductListController.$ionicBackdrop=$ionicBackdrop;
         this.distance = '4.32km';
-        this.barAvatarDemo=imgResource.barAvatarDemo;
-        this.list = getDrinkList;
-        this.barInfo = getBarInfo.data.info;
-        this.imgHost = application.imgHost;
-        this.category = [
-            {name: '热销'},
-            {name: '新品推荐'},
-            {name: '热销'},
-            {name: '新品推荐'},
-            {name: '热销'},
-            {name: '新品推荐'},
-            {name: '热销'},
-            {name: '新品推荐'},
-            {name: '热销'},
-            {name: '新品推荐'},
-            {name: '热销'},
-            {name: '新品推荐'}
-        ];
 
+
+        this.barInfo = getBarInfo.data.info;
+        this.category = getDrinkCate.data.info;
+        this.imgHost = application.imgHost;
+        this.resourcePool = resourcePool;
+        this.stateParams = $stateParams;
         this.total = 10;
         this.price = 10000;
 
         //设置现在的标签
         this.activeCate = this.category[0].name;
         this.category[0].isActive = true;
-
-        this.items = [
-            {
-                title: '鸡腿堡',
-                _title: '好吃的大鸡',
-                price: 18.0,
-                img: '',
-                id:'dsf324123dae144',
-                num:1
-            },
-            {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: '',
-                id:'ga12sdafaacacs441',
-                num:3
-            },
-            {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: '',
-                id:'f123aasd',
-                num:0
-            },
-            {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: '',
-                id:'123',
-                num:1
-            },
-            {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: '',
-                id:'321312',
-                num:2
-            },
-            {
-                title: '酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名酒名',
-                _title: '介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍',
-                price: 100000,
-                img: '',
-                id:'01212312412412',
-                num:10
-            }
-        ]
+        this.getData(this.category[0]['id']);
     }
+
+    getData(id){
+        let t = this;
+        t.resourcePool.getDrinkList.request({
+            barid:t.stateParams.id,
+            type:id
+        }).then(res=>{
+            t.items = res.data.info;
+            this.getChange();
+
+        })
+    }
+    getChange(){
+        let t = this;
+        var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
+        var items = t.items;
+        for(var i = 0;i<items.length;i++){
+            for(var s = 0;s<storageData.length;s++){
+                if(items[i]['id']==storageData[s]['productId']){
+                    items[i].num = storageData[s]['num']
+                }
+            }
+        }
+
+    }
+
 
     setActive (cate) {
         this.category.forEach(function (val, key) {
@@ -117,9 +80,9 @@ class ProductListController {
         });
         cate.isActive = true;
         this.activeCate = cate.name;
+        this.getData(cate.id);
+
     }
-    getNumber(item){
-        console.log(item)
-    }
+
 
 }

@@ -1,7 +1,7 @@
 /**
  * Created by apple on 16/6/17.
  */
-
+import {angular,ionic} from 'library'
 export default angular.module('app.storedb',[])
     .service('storedb',function(){
 

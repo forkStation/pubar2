@@ -8,9 +8,10 @@ div.cart
        .left 购物车
        .right
           i.icon.ion-trash-a 清除全部
-    .cart-item(ng-repeat="item in cartItem")
-      .row
-        .col-40 {{item.name}}
-        .col-30.pri {{item.price | currency : '￥'}}
-        .col-30
-          number-pick(number="item.number")
+    ion-content.cart-content
+        .cart-item(ng-repeat="item in cartItem | filter:myFilter")
+          .row
+            .col-40.productName {{item.name}}
+            .col.pri {{item.price | currency : '￥'}}
+            .col-30
+              number-pick(number='item.num' id='item.productId' name='item.name' price='item.price' barid='barid' )

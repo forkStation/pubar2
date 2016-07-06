@@ -7,9 +7,11 @@ export default function () {
     restrict: 'E',
     scope: {
       number:"=",
-      getNumber:'&',
+      onState:'&',
       id:"=",
-      barid:'='
+      barid:'=',
+      name:'=',
+      price:'='
     },
     template:template(),
     controller:NumberPickController,
@@ -36,22 +38,59 @@ class NumberPickController {
   }
 
   setLocal(productId){
-    let t = this;
-    let barProduct = t.storedb.key('product:'+t.scope.barid);
 
-    if(barProduct.find()){
-      console.log(barProduct.find({'productId':productId}));
-      if(barProduct.find({'productId':productId})){
-        barProduct.update({'num':t.number})
-      }else{
-        barProduct.insert({'productId':productId,'num':t.number});
-      }
+    let t = this;
+    //根据酒吧id查找本地存储数据
+
+    let scope = t.scope;
+    let storage = window.localStorage;
+
+    let currentBar = 'bar'+scope.barid;
+
+    let currentBarStorage = storage.getItem(currentBar); //获取当前酒吧内的本地数据
+
+    if(!currentBarStorage){  //如果获取不到数据的话,在当前酒吧新增一条本地数据
+
+      var data = [{productId:productId,num:t.number,name:scope.name,price:scope.price}];
+      storage.setItem(currentBar,JSON.stringify(data));
+
     }else{
-      t.storedb.key('product:'+t.scope.barid).insert({'productId':productId,'num':t.number});
+
+      //拿到当前酒吧的json数据解析
+      var barItems = JSON.parse(storage.getItem(currentBar));
+
+      var tempArray = [];
+      for(var i =0;i<barItems.length;i++){ //查看当前操作的商品是否已经存在了本地中,
+        tempArray.push(barItems[i]['productId']);
+
+      }
+      if(tempArray.indexOf(productId)>=0){
+        for(var i =0;i<barItems.length;i++){
+
+          if(productId == barItems[i]['productId']){
+            barItems[i]['num'] = t.number;     // 如果已经存在了直接修改数量
+          }
+          if(barItems[i].num<=0){
+            barItems.splice(i,1);
+          }
+        }
+      }else{
+        barItems.push({        //如果不存在,则在当前酒吧内的本地数据里新增一条记录
+          productId:productId,
+          num:t.number,
+          name:scope.name,
+          price:scope.price
+        })
+      }
+      storage.removeItem(currentBar);
+      storage.setItem(currentBar,JSON.stringify(barItems));
+      scope.onState();
     }
+
   }
   add() {
     this.number++;
+    console.log(this.number);
     this._check();
     this.setLocal(this.scope.id);
   }
