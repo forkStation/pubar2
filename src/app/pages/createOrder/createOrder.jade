@@ -32,8 +32,16 @@ div.createOrder(hide-tabs='true')
                 div.col-60 新娘是
                 div.col-20.count x1
                 div.col-20 &yen;188.0
-            div.total 合计：&yen;3000.0
+            div.row
+                div.col
+                    span.tl 合计 &yen;2785 优惠&yen;49
+                    span.tr 实付 &yen;2700
+            div.row
+                div.col
+                    span.tr 由于AA支付,需支付&yen;1300
+
+
 
     div.bar.bar-footer.bar-active
-        div.title 确定支付
+        div.title(ng-click='vm.toPay()') 确定支付
 

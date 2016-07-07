@@ -1,0 +1,12 @@
+div.codebox
+    div.input-box
+        input.pwdbox(type='password' maxlength='6' ng-model='password' ng-change='vm.codeChange()')
+        div.grid
+            em
+            em
+            em
+            em
+            em
+            em
+        div.point
+            i.icon.ion-record(ng-repeat='code in vm.codes track by $index')

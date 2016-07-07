@@ -6,6 +6,7 @@
     margin:.2rem;
     font-weight:normal;
     height:.6rem;
+    line-height:.6rem;
   }
   .list{
     border:none;
@@ -73,12 +74,21 @@
       padding:.28rem 0;
       color:#fff;
       border-bottom:1px solid $assistant-color;
+      margin:0;
       div{
         @include ellipsis();
         &:nth-child(2){
           text-align:center;
           color:#999;
         }
+      }
+      .tl{
+        float: left;
+      }
+      .tr{
+        float: right;
+        margin-right:.2rem;
+        color:#ccc;
       }
       &:last-child{
         border:none;

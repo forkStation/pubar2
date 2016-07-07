@@ -48,6 +48,10 @@ class ProductListController {
         this.getData(this.category[0]['id']);
     }
 
+    /**
+     * 切换分类的时候重新渲染商品列表
+     * @param id
+     */
     getData(id){
         let t = this;
         t.resourcePool.getDrinkList.request({
@@ -59,9 +63,15 @@ class ProductListController {
 
         })
     }
+
+    /**
+     * 切换酒水分类的时候,让商品数量和本地的数据相等
+     * @returns {boolean}
+     */
     getChange(){
         let t = this;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
+        if(!storageData) return false;
         var items = t.items;
         for(var i = 0;i<items.length;i++){
             for(var s = 0;s<storageData.length;s++){
@@ -70,7 +80,6 @@ class ProductListController {
                 }
             }
         }
-
     }
 
 

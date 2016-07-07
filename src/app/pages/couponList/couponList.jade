@@ -1,2 +1,50 @@
-div.couponList
-    h1 {{vm.name}}
+div.couponList(hide-tabs='true')
+    div.w600.br_none.bg_activity_btn(id='remind')
+        p.fs24 你有一个新的优惠卷还没有领取,点击领取
+            span.btn_close.color_btn
+    nav-tip-bar(title='可用')
+    section.pdb30(id='use' )
+        div.volumn.color_28.bg_volumn.w600.mt25.mcenter.br10.bor_none.of_h
+            div.flex.bg_white_repeatX.bor_sol_bt_black.row
+                div.col
+                    em &yen;
+                    span.fs128 100
+                div.col
+                    h3.cw 点酒代金卷
+                    p
+                        i.icon.cash-tip
+                        span.desc 满50可用
+
+
+            div.row.extend
+                div.col 有效期至:2016-06-30
+                div.col.tr 使用条款说明
+                 i.icon.ion-chevron-down
+            div.explain.bor_das_top_black.fs20.tr
+                p 1、本活支仅限于购满50元方可使用
+                p 2、活动最终解释权归蒲吧所有
+                p 3、本券仅限广州地区使用
+
+    nav-tip-bar(title='过期')
+    section.pdb30(id='not_use')
+        div.volumn.color_28.bg_volumn.w600.mt25.mcenter.br10.bor_none.of_h
+            div.flex.bg_white_repeatX.bor_sol_bt_black.row
+                div.col
+                    em &yen;
+                    span.fs128 100
+                div.col
+                    h3.cw 点酒代金卷
+                    p
+                        i.icon.cash-tip
+                        span.desc 满50可用
+
+
+            div.row.extend
+                div.col 有效期至:2016-06-30
+                div.col.tr 使用条款说明
+                 i.icon.ion-chevron-down
+            div.explain.bor_das_top_black.fs20.tr
+                p 1、本活支仅限于购满50元方可使用
+                p 2、活动最终解释权归蒲吧所有
+                p 3、本券仅限广州地区使用
+

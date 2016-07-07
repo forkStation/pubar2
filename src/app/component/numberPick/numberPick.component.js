@@ -7,11 +7,13 @@ export default function () {
     restrict: 'E',
     scope: {
       number:"=",
-      onState:'&',
+      onGetChange:'&',
+      onResetCartList:'&',
       id:"=",
       barid:'=',
       name:'=',
       price:'='
+
     },
     template:template(),
     controller:NumberPickController,
@@ -37,6 +39,10 @@ class NumberPickController {
 
   }
 
+  /**
+   * 商品数量改变的时候,就重置本地存储的数据
+   * @param productId
+     */
   setLocal(productId){
 
     let t = this;
@@ -84,13 +90,13 @@ class NumberPickController {
       }
       storage.removeItem(currentBar);
       storage.setItem(currentBar,JSON.stringify(barItems));
-      scope.onState();
+      scope.onGetChange(); // 调用重置父亲商品列表的方法
+      scope.onResetCartList(); // 调用购物车列表重置方法
     }
 
   }
   add() {
     this.number++;
-    console.log(this.number);
     this._check();
     this.setLocal(this.scope.id);
   }
