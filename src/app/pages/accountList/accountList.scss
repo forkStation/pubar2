@@ -1,0 +1,64 @@
+@import "../../../styles/color";
+.accountList{
+
+  .add{
+    background: #444;
+    border:none;
+    color:#fff;
+    .ion-ios-arrow-right{
+      color:#999;
+    }
+  }
+  .paylist{
+    padding-left:.2rem;
+    background: #444;
+    .item{
+      background: transparent;
+      border:none;
+      border-bottom:1px solid #000;
+      &:last-child{
+        border:none;
+      }
+      color:#fff;
+      .name{
+        font-size:.28rem;
+        color:#fff;
+      }
+    }
+  }
+  .ico{
+    display: inline-block;
+    vertical-align: middle;
+    width:.4rem;
+    height:.4rem;
+    position: absolute;
+    right:.2rem;
+    top:50%;
+    margin-top:-.2rem;
+    &.icon-alipay{
+      background: url('../../../assets/img/ion-alipay.png');
+      background-size: 100%;
+    }
+    &.icon-wechat{
+      background: url('../../../assets/img/ion-wechat.png');
+      background-size: 100%;
+    }
+    &.icon-select{
+      border-radius:50%;
+      border:#999 1px solid;
+      float: right;
+      text-align:center;
+      line-height:.4rem;
+      font-size:.4rem;
+      &.on{
+        background: $active-background-color;
+        color:#fff;
+        border:1px solid $active-background-color;
+      }
+    }
+  }
+  .card{
+    background: none;
+    box-shadow: none;
+  }
+}
