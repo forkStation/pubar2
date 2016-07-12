@@ -7,38 +7,66 @@ export default angular.module('createOrder',[ionic])
         "ngInject"
         $stateProvider
             .state('createOrder', {
-                url: '/createOrder',
+                url: '/createOrder/:orderid/:genre',
                 controllerAs: 'vm',
                 controller: CreateOrderController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getOrderInfo:function(resourcePool,$stateParams){
+                        return resourcePool.getConfirmOrderInfo.request({
+                            id:$stateParams.orderid,
+                            genre:$stateParams.genre
+                        })
+                    }
+                }
             })
     });
 
 
 class CreateOrderController {
-    constructor ($ionicPopup,$scope) {
+    constructor ($ionicPopup,$scope,getOrderInfo,$ionicLoading,resourcePool,$stateParams) {
         "ngInject"
         this.name = 'createOrder';
         this.payWays = 0;
         this.popup = $ionicPopup;
         this.scope = $scope;
-        $scope.password = '2222';
+        this.orderInfo = getOrderInfo.data.info;
+        this.orderInfo.orderId = $stateParams.orderid;
+        console.log(this.orderInfo);
+        this.loading = $ionicLoading;
+        $scope.password = '';
+        this.resourcePool = resourcePool;
+        this.stateParams = $stateParams;
     }
     changePay(type){
         this.payWays = type;
-
     }
+
     toPay(){
         let t = this;
+        var $loading = t.loading;
         t.popup.show({
             title:'输入支付密码',
-            template:'<span>本色酒吧</span><p class="order-price">&yen;1800.0</p><codebox password="password"></codebox>',
+            template:'<span class="barName">{{vm.orderInfo.barinfo.name}}</span><p class="order-price">{{vm.orderInfo.money | currency:"￥"}}</p><codebox password="password"></codebox>',
             buttons:[{
                 text:'确定',
                 onTap:function(){
-                    console.log(t)
+                    if(this.scope.password =='131646'){
+                        t.resourcePool.setOrderPay.request({
+                            id:t.stateParams.orderid
+                        }).then(res=>{
+                            console.log(res)
+                        });
+                        return true;
+                    }else{
+                        $loading.show({
+                            template:'支付密码错误',
+                            duration:1000
+                        })
+                    }
                 }
-            }]
+            },{text:'取消'}],
+            scope:t.scope
         })
     }
 }

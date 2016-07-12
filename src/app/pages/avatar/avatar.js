@@ -50,13 +50,15 @@ class AvatarController {
         let t = this;
         var http = t.http;
 
+        var userInfo = JSON.parse(window.localStorage.getItem('userInfo'))[0];
+        console.log(userInfo);
         var form = new FormData();
         form.append('uploadFile',document.getElementById('uploadFile').files[0]);
 
         http({
             url:'api/user/upload_headIcon',
             params:{
-                userid:t.application.userId
+                userid:userInfo.id
             },
             data:form,
             headers: {'Content-Type': undefined},

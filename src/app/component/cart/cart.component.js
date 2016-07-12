@@ -1,5 +1,6 @@
 import template from './cart.jade';
 import './cart.scss';
+import {angular,ionic} from 'library'
 
 export default function () {
     return {
@@ -19,34 +20,42 @@ export default function () {
             let isBottom=true;
 
 
+
             /**
              * 点击购物车按钮图标的时候,加载购物车列表数据
              */
             scope.popup = function () {
                 isBottom?moveTop():moveBottom();
                 isBottom=!isBottom;
-                var storage = window.localStorage;
-                scope.cartItem = JSON.parse(storage.getItem('bar'+scope.barid));
-                console.log(scope.cartItem);
+                scope.getStorageData();
             };
 
-            scope.myFilter = function(item){
-                return item.num > 0;
+            scope.getStorageData = function(){
+                var storage = window.localStorage;
+                scope.cartItem = JSON.parse(storage.getItem('bar'+scope.barid));
+                scope.total = 0;
+                scope.sum = 0;
+                angular.forEach(scope.cartItem,function(value,key){
+                    scope.total = parseFloat(value.price*value.number) + scope.total;
+                    scope.sum = parseInt(value.number)+scope.sum;
+                });
             };
+
+            scope.getStorageData();
             function moveTop () {
                 ele[0].style.top = "-5.1rem"
             }
             function moveBottom () {
                 ele[0].style.top = "-0.2rem"
             }
-            scope.resetCartList = function(item){
-                console.log(item);
-                if(item.num<=0){
-                    console.log('0')
-                    scope.cartItem.splice(scope.cartItem.indexOf(),1)
-                }
-                scope.onHandle();
-            };
+            // scope.resetCartList = function(item){
+            //     console.log(item);
+            //     if(item.num<=0){
+            //         console.log('0')
+            //         scope.cartItem.splice(scope.cartItem.indexOf(),1)
+            //     }
+            //     scope.onHandle();
+            // };
 
             /**
              * 清除购物车

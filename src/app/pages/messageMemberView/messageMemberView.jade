@@ -1,5 +1,5 @@
 div.member_view(hide-tabs='true')
-    ion-content.has-tabs
+    ion-content
         div.gallery
             div.row
                 div.col-25
@@ -38,7 +38,7 @@ div.member_view(hide-tabs='true')
         div.tags
             div.title 活跃酒吧
             div.desc.visit
-                span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar}}
+                span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar.name}}
         a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
         div.row

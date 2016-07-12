@@ -1,4 +1,4 @@
-div.productList
+div.productList(hide-tabs='true')
     .header-warp
         img(ng-src='{{vm.imgHost + vm.barInfo.cover}}')
         i.ion-chevron-left.icon
@@ -20,20 +20,19 @@ div.productList
                     .product(ng-repeat="item in vm.items")
                         .product-item.row
                             .col-30
-                                img(ng-src="{{vm.imgHost + item.cover}}")
+                                img(ng-src="{{vm.productHost + item.cover}}")
                             .col-70
                                 .product-name {{item.name}}
-                                .product-detail {{item.detail}}
+                                .product-detail {{item.details}}
                                 .price {{item.price | currency : '￥'}}
                                 number-pick(number='!item.num?0:item.num' on-getChange='vm.getChange()' id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
 
-    .bar.bar-footer
+    .bar.bar-footer(ng-if='vm.total!=0')
         cart(number="vm.total" barid='vm.barInfo.id' on-handle='vm.getChange()')
-        .row(ng-if="vm.total !== 0")
+        .row
             .col-67.price {{vm.price | currency : '￥'}}
-            .col-33.buy 去结算
-        .row(ng-if="vm.total === 0")
-            .col-67.empty
-                i.icon.ion-android-cart
-                | 您的购物车是空的
-
+            .col-33.buy(ng-click='vm.calculator()') 去结算
+    .bar.bar-footer(ng-if='vm.total===0')
+        div.item.item-icon-left
+            i.icon.ion-ios-cart
+            span 您购物车是空的

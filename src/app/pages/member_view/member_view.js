@@ -12,9 +12,9 @@ export default angular.module('member_view',[ionic])
                 controller: Member_viewController,
                 template: tpl(),
                 resolve:{
-                    userInfo: function(resourcePool,$stateParams,application){
+                    userInfo: function(resourcePool,$stateParams){
                         return resourcePool.getUserInfo.request({
-                            myid:application.userId
+                            fid:$stateParams.id
                         })
                     }
                 }
@@ -47,7 +47,8 @@ class Member_viewController {
                             t.loading.show({
                                 template:'发送好友申请成功，请等候通过验证',
                                 duration:1500
-                            })
+                            });
+                            t.application.sendMsg(t.stateParams.id,1)
                         }
                     },res=>{
                         t.loading.show({
@@ -64,15 +65,21 @@ class Member_viewController {
     addFollow(){
         let t = this;
         t.resourcePool.friendFollow.request({
-            userid:t.application.userId,
-            fid:id
+            followid:t.stateParams.id
         }).then(res=>{
             if(res.data.status==1){
                 t.loading.show({
                     template:'已关注',
                     duration:1000
                 });
-                t.item.isfollow = 1;
+                t.application.sendMsg(t.stateParams.id,1);
+                t.item.isfriend = 1;
+                // t.item.isfollow = 1;
+            }else{
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                });
             }
         })
     }

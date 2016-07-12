@@ -2,11 +2,11 @@ ion-content.body.has-tabs(hide-tabs='true' delegate-handle='chatBox')
     div.chat
         .comment-box
             ul
-                li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.user_id==0}')
+                li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.userid==0}')
                     a(ng-href='/member_view')
                         img.avatar(ng-src='{{::chat.avatar}}')
-                    div.nickname(ng-if='chat.user_id==0') 05-22 15:33 {{::chat.nickname}}
-                    div.nickname(ng-if='chat.user_id!=0') {{::chat.nickname}} 05-22 15:33
+                    div.nickname(ng-if='chat.userid==0') 05-22 15:33 {{::chat.nickname}}
+                    div.nickname(ng-if='chat.userid!=0') {{::chat.nickname}} 05-22 15:33
                     div.msg-content {{::chat.msg}}
 
 div.bar.bar-footer.bc

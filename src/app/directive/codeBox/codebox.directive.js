@@ -27,10 +27,7 @@ class codeboxController{
         console.log($scope.password);
     }
     codeChange(){
-
-
+        console.log(this.scope.password);
         this.codes = this.scope.password.split('');
-        this.scope.arr = this.codes;
-
     }
 }

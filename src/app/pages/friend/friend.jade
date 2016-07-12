@@ -15,8 +15,8 @@ div.friend
                 h2 酒局群聊
             a.item.item-avatar(ng-href='/fans')
                 img(ng-src='{{vm.chatFansImg}}')
-                h2 关注和粉丝
-        nav-tip-bar(title='A')
+                h2 我的粉丝
+        nav-tip-bar(title='关注列表')
         div.list
             nodata(ng-if='!vm.friendList || vm.friendList.length==0')
             a.item.item-avatar(ng-href='/member_view/{{item.id}}' ng-repeat='item in vm.friendList')

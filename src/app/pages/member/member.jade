@@ -13,7 +13,7 @@ div.member
         a.item.item-icon-left.item-icon-right(href='/message')
             i.ion.ion-ios-bell
             span 消息
-            em 3
+            em(ng-if='vm.msgCounts>0' ng-bind='vm.msgCounts')
             i.icon.ion-ios-arrow-right
         a.item.item-icon-left.item-icon-right(href='/pocket')
             i.ion.ion-card

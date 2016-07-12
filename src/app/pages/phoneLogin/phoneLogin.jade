@@ -4,12 +4,12 @@ div.phoneLogin(hide-tabs='true')
     h1 蒲吧
 
     div.hor
-        input(placeholder='请输入你的手机号码' ng-model='vm.form.user')
+        input(placeholder='请输入你的手机号码' type='number' ng-model='vm.form.user')
     div.hor
         div.row
             div.col-66
                 input(placeholder='请输入验证码' ng-model = 'vm.form.code')
             div.col-34
-                a(ng-click='vm.getCode()' ng-bind='vm.form.codeDesc' data='{{vm.form.timeStatus}}' )
+                a(ng-click='vm.getCode()' type='number' ng-bind='vm.form.codeDesc' data='{{vm.form.timeStatus}}' )
     div.hor
         button.button.button-block.button-active(ng-click='vm.doLogin()') 确定

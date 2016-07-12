@@ -12,16 +12,13 @@ div.groupDetail.has-tabs(hide-tabs='true')
         .joiner
             i.ion.ion-ios-heart-outline
             div.userlist
-                img(ng-src='{{vm.productItem}}')
-                img(ng-src='{{vm.productItem}}')
-                img(ng-src='{{vm.productItem}}')
-                img(ng-src='{{vm.productItem}}')
+                div(ng-if='!vm.getUsers || vm.getUsers.length==0') 当前酒局还没人参加
+                img(ng-if='vm.getUsers' ng-repeat='item in vm.getUsers' ng-src='{{vm.headHost+item.headIcon }}')
         .hoz-item
             span.l-content <i class='ion ion-android-bar'></i>  {{vm.detail.party.subject}}
         .hoz-item
             span.l-content <i class='ion ion-ios-location'></i>  {{vm.barAddress}}
             a.ctrl-btn(ng-href='/barDetail/{{vm.detail.party.barID}}')  详情
-
         .hoz-item
             span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.detail.party.startTime}}
 

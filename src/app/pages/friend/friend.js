@@ -13,7 +13,7 @@ export default angular.module('friend',[ionic])
                 template: tpl(),
                 resolve:{
                     friendList:function(resourcePool,application){
-                        return resourcePool.getFriendList.request({
+                        return resourcePool.getFollowList.request({
                             userid:application.userId
                         })
                     }

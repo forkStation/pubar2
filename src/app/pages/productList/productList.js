@@ -7,7 +7,7 @@ export default angular.module('productList', [ionic])
         "ngInject"
         $stateProvider
             .state('productList', {
-                url: '/productList/:id',
+                url: '/productList/:id?partyid',
                 controllerAs: 'vm',
                 controller: ProductListController,
                 template: tpl(),
@@ -28,24 +28,25 @@ export default angular.module('productList', [ionic])
 
 
 class ProductListController {
-    constructor ($ionicBackdrop,getBarInfo,application,getDrinkCate,resourcePool,$stateParams) {
+    constructor ($ionicBackdrop,getBarInfo,application,getDrinkCate,resourcePool,$stateParams,$state) {
         "ngInject";
         ProductListController.$ionicBackdrop=$ionicBackdrop;
         this.distance = '4.32km';
-
-
         this.barInfo = getBarInfo.data.info;
         this.category = getDrinkCate.data.info;
         this.imgHost = application.imgHost;
+        this.productHost = application.productHost;
         this.resourcePool = resourcePool;
         this.stateParams = $stateParams;
-        this.total = 10;
-        this.price = 10000;
-
+        console.log(this.stateParams.id,this.stateParams.partyid);
+        this.total = 0;
+        this.price = 0;
+        this.$state = $state;
         //设置现在的标签
         this.activeCate = this.category[0].name;
         this.category[0].isActive = true;
         this.getData(this.category[0]['id']);
+        this.getTotal();
     }
 
     /**
@@ -65,6 +66,30 @@ class ProductListController {
     }
 
     /**
+     * 去结算
+     */
+    calculator(){
+        var storageData = JSON.parse(window.localStorage.getItem('bar'+this.barInfo.id));
+        let $state = this.$state;
+        let $stateParams = this.stateParams;
+        let t = this;
+        this.resourcePool.createNewOrder.request({
+            barid:$stateParams.id,
+            cartItem:JSON.stringify(storageData),
+            genre:0,
+            partyid:$stateParams.partyid
+        }).then(res=>{
+            if(res.data.status==1){
+                $state.go('createOrder',{orderid:res.data.info.id,genre:0})
+                window.localStorage.removeItem('bar'+t.barInfo.id)
+            }
+            console.log(res);
+        });
+
+
+    }
+
+    /**
      * 切换酒水分类的时候,让商品数量和本地的数据相等
      * @returns {boolean}
      */
@@ -75,11 +100,23 @@ class ProductListController {
         var items = t.items;
         for(var i = 0;i<items.length;i++){
             for(var s = 0;s<storageData.length;s++){
-                if(items[i]['id']==storageData[s]['productId']){
-                    items[i].num = storageData[s]['num']
+                if(items[i]['id']==storageData[s]['goodid']){
+                    items[i].num = storageData[s]['number']
                 }
             }
         }
+    }
+
+    getTotal(){
+        let t = this;
+        var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
+        if(!storageData) t.total = 0;
+        t.price = 0;
+        t.total = 0;
+        angular.forEach(storageData,function(value,key){
+            t.price = parseFloat(value.price*value.number) + t.price;
+            t.total = parseInt(value.number)+t.total;
+        });
     }
 
 

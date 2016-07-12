@@ -15,8 +15,10 @@ export default angular.module('member',[ionic])
                 resolve:{
                     userInfo:function(application,resourcePool){
                         return resourcePool.getUserInfo.request({
-                            userid:application.userId
                         })
+                    },
+                    getMsgCount:function(resourcePool){
+                        return resourcePool.getMsgCount.request({})
                     }
                 }
             })
@@ -24,11 +26,12 @@ export default angular.module('member',[ionic])
 
 
 class MemberController {
-    constructor (userInfo,$ionicLoading,application) {
+    constructor (userInfo,$ionicLoading,application,getMsgCount) {
         "ngInject"
         this.name = 'member';
         this.productItem = imgResource.productItem;
         this.headHost = application.headHost;
+        this.msgCounts = getMsgCount.data.info[0]['count'];
         if(userInfo.data.status==1){
             this.userInfo = userInfo.data.info;
         }else{

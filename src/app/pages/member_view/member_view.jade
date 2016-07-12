@@ -38,17 +38,17 @@ div.member_view(hide-tabs='true')
         div.tags
             div.title 活跃酒吧
             div.desc.visit
-                span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar}}
+                span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar.name}}
         a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
-        div.add(ng-if='vm.item.isfriend==0')
+        div.add(ng-if='false')
            button.button-block.button.button-active(ng-click='vm.addFriend()') 加为好友
 
     div.bar.bar-footer.row
         a.col(ng-href='/chat/{{vm.item.id}}' ng-if='vm.item.isfriend==1')
             i.icon.ion-ios-chatbubble
             em 聊天
-        a.col(ng-click='vm.addFollow(vm.item.id)' ng-if='vm.item.isfollow==0')
+        a.col(ng-click='vm.addFollow(vm.item.id)' ng-if='vm.item.isfriend==0')
             i.icon.ion-person-add
             em 关注
         a.col(ng-href='/apply/{{vm.item.id}}')

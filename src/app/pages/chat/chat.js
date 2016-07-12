@@ -22,41 +22,42 @@ class ChatController {
         this.name = 'chat';
         this.scrollHandle = $ionicScrollDelegate;
         ChatController.productItem = imgResource.productItem;
+        this.myUserId = JSON.parse(window.localStorage.getItem('userInfo'))[0].id;
         this.chatsMsg = [{
             id:'1',
             msg:'你好',
             avatar:ChatController.productItem,
-            user_id:'1124',
+            userid:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'你好啊',
             avatar:ChatController.productItem,
-            user_id:'00',
+            userid:'00',
             nickname:'Anna Sui'
         },{
             id:'1',
             msg:'怎么称呼,美女?',
             avatar:ChatController.productItem,
-            user_id:'1124',
+            userid:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'Anna',
             avatar:ChatController.productItem,
-            user_id:'00',
+            userid:'00',
             nickname:'Anna sui'
         },{
             id:'1',
             msg:'Anna你好',
             avatar:ChatController.productItem,
-            user_id:'1124',
+            userid:'1124',
             nickname:'李锋染'
         }];
 
 
         this.msgInfo = {
-            user_id:'00',
+            userid:'00',
             nickname:'Anna sui',
             msg:'',
             avatar:ChatController.productItem,

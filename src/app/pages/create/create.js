@@ -16,7 +16,7 @@ export default angular.module('create',[ionic])
 
 
 class CreateController {
-    constructor ($stateParams,resourcePool,$ionicLoading,application) {
+    constructor ($stateParams,resourcePool,$ionicLoading,application,$state) {
         "ngInject"
         this.name = 'create';
         this.picWall = imgSrc.barAvatarDemo;
@@ -24,6 +24,7 @@ class CreateController {
         t.params = $stateParams;
         t.resource = resourcePool;
         t.loading = $ionicLoading;
+        t.state = $state;
         t.borg = [
             {id:0, text:'半男半女'},
             {id:1,text:'只限女性'},
@@ -59,8 +60,7 @@ class CreateController {
         t.form.borg = t.borgValue.id;
         t.form.type = t.typeValue.id;
         t.form.audit = t.auditValue.id;
-        console.log(t.form.startTime);
-
+        let $state = t.state;
         if(!t.form.subject){
             t.loading.show({
                 template:'酒局主题不能为空',
@@ -81,7 +81,8 @@ class CreateController {
                 t.loading.show({
                     template:'酒局创建成功',
                     duration:1500
-                })
+                });
+                window.location.href='/productList/'+t.params.barid+'?partyid='+res.data.info.partyid;
             }
         })
     }

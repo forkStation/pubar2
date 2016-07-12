@@ -12,10 +12,9 @@ export default angular.module('messageMemberView',[ionic])
                 controller: MessageMemberViewController,
                 template: tpl(),
                 resolve:{
-                    userInfo: function(resourcePool,$stateParams,application){
+                    userInfo: function(resourcePool,$stateParams){
                         return resourcePool.getUserInfo.request({
-                            userid:$stateParams.id,
-                            myid:application.userId
+                            fid:$stateParams.id
                         })
                     }
                 }

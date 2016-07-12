@@ -31,11 +31,14 @@ export default function(resource){
         'register':resource.Meb('reg'),
         'login':resource.Meb('login'),
         // order
-        'postOrder':resource.order('order_sub'),
+
+        'getConfirmOrderInfo':resource.order('order_paylist'),
         'getOrderList':resource.order('order_list'),
         'getOrderPayList':resource.order('order_paylist'),
         'getOrderDetail':resource.order('order_info'),
+
         // party
+        'createNewOrder':resource.party('party_drink'),
         'getPartyUser':resource.party('get_party_user'),
         'getPartyInfo':resource.party('get_party_info'),
         'getPartyList':resource.party('party_list'),
@@ -44,6 +47,7 @@ export default function(resource){
         'getMyJoinParty':resource.party('my_join_party'),
         'joinParty':resource.party('join_party'),
         //weixin
+        'wxLogin':resource.wx('wx_login'),
 
         //friend
         'rejectFriend':resource.friend('un_friend'),
@@ -61,11 +65,19 @@ export default function(resource){
         'uploadHeadIcon':resource.user('upload_headIcon'),
         //msg
         'getMsgList':resource.msg('msg_list'),
+        'sendMsg':resource.msg('msg_send'),
+        'getMsgCount':resource.msg('msg_count'),
 
         //wallet
         'getWalletInfo':resource.wallet('wellet_info'),
-        'getWalletList':resource.wallet('wellet_list')
+        'getWalletList':resource.wallet('wellet_list'),
 
+
+        //支付
+        'setOrderPay':resource.pay('do_pay'),
+
+        //聊天webim
+        'getChatter':resource.chat('chater')
 
     }
 }

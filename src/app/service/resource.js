@@ -25,21 +25,32 @@ export default class Resource {
         let t = this;
         return {
             request: (params, method = 'get', config)=> {
-                var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms'];
-                
-                if(defaultAllowApi.indexOf(apiName)==-1){
-                    if(t.storedb.key('userInfo').find()){
-                        params.userid = t.storedb.key('userInfo').find()[0]['id'];
-                    }else{
-                        location.href='/phoneLogin'
-                    }
-                }else{
-                    if(t.storedb.key('userInfo').find()){
-                        params.userid = t.storedb.key('userInfo').find()[0]['id'];
-                    }else{
-                        params.userid = 0;
-                    }
+                var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms','wx_login','bind'];
+                var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+
+                params.userid = userInfo ? userInfo[0].id : 0;
+
+
+                let ua = window.navigator.userAgent.toLowerCase();
+                let userid = userInfo ? userInfo[0].id : 0;
+                if (ua.match(/MicroMessenger/i) == "micromessenger" && params.userid === 0 && defaultAllowApi.indexOf(apiName) === -1) {
+                    //在微信中打开
+                    t.$http({
+                        url:'api/weixin/wx_login',
+                        params:{
+                            userid:userid
+                        }
+                    }).then(res=>{
+                        console.log(res);
+                        return false;
+                    })
+
                 }
+
+                if(defaultAllowApi.indexOf(apiName) === -1 && params.userid === 0){
+                    location.href='/phoneLogin'
+                }
+
 
                 let opt = Object.assign({params, method, url});
                 return this.$http(opt, config)
@@ -84,6 +95,16 @@ export default class Resource {
     avatar(apiName){
         return this.create('user',apiName)
     }
+    pay(apiName){
+        return this.create('wpay',apiName)
+    }
 
+    chat(apiName){
+        return this.create('msgchat',apiName)
+    }
+
+    wx(apiName){
+        return this.create('weixin',apiName)
+    }
 
 }

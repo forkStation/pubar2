@@ -41,6 +41,8 @@ import message from './message/message'
 import productInfo from './productInfo/productInfo'
 import createOrder from './createOrder/createOrder'
 import messageMemberView from './messageMemberView/messageMemberView'
+import accountList from './accountList/accountList'
+import addAccount from './addAccount/addAccount'
 //@import
 
 export default angular.module('app.pages', [
@@ -82,5 +84,7 @@ export default angular.module('app.pages', [
     message.name,
     productInfo.name,
     createOrder.name,
-    messageMemberView.name//@register
+    messageMemberView.name,
+    accountList.name,
+    addAccount.name//@register
 ]);

@@ -1,6 +1,6 @@
 div.cart
   .cart-btn(ng-click="popup()")
-    span.badge {{number || 0}}
+    span.badge {{sum || 0}}
     i.icon.ion-android-cart
 
   section.cart-list
@@ -9,9 +9,9 @@ div.cart
        .right
           i.icon.ion-trash-a(ng-click='clearAll()') 清除全部
     ion-content.cart-content
-        .cart-item(ng-repeat="item in cartItem | filter:myFilter")
+        .cart-item(ng-repeat="item in cartItem ")
           .row
             .col-40.productName {{item.name}}
             .col.pri {{item.price | currency : '￥'}}
             .col-30
-              number-pick(number='item.num' id='item.productId' on-resetCartList='resetCartList()' name='item.name' price='item.price' barid='barid' )
+              number-pick(number='item.number' id='item.goodid' name='item.name' price='item.price' barid='barid' )

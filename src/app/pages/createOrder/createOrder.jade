@@ -1,12 +1,12 @@
 div.createOrder(hide-tabs='true')
-    ion-content
-        h1.title 订单号 20150404214124
+    ion-content.has-footer
+        h1.title 订单号: {{vm.orderInfo.orderId}}
         nav-tip-bar(title='支付方式')
         div.list
             a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(0)')
                 i.icon.icon-wallet
                 span 钱包支付
-                    p.change 余额:1878.0
+                    p.change 余额:{{vm.orderInfo.mymoney | currency:'￥'}}
                 i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==0}')
             a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(1)')
                 i.icon.icon-alipay
@@ -17,28 +17,27 @@ div.createOrder(hide-tabs='true')
                 span 微信支付
                 i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==2}')
         nav-tip-bar(title='优惠券')
+
         div.list
-            a.item-icon-left.item.item-icon-right
+            div.item(ng-if='!vm.orderInfo.coupon') 暂无优惠
+            a.item-icon-left.item.item-icon-right(ng-if='vm.orderInfo.coupon')
                 i.icon.ion-cash
                 span 满100减50
                 i.icon.ion-ios-arrow-right
         nav-tip-bar(title='订单详情')
         div.list
-            div.row
-                div.col-60 轩尼诗轩尼诗轩尼诗轩尼诗轩尼诗轩尼诗
-                div.col-20.count x1
-                div.col-20 &yen;188.0
-            div.row
-                div.col-60 新娘是
-                div.col-20.count x1
-                div.col-20 &yen;188.0
-            div.row
+            div.row(ng-repeat='item in vm.orderInfo.drinkInfoList')
+                div.col-50(ng-bind='item.name')
+                div.col-20(ng-bind='item.count')
+                div.col{{item.price | currency :'￥'}}
+
+            div.row(ng-if='vm.orderInfo.type==0')
                 div.col
-                    span.tl 合计 &yen;2785 优惠&yen;49
-                    span.tr 实付 &yen;2700
-            div.row
+                    span.tr 创建者请客 需支付 {{vm.orderInfo.money | currency:'￥'}}
+            div.row(ng-if='vm.orderInfo.type==1')
                 div.col
-                    span.tr 由于AA支付,需支付&yen;1300
+                    span.tr 由于AA支付 您还需支付 {{vm.orderInfo.money | currency:'￥'}}
+
 
 
 
