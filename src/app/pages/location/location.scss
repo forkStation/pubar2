@@ -39,6 +39,16 @@
       }
     }
   }
+  .filter{
+    position: absolute;
+    right:10px;
+    top:80px;
+    z-index:20;
+    a{
+      display: block;
+      color:#fff;
+    }
+  }
 }
 .nav-tip-bar{
   height:20px;

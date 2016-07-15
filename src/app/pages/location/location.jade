@@ -4,11 +4,8 @@ div.location(hide-tabs='true')
             div.item-input-inset
                 label.item-input-wrapper
                     i.icon.ion-search.placeholder-icon
-                    input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
+                    input(type="search" placeholder="请输入城市名" name="" ng-model="vm.searchKey" autocorrect="off")
                 button.button.button-clear(ng-click='vm.goBack()') 取消
-
-
-
         nav-tip-bar(title='当前定位城市')
         div.current-city
             button {{vm.initCity}}
@@ -18,6 +15,9 @@ div.location(hide-tabs='true')
             a.city-item(ng-click='vm.changeCity("北京")') 北京
             a.city-item(ng-click='vm.changeCity("深圳")') 深圳
         div.location-city-list
-            div(ng-repeat='(key,value) in vm.cities')
+            div(ng-repeat='(key,value) in vm.cities ')
                 nav-tip-bar(title='{{key | uppercase}}' id='{{key | uppercase}}')
                 p(ng-repeat='item in vm.cities[key] track by $index' ng-click='vm.changeCity(item)') {{item}}
+
+    div.filter
+        a(ng-click='vm.goIndex(key)' ng-repeat='(key,value) in vm.cities' ng-bind='key | uppercase')

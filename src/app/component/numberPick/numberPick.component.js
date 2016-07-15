@@ -7,7 +7,7 @@ export default function () {
     restrict: 'E',
     scope: {
       number:"=",
-      onGetChange:'&',
+      onChange:'&',
       id:"=",
       barid:'=',
       name:'=',
@@ -89,8 +89,7 @@ class NumberPickController {
       }
       storage.removeItem(currentBar);
       storage.setItem(currentBar,JSON.stringify(barItems));
-      scope.onGetChange(); // 调用重置父亲商品列表的方法
-
+      scope.onChange(); // 调用重置父亲商品列表的方法
     }
 
   }

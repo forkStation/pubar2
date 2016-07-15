@@ -20,7 +20,7 @@ div.groupDetail.has-tabs(hide-tabs='true')
             span.l-content <i class='ion ion-ios-location'></i>  {{vm.barAddress}}
             a.ctrl-btn(ng-href='/barDetail/{{vm.detail.party.barID}}')  详情
         .hoz-item
-            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.detail.party.startTime}}
+            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.detail.party.startTime*1000 | date:'MM月dd日 hh:mm'}}
 
         .hoz-item
             span.l-content <i class='ion'>&yen;</i>  {{vm.detail.party.type}}

@@ -1,4 +1,4 @@
-div.edittxt
+div.edittxt(hide-tabs='true')
     input.edit(placeholder='{{vm.tips}}' id='txtbox' ng-model='vm.form.content')
-    div.tips 这里是动态的文本提示内容
+    div.tips(ng-bind='vm.resultTip')
     a.button.button-block.button-active(ng-click='vm.SaveInfo()') 保存

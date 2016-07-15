@@ -28,27 +28,14 @@ export default class Resource {
                 var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms','wx_login','bind'];
                 var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
 
-                params.userid = userInfo ? userInfo[0].id : 0;
+                var userId = userInfo ? userInfo.id : 0;
+
+                params.userid  = params.userid || userId;
 
 
-                let ua = window.navigator.userAgent.toLowerCase();
-                let userid = userInfo ? userInfo[0].id : 0;
-                if (ua.match(/MicroMessenger/i) == "micromessenger" && params.userid === 0 && defaultAllowApi.indexOf(apiName) === -1) {
-                    //在微信中打开
-                    t.$http({
-                        url:'api/weixin/wx_login',
-                        params:{
-                            userid:userid
-                        }
-                    }).then(res=>{
-                        console.log(res);
-                        return false;
-                    })
-
-                }
 
                 if(defaultAllowApi.indexOf(apiName) === -1 && params.userid === 0){
-                    location.href='/phoneLogin'
+                    window.location.replace('/phoneLogin');
                 }
 
 
@@ -107,4 +94,7 @@ export default class Resource {
         return this.create('weixin',apiName)
     }
 
+    getToken(apiName){
+        return this.create('token',apiName)
+    }
 }

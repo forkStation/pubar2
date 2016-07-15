@@ -1,7 +1,6 @@
 import tpl from './index.jade'
 import './index.scss'
 import { angular,ionic } from 'library'
-import imgResource from 'assets/images'
 
 
 export default angular.module('index',[ionic])
@@ -35,9 +34,7 @@ class IndexController {
     constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,$ionicScrollDelegate,resourcePool,$ionicLoading){
         "ngInject"
         this.name = 'index';
-        this.barAvatarDemo = imgResource.barAvatarDemo;
         this.state = $state;
-        
         $scope.slideIndex = 0;
         $scope.goSlide = function(index){
             $ionicSlideBoxDelegate.slide(index);
@@ -51,6 +48,8 @@ class IndexController {
         this.resource = resourcePool;
         this.application = application;
         this.loading = $ionicLoading;
+        this.sortKey = 'sort_order';
+        this.sortHeight = 0;
     }
     goGroupDetail(id){
         let t = this;
@@ -66,7 +65,6 @@ class IndexController {
         let t = this;
         if(status==1){
             t.resource.cancelBarFollow.request({
-                    userid:t.application.userId,
                     barid:item.id
                 })
                 .then(res=>{
@@ -94,6 +92,11 @@ class IndexController {
                 })
         }
         return false;
+    }
+    sort(key){
+        this.sortKey = key ;
+        this.openSort = true;
+        this.sortHeight = 2;
     }
 }
 

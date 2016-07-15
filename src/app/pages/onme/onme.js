@@ -7,7 +7,7 @@ export default angular.module('onme',[ionic])
         "ngInject"
         $stateProvider
             .state('onme', {
-                url: '/onme',
+                url: '/onme/:id?barid',
                 controllerAs: 'vm',
                 controller: OnmeController,
                 template: tpl()
@@ -16,8 +16,11 @@ export default angular.module('onme',[ionic])
 
 
 class OnmeController {
-    constructor () {
+    constructor ($stateParams) {
         "ngInject"
-        this.name = 'onme'
+        this.name = 'onme';
+
+        console.log($stateParams.barid)
+        console.log($stateParams.id)
     }
 }

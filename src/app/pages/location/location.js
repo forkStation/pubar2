@@ -21,17 +21,20 @@ export default angular.module('location',[ionic])
 
 
 class LocationController {
-    constructor (getCity,storedb,$ionicPopup,$ionicViewSwitcher,$ionicLoading) {
+    constructor (getCity,storedb,$ionicPopup,$ionicViewSwitcher,$ionicLoading,$location,$ionicScrollDelegate,$state) {
         "ngInject"
         this.name = 'location';
         this.cities = getCity.data.info;
         this.popup = $ionicPopup;
         this.storeDB = storedb;
         this.initCity = '广州';
+        this.location = $location;
+        this.scrollDelegate = $ionicScrollDelegate;
         let t = this;
         t.viewSwitcher = $ionicViewSwitcher;
         t.loading = $ionicLoading;
         let currentCity = storedb.key('city').find();
+        this.state = $state;
         if(!currentCity){
             storedb.key('city').insert({'cityName':t.initCity});
         }else{
@@ -50,7 +53,7 @@ class LocationController {
                     t.initCity = city;
                     t.storeDB.key('city').update({'cityName':curName},{'$set':{'cityName':city}},function (err, result) {
                         if(!err){
-                            history.go(-1);
+                            t.state.go('index')
                         }
                     });
 
@@ -62,7 +65,14 @@ class LocationController {
         })
     }
     goBack(){
-        let t = this;
-        t.viewSwitcher.nextDirection('back');
+        this.state.go('index');
+    }
+    goIndex(index){
+        let upperCase = angular.uppercase(index);
+        console.log(upperCase);
+        let $location = this.location;
+        let $ionicScrollDelegate = this.scrollDelegate;
+        $location.hash(upperCase);
+        $ionicScrollDelegate.anchorScroll(true);
     }
 }

@@ -1,62 +1,63 @@
-ion-content(delegate-handle="mainScroll")
-    div.index
-        div.header-menu
-            a.left.clear(ng-href='/location') {{vm.cityName}}
-            div.header-menu-tabs
-                div.menu-tab(ng-click='goSlide(0)' class="menu-tab {{slideIndex==0?'on':''}}") 酒吧
-                div.menu-tab(ng-click='goSlide(1)' class="menu-tab {{slideIndex==1?'on':''}}") 酒局
-            a.right.clear(ng-href='/search') 搜索
+div.index
+    div.header-menu
+        a.left.clear(ng-href='/location') {{vm.cityName}}
+        div.header-menu-tabs
+            div.menu-tab(ng-click='goSlide(0)' class="menu-tab {{slideIndex==0?'on':''}}") 酒吧
+            div.menu-tab(ng-click='goSlide(1)' class="menu-tab {{slideIndex==1?'on':''}}") 酒局
+        a.right.clear(ng-href='/search') 搜索
 
-        ion-slide-box(show-pager='false' active-slide='slideIndex')
-            ion-slide(style='height:auto')
-                div.sort-section(style='margin-top:10px')
-                    div.sort-item <i class='by-asc'></i>排序
-                    div.sort-item <i class='by-type'></i>类型
-                    div.sort-item.on <i class='by-range'></i>商圈
-                div.sort-content
-                    div.content-item  兴盛路
-                    div.content-item  沿江路
-                    div.content-item  跑马场
-                    div.content-item.on  珠江北
-                    div.content-item  淘金
-                    div.content-item(ng-click='openFilterModal()') 更多...
-                div.bar-list-stores
-                    location-nav-bar(title='兴盛路')
-                    nodata(ng-if='vm.bars.length==0 || !vm.bars')
-                    a.store(ng-repeat='item in vm.bars track by $index')
-                        collect.ion-ios-star-outline(ng-class='{"ion-ios-star":item.isfollow==1}' ng-click='vm.collect(item)')
-                        div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
-                        img(ng-src='{{vm.imgHost + item.cover}}' ng-click='vm.goBarDetail(item.id)')
-                        div.bar-info
-                            div.bar-name(ng-bind='item.name')
-                            div.bar-position(ng-bind='item.address')
-                                span(ng-if='item.distance' ng-bind='item.distance')
-            ion-slide
-                div.sort-section(style='margin-top:10px')
-                    div.sort-item <i class='recommend'></i>推荐
-                    div.sort-item <i class='time'></i>时间
-                    div.sort-item.on <i class='distance'></i>距离
-                div.sort-content
-                    div.content-item(ng-click='sortContent()')  兴盛路
-                    div.content-item  沿江路
-                    div.content-item  跑马场
-                    div.content-item.on  珠江北
-                    div.content-item  淘金
-                    div.content-item  更多...
-                nodata(ng-if='vm.partyList.length==0 || !vm.partyList')
-                ul.group-list
-                    li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.partyList')
-                        div.group
-                            div.pub-user
-                                div.avatar-section
-                                    img(ng-src='{{vm.headHost + item.user.headIcon}}')
-                                    p.name(ng-bind='item.user.nickname')
-                                div.group-info
-                                    p(ng-bind='item.subject')
-                                    div.type
-                                        span <i class='icon ion-person-stalker'></i> {{item.userCount}}
-                                        span {{item.money | currency : '￥'}}
-                                    div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
-                            div.status-bar
-                                span 状态:{{item.step}}
-                                button.find-detail 查看酒局
+    div.main-content
+        ion-content.has-footer(delegate-handle="mainScroll")
+            ion-slide-box(show-pager='false' active-slide='slideIndex')
+                ion-slide(style='height:auto')
+                    div.sort-section(style='margin-top:10px')
+                        div.sort-item(ng-click='vm.sort("sort_order")' ng-class='{"on":vm.sortKey == "sort_order"}') <i class='by-asc'></i>排序
+                        div.sort-item(ng-click='vm.sort("sort_type")' ng-class='{"on":vm.sortKey == "sort_type"}') <i class='by-type'></i>类型
+                        div.sort-item(ng-click='vm.sort("sort_buss")' ng-class='{"on":vm.sortKey == "sort_buss"}') <i class='by-range'></i>商圈
+                    div.sort-content(style='height:{{vm.sortHeight}}rem')
+                        div.content-item  兴盛路
+                        div.content-item  沿江路
+                        div.content-item  跑马场
+                        div.content-item.on  珠江北
+                        div.content-item  淘金
+                        div.content-item(ng-click='openFilterModal()') 更多...
+                    div.bar-list-stores
+                        location-nav-bar(title='兴盛路')
+                        nodata(ng-if='vm.bars.length==0 || !vm.bars')
+                        a.store(ng-repeat='item in vm.bars track by $index')
+                            collect.ion-ios-star-outline(ng-class='{"ion-ios-star":item.isfollow==1}' ng-click='vm.collect(item)')
+                            div.tip {{item.partyCount==0 ? '当前酒吧无酒局' : item.partyCount+'个酒局进行中'}}
+                            img(ng-src='{{vm.imgHost + item.cover}}' ng-click='vm.goBarDetail(item.id)')
+                            div.bar-info
+                                div.bar-name(ng-bind='item.name')
+                                div.bar-position(ng-bind='item.address')
+                                    span(ng-if='item.distance' ng-bind='item.distance')
+                ion-slide
+                    div.sort-section(style='margin-top:10px')
+                        div.sort-item <i class='recommend'></i>推荐
+                        div.sort-item <i class='time'></i>时间
+                        div.sort-item.on <i class='distance'></i>距离
+                    div.sort-content(style='height:{{sortHeight}}rem')
+                        div.content-item(ng-click='sortContent()')  兴盛路
+                        div.content-item  沿江路
+                        div.content-item  跑马场
+                        div.content-item.on  珠江北
+                        div.content-item  淘金
+                        div.content-item  更多...
+                    nodata(ng-if='vm.partyList.length==0 || !vm.partyList')
+                    ul.group-list
+                        li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.partyList')
+                            div.group
+                                div.pub-user
+                                    div.avatar-section
+                                        img(ng-src='{{vm.headHost + item.user.headIcon}}')
+                                        p.name(ng-bind='item.user.nickname')
+                                    div.group-info
+                                        p(ng-bind='item.subject')
+                                        div.type
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span {{item.money | currency : '￥'}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
+                                div.status-bar
+                                    span 状态:{{item.step}}
+                                    button.find-detail 查看酒局

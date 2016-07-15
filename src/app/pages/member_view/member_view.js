@@ -7,7 +7,7 @@ export default angular.module('member_view',[ionic])
         "ngInject"
         $stateProvider
             .state('member_view', {
-                url: '/member_view/:id',
+                url: '/member_view/:id?barid',
                 controllerAs: 'vm',
                 controller: Member_viewController,
                 template: tpl(),
@@ -30,6 +30,8 @@ class Member_viewController {
         this.stateParams = $stateParams;
         this.popup = $ionicPopup;
         this.loading = $ionicLoading;
+        this.barid = $stateParams.barid;
+        console.log($stateParams.id);
     }
     addFriend(){
         let t = this;

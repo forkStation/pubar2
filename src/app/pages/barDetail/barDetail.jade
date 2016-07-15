@@ -49,7 +49,7 @@ div.barDetail(hide-tabs='true')
                             sex.sex(type='{{item.sex}}')
                             p.name(ng-bind='item.nickname')
                             p.sign(ng-bind='item.sign')
-                            a.apply(ng-click='vm.applyMe(item.id)') 请Ta喝
+                            a.apply(ng-href='/member_view/{{item.id}}?barid={{vm.barInfo.id}}') 请Ta喝
                 ion-slide
                     div.bar-information
                         h3.bar-name(ng-bind='vm.barInfo.name')

@@ -28,7 +28,7 @@ export default angular.module('productList', [ionic])
 
 
 class ProductListController {
-    constructor ($ionicBackdrop,getBarInfo,application,getDrinkCate,resourcePool,$stateParams,$state) {
+    constructor ($ionicBackdrop,getBarInfo,application,getDrinkCate,resourcePool,$stateParams,$state,$scope) {
         "ngInject";
         ProductListController.$ionicBackdrop=$ionicBackdrop;
         this.distance = '4.32km';
@@ -38,9 +38,9 @@ class ProductListController {
         this.productHost = application.productHost;
         this.resourcePool = resourcePool;
         this.stateParams = $stateParams;
-        console.log(this.stateParams.id,this.stateParams.partyid);
         this.total = 0;
         this.price = 0;
+        this.scope = $scope;
         this.$state = $state;
         //设置现在的标签
         this.activeCate = this.category[0].name;
@@ -96,27 +96,37 @@ class ProductListController {
     getChange(){
         let t = this;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
-        if(!storageData) return false;
+        console.log('cle');
         var items = t.items;
-        for(var i = 0;i<items.length;i++){
-            for(var s = 0;s<storageData.length;s++){
-                if(items[i]['id']==storageData[s]['goodid']){
-                    items[i].num = storageData[s]['number']
+
+        if(!storageData){
+            for(var i = 0;i<items.length;i++){
+                t.items[i]['num'] = 0;
+            }
+        }else{
+            for(var i = 0;i<items.length;i++){
+                for(var s = 0;s<storageData.length;s++){
+                    if(items[i]['id']==storageData[s]['goodid']){
+                        items[i].num = storageData[s]['number']
+                    }
                 }
             }
         }
     }
 
+    /**
+     * 计算总价,总和
+     */
+
     getTotal(){
         let t = this;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
-        if(!storageData) t.total = 0;
-        t.price = 0;
-        t.total = 0;
+
         angular.forEach(storageData,function(value,key){
             t.price = parseFloat(value.price*value.number) + t.price;
             t.total = parseInt(value.number)+t.total;
         });
+        console.log(t.total)
     }
 
 

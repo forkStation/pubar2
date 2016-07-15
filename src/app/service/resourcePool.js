@@ -48,6 +48,7 @@ export default function(resource){
         'joinParty':resource.party('join_party'),
         //weixin
         'wxLogin':resource.wx('wx_login'),
+        'wxBind':resource.wx('bind'),
 
         //friend
         'rejectFriend':resource.friend('un_friend'),
@@ -77,7 +78,11 @@ export default function(resource){
         'setOrderPay':resource.pay('do_pay'),
 
         //聊天webim
-        'getChatter':resource.chat('chater')
+        'getChatter':resource.chat('chater'),
+
+        //根据授权信息返回的结果,取得关注人的微信资料
+
+        'getTokenUser':resource.getToken('out_token')
 
     }
 }

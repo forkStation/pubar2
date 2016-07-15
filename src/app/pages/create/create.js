@@ -16,7 +16,7 @@ export default angular.module('create',[ionic])
 
 
 class CreateController {
-    constructor ($stateParams,resourcePool,$ionicLoading,application,$state) {
+    constructor ($stateParams,resourcePool,$ionicLoading,application,$state,$ionicPopup,$scope) {
         "ngInject"
         this.name = 'create';
         this.picWall = imgSrc.barAvatarDemo;
@@ -24,7 +24,9 @@ class CreateController {
         t.params = $stateParams;
         t.resource = resourcePool;
         t.loading = $ionicLoading;
+        t.scope = $scope;
         t.state = $state;
+        t.popup = $ionicPopup;
         t.borg = [
             {id:0, text:'半男半女'},
             {id:1,text:'只限女性'},
@@ -57,10 +59,12 @@ class CreateController {
     }
     submitParty(){
         let t = this;
+        var $popup = t.popup;
         t.form.borg = t.borgValue.id;
         t.form.type = t.typeValue.id;
         t.form.audit = t.auditValue.id;
         let $state = t.state;
+        let $scope = t.scope;
         if(!t.form.subject){
             t.loading.show({
                 template:'酒局主题不能为空',
@@ -77,12 +81,36 @@ class CreateController {
         }
 
         t.resource.createParty.request(t.form).then(res=>{
+
+            $scope.form = {
+                user:''
+            };
+            
             if(res.data.status === 1){
                 t.loading.show({
                     template:'酒局创建成功',
                     duration:1500
                 });
                 window.location.href='/productList/'+t.params.barid+'?partyid='+res.data.info.partyid;
+            }else if(res.data.status == '0007'){
+                $popup.show({
+                    title:'提示',
+                    template:'<div>您当前没有绑定手机无法创建酒局,是否立即绑定?</div>',
+                    buttons:[{
+                        text:'确定',
+                        onTap:function(){
+                            location.href = '/edittxt/bind/'
+                        }
+                    },{
+                        text:'取消'
+                    }],
+                    scope:$scope
+                })
+            }else{
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1500
+                });
             }
         })
     }

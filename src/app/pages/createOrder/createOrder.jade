@@ -6,7 +6,7 @@ div.createOrder(hide-tabs='true')
             a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(0)')
                 i.icon.icon-wallet
                 span 钱包支付
-                    p.change 余额:{{vm.orderInfo.mymoney | currency:'￥'}}
+                    p.change 余额:{{vm.orderInfo.mymoney || 0 | currency:'￥'}}
                 i.icon.icon-circle(ng-class='{"ion-ios-checkmark-empty":vm.payWays==0}')
             a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(1)')
                 i.icon.icon-alipay
@@ -37,10 +37,6 @@ div.createOrder(hide-tabs='true')
             div.row(ng-if='vm.orderInfo.type==1')
                 div.col
                     span.tr 由于AA支付 您还需支付 {{vm.orderInfo.money | currency:'￥'}}
-
-
-
-
     div.bar.bar-footer.bar-active
         div.title(ng-click='vm.toPay()') 确定支付
 

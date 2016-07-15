@@ -36,6 +36,10 @@ class EdittxtController {
             case 'nickname':
                 t.tips = '请输入昵称';
                 break;
+            case 'bind':
+                t.tips = '请输入手机号码';
+                t.resultTip = '请谨慎输入您绑定的手机号码';
+                break;
         }
     }
     SaveInfo(){
@@ -64,6 +68,34 @@ class EdittxtController {
                     t.loading.show({
                         template:'服务器繁忙，请稍后再试',duration:1500
                     })
+                });
+                break;
+            case 'bind':
+                if(!/^1\d{10}$/.test(t.form.content)){
+                    t.loading.show({
+                        template:'请输入正确的11位手机号码',
+                        duration:1500
+                    });
+                    return false;
+                }
+                t.resource.wxBind.request({
+                    user:t.form.content,
+                    openid:JSON.parse(window.localStorage.getItem('userInfo')).openid
+                }).then(res=>{
+                    if(res.data.status == 1){
+                        t.loading.show({
+                            template:'手机绑定成功'
+                        });
+                        t.timeout(function(){
+                            t.loading.hide();
+                            window.history.go(-1);
+                        },1500)
+                    }else{
+                        t.loading.show({
+                            template:res.data.info,
+                            duration:1500
+                        });
+                    }
                 });
                 break;
 

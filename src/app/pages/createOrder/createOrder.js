@@ -27,12 +27,11 @@ class CreateOrderController {
     constructor ($ionicPopup,$scope,getOrderInfo,$ionicLoading,resourcePool,$stateParams) {
         "ngInject"
         this.name = 'createOrder';
-        this.payWays = 0;
+        this.payWays = 0; // 0:余额支付  1:支付宝   2:微信支付
         this.popup = $ionicPopup;
         this.scope = $scope;
         this.orderInfo = getOrderInfo.data.info;
         this.orderInfo.orderId = $stateParams.orderid;
-        console.log(this.orderInfo);
         this.loading = $ionicLoading;
         $scope.password = '';
         this.resourcePool = resourcePool;
@@ -53,7 +52,7 @@ class CreateOrderController {
                 onTap:function(){
                     if(this.scope.password =='131646'){
                         t.resourcePool.setOrderPay.request({
-                            id:t.stateParams.orderid
+                            id:246
                         }).then(res=>{
                             console.log(res)
                         });

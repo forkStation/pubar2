@@ -25,10 +25,10 @@ div.productList(hide-tabs='true')
                                 .product-name {{item.name}}
                                 .product-detail {{item.details}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number='!item.num?0:item.num' on-getChange='vm.getChange()' id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
+                                number-pick(number='!item.num?0:item.num' on-change='vm.getTotal()' id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
 
     .bar.bar-footer(ng-if='vm.total!=0')
-        cart(number="vm.total" barid='vm.barInfo.id' on-handle='vm.getChange()')
+        cart(number="vm.total" barid='vm.barInfo.id' on-change='vm.getTotal()' on-clear='vm.getChange()')
         .row
             .col-67.price {{vm.price | currency : '￥'}}
             .col-33.buy(ng-click='vm.calculator()') 去结算
@@ -36,3 +36,4 @@ div.productList(hide-tabs='true')
         div.item.item-icon-left
             i.icon.ion-ios-cart
             span 您购物车是空的
+

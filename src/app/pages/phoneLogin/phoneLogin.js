@@ -124,16 +124,17 @@ class PhoneLoginController {
             user:t.form.user
         }).then(res=>{
              if(res.data.status ==1){
+                 var localstorage = window.localStorage;
                  if(res.data.info.newuser===1){
                      window.location.replace('/phoneSet');
-                     t.storedb.key('userInfo').remove();
-                     t.storedb.key('userInfo').insert(res.data.info);
+                     localstorage.removeItem('userInfo');
+                     localstorage.setItem('userInfo',JSON.stringify(res.data.info))
                  }else{
-                     if(!t.storedb.key('userInfo').find()){
-                         t.storedb.key('userInfo').insert(res.data.info);
+                     if(!localstorage.getItem('userInfo')){
+                         localstorage.setItem('userInfo',JSON.stringify(res.data.info))
                      }else{
-                         t.storedb.key('userInfo').remove();
-                         t.storedb.key('userInfo').insert(res.data.info);
+                         localstorage.removeItem('userInfo');
+                         localstorage.setItem('userInfo',JSON.stringify(res.data.info))
                      }
 
                      window.location.replace('/index')

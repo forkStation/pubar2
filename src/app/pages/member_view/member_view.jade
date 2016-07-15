@@ -51,6 +51,6 @@ div.member_view(hide-tabs='true')
         a.col(ng-click='vm.addFollow(vm.item.id)' ng-if='vm.item.isfriend==0')
             i.icon.ion-person-add
             em 关注
-        a.col(ng-href='/apply/{{vm.item.id}}')
+        a.col(ng-href='/onme/{{vm.item.id}}?barid={{vm.barid}}')
             i.icon.ion-android-bar
             em 请喝酒
