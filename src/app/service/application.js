@@ -75,6 +75,29 @@ export default function(storedb,resourcePool){
                     callback:'chater'
                 })
             }
+        },
+        'wechatPay':function(appInfo,success,failed){
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', {
+                    "appId": appInfo['appId'],
+                    "timeStamp": appInfo.timeStamp.toString(),
+                    "nonceStr": appInfo.nonceStr,
+                    "package": appInfo.package,
+                    "signType": appInfo.signType,
+                    "paySign": appInfo.paySign
+                },
+                function (res) {
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        if(success && typeof success == 'function') success();
+                    }
+                    else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                        if(failed && typeof failed == 'function') failed();
+                    }
+                    else {
+                        if(failed && typeof failed == 'function') failed();
+                    }
+                }
+            );
         }
     }
 }

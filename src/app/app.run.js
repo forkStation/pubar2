@@ -15,6 +15,7 @@ export default angular.module('app.run',[])
         let storage = window.localStorage;
         var userInfo = JSON.parse(storage.getItem('userInfo'));
         let ua = window.navigator.userAgent.toLowerCase();
+    
         // 1
         if(!userInfo){
 

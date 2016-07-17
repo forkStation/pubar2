@@ -24,7 +24,7 @@ export default angular.module('createOrder',[ionic])
 
 
 class CreateOrderController {
-    constructor ($ionicPopup,$scope,getOrderInfo,$ionicLoading,resourcePool,$stateParams) {
+    constructor ($ionicPopup,$scope,getOrderInfo,$ionicLoading,resourcePool,$stateParams,application) {
         "ngInject"
         this.name = 'createOrder';
         this.payWays = 0; // 0:余额支付  1:支付宝   2:微信支付
@@ -36,6 +36,8 @@ class CreateOrderController {
         $scope.password = '';
         this.resourcePool = resourcePool;
         this.stateParams = $stateParams;
+        this.payId = this.orderInfo.id;
+        this.application = application;
     }
     changePay(type){
         this.payWays = type;
@@ -52,9 +54,22 @@ class CreateOrderController {
                 onTap:function(){
                     if(this.scope.password =='131646'){
                         t.resourcePool.setOrderPay.request({
-                            id:t.stateParams.orderid
+                            id:t.payId
                         }).then(res=>{
-                            console.log(res)
+                            var appInfo = JSON.parse(res.data.info);
+                            t.application.wechatPay(appInfo,()=>{
+                                $loading.show({
+                                    template:'支付成功',
+                                    duration:1000
+                                });
+
+                            },()=>{
+                                $loading.show({
+                                    template:'支付失败或取消',
+                                    duration:1000
+                                })
+                            })
+
                         });
                         return true;
                     }else{
