@@ -1,11 +1,11 @@
 div.create(hide-tabs='true')
     ion-content( style='bottom:60px;')
         div.pic-wall
-            img.background(ng-src='{{vm.picWall}}')
+            img.background(ng-src='{{vm.imgHost + vm.barDetail.cover}}')
             div.user-behavior
-                img.avatar
-                p.name 哒哒
-        nav-tip-bar(title='本色酒吧酒局')
+                img.avatar(ng-src='vm.headHost + vm.createUserInfo.headIcon')
+                p.name(ng-bind='vm.createUserInfo.nickname')
+        nav-tip-bar(title='{{vm.barDetail.name}}')
         div.comment-form
             dl
                 dt 主题

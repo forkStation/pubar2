@@ -8,8 +8,6 @@ export default function(storedb,resourcePool){
     'ngInject'
 
 
-    console.log(token.getToken('chat'));
-
     return {
         'imgHost':'http://h5admin.pubar.me/public/images/pic/',
         'headHost':'http://api.pubar.me/Uploads/png/',

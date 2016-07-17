@@ -7,7 +7,6 @@ export default function () {
     restrict: 'E',
     scope: {
       number:"=",
-      onChange:'&',
       id:"=",
       barid:'=',
       name:'=',
@@ -22,13 +21,14 @@ export default function () {
 
 
 class NumberPickController {
-  constructor($scope,storedb) {
+  constructor($scope,storedb,$rootScope) {
     "ngInject";
     this.name = 'numberPick';
     this.number=$scope.number;
     this.scope = $scope;
     this.barid=$scope.barid;
     this.storedb = storedb;
+    this.rootScope = $rootScope;
 
     this._check();
   }
@@ -48,6 +48,7 @@ class NumberPickController {
     //根据酒吧id查找本地存储数据
 
     let scope = t.scope;
+    let $rootScope = t.rootScope;
     let storage = window.localStorage;
 
     let currentBar = 'bar'+scope.barid;
@@ -89,7 +90,8 @@ class NumberPickController {
       }
       storage.removeItem(currentBar);
       storage.setItem(currentBar,JSON.stringify(barItems));
-      scope.onChange(); // 调用重置父亲商品列表的方法
+      $rootScope.$broadcast('updateStorage');
+
     }
 
   }

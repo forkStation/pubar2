@@ -47,6 +47,12 @@ class ProductListController {
         this.category[0].isActive = true;
         this.getData(this.category[0]['id']);
         this.getTotal();
+        let t = this;
+
+        $scope.$on('updateStorage',function(){
+            t.getTotal();
+            t.getChange();
+        })
     }
 
     /**
@@ -59,9 +65,8 @@ class ProductListController {
             barid:t.stateParams.id,
             type:id
         }).then(res=>{
-            t.items = res.data.info;
+            t.scope.items = res.data.info;
             this.getChange();
-
         })
     }
 
@@ -83,10 +88,7 @@ class ProductListController {
                 $state.go('createOrder',{orderid:res.data.info.id,genre:0})
                 window.localStorage.removeItem('bar'+t.barInfo.id)
             }
-            console.log(res);
         });
-
-
     }
 
     /**
@@ -94,24 +96,26 @@ class ProductListController {
      * @returns {boolean}
      */
     getChange(){
-        let t = this;
-        var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
-        console.log('cle');
-        var items = t.items;
 
-        if(!storageData){
-            for(var i = 0;i<items.length;i++){
-                t.items[i]['num'] = 0;
-            }
-        }else{
-            for(var i = 0;i<items.length;i++){
-                for(var s = 0;s<storageData.length;s++){
-                    if(items[i]['id']==storageData[s]['goodid']){
-                        items[i].num = storageData[s]['number']
-                    }
+        let t = this;
+        let $scope = t.scope;
+        var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
+
+        console.log($scope.items);
+
+        $scope.$watch('items',function(oldValue,newValue){
+            console.log(oldValue,newValue);
+        })
+
+        for(var i = 0;i<$scope.items.length;i++){
+            for(var s = 0;s<storageData.length;s++){
+                if($scope.items[i]['id']==storageData[s]['goodid']){
+                    $scope.items[i].num = storageData[s]['number']
                 }
             }
         }
+        console.log($scope.items);
+
     }
 
     /**
@@ -121,12 +125,14 @@ class ProductListController {
     getTotal(){
         let t = this;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
-
+        t.price = 0;
+        t.total = 0;
         angular.forEach(storageData,function(value,key){
             t.price = parseFloat(value.price*value.number) + t.price;
             t.total = parseInt(value.number)+t.total;
+
         });
-        console.log(t.total)
+
     }
 
 

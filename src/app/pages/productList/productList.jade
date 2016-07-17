@@ -17,7 +17,7 @@ div.productList(hide-tabs='true')
             .col-75.col-offset-25
                 .product-title {{vm.activeCate}}
                 ion-content.pro
-                    .product(ng-repeat="item in vm.items")
+                    .product(ng-repeat="item in items")
                         .product-item.row
                             .col-30
                                 img(ng-src="{{vm.productHost + item.cover}}")
@@ -25,10 +25,10 @@ div.productList(hide-tabs='true')
                                 .product-name {{item.name}}
                                 .product-detail {{item.details}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number='!item.num?0:item.num' on-change='vm.getTotal()' id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
+                                number-pick(number='item.num || 0'  id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
 
     .bar.bar-footer(ng-if='vm.total!=0')
-        cart(number="vm.total" barid='vm.barInfo.id' on-change='vm.getTotal()' on-clear='vm.getChange()')
+        cart(number="vm.total" barid='vm.barInfo.id' )
         .row
             .col-67.price {{vm.price | currency : '￥'}}
             .col-33.buy(ng-click='vm.calculator()') 去结算

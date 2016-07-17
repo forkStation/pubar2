@@ -35,11 +35,9 @@ class IndexController {
         "ngInject"
         this.name = 'index';
         this.state = $state;
-        $scope.slideIndex = 0;
-        $scope.goSlide = function(index){
-            $ionicSlideBoxDelegate.slide(index);
-            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
-        };
+        this.slideIndex = 0;
+
+        this.ionicSlide = $ionicSlideBoxDelegate;
         this.cityName = application.getMyCity();
         this.bars = barList.data.info;
         this.imgHost = application.imgHost;
@@ -51,6 +49,10 @@ class IndexController {
         this.sortKey = 'sort_order';
         this.sortHeight = 0;
     }
+    goSlide = function (index){
+        this.ionicSlide.slide(index);
+        this.slideIndex = index;
+    };
     goGroupDetail(id){
         let t = this;
         t.state.go('groupDetail',{id:id});

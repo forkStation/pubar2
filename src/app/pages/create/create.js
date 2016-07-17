@@ -1,7 +1,6 @@
 import tpl from './create.jade'
 import './create.scss'
 import { angular, ionic } from 'library'
-import imgSrc from 'assets/images'
 export default angular.module('create',[ionic])
     .config(function ($stateProvider) {
         "ngInject"
@@ -10,16 +9,32 @@ export default angular.module('create',[ionic])
                 url: '/create/:barid',
                 controllerAs: 'vm',
                 controller: CreateController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    barDetail:function(resourcePool,$stateParams){
+                        return resourcePool.getBarInfo.request({
+                            'barid':$stateParams.barid
+                        })
+                    },
+                    createUserInfo:function(resourcePool){
+                        return resourcePool.getUserInfo.request({
+
+                        })
+                    }
+                }
             })
     });
 
 
 class CreateController {
-    constructor ($stateParams,resourcePool,$ionicLoading,application,$state,$ionicPopup,$scope) {
+    constructor ($stateParams,resourcePool,$ionicLoading,application,$state,$ionicPopup,$scope,barDetail,createUserInfo) {
         "ngInject"
         this.name = 'create';
-        this.picWall = imgSrc.barAvatarDemo;
+
+        this.barDetail = barDetail.data.info;
+        this.imgHost = application.imgHost;
+        this.headHost = application.headHost;
+        this.createUserInfo = createUserInfo.data.info;
         let t = this;
         t.params = $stateParams;
         t.resource = resourcePool;
@@ -50,7 +65,7 @@ class CreateController {
         t.form = {
             subject:'',
             startTime:0,
-            num:0,
+            num:10,
             borg:0,
             type:0,
             audit:0,

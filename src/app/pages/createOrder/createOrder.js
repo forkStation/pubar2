@@ -46,13 +46,13 @@ class CreateOrderController {
         var $loading = t.loading;
         t.popup.show({
             title:'输入支付密码',
-            template:'<span class="barName">{{vm.orderInfo.barinfo.name}}</span><p class="order-price">{{vm.orderInfo.money | currency:"￥"}}</p><codebox password="password"></codebox>',
+            template:'<span class="barName" style="color:#A7264D;font-size:.34rem">{{vm.orderInfo.barinfo.name}}酒吧</span><p class="order-price" style="font-size:.32rem;">{{vm.orderInfo.money | currency:"￥"}}</p><codebox password="password"></codebox>',
             buttons:[{
                 text:'确定',
                 onTap:function(){
                     if(this.scope.password =='131646'){
                         t.resourcePool.setOrderPay.request({
-                            id:246
+                            id:t.stateParams.orderid
                         }).then(res=>{
                             console.log(res)
                         });

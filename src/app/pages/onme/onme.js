@@ -10,17 +10,32 @@ export default angular.module('onme',[ionic])
                 url: '/onme/:id?barid',
                 controllerAs: 'vm',
                 controller: OnmeController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    barDetail:function(resourcePool,$stateParams){
+                        return resourcePool.getBarInfo.request({
+                            'barid':$stateParams.barid
+                        })
+                    },
+                    userInfo:function(resourcePool,$stateParams){
+                        return resourcePool.getUserInfo.request({
+                            fid:$stateParams.id
+                        })
+                    }
+                }
             })
     });
 
 
 class OnmeController {
-    constructor ($stateParams) {
+    constructor (application,barDetail,userInfo) {
         "ngInject"
         this.name = 'onme';
 
-        console.log($stateParams.barid)
-        console.log($stateParams.id)
+        this.headHost = application.headHost;
+        this.imgHost = application.imgHost;
+        this.barDetail = barDetail.data.info;
+        this.userInfo = userInfo.data.info;
+
     }
 }
