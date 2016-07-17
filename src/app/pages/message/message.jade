@@ -4,6 +4,29 @@ div.message(hide-tabs='true')
         div.card(ng-repeat='item in vm.msgList')
            div.item.item-divider(ng-if='item.type==1' ng-bind='item.title')
 
+        //   酒局的消息提醒
+        div.card
+            div.item.item-divider 邀请你加入酒局
+            ul.group-list
+                li
+                    div.group
+                        div.pub-user
+                            div.avatar-section
+                                img(ng-src='{{vm.barAvatarDemo}}' da='s')
+                                p.name 大彬大大彬
+                            div.group-info
+                                p 本色帅哥美女局美女局...
+                                div.type
+                                    span <i class='icon ion-person-stalker'></i> 3/6
+                                    span <i class='icon ion-ios-pricetag-outline'></i> AA
+                                div.type
+                                    span <i class='icon ion-ios-clock-outline'></i> 还剩8小时
+                                    span <i class='icon ion-ios-location'></i> 3km
+                        div.status-bar
+                            span 状态:正在组居中
+                            a.find-detail(ng-href='/onme_detail') 查看详情
+
+        //  好友的消息提醒
         div.card
            div.item.item-divider 好友请求
            div.item.item-text-wrap.item-avatar
@@ -13,6 +36,7 @@ div.message(hide-tabs='true')
                 s-btn(text='同意')
                 s-btn.reject(text='拒绝')
 
+        //    酒局时间提醒
         div.card
            div.item.item-divider 酒局通知
            div.item.item-text-wrap 距离您参加的春色满园关不住酒吧酒局倒计时还有2小时

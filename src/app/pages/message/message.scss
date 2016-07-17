@@ -40,5 +40,14 @@
         }
       }
     }
+    .group-list{
+      background: #282828;
+      li{
+        margin:0;
+        .group{
+          border:none;
+        }
+      }
+    }
   }
 }

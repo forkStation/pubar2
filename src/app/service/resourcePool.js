@@ -46,6 +46,7 @@ export default function(resource){
         'getMyCreateParty':resource.party('my_add_party'),
         'getMyJoinParty':resource.party('my_join_party'),
         'joinParty':resource.party('join_party'),
+        'applyParty':resource.party('commit_party'),
         //weixin
         'wxLogin':resource.wx('wx_login'),
         'wxBind':resource.wx('bind'),

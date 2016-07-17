@@ -43,6 +43,7 @@ import createOrder from './createOrder/createOrder'
 import messageMemberView from './messageMemberView/messageMemberView'
 import accountList from './accountList/accountList'
 import addAccount from './addAccount/addAccount'
+import inviteDetail from './inviteDetail/inviteDetail'
 //@import
 
 export default angular.module('app.pages', [
@@ -86,5 +87,6 @@ export default angular.module('app.pages', [
     createOrder.name,
     messageMemberView.name,
     accountList.name,
-    addAccount.name//@register
+    addAccount.name,
+    inviteDetail.name//@register
 ]);

@@ -11,14 +11,14 @@ div.onme.create
             dl
                 dt 主题
                 dd
-                    input(placeholder='请输入酒局的主题' ng-model='form.title' type='text')
+                    input(placeholder='请输入酒局的主题' ng-model='form.subject' type='text')
             dl
                 dt 日期
                 dd
-                    input(placeholder='请选择日期' value='date' type='datetime-local')
+                    input(placeholder='请选择日期' value='date' ng-model='form.startTime' type='datetime-local')
             dl
                 dt 付款
                 dd
                     span 我请客
     div.bar.bar-footer
-        button.button.button-block.button-active 确定
+        button.button.button-block.button-active(ng-click='vm.doActive()') 确定
