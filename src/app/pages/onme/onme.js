@@ -39,7 +39,7 @@ class OnmeController {
         this.timeout = $timeout;
         this.resource = resourcePool;
         this.state = $state;
-        t.application = application;
+        this.application = application;
         this.form = {
             barid:$stateParams.barid,
             invid:$stateParams.id,
@@ -52,8 +52,8 @@ class OnmeController {
         let params = t.form;
         t.resource.applyParty.request(params).then(res=>{
             if(res.data.status ==1){
+                t.application.sendMsg(t.form.invid,2);
                 window.location.replace('/productList/'+t.form.barid+'?partyid='+res.data.info.partyid);
-                t.application.sendMsg(t.form.invid,2)
             }else{
                 t.loading.show({
                     template:res.data.info,

@@ -23,8 +23,9 @@ div.myGroup
                             span 状态:{{item.step}}
                             button.find-detail 查看酒局
         ion-slide
+            nodata(ng-if='!vm.getMyJoinParty || vm.getMyJoinParty.length==0')
             ul.group-list
-                li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyCreateParty track by $index')
+                li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyJoinParty track by $index')
                     div.group
                         div.pub-user
                             div.avatar-section

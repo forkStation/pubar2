@@ -84,8 +84,9 @@ export default function(resource){
         'getChatter':resource.chat('chater'),
 
         //根据授权信息返回的结果,取得关注人的微信资料
+        'getTokenUser':resource.getToken('out_token'),
 
-        'getTokenUser':resource.getToken('out_token')
-
+        //
+        'searchUser':resource.search('find_friend')
     }
 }

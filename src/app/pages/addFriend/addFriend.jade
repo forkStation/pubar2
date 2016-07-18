@@ -1,16 +1,17 @@
-div.addFriend
+div.addFriend(hide-tabs='true')
     ion-content
         div#search-bar
-            div.item-input-inset
-                label.item-input-wrapper
-                    i.icon.ion-search.placeholder-icon
-                    input(type="search" placeholder="请输入蒲吧号/昵称" name="" ng-model="form.key" autocorrect="off")
-                button.button.button-clear 取消
-
+            form( ng-submit ='vm.doSearch()')
+                div.item-input-inset
+                    label.item-input-wrapper
+                        i.icon.ion-search.placeholder-icon
+                        input(type="search" placeholder="请输入蒲吧号/昵称" name="" ng-model="vm.word" autocorrect="off")
+                    a.button.button-clear.button-light(ng-click='vm.goBack()') 取消
         div.result
-            nav-tip-bar(title='相关的蒲友')
-            div.list
-                a.item.item-avatar
-                    img(ng-src='{{vm.userAvatar}}')
-                    h2 大飞
-                    p 寂寞求约..
+            nodata(ng-if='vm.list.length==0 || !vm.list')
+            div.list(ng-if='vm.list && vm.list.length>0')
+                nav-tip-bar(title='相关的蒲友')
+                a.item.item-avatar(ng-repeat='item in vm.list track by $index' ng-href='/member_view/{{item.id}}')
+                    img(ng-src='{{item.headIcon}}')
+                    h2(ng-bind='item.nickname')
+                    p(ng-bind='item.sign')

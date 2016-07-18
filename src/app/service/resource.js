@@ -96,8 +96,10 @@ export default class Resource {
     wx(apiName){
         return this.create('weixin',apiName)
     }
-
     getToken(apiName){
         return this.create('token',apiName)
+    }
+    search(apiName){
+        return this.create('search',apiName)
     }
 }

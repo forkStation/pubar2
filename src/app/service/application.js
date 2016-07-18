@@ -12,6 +12,7 @@ export default function(storedb,resourcePool){
         'imgHost':'http://h5admin.pubar.me/public/images/pic/',
         'headHost':'http://api.pubar.me/Uploads/png/',
         'productHost':'http://h5admin.pubar.me/public/images/drinkImg/',
+        'assets':'http://h5.pubar.me/lib/images/',
         'map':{
             open:function(args){
                 var map = new AMap.Map(args.container,{
@@ -31,7 +32,6 @@ export default function(storedb,resourcePool){
                 }
             }
         },
-        'assets':'http://h5.pubar.me/lib/images/',
         'getMyCity':function(){
             var st = storedb.key('city').find();
             if(st){
@@ -127,6 +127,41 @@ export default function(storedb,resourcePool){
                     }
                 }
             );
+        },
+        getLocation:function(success){
+            this.initMap = function(){
+                var map =  new AMap.Map('container', {
+                    resizeEnable: true
+                });
+                var geolocation ;
+                map.plugin('AMap.Geolocation', function() {
+                    geolocation = new AMap.Geolocation({
+                        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                        timeout: 0,          //超过10秒后停止定位，默认：无穷大
+                        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                        zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                        buttonPosition:'RB'
+                    });
+                    map.addControl(geolocation);
+                    geolocation.getCurrentPosition();
+                    AMap.event.addListener(geolocation, 'complete', function(data){
+                        if(success && typeof success === 'function') success(data)
+                    });//返回定位信息
+
+                });
+            };
+            if (window.AMap == undefined) {
+                let mapScript = document.createElement('script');
+                mapScript.src = 'http://webapi.amap.com/maps?v=1.3&key=2f68d8bce4d678228a3e0ee7341b6ee6';
+                document.body.appendChild(mapScript);
+                //script加载完毕,初始化地图
+                var t = this;
+                mapScript.onload = function () {
+                    t.initMap();
+                }
+            } else {
+                this.initMap();
+            }
         }
     }
 }

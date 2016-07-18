@@ -16,6 +16,17 @@ export default angular.module('index',[ionic])
 
                     barList:function(resourcePool,application){
 
+                        let t = this;
+
+
+                        application.getLocation(function(data){
+
+                            t.latitude = data.position.lat;
+                            t.longitude = data.position.lng;
+                            console.log(t.latitude)
+                        });
+
+
                         return resourcePool.getBarList.request({
                             city:application.getMyCity(),
                             userid:application.userId
@@ -31,11 +42,25 @@ export default angular.module('index',[ionic])
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,$ionicScrollDelegate,resourcePool,$ionicLoading){
+    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,resourcePool,$ionicLoading){
         "ngInject"
         this.name = 'index';
         this.state = $state;
         this.slideIndex = 0;
+
+
+        application.getLocation(function(data){
+
+
+            resourcePool.getBarList.request({
+                city:application.getMyCity(),
+                userid:application.userId,
+                longitude:data.position.lng,
+                latitude:data.position.lat
+            }).then(res=>{
+                console.log(res)
+            })
+        });
 
         this.ionicSlide = $ionicSlideBoxDelegate;
         this.cityName = application.getMyCity();

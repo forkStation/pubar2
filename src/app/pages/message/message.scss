@@ -1,3 +1,4 @@
+@import "../../../styles/util-mixin";
 .message{
   .card{
     background: #444;
@@ -15,6 +16,8 @@
     .item-avatar{
       min-height:1.5rem;
       padding:.32rem .2rem .32rem 1.4rem;
+      @include vertical();
+      -webkit-box-align:start;
       img{
         width:1rem;
         height:1rem;
@@ -25,6 +28,7 @@
       }
       h2{
         color:#ccc;
+        margin-left:.2rem;
       }
       p{
         margin-top:.2rem;
