@@ -14,7 +14,7 @@ export default angular.module('groupOrderList',[ionic])
                 resolve:{
                     detail:function(resourcePool,$stateParams){
                         return resourcePool.getPartyInfo.request({
-                            id:$stateParams.id
+                            partyid:$stateParams.id
                         })
                     }
                 }
@@ -23,10 +23,17 @@ export default angular.module('groupOrderList',[ionic])
 
 
 class GroupOrderListController {
-    constructor (detail) {
+    constructor (detail,application) {
         "ngInject"
         this.name = 'groupOrderList';
+        let t = this;
         this.detail = detail.data.info;
-
+        this.headHost = application.headHost;
+        this.total = 0;
+        angular.forEach(t.detail.drinklist,function(value,key){
+            console.log(value);
+            t.total = parseFloat(value.count) * parseFloat(value.price) + t.total
+        });
+        console.log(t.total)
     }
 }

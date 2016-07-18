@@ -70,6 +70,8 @@ export default function(resource){
         'sendMsg':resource.msg('msg_send'),
         'getMsgCount':resource.msg('msg_count'),
 
+        //msgChat
+        'getMsgRecord':resource.msgchat('record'),
         //wallet
         'getWalletInfo':resource.wallet('wellet_info'),
         'getWalletList':resource.wallet('wellet_list'),

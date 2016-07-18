@@ -3,7 +3,7 @@
  */
 
 import {angular,ionic} from 'library'
-import token from './token'
+import md5 from 'md5'
 export default function(storedb,resourcePool){
     'ngInject'
 
@@ -58,16 +58,45 @@ export default function(storedb,resourcePool){
         'im':{
             getSocket:function(){
                 let socket ;
-                if(io){
-                    socket = io.connect("http://h5.pubar.me:3000");
+                if(window.io){
+                    socket = window.io.connect("http://h5.pubar.me:3000");
                 }else{
                     let ioScript = document.createElement('script');
                     ioScript.src='http://cdn.bootcss.com/socket.io/1.4.6/socket.io.js';
                     document.documentElement.appendChild(ioScript);
-                    socket = io.connect("http://h5.pubar.me:3000");
+                    socket = window.io.connect("http://h5.pubar.me:3000");
                 }
+                //注册自己的socket
+
+                let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+
+
+                socket.emit('new user',userInfo.id);
                 return socket;
             },
+            open:function(){
+                var socket = this.getSocket();
+
+            },
+
+            send:function(to,content,successCallback,failedCallback){
+                let socket = this.getSocket();
+                let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+                var params = {
+                    reid:to,
+                    userid:userInfo.id,
+                    msg:content,
+                    token:md5(to+userInfo.id+'usertoken')
+                };
+                socket.emit('chat',params,res=>{
+                    if(res ==1 || res ==2){
+                        if(successCallback && typeof successCallback === 'function') successCallback();
+                    }else{
+                        if(failedCallback && typeof failedCallback === 'function') failedCallback();
+                    }
+                })
+            },
+
             getChatUsers:function(){
                 let _this = this;
                 let socket = _this.getSocket();
