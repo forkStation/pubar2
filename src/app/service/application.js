@@ -4,7 +4,7 @@
 
 import {angular,ionic} from 'library'
 import md5 from 'md5'
-export default function(storedb,resourcePool){
+export default function(storedb,resourcePool,$q){
     'ngInject'
 
 
@@ -128,8 +128,10 @@ export default function(storedb,resourcePool){
                 }
             );
         },
-        getLocation:function(success){
-            this.initMap = function(){
+        getLocation:function(){
+
+            function initMap (){
+                let defer = $q.defer();
                 var map =  new AMap.Map('container', {
                     resizeEnable: true
                 });
@@ -142,25 +144,28 @@ export default function(storedb,resourcePool){
                         zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                         buttonPosition:'RB'
                     });
-                    map.addControl(geolocation);
                     geolocation.getCurrentPosition();
                     AMap.event.addListener(geolocation, 'complete', function(data){
-                        if(success && typeof success === 'function') success(data)
+                        defer.resolve(data);
+                        // if(success && typeof success === 'function') success(data)
                     });//返回定位信息
 
                 });
-            };
-            if (window.AMap == undefined) {
+
+                return defer.promise;
+            }
+
+            if (window.AMap == undefined || !window.AMap) {
                 let mapScript = document.createElement('script');
                 mapScript.src = 'http://webapi.amap.com/maps?v=1.3&key=2f68d8bce4d678228a3e0ee7341b6ee6';
                 document.body.appendChild(mapScript);
                 //script加载完毕,初始化地图
                 var t = this;
                 mapScript.onload = function () {
-                    t.initMap();
+                    initMap();
                 }
             } else {
-                this.initMap();
+                initMap();
             }
         }
     }

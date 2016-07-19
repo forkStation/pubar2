@@ -19,13 +19,7 @@ export default angular.module('index',[ionic])
                         let t = this;
 
 
-                        application.getLocation(function(data){
-
-                            t.latitude = data.position.lat;
-                            t.longitude = data.position.lng;
-                            console.log(t.latitude)
-                        });
-
+                        console.log(application.getLocation());
 
                         return resourcePool.getBarList.request({
                             city:application.getMyCity(),
@@ -47,24 +41,25 @@ class IndexController {
         this.name = 'index';
         this.state = $state;
         this.slideIndex = 0;
+        let t = this;
+        // application.getLocation(function(data){
+        //     resourcePool.getBarList.request({
+        //         city:application.getMyCity(),
+        //         userid:application.userId,
+        //         longitude:data.position.lng,
+        //         latitude:data.position.lat
+        //     }).then(res=>{
+        //         t.bars = res.info;
+        //     })
+        // });
 
+        console.log(application.getLocation());
 
-        application.getLocation(function(data){
-
-
-            resourcePool.getBarList.request({
-                city:application.getMyCity(),
-                userid:application.userId,
-                longitude:data.position.lng,
-                latitude:data.position.lat
-            }).then(res=>{
-                console.log(res)
-            })
-        });
+        this.bars = barList.data.info;
 
         this.ionicSlide = $ionicSlideBoxDelegate;
         this.cityName = application.getMyCity();
-        this.bars = barList.data.info;
+
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
         this.headHost = application.headHost;
