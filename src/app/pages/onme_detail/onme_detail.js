@@ -7,17 +7,33 @@ export default angular.module('onme_detail',[ionic])
         "ngInject"
         $stateProvider
             .state('onme_detail', {
-                url: '/onme_detail',
+                url: '/onme_detail/:partyid',
                 controllerAs: 'vm',
                 controller: Onme_detailController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getPartyInfo:function(resourcePool,$stateParams){
+                        return resourcePool.getPartyInfo.request({
+                            partyid:$stateParams.partyid
+                        })
+                    }
+                }
             })
     });
 
 
 class Onme_detailController {
-    constructor () {
+    constructor (application,getPartyInfo,resourcePool) {
         "ngInject"
-        this.name = 'onme_detail'
+        this.name = 'onme_detail';
+        this.headHost = application.headHost;
+        this.partyInfo = getPartyInfo.data.info;
+        this.imgHost = application.imgHost;
+        let t = this;
+        resourcePool.getBarInfo.request({
+            barid:t.partyInfo.party.barid
+        }).then(res=>{
+            t.barInfo = res.data.info;
+        })
     }
 }

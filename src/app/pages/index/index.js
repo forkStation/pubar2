@@ -19,7 +19,6 @@ export default angular.module('index',[ionic])
                         let t = this;
 
 
-                        console.log(application.getLocation());
 
                         return resourcePool.getBarList.request({
                             city:application.getMyCity(),
@@ -53,7 +52,7 @@ class IndexController {
         //     })
         // });
 
-        console.log(application.getLocation());
+
 
         this.bars = barList.data.info;
 

@@ -1,22 +1,21 @@
 div.onme_detail.create.apply(hide-tabs='true')
     ion-content.groupDetail
         div.pic-wall
-            img.background(ng-src='{{vm.picWall}}')
-
+            img.background(ng-src='{{vm.imgHost + vm.barInfo.cover}}')
             div.user-behavior
                 div.avatar-bg
                     sex(type='0')
-                    img.avatar
-                p.name 哒哒
+                    img.avatar(ng-src='{{vm.headHost +vm.partyInfo.user.headIcon}}')
+                p.name(ng-bind='vm.partyInfo.user.nickname')
                 //p.msg 锅锅能让我参加么...
                 s-btn(text='勾搭她' ng-href='/member_view')
-        nav-tip-bar(title='酒局信息')
+        nav-tip-bar(title='{{vm.barInfo.name}}')
         .hoz-item
-            span.l-content <i class='ion ion-android-bar'></i>  本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧本色酒吧
+            span.l-content <i class='ion ion-android-bar'></i>  {{vm.partyInfo.party.subject || '暂无标题'}}
             a.ctrl-btn(href='/barDetail')  详情
         .hoz-item
-            span.l-content <i class='ion ion-ios-location'></i>  广州市沿江路20310号巴拉巴兰吧拉巴兰...
-            a.ctrl-btn  详情
+            span.l-content <i class='ion ion-ios-location'></i>  {{vm.barInfo.address}}
+            a.ctrl-btn(ng-href='/barDetail/{{vm.barInfo.id}}') 详情
 
         .hoz-item
             span.l-content <i class='ion ion-ios-bell-outline'></i>  2015-05-22 15:22

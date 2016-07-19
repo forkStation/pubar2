@@ -143,9 +143,7 @@ export default function (storedb, resourcePool, $q) {
                     defer.resolve(AMap)
                 }
             }
-
             return defer.promise;
-
         },
         getLocation: function () {
             return this.getAmap((AMap) => {
@@ -167,7 +165,6 @@ export default function (storedb, resourcePool, $q) {
                         defer.resolve(data);
                         // if(success && typeof success === 'function') success(data)
                     });//返回定位信息
-
                 });
                 return defer.promise;
             })

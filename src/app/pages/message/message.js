@@ -21,12 +21,13 @@ export default angular.module('message',[ionic])
 
 
 class MessageController {
-    constructor (getMsgList) {
+    constructor (getMsgList,application) {
         "ngInject"
         this.name = 'message';
         this.msgList = getMsgList.data.info;
+        this.headHost = application.headHost;
         /**
-         * type 1:好友关注 2：酒局申请 3：同意加入酒吧，4：拒绝加入酒局 5：酒吧已接单 6：酒吧不
+         * type 1:好友关注 2：酒局申请 3：同意加入酒吧，4：拒绝加入酒局 5：酒吧已接单 6：酒吧不接单，7：酒局邀请提醒  8：酒局过期通知  9：拒绝邀请酒局
          */
     }
 }
