@@ -4,7 +4,7 @@ div.onme_detail.create.apply(hide-tabs='true')
             img.background(ng-src='{{vm.imgHost + vm.barInfo.cover}}')
             div.user-behavior
                 div.avatar-bg
-                    sex(type='0')
+                    sex(type='{{vm.partyInfo.user.sex}}')
                     img.avatar(ng-src='{{vm.headHost +vm.partyInfo.user.headIcon}}')
                 p.name(ng-bind='vm.partyInfo.user.nickname')
                 //p.msg 锅锅能让我参加么...
@@ -31,6 +31,6 @@ div.onme_detail.create.apply(hide-tabs='true')
         div.col-33
             a.button.button-block.button-gray 加入黑名单
         div.col-33
-            a.button.button-block.button-gray 拒绝
+            a.button.button-block.button-gray(ng-click='vm.doReject()') 拒绝
         div.col-33
-            a.button.button-block.button-active 同意
+            a.button.button-block.button-active(ng-click='vm.doJoin()') 同意

@@ -10,14 +10,20 @@ export default angular.module('takeCash',[ionic])
                 url: '/takeCash',
                 controllerAs: 'vm',
                 controller: TakeCashController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getDrawInfo:function(resourcePool){
+                        return resourcePool.getDrawInfo.request({})
+                    }
+                }
             })
     });
 
 
 class TakeCashController {
-    constructor () {
+    constructor (getDrawInfo) {
         "ngInject"
-        this.name = 'takeCash'
+        this.name = 'takeCash';
+        this.info = getDrawInfo.data.info;
     }
 }

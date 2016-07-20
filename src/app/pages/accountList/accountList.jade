@@ -1,17 +1,14 @@
 div.accountList(hide-tabs='true')
-    nav-tip-bar(title='提现支付宝账号')
-    div.list.paylist
-        a.item.item-icon-right(ng-click='vm.changePay(0)')
-            p.name 吴恩宇
-            p.acc 8216***@qq.com
-            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==0}")
+    ion-content
+        nav-tip-bar(title='提现支付宝账号')
+        div.list.paylist
+            nodata(ng-if='!vm.list || vm.length==0')
+            a.item.item-icon-right(ng-click='vm.changePay(item.id)' ng-repeat='item in vm.list')
+                p.name(ng-bind='item.account_name')
+                p.acc(ng-bind='item.account')
+                i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==item.id}")
 
-        a.item.item-icon-right(ng-click='vm.changePay(1)')
-            p.name 吴恩宇
-            p.acc 8216***@qq.com
-            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==1}")
-
-    a.item.item-icon-left.item-icon-right.add(ng-href='/addAccount')
-        i.icon.ion-ios-plus.name
-        span.name 添加支付宝账号
-        i.icon.ion-ios-arrow-right
+        a.item.item-icon-left.item-icon-right.add(ng-href='/addAccount')
+            i.icon.ion-ios-plus.name
+            span.name 添加支付宝账号
+            i.icon.ion-ios-arrow-right

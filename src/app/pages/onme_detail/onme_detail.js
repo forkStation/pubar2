@@ -23,17 +23,58 @@ export default angular.module('onme_detail',[ionic])
 
 
 class Onme_detailController {
-    constructor (application,getPartyInfo,resourcePool) {
+    constructor (application,getPartyInfo,resourcePool,$stateParams,$ionicLoading) {
         "ngInject"
         this.name = 'onme_detail';
         this.headHost = application.headHost;
         this.partyInfo = getPartyInfo.data.info;
         this.imgHost = application.imgHost;
+        this.partyId = $stateParams.partyid;
+        this.resourcePool = resourcePool;
+        this.loading = $ionicLoading;
         let t = this;
         resourcePool.getBarInfo.request({
-            barid:t.partyInfo.party.barid
+            barid:t.partyInfo.party.barID
         }).then(res=>{
             t.barInfo = res.data.info;
+        })
+    }
+    doJoin(){
+        let t = this;
+        let partyid = t.partyId;
+        this.resourcePool.agreeParty.request({
+            partyid:partyid
+        }).then(res=>{
+            if(res.data.status ==1){
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }else{
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }
+        })
+    }
+    doReject(){
+        let t = this;
+        let partyid = t.partyId;
+        this.resourcePool.rejectParty.request({
+            partyid:partyid
+        }).then(res=>{
+            if(res.data.status ==1){
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }else{
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }
         })
     }
 }

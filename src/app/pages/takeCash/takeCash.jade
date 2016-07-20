@@ -1,10 +1,10 @@
 div.takeCash(hide-tabs='true')
 
-    div.tit 可提现金额:<span>50.00</span>元
+    div.tit 可提现金额:<span>{{vm.info.wallet.money}}</span>元
     div.con
         input(type=number placeholder='请输入提现金额')
     div.list
-        a.item.item-icon-right(ng-href='/accountList') 到账账户:吴恩宇(82169586@qq.com)
+        a.item.item-icon-right(ng-href='/accountList') 到账账户:{{vm.info.auser.account_name}}({{vm.info.auser.account}})
             i.icon.ion-ios-arrow-right
 
     div.tip-box

@@ -47,6 +47,8 @@ export default function(resource){
         'getMyJoinParty':resource.party('my_join_party'),
         'joinParty':resource.party('join_party'),
         'applyParty':resource.party('commit_party'),
+        'agreeParty':resource.party('consent_party'),
+        'rejectParty':resource.party('reject_party'),
         //weixin
         'wxLogin':resource.wx('wx_login'),
         'wxBind':resource.wx('bind'),
@@ -76,6 +78,10 @@ export default function(resource){
         'getWalletInfo':resource.wallet('wallet_info'),
         'getWalletList':resource.wallet('wallet_list'),
         'addWalletAccount':resource.wallet('wallet_account'),
+        'getAccountList':resource.wallet('account_list'),
+        'setDefaultAccount':resource.wallet('default_acc'),
+        'getDefaultAccount':resource.wallet('default_acc'),
+        'getDrawInfo':resource.wallet('withdraw_money'),
 
 
         //支付
