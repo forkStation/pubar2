@@ -1,9 +1,9 @@
 div.addAccount
     .item
-        input(placeholder='输入支付宝名称')
+        input(placeholder='输入支付宝名称' ng-model='vm.form.account_name')
     .item
-        input(placeholder='请输入支付宝账号')
+        input(placeholder='请输入支付宝账号' ng-model='vm.form.account	')
 
     div.pd-button
-        a.button.button-block.button-active 添加
+        a.button.button-block.button-active(ng-click='vm.doAdd()') 添加
 

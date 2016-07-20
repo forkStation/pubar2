@@ -5,7 +5,6 @@ import pagesModule from './pages/app.pages'
 import appFilter from './app.filter'
 import appServer from './app.service'
 import appConfig from './app.config'
-import appStoreDB from './app.storedb'
 import appRun from './app.run'
 angular
     .module('pubarApp', [
@@ -15,7 +14,6 @@ angular
         appFilter.name,
         appServer.name,
         appConfig.name,
-        appStoreDB.name,
         'angular-img-cropper',
         appRun.name
     ])

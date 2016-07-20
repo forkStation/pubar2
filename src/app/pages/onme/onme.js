@@ -60,6 +60,7 @@ class OnmeController {
         t.resource.applyParty.request(params).then(res=>{
             if(res.data.status ==1){
                 t.application.sendMsg(t.form.invid,7,res.data.info.partyid);
+                return false;
                 window.location.replace('/productList/'+t.form.barid+'?partyid='+res.data.info.partyid);
             }else{
                 t.loading.show({

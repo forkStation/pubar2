@@ -69,7 +69,7 @@ class CreateController {
             borg:0,
             type:0,
             audit:0,
-            userid:application.userId
+            barid:$stateParams.barid
         }
     }
     submitParty(){
@@ -106,7 +106,10 @@ class CreateController {
                     template:'酒局创建成功',
                     duration:1500
                 });
-                window.location.href='/productList/'+t.params.barid+'?partyid='+res.data.info.partyid;
+
+                window.location.replace('/productList/'+t.params.barid+'?partyid='+res.data.info.partyid);
+
+
             }else if(res.data.status == '0007'){
                 $popup.show({
                     title:'提示',

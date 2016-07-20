@@ -73,12 +73,16 @@ export default function(resource){
         //msgChat
         'getMsgRecord':resource.msgchat('record'),
         //wallet
-        'getWalletInfo':resource.wallet('wellet_info'),
-        'getWalletList':resource.wallet('wellet_list'),
+        'getWalletInfo':resource.wallet('wallet_info'),
+        'getWalletList':resource.wallet('wallet_list'),
+        'addWalletAccount':resource.wallet('wallet_account'),
 
 
         //支付
         'setOrderPay':resource.pay('do_pay'),
+
+        //微信支付
+        'recharge':resource.wpay('recharge'),
 
         //聊天webim
         'getChatter':resource.chat('chater'),

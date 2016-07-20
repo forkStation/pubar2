@@ -36,6 +36,7 @@ class CreateOrderController {
         $scope.password = '';
         this.resourcePool = resourcePool;
         this.stateParams = $stateParams;
+        this.orderId = this.orderInfo.head;
         this.payId = this.orderInfo.id;
         this.application = application;
     }

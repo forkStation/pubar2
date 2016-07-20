@@ -21,13 +21,12 @@ export default function () {
 
 
 class NumberPickController {
-  constructor($scope,storedb,$rootScope) {
+  constructor($scope,$rootScope) {
     "ngInject";
     this.name = 'numberPick';
     this.number=$scope.number;
     this.scope = $scope;
     this.barid=$scope.barid;
-    this.storedb = storedb;
     this.rootScope = $rootScope;
 
     this._check();

@@ -16,7 +16,7 @@ export default angular.module('phoneLogin',[ionic])
 
 
 class PhoneLoginController {
-    constructor (application,$interval,resourcePool,$ionicLoading,storedb) {
+    constructor (application,$interval,resourcePool,$ionicLoading) {
         "ngInject"
         this.name = 'phoneLogin';
         this.bitmap = application.assets+'bitmap.png';
@@ -24,7 +24,6 @@ class PhoneLoginController {
         this.interval = $interval;
         this.resourcePool = resourcePool;
         this.loading = $ionicLoading;
-        this.storedb = storedb;
         this.form = {
             user:'',
             codeDesc:'获取验证码',

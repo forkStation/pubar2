@@ -9,11 +9,10 @@ import token from './token'
  * 资源处理文件
  */
 export default class Resource {
-    constructor($http,storedb) {
+    constructor($http) {
         'ngInject'
         this.token = token
         this.$http = $http
-        this.storedb = storedb;
     }
 
     _create(module, apiName) {
@@ -80,7 +79,10 @@ export default class Resource {
 
     }
     wallet(apiName){
-        return this.create('wellet',apiName)
+        return this.create('wallet',apiName)
+    }
+    wpay(apiName){
+        return this.create('wpay',apiName)
     }
     avatar(apiName){
         return this.create('user',apiName)

@@ -4,7 +4,7 @@
 
 import {angular, ionic} from 'library'
 import md5 from 'md5'
-export default function (storedb, resourcePool, $q) {
+export default function ( resourcePool, $q) {
     'ngInject'
 
 
@@ -23,17 +23,9 @@ export default function (storedb, resourcePool, $q) {
 
             }
         },
-        loginCtrl: function () {
-            if (storedb.key('userInfo')) {
-                return storedb.key('userInfo').find()[0]['id'];
-            } else {
-                return function () {
-                    location.href = '/phoneLogin'
-                }
-            }
-        },
+
         'getMyCity': function () {
-            var st = storedb.key('city').find();
+            var st = JSON.parse(window.localStorage.getItem('city'));
             if (st) {
                 return st[0]['cityName'];
             } else {
@@ -45,12 +37,13 @@ export default function (storedb, resourcePool, $q) {
          * @param action 【非必填，默认1】是否需要处理，1需要，0不需要
          * @param content 【非必填】信息内容
          * @param reid 接收信息的用户id
-         * @param type type 1:好友关注 2：酒局申请 3：同意加入酒吧，4：拒绝加入酒局 5：酒吧已接单 6：酒吧不
+         * @param type 1:好友关注 2：酒局申请 3：同意加入酒吧，4：拒绝加入酒局 5：酒吧已接单 6：酒吧不接单，7：酒局邀请提醒  8：酒局过期通知  9：拒绝邀请酒局
          */
-        'sendMsg': function (reid, type, action, content) {
+        'sendMsg': function (reid, type,partyid, action, content) {
             return resourcePool.sendMsg.request({
                 reid: reid,
                 type: type,
+                partyid:partyid,
                 action: action,
                 content: content
             });
