@@ -89,9 +89,10 @@ class NumberPickController {
       }
       storage.removeItem(currentBar);
       storage.setItem(currentBar,JSON.stringify(barItems));
-      $rootScope.$broadcast('updateStorage');
+      ;
 
     }
+    $rootScope.$broadcast('updateStorage')
 
   }
   add() {

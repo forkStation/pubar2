@@ -101,12 +101,6 @@ class ProductListController {
         let $scope = t.scope;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
 
-        console.log($scope.items);
-
-        $scope.$watch('items',function(oldValue,newValue){
-            console.log(oldValue,newValue);
-        })
-
         for(var i = 0;i<$scope.items.length;i++){
             for(var s = 0;s<storageData.length;s++){
                 if($scope.items[i]['id']==storageData[s]['goodid']){
@@ -114,7 +108,6 @@ class ProductListController {
                 }
             }
         }
-        console.log($scope.items);
 
     }
 
