@@ -36,7 +36,7 @@ div.barDetail(hide-tabs='true')
                                             div.type
                                                 span <i class='icon ion-person-stalker'></i> {{item.userCount}}
                                                 span  AA
-                                            div.type <i class='icon ion-clock'></i> {{item.startTime}}
+                                            div.type <i class='icon ion-clock'></i> {{item.startTime | date:'MM-dd hh:mm'}}
                                     div.status-bar
                                         span 状态:{{item.step}}
                                         button.find-detail 查看酒局
