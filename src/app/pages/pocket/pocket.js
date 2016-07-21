@@ -12,14 +12,12 @@ export default angular.module('pocket',[ionic])
                 controller: PocketController,
                 template: tpl(),
                 resolve:{
-                    walletInfo:function(resourcePool,application){
+                    walletInfo:function(resourcePool){
                         return resourcePool.getWalletInfo.request({
-                            userid:application.userId
                         })
                     },
-                    walletList:function(resourcePool,application){
+                    walletList:function(resourcePool){
                         return resourcePool.getWalletList.request({
-                            userid:application.userId
                         })
                     }
                 }
@@ -32,13 +30,9 @@ class PocketController {
         "ngInject"
         this.name = 'pocket';
 
-        if(walletInfo.data.status ==1){
-            this.walletInfo = walletInfo.data.info;
-        }
-        if(walletList.data.status ==1){
-            this.walletList = walletList.data.info;
-        }
+        this.walletInfo = walletInfo.data.info.wallet;
+        this.walletList = walletList.data.info.record;
 
-        console.log(walletInfo);
+
     }
 }

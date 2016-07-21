@@ -26,10 +26,18 @@ class AccountListController {
     constructor (getAccountList,resourcePool,$ionicLoading) {
         "ngInject"
         this.name = 'accountList';
-        this.payWay = 1;
+
         this.list = getAccountList.data.info;
+
         this.resourcePool = resourcePool;
         this.loading = $ionicLoading;
+        let t = this;
+
+        for(var i = 0;i<t.list.length;i++){
+            if(t.list[i]['isDefault']==1){
+                t.payWay = t.list[i]['id'];
+            }
+        }
     }
     changePay(id){
         this.payWay = id;
@@ -40,7 +48,7 @@ class AccountListController {
             if(res.data.status ===1){
                 t.loading.show({
                     template:'修改成功',
-                    duration:1000
+                    duration:500
                 })
             }else{
                 t.loading.show({

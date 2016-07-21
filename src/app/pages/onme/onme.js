@@ -50,17 +50,15 @@ class OnmeController {
     }
     doActive(){
         let t = this;
-        let params = t.form;
 
         var dateText = document.getElementById('startTime').value;
         dateText = dateText.replace('T',' ');
         dateText = dateText.replace(/\-/g,'/');
         dateText = dateText.substr(0,dateText.lastIndexOf('.'));
-        params.startTime = new Date(dateText).getTime();
-        t.resource.applyParty.request(params).then(res=>{
+        t.form.startTime = new Date(dateText).getTime();
+        t.resource.applyParty.request(t.form).then(res=>{
             if(res.data.status ==1){
                 t.application.sendMsg(t.form.invid,7,res.data.info.partyid);
-                return false;
                 window.location.replace('/productList/'+t.form.barid+'?partyid='+res.data.info.partyid);
             }else{
                 t.loading.show({
