@@ -12,11 +12,8 @@ export default angular.module('fans',[ionic])
                 controller: FansController,
                 template: tpl(),
                 resolve:{
-                    getFollowList:function(resourcePool,application){
-                        return resourcePool.getFollowList.request({
-                            userid:application.userId
-                        })
-
+                    getFansList:function(resourcePool,application){
+                        return resourcePool.getFansList.request({})
                     }
                 }
             })
@@ -24,16 +21,14 @@ export default angular.module('fans',[ionic])
 
 
 class FansController {
-    constructor ($ionicSlideBoxDelegate,getFollowList,application) {
+    constructor (getFansList,application) {
         "ngInject"
         this.name = 'fans';
         this.slideIndex = 0;
         this.chatGroupImg = img.chatGroupImg;
         this.chatFansImg = img.chatFansImg;
-        this.getFollowList = getFollowList.data.info;
+        this.list = getFansList.data.info;
         this.headHost = application.headHost;
-        this.goSlide = function(index){
-            $ionicSlideBoxDelegate.slide(index);
-        };
+
     }
 }

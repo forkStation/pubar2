@@ -97,9 +97,11 @@ class ProductListController {
      */
     getChange(){
 
+
         let t = this;
         let $scope = t.scope;
         var storageData = JSON.parse(window.localStorage.getItem('bar'+t.barInfo.id));
+        if(!storageData) return false;
 
         for(var i = 0;i<$scope.items.length;i++){
             for(var s = 0;s<storageData.length;s++){
@@ -108,6 +110,7 @@ class ProductListController {
                 }
             }
         }
+        console.log(storageData);
 
     }
 

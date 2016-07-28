@@ -37,7 +37,8 @@ class Onme_detailController {
             barid:t.partyInfo.party.barID
         }).then(res=>{
             t.barInfo = res.data.info;
-        })
+        });
+        this.application = application;
     }
     doJoin(){
         let t = this;
@@ -49,7 +50,11 @@ class Onme_detailController {
                 t.loading.show({
                     template:res.data.info,
                     duration:1000
-                })
+                });
+                t.application.sendMsg(t.partyInfo.user.id,3,partyid,0);
+                setTimeout(function () {
+                    window.history.go(-1)
+                },1000)
             }else{
                 t.loading.show({
                     template:res.data.info,
@@ -67,8 +72,12 @@ class Onme_detailController {
             if(res.data.status ==1){
                 t.loading.show({
                     template:res.data.info,
-                    duration:1000
-                })
+                    duration:1500
+                });
+                t.application.sendMsg(t.partyInfo.user.id,9,partyid,0);
+                setTimeout(function () {
+                    window.history.go(-1)
+                },1000)
             }else{
                 t.loading.show({
                     template:res.data.info,

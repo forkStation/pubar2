@@ -12,6 +12,6 @@ div.chatList
                 img(ng-src='{{vm.headHost+chat.headIcon}}')
                 h2(ng-bind='chat.nickname')
                     em(ng-bind='chat.genTime')
-                p this is content
+                p(ng-bind='chat.content')
                 ion-option-button.button-active(ng-click='vm.deleteChat(chat.id)') 删除
 

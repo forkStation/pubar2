@@ -4,7 +4,7 @@ div.location(hide-tabs='true')
             div.item-input-inset
                 label.item-input-wrapper
                     i.icon.ion-search.placeholder-icon
-                    input(type="search" placeholder="请输入城市名" name="" ng-model="vm.searchKey" autocorrect="off")
+                    input(type="search" placeholder="请输入城市名" name="" ng-model="vm.word" ng-change='vm.loadCity(vm.word)' autocorrect="off")
                 button.button.button-clear(ng-click='vm.goBack()') 取消
         nav-tip-bar(title='当前定位城市')
         div.current-city

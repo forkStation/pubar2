@@ -9,37 +9,41 @@ export default angular.module('location',[ionic])
                 url: '/location',
                 controllerAs: 'vm',
                 controller: LocationController,
-                template: tpl(),
-                resolve:{
-                    getCity:function(resourcePool){
-                        let cities = resourcePool.getCities;
-                        return cities.request({})
-                    }
-                }
+                template: tpl()
             })
     });
 
 
 class LocationController {
-    constructor (getCity,storedb,$ionicPopup,$ionicViewSwitcher,$ionicLoading,$location,$ionicScrollDelegate,$state) {
+    constructor ($ionicPopup,$ionicViewSwitcher,$ionicLoading,$location,$ionicScrollDelegate,$state,resourcePool) {
         "ngInject"
         this.name = 'location';
-        this.cities = getCity.data.info;
         this.popup = $ionicPopup;
-        this.storeDB = storedb;
         this.initCity = '广州';
         this.location = $location;
         this.scrollDelegate = $ionicScrollDelegate;
         let t = this;
         t.viewSwitcher = $ionicViewSwitcher;
         t.loading = $ionicLoading;
-        let currentCity = storedb.key('city').find();
+
+        this.storage = window.localStorage;
+        let currentCity = this.storage.getItem('city');
         this.state = $state;
+        this.resourcePool = resourcePool;
         if(!currentCity){
-            storedb.key('city').insert({'cityName':t.initCity});
+            t.storage.setItem('city','广州')
         }else{
-            t.initCity = currentCity[0]['cityName'];
+            t.initCity = t.storage.getItem('city');
         }
+        this.loadCity()
+    }
+    loadCity(cityName){
+        let _this = this;
+        _this.resourcePool.getCities.request({
+            word:cityName || ''
+        }).then(res=>{
+            _this.cities = res.data.info
+        })
     }
     changeCity(city){
         let t = this;
@@ -49,14 +53,9 @@ class LocationController {
             buttons:[{
                 text:'确定',
                 onTap:function(){
-                    let curName = t.storeDB.key('city').find()[0]['cityName'];
                     t.initCity = city;
-                    t.storeDB.key('city').update({'cityName':curName},{'$set':{'cityName':city}},function (err, result) {
-                        if(!err){
-                            t.state.go('index')
-                        }
-                    });
-
+                    t.storage.setItem('city',city);
+                    window.history.go(-1);
                     return true;
                 }
             },{

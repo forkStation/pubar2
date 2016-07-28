@@ -16,8 +16,24 @@ export default angular.module('setting',[ionic])
 
 
 class SettingController {
-    constructor () {
+    constructor ($ionicActionSheet) {
         "ngInject"
-        this.name = 'setting'
+        this.name = 'setting';
+        this.actionSheet = $ionicActionSheet;
+    }
+    clearCache(){
+
+        let $actionSheet = this.actionSheet;
+        $actionSheet.show({
+            destructiveText: '确定',
+            titleText: '删除应用缓存记录吗?',
+            cancelText: '取消',
+            destructiveButtonClicked:function(){
+                window.localStorage.removeItem('userInfo');
+                window.localStorage.removeItem('city');
+                window.location.replace('/index')
+            }
+        });
+
     }
 }

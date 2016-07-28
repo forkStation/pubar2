@@ -13,9 +13,14 @@
       margin:0 0 0 .1rem;
       background: transparent;
       padding:.3rem .2rem .3rem 1rem;
+      overflow:hidden;
       @include sex(.6rem,.7rem);
       h2{
         color:#fff;
+        padding-right:.2rem;
+        width:4.4rem;
+        @include ellipsis();
+
       }
       &:last-child{
         border:none;

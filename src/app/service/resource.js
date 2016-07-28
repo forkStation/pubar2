@@ -76,7 +76,7 @@ export default class Resource {
         return this.create('msg',apiName)
     }
     msgchat(apiName){
-
+        return this.create('msgchat',apiName)
     }
     wallet(apiName){
         return this.create('wallet',apiName)

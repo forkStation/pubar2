@@ -4,7 +4,7 @@
     div{
       text-align:center;
       color:#736F78;
-      font-size:.28rem;
+      font-size:.26rem;
       border-bottom:1px solid #736F78;
       padding:.17rem 0;
       &.on{
@@ -12,5 +12,12 @@
         border-bottom:3px solid #fff;
       }
     }
+  }
+  .container{
+    position: absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
   }
 }

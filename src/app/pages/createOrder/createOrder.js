@@ -7,16 +7,25 @@ export default angular.module('createOrder',[ionic])
         "ngInject"
         $stateProvider
             .state('createOrder', {
-                url: '/createOrder/:orderid/:genre',
+                url: '/createOrder/:orderid/:genre?partyid',
                 controllerAs: 'vm',
                 controller: CreateOrderController,
                 template: tpl(),
                 resolve:{
                     getOrderInfo:function(resourcePool,$stateParams){
-                        return resourcePool.getConfirmOrderInfo.request({
-                            id:$stateParams.orderid,
-                            genre:$stateParams.genre
-                        })
+                        let genre = $stateParams.genre;
+                        if(genre == 0){
+                            return resourcePool.getConfirmOrderInfo.request({
+                                id:$stateParams.orderid,
+                                genre:$stateParams.genre
+                            })
+                        }
+                        if(genre == 1){
+                            return resourcePool.getConfirmOrderInfo.request({
+                                genre:$stateParams.genre,
+                                partyid:$stateParams.partyid
+                            })
+                        }
                     }
                 }
             })
@@ -40,11 +49,21 @@ class CreateOrderController {
         this.payId = this.orderInfo.id;
         this.application = application;
         this.ionicModal = $ionicModal;
+        this.genre = $stateParams.genre;
         let t = this;
         $scope.$on('password.confirm',function(event,args){
             $scope.passowrd = args;
             t.confirm();
-        })
+        });
+
+        if(this.genre == 1) {
+            resourcePool.getPartyInfo.request({
+                partyid:$stateParams.partyid
+            }).then(res=>{
+                t.userInfo = res.data.info.user;
+            })
+        }
+
     }
     changePay(type){
         this.payWays = type;
@@ -80,6 +99,7 @@ class CreateOrderController {
                         template:'支付成功',
                         duration:1000
                     });
+                    t.application.sendMsg(t.userInfo.id,10,0,0)
                 },()=>{
                     $loading.show({
                         template:'支付失败或取消',

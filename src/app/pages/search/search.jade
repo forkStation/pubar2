@@ -1,14 +1,16 @@
 div.search(hide-tabs='true')
-    ion-content
-        div#search-bar
-            div.item-input-inset
-                label.item-input-wrapper
-                    i.icon.ion-search.placeholder-icon
-                    input(type="search" placeholder="请输入城市名" name="" ng-model="form.key" autocorrect="off")
-                button.button.button-clear 取消
 
+    div#search-bar
+        div.item-input-inset
 
-        div.row
+            label.item-input-wrapper
+                i.icon.ion-search.placeholder-icon
+                form(ng-submit='vm.search()')
+                    input(type="search" placeholder="请输入城市名" name="" ng-model="vm.form.word" autocorrect="off")
+            button.button.button-clear(ng-click='vm.goBack()') 返回
+
+    ion-content(style='top:70px' delegate-handle='searchScroll')
+        div.row(ng-if='vm.init_show')
             div.col-33
                 div
                     i.icon.ion-wineglass
@@ -22,89 +24,44 @@ div.search(hide-tabs='true')
                     i.icon.ion-ios-personadd
                     p 酒友
 
-
-        div.result
-            nav-tip-bar(title='相关的酒吧')
-            div.list
-                a.item.item-avatar
-                    img(ng-src='{{vm.barAvatar}}')
-                    h2 本色酒吧
-                    p 广州市天河区兴盛路巴拉巴拉...
+        nodata(ng-if='(!vm.resultBars.length && !vm.resultUsers.length && !vm.resultParties.length) && !vm.init_show')
+        div.result(ng-if='vm.resultBars && vm.resultBars.length>0')
+            nav-tip-bar(title='{{::vm.form.word}}相关的酒吧')
+            div.list(ng-href='')
+                a.item.item-avatar(ng-repeat='item in vm.resultBars track by $index' ng-href='/barDetail/{{item.id}}')
+                    img(ng-src='{{vm.imgHost + item.cover}}')
+                    h2(ng-bind='item.name')
+                    p {{item.address}}
                     span.item-note
                        i.icon.ion-location
-                       em 2.2km
 
-                a.item.item-avatar
-                    img(ng-src='{{vm.barAvatar}}')
-                    h2 本色酒吧
-                    p 广州市天河区兴盛路巴拉巴拉...
-                    span.item-note
-                        i.icon.ion-location
-                        em 2.2km
-            div.tip
-                span 还有25间酒吧,查看
-                i.icon.ion-ios-arrow-right
 
+        div.result(ng-if='vm.resultUsers && vm.resultUsers.length>0')
             nav-tip-bar(title='相关的蒲友')
             div.list
-                a.item.item-avatar
-                    img(ng-src='{{vm.userAvatar}}')
-                    h2 大飞
-                    p 寂寞求约...
-            div.tip
-                span 还有25个蒲友,查看
-                i.icon.ion-ios-arrow-right
+                a.item.item-avatar(ng-repeat='item in vm.resultUsers track by $index' ng-href='/member_view/{{item.id}}')
+                    img(ng-src='{{vm.headHost + item.headIcon}}')
+                    h2 {{item.nickname}}
+                    p {{item.sign || "暂无签名"}}
 
+
+        div.result(ng-if='vm.resultParties && vm.resultParties.length>0')
             nav-tip-bar(title='相关的酒局')
             ul.group-list
-                li(ng-click='vm.goGroupDetail()')
+                li(ng-click='vm.goGroupDetail()' ng-repeat='item in vm.resultParties track by $index')
                     div.group
                         div.pub-user
                             div.avatar-section
                                 img(ng-src='{{vm.barAvatarDemo}}')
                                 p.name 大彬大大彬
                             div.group-info
-                                p 本色帅哥美女局美女局...
+                                p {{item.subject}}
                                 div.type
-                                    span <i class='icon ion-person-stalker'></i> 3/6
-                                    span  AA
+                                    span <i class='icon ion-person-stalker'></i> {{parseInt(item.girlCount)+parseInt(item.boyCount)}}/6
+                                    span  {{item.type}}
                                 div.type
-                                    span <i class='icon ion-clock'></i> 还剩8小时
+                                    span <i class='icon ion-clock'></i> {{item.startTime | date:'MM月dd日 HH:mm'}}
                                     span <i class='icon ion-location'></i> 3km
                         div.status-bar
-                            span 状态:正在组居中
-                            button.find-detail 查看酒局
-                li(ng-click='vm.goGroupDetail()')
-                    div.group
-                        div.pub-user
-                            div.avatar-section
-                                img(ng-src='{{vm.barAvatarDemo}}')
-                                p.name 大彬大大彬
-                            div.group-info
-                                p 本色帅哥美女局美女局...
-                                div.type
-                                    span <i class='icon ion-person-stalker'></i> 3/6
-                                    span  AA
-                                div.type
-                                    span <i class='icon ion-clock'></i> 还剩8小时
-                                    span <i class='icon ion-location'></i> 3km
-                        div.status-bar
-                            span 状态:正在组居中
-                            button.find-detail 查看酒局
-                li(ng-click='vm.goGroupDetail()')
-                    div.group
-                        div.pub-user
-                            div.avatar-section
-                                img(ng-src='{{vm.barAvatarDemo}}')
-                                p.name 大彬大大彬
-                            div.group-info
-                                p 本色帅哥美女局美女局...
-                                div.type
-                                    span <i class='icon ion-person-stalker'></i> 3/6
-                                    span  AA
-                                div.type
-                                    span <i class='icon ion-clock'></i> 还剩8小时
-                                    span <i class='icon ion-location'></i> 3km
-                        div.status-bar
-                            span 状态:正在组居中
-                            button.find-detail 查看酒局
+                            span 状态:{{item.step}}
+                            a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局

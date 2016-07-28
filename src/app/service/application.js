@@ -25,12 +25,8 @@ export default function ( resourcePool, $q) {
         },
 
         'getMyCity': function () {
-            var st = JSON.parse(window.localStorage.getItem('city'));
-            if (st) {
-                return st[0]['cityName'];
-            } else {
-                return '广州'
-            }
+            var st = window.localStorage.getItem('city');
+            return st || '广州'
         },
         /**
          *
@@ -50,29 +46,27 @@ export default function ( resourcePool, $q) {
         },
         'im': {
             getSocket: function () {
-                let socket;
-                if (window.io) {
-                    socket = window.io.connect("http://h5.pubar.me:3000");
-                } else {
-                    let ioScript = document.createElement('script');
-                    ioScript.src = 'http://cdn.bootcss.com/socket.io/1.4.6/socket.io.js';
-                    document.documentElement.appendChild(ioScript);
-                    socket = window.io.connect("http://h5.pubar.me:3000");
-                }
+                let socket = io.connect("http://h5.pubar.me:3000");
                 //注册自己的socket
-
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-
-
                 socket.emit('new user', userInfo.id);
                 return socket;
             },
             open: function () {
+                let defer = $q.defer();
                 var socket = this.getSocket();
+                console.log(socket);
+                socket.on('sendSid',result =>{
+                    defer.resolve(result);
+                });
+                return defer.promise;
+            },
+            loadMsg:function(){
 
             },
 
-            send: function (to, content, successCallback, failedCallback) {
+            send: function (to, content) {
+                let defer = $q.defer();
                 let socket = this.getSocket();
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
                 var params = {
@@ -82,12 +76,13 @@ export default function ( resourcePool, $q) {
                     token: md5(to + userInfo.id + 'usertoken')
                 };
                 socket.emit('chat', params, res => {
-                    if (res == 1 || res == 2) {
-                        if (successCallback && typeof successCallback === 'function') successCallback();
+                    if (res == 1 || res == 0) {
+                        defer.resolve(res);
                     } else {
-                        if (failedCallback && typeof failedCallback === 'function') failedCallback();
+                        defer.reject(res);
                     }
-                })
+                });
+                return defer.promise;
             },
 
             getChatUsers: function () {

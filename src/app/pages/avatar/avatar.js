@@ -50,7 +50,7 @@ class AvatarController {
         let t = this;
         var http = t.http;
 
-        var userInfo = JSON.parse(window.localStorage.getItem('userInfo'))[0];
+        var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
         console.log(userInfo);
         var form = new FormData();
         form.append('uploadFile',document.getElementById('uploadFile').files[0]);

@@ -13,8 +13,7 @@ export default angular.module('chatList',[ionic])
                 template: tpl(),
                 resolve:{
                     getChatList:function(resourcePool,application){
-                        return resourcePool.getMsgList.request({
-                            userid:application.userId
+                        return resourcePool.getMsgChatList.request({
                         })
                     }
                 }
@@ -29,7 +28,7 @@ class ChatListController {
         this.popup = $ionicPopup;
         this.chatList = getChatList.data.info;
         this.state = $state;
-        this.headHost = application.imgHost;
+        this.headHost = application.headHost;
     }
     deleteChat(){
         let t = this;

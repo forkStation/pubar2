@@ -1,24 +1,11 @@
-div.friend.myGroup
-    div.row
-        div.col-50(ng-click='vm.goSlide(0)' class="menu-tab {{vm.slideIndex==0?'on':''}}") 关注
-        div.col-50(ng-click='vm.goSlide(1)' class="menu-tab {{vm.slideIndex==1?'on':''}}") 粉丝
-    ion-content.has-header
-        ion-slide-box(show-pager='false' active-slide='vm.slideIndex')
-            ion-slide
-                nodata(ng-if='vm.getFollowList.length==0 || !vm.getFollowList')
-                div.list(ng-if='vm.getFollowList')
-                    a.item.item-avatar(ng-repeat='item in vm.getFollowList track by $index')
-                        img(ng-src='{{vm.headHost + item.headIcon}}')
-                        sex(type='{{item.sex}}')
-                        h2(ng-bind='item.nickname')
-            ion-slide
-                div.list
-                    a.item.item-avatar
-                        img(ng-src='{{vm.chatFansImg}}')
-                        h2 昂电饭锅
-                    a.item.item-avatar
-                        img(ng-src='{{vm.chatGroupImg}}')
-                        h2 俺媳妇
-                    a.item.item-avatar
-                        img(ng-src='{{vm.chatFansImg}}')
-                        h2 爱国心
+div.friend.myGroup(hide-tabs='true')
+    div#search-bar
+        div.item-input-inset
+            label.item-input-wrapper
+                i.icon.ion-search.placeholder-icon
+                input(type="search" placeholder="搜索" name="" ng-model="searchTxt" autocorrect="off")
+    ion-content(style='top:55px')
+        div.list
+            a.item.item-avatar(ng-repeat='item in vm.list  | filter:searchTxt' ng-href='/member_view/{{item.id}}')
+                img(ng-src='{{vm.headHost+item.headIcon}}')
+                h2(ng-bind='item.nickname')

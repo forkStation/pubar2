@@ -40,6 +40,17 @@ class MyGroupController {
         this.getMyJoinParty = getMyJoinParty.data.info;
         this.imgHost = application.imgHost;
         this.headHost = application.headHost;
+        this.windowHeight = document.documentElement.clientHeight - document.getElementById('group-tabs').clientHeight;
+        let _this = this;
+        for(var i = 0;i<_this.getMyJoinParty.length;i++){
+            if(_this.getMyJoinParty[i]['isaduit']==1){
+                _this.getMyJoinParty[i]['isaduitDetail'] = '待审核'
+            }
+            if(_this.getMyJoinParty[i]['ispay']==1){
+                _this.getMyJoinParty[i]['ispayDetail'] = '待付款'
+            }
+        }
+        console.log(_this.getMyJoinParty);
 
     }
     goGroupDetail(id){

@@ -46,6 +46,8 @@ export default function(resource){
         'getMyCreateParty':resource.party('my_add_party'),
         'getMyJoinParty':resource.party('my_join_party'),
         'joinParty':resource.party('join_party'),
+        'agreeUserJoin':resource.party('pass_party'),
+        'rejectUserJoin':resource.party('refuse_party'),
         'applyParty':resource.party('commit_party'),
         'agreeParty':resource.party('consent_party'),
         'rejectParty':resource.party('reject_party'),
@@ -62,6 +64,7 @@ export default function(resource){
         'getBlackFriend':resource.friend('black_friend'),
         'receiveFreind':resource.friend('add_friend'),
         'getFollowList':resource.friend('friend_list'),
+        'getFansList':resource.friend('fans_list'),
 
         //user
         'getUserInfo':resource.user('user_info'),
@@ -74,6 +77,7 @@ export default function(resource){
 
         //msgChat
         'getMsgRecord':resource.msgchat('record'),
+        'getMsgChatList':resource.msgchat('chater'),
         //wallet
         'getWalletInfo':resource.wallet('wallet_info'),
         'getWalletList':resource.wallet('wallet_list'),
@@ -97,6 +101,7 @@ export default function(resource){
         'getTokenUser':resource.getToken('out_token'),
 
         //
-        'searchUser':resource.search('find_friend')
+        'searchUser':resource.search('find_friend'),
+        'searchAll':resource.search('find_something')
     }
 }

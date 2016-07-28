@@ -53,6 +53,7 @@ class GroupDetailController {
         this.detail = detail.data.info;
         this.imgHost = application.imgHost;
         this.headHost = application.headHost;
+        this.application = application;
 
         let xhr = resourcePool.getBarInfo.request({
             barid:_this.detail.party.barID
@@ -108,6 +109,7 @@ class GroupDetailController {
     joinParty(id){
         let t = this;
         var barid = t.detail.party.barID;
+        var fid = t.detail.user.id;
         t.popup.show({
             template:'确定加入该酒局吗?',
             title:'提示信息',
@@ -119,10 +121,12 @@ class GroupDetailController {
                         partyid:id
                     }).then(res=>{
                         if(res.data.status ==1 ){
+                            t.application.sendMsg(fid,2,id);
                             t.loading.show({
                                 template:res.data.info,
                                 duration:1000
-                            })
+                            });
+
                         }else{
                             t.loading.show({
                                 template:res.data.info,

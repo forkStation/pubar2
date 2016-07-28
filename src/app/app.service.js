@@ -7,9 +7,11 @@
 import { angular,ionic } from "library"
 import resource from './service/resource'
 import resourcePool from  './service/resourcePool'
+import socket from './app.socket'
 import app from './service/application'
 
 export default angular.module('app.service',['ionic'])
     .service('resource',resource)
     .factory('resourcePool',resourcePool)
     .factory('application',app)
+    .factory('socket',socket)

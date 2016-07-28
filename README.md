@@ -7,11 +7,8 @@
 
 ### 第二步:全局安装工具
 
-    npm install gulp -g
-    npm install webpack -g
     npm install cnpm  -g //淘宝镜像环境
-    npm install bower -g
-    npm install webpack gulp webpack-dev-server -g
+
 
 ### 第三步:添加es6的配置文件
     在项目根目录新建文件.babelrc
@@ -28,7 +25,7 @@
     
     
     --tips  
-    --当执行这两个命令的时候会在你的根目录下新建两个文件夹node_modules和bower_component
+    --当执行这两个命令的时候会在你的根目录下新建两个文件夹node_modules和bower_components
     --此时编辑器会在这两个文件夹里建立索引，非常消耗电脑性能，可能遇到卡死情况
     --解决办法：
     --使用IDEA/webstorm编辑器，手动在根目录新建一个node_modules文件夹，右键这个文件夹-->Mark directory as --> Exclude

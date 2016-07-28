@@ -14,17 +14,6 @@ export default angular.module('index',[ionic])
                 template: tpl(),
                 resolve: {
 
-                    barList:function(resourcePool,application){
-
-                        let t = this;
-
-
-
-                        return resourcePool.getBarList.request({
-                            city:application.getMyCity(),
-                            userid:application.userId
-                        })
-                    },
                     partyList:function(resourcePool,application){
                         return resourcePool.getPartyList.request({
                             city:application.getMyCity()
@@ -35,30 +24,19 @@ export default angular.module('index',[ionic])
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,$state,barList,application,partyList,resourcePool,$ionicLoading){
+    constructor($scope,$ionicSlideBoxDelegate,$state,application,partyList,resourcePool,$ionicLoading){
         "ngInject"
         this.name = 'index';
         this.state = $state;
         this.slideIndex = 0;
+        this.windowHeight = document.documentElement.clientHeight - document.getElementById('header-menu').clientHeight;
+        this.scope = $scope;
         let t = this;
-        // application.getLocation(function(data){
-        //     resourcePool.getBarList.request({
-        //         city:application.getMyCity(),
-        //         userid:application.userId,
-        //         longitude:data.position.lng,
-        //         latitude:data.position.lat
-        //     }).then(res=>{
-        //         t.bars = res.info;
-        //     })
-        // });
-
-
-
-        this.bars = barList.data.info;
-
+        this.barPages = 1;
+        this.barLoadMore = true;
+        this.partyPages = 1;
         this.ionicSlide = $ionicSlideBoxDelegate;
         this.cityName = application.getMyCity();
-
         this.imgHost = application.imgHost;
         this.partyList = partyList.data.info;
         this.headHost = application.headHost;
@@ -66,12 +44,32 @@ class IndexController {
         this.application = application;
         this.loading = $ionicLoading;
         this.sortKey = 'sort_order';
+        this.bars = [];
         this.sortHeight = 0;
     }
     goSlide = function (index){
         this.ionicSlide.slide(index);
         this.slideIndex = index;
     };
+    loadMoreBars(){
+        let _this = this;
+        let resourcePool = _this.resource;
+        let $scope = _this.scope;
+        let application = _this.application;
+        resourcePool.getBarList.request({
+            city:application.getMyCity(),
+            page:_this.barPages
+        }).then(res =>{
+            _this.bars = _this.bars.concat(res.data.info || []);
+            console.log(_this.bars);
+            _this.barPages = _this.barPages + 1;
+            if(_this.barPages >= ~~res.data.pageCount){
+                _this.barLoadMore = false;
+            }
+        });
+
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
     goGroupDetail(id){
         let t = this;
         t.state.go('groupDetail',{id:id});

@@ -25,7 +25,7 @@ div.productList(hide-tabs='true')
                                 .product-name {{item.name}}
                                 .product-detail {{item.details}}
                                 .price {{item.price | currency : '￥'}}
-                                number-pick(number='item.num || 0'  id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
+                                number-pick(data-attr='{{item.num}}' number='item.num || 0'  id='item.id' name='item.name' price='item.price' barid='vm.barInfo.id' )
 
     .bar.bar-footer(ng-if='vm.total!=0')
         cart(number="vm.total" barid='vm.barInfo.id' )

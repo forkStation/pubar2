@@ -51,8 +51,8 @@ class CreateController {
         ];
         t.type=[
             {id:0,text:'本大爷请客'},
-            {id:1,text:'AA'},
-            {id:2,text:'男A女免'}
+            {id:3,text:'AA'},
+            {id:1,text:'男A女免'}
         ];
         t.audit = [
             {id:0,text:'无需审核'},

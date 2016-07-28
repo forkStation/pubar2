@@ -1,43 +1,52 @@
-div.myGroup
-    div.row
-        div.col-50(ng-click='vm.goSlide(0)' class="menu-tab {{vm.slideIndex==0?'on':''}}") 发起的
-        div.col-50(ng-click='vm.goSlide(1)' class="menu-tab {{vm.slideIndex==1?'on':''}}") 参加的
+div.myGroup(hide-tabs='true')
+    ion-content
+        div.row(id='group-tabs')
+            div.col-50(ng-click='vm.goSlide(0)' class="menu-tab {{vm.slideIndex==0?'on':''}}") 发起的
+            div.col-50(ng-click='vm.goSlide(1)' class="menu-tab {{vm.slideIndex==1?'on':''}}") 参加的
 
-    ion-slide-box(show-pager='false' active-slide='vm.slideIndex')
-        ion-slide
-            nodata(ng-if='!vm.getMyCreateParty || vm.getMyCreateParty.length==0')
-            ul.group-list
-                li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyCreateParty track by $index')
-                    div.group
-                        div.pub-user
-                            div.avatar-section
-                                img(ng-src='{{vm.headHost + item.user.headIcon}}')
-                                p.name(ng-bind='item.user.nickname')
-                            div.group-info
-                                p(ng-bind='item.subject')
-                                div.type
-                                    span <i class='icon ion-person-stalker'></i> {{item.userCount}}
-                                    span {{item.money | currency : '￥'}}
-                                div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
-                        div.status-bar
-                            span 状态:{{item.step}}
-                            button.find-detail 查看酒局
-        ion-slide
-            nodata(ng-if='!vm.getMyJoinParty || vm.getMyJoinParty.length==0')
-            ul.group-list
-                li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyJoinParty track by $index')
-                    div.group
-                        div.pub-user
-                            div.avatar-section
-                                img(ng-src='{{vm.headHost + item.user.headIcon}}')
-                                p.name(ng-bind='item.user.nickname')
-                            div.group-info
-                                p(ng-bind='item.subject')
-                                div.type
-                                    span <i class='icon ion-person-stalker'></i> {{item.userCount}}
-                                    span {{item.money | currency : '￥'}}
-                                div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
-                        div.status-bar
-                            span 状态:{{item.step}}
-                            button.find-detail 查看酒局
+        ion-slide-box(show-pager='false' active-slide='vm.slideIndex')
+            ion-slide(style='height:{{vm.windowHeight}}px')
+                ion-content
+                    nodata(ng-if='!vm.getMyCreateParty || vm.getMyCreateParty.length==0')
+                    ul.group-list
+                        li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyCreateParty track by $index')
+                            div.group
+                                div.pub-user
+                                    div.avatar-section
+                                        img(ng-src='{{vm.headHost + item.headIcon}}')
+                                        p.name(ng-bind='item.nickname')
+                                    div.group-info
+                                        p(ng-bind='item.subject')
+                                        div.type
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span {{item.money | currency : '￥'}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
+                                div.status-bar
+                                    span 状态:{{item.step}}
+                                    button.find-detail 查看酒局
+            ion-slide(style='height:{{vm.windowHeight}}px')
+                ion-content
+                    nodata(ng-if='!vm.getMyJoinParty || vm.getMyJoinParty.length==0')
+                    ul.group-list
+                        li( ng-repeat='item in vm.getMyJoinParty track by $index')
+                            div.group
+                                div.pub-user
+                                    div.avatar-section
+                                        img(ng-src='{{vm.headHost + item.headIcon}}')
+                                        p.name(ng-bind='item.nickname')
+                                    div.group-info
+                                        p(ng-bind='item.subject')
+                                        div.type
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span {{item.money | currency : '￥'}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日 HH:mm'}}
+                                div.status-bar
+                                    //已付款
+                                    span(ng-if='item.ispay == 2 && item.isaduit==2') 状态:{{item.step}}
+                                    //  待审核
+                                    span(ng-if='item.ispay == 1 && item.isaduit==1') 状态:{{item.isaduitDetail}}
+                                    // 待付款
+                                    span(ng-if='item.ispay == 1 && item.isaduit==2') 状态:{{item.ispayDetail}}
+                                    a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局
+                                    a.find-detail(ng-if='item.ispay == 1 && item.isaduit==2' ng-href='/createOrder/{{0}}/1?partyid={{item.id}}') 立即支付
 
