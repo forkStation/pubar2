@@ -131,7 +131,7 @@ class CreateOrderController {
                 money:t.stateParams.money
             }).then(res=>{
                 if(res.data.status ===1){
-                    var appInfo = JSON.parse(res.data.info);
+                    var appInfo = res.data.info;
                     t.application.wechatPay(appInfo,()=>{
                         t.application.info('提示','充值成功',function(){
                             window.history.go(-1);
@@ -152,7 +152,7 @@ class CreateOrderController {
                 id:t.payId
             }).then(res=>{
                 if(res.data.status ==1){
-                    var appInfo = JSON.parse(res.data.info);
+                    var appInfo = res.data.info;
                     t.application.wechatPay(appInfo,()=>{
                         t.application.info('温馨提示','支付成功',function(){
                             window.location.href = '/successInfo/'+t.stateParams.orderId+'/'+t.stateParams.genre
