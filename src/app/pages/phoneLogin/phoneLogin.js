@@ -54,7 +54,7 @@ class PhoneLoginController {
     }
     getCode(){
 
-        let t = this,sec = 4;
+        let t = this,sec = 60;
         if(!t.validPhone()){
             t.loading.show({
                 template:'请输入正确的手机号码',

@@ -62,12 +62,16 @@ class ChatController {
 
 
         socket.on('sendSid',function(res){
-            _this.fUserInfo.content = res.mess;
-            _this.fUserInfo.createtime = new Date().getTime()/1000;
-            _this.chatsMsg.push(_this.fUserInfo);
+            _this.chatsMsg.push({
+                content:res.mess,
+                createtime:new Date().getTime()/1000,
+                sender:_this.fUserInfo.id,
+                nickname:_this.fUserInfo.nickname,
+                avatar:_this.fUserInfo.headIcon
+            });
             _this.scrollHandle.resize();
             _this.scrollHandle.scrollBottom(true);
-            document.getElementById('textComment').value='';
+
         });
 
         /**
@@ -93,11 +97,14 @@ class ChatController {
         let $stateParams = _this.stateParams;
         let application = this.application;
         application.im.send($stateParams.id,_this.msgInfo.content).then(res=>{
-            _this.msgInfo.nickname = _this.userInfo.nickname;
-            _this.msgInfo.sender = _this.userInfo.id;
-            _this.msgInfo.avatar = _this.userInfo.headIcon;
-            _this.msgInfo.createtime = new Date().getTime();
-            _this.chatsMsg.push(_this.msgInfo);
+
+            _this.chatsMsg.push({
+                sender:_this.userInfo.id,
+                nickname:_this.userInfo.nickname,
+                content:document.getElementById('textComment').value,
+                avatar:_this.userInfo.headIcon,
+                createtime:new Date().getTime()/1000
+            });
             _this.scrollHandle.resize();
             _this.scrollHandle.scrollBottom(true);
             document.getElementById('textComment').value='';

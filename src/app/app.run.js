@@ -2,7 +2,7 @@ import {angular,ionic} from 'library'
 
 export default angular.module('app.run',[])
 
-    .run(function(resourcePool,$location){
+    .run(function(resourcePool,$location,$rootScope){
             'ngInject'
 
 
@@ -39,6 +39,12 @@ export default angular.module('app.run',[])
                 //在微信中打开
                 window.location.replace('http://api.pubar.me/index.php/weixin/wx_login');
             }
+        }else{
+            resourcePool.getMsgCount.request({
+
+            }).then(res=>{
+                $rootScope.msgCount = ~~res.data.info[0].count;
+            })
         }
 
 
@@ -57,8 +63,6 @@ export default angular.module('app.run',[])
                 return returnValue;
             }
         }
-
-
 
 
     })

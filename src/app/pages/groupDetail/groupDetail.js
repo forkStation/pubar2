@@ -34,7 +34,7 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users) {
+    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users,$scope) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -42,6 +42,8 @@ class GroupDetailController {
         this.loading = $ionicLoading;
         this.resourcePool = resourcePool;
         this.getUsers = users.data.info;
+        console.log(this.getUsers);
+        this.scope = $scope;
         var _this = this;
         _this.flag = false;
         this.productItem = imgResource.productItem;
@@ -51,6 +53,7 @@ class GroupDetailController {
             _this.flag = true;
         };
         this.detail = detail.data.info;
+
         this.imgHost = application.imgHost;
         this.headHost = application.headHost;
         this.application = application;
@@ -106,7 +109,7 @@ class GroupDetailController {
     goChat(){
         this.state.go('chat')
     }
-    joinParty(id){
+    joinParty(item){
         let t = this;
         var barid = t.detail.party.barID;
         var fid = t.detail.user.id;
@@ -118,15 +121,36 @@ class GroupDetailController {
                 onTap:function(){
                     t.resourcePool.joinParty.request({
                         barid:barid,
-                        partyid:id
+                        partyid:item.id
                     }).then(res=>{
                         if(res.data.status ==1 ){
-                            t.application.sendMsg(fid,2,id);
-                            t.loading.show({
-                                template:res.data.info,
-                                duration:1000
-                            });
 
+
+                            /**
+                             * 直接参加成功,不需要审核也不需要付款
+                             */
+                            if(res.data.info.topay == 0){
+                                t.application.sendMsg(fid,10,item.id);
+                                t.application.info('温馨提示','您已成功加入该酒局,请准时参加哦');
+
+
+                            }
+
+                            /**
+                             * 如果不需要审核,并且是需要支付的
+                             */
+                            if(res.data.info.topay == 1){
+                                location.replace('/createOrder/0/1?partyid='+t.detail.party.id)
+                            }
+
+
+                            /**
+                             *  需要创建者审核的
+                             */
+                            if(res.data.info.topay == 2){
+                               t.application.sendMsg(fid,2,item.id);
+                                t.application.info('温馨提示','你已申请加入对方酒局,请等待对方审核');
+                           }
                         }else{
                             t.loading.show({
                                 template:res.data.info,

@@ -1,27 +1,27 @@
 div.barDetail(hide-tabs='true')
 
-    ion-content(delegate-handle="mainScroll")
-        div.store(style='border:none')
-            share.corner
-            ion-slide-box
-                ion-slide(ng-repeat = 'item in vm.imagesArray track by $index')
-                    img(ng-src='{{vm.imgHost + item}}')
+    div.store(style='border:none' id='store')
+        share.corner
+        ion-slide-box
+            ion-slide(ng-repeat = 'item in vm.imagesArray track by $index')
+                img(ng-src='{{vm.imgHost + item}}')
 
-            div.bar-info
-                div.bar-name(ng-bind='vm.barInfo.name')
-                div.bar-position(ng-bind='vm.barInfo.address')
-                    span <i class='icon ion-location'></i> 4.32km
-
-
-        div.sort-section(style='margin-top:-1px')
-            div.sort-item(ng-click='vm.goSlide(0)' class="sort-item {{vm.slideIndex == 0?'on':''}}") 酒局
-            div.sort-item(ng-click='vm.goSlide(1)' class="sort-item {{vm.slideIndex == 1?'on':''}}") 蒲友
-            div.sort-item(ng-click='vm.goSlide(2)' class="sort-item {{vm.slideIndex == 2?'on':''}}") 酒吧资料
+        div.bar-info
+            div.bar-name(ng-bind='vm.barInfo.name')
+            div.bar-position(ng-bind='vm.barInfo.address')
+                span <i class='icon ion-location'></i> 4.32km
 
 
-        div.list
-            ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
-                ion-slide
+    div.sort-section(style='margin-top:-1px')
+        div.sort-item(ng-click='vm.goSlide(0)' class="sort-item {{vm.slideIndex == 0?'on':''}}") 酒局
+        div.sort-item(ng-click='vm.goSlide(1)' class="sort-item {{vm.slideIndex == 1?'on':''}}") 蒲友
+        div.sort-item(ng-click='vm.goSlide(2)' class="sort-item {{vm.slideIndex == 2?'on':''}}") 酒吧资料
+
+
+    div.list
+        ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
+            ion-slide(style='height:{{vm.windowHeight}}px')
+                ion-content.party-list
                     nodata(ng-if='vm.groupList.length==0')
                     ul.group-list
                         li(ng-repeat='item in vm.groupList track by $index')
@@ -32,15 +32,16 @@ div.barDetail(hide-tabs='true')
                                             img(ng-src='{{vm.headHost+item.user.headIcon}}')
                                             p.name(ng-bind='item.user.nickname')
                                         div.group-info
-                                            p(ng-bind='item.subject')
+                                            p(ng-bind='item.subject || "暂无标题"')
                                             div.type
-                                                span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                                span <i class='icon ion-person-stalker'></i> {{item.amount}} / {{item.partyCount}}
                                                 span  AA
                                             div.type <i class='icon ion-clock'></i> {{item.startTime*1000 | date:'MM-dd HH:mm'}}
                                     div.status-bar
                                         span 状态:{{item.step}}
                                         button.find-detail 查看酒局
-                ion-slide
+            ion-slide(style='height:{{vm.windowHeight}}px')
+                ion-content
                     nodata(ng-if='vm.friends.length==0')
                     ul.puf-list
                         li(ng-repeat = 'item in vm.friends track by $index')
@@ -50,13 +51,14 @@ div.barDetail(hide-tabs='true')
                             p.name(ng-bind='item.nickname')
                             p.sign(ng-bind='item.sign')
                             a.apply(ng-href='/member_view/{{item.id}}?barid={{vm.barInfo.id}}') 请Ta喝
-                ion-slide
+            ion-slide(style='height:{{vm.windowHeight}}px')
+                ion-content
                     div.bar-information
                         h3.bar-name(ng-bind='vm.barInfo.name')
                         p.desc(ng-bind='vm.barInfo.details')
                         a.button.button-block.button-active(ng-href='/productList/{{vm.barInfo.id}}') 查看酒单
                         map.map(longitude='{{vm.barInfo.longitude}}' latitude='{{vm.barInfo.latitude}}')
 
-    div.active-section
-        button.button.button-block.button-active(ng-click='vm.createParty(vm.barInfo.id)') 我要组局
+div.active-section
+    button.button.button-block.button-active(ng-click='vm.createParty(vm.barInfo.id)') 我要组局
 

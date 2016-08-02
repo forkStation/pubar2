@@ -5,17 +5,6 @@ div.recharge(hide-tabs='true')
             div.col-66
                 input.recharge(placeholder='请输入充值金额' type='number' ng-model='vm.form.money')
 
-    nav-tip-bar(title='选择支付方式')
-    div.list.paylist
-        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(0)')
-            i.icon-alipay.ico
-            span 支付宝
-            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==0}")
-
-        a.item.item-icon-left.item-icon-right(ng-click='vm.changePay(1)')
-            i.icon-wechat.ico
-            span 微信
-            i.icon-select.ico(ng-class="{'on ion-ios-checkmark-empty':vm.payWay==1}")
 
     div.card
-        button.button.button-active.button-block(ng-click='vm.openModal()') 确认提现
+        button.button.button-active.button-block(ng-click='vm.confirm()') 确认充值

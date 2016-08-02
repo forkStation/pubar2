@@ -4,10 +4,8 @@
 
 import {angular, ionic} from 'library'
 import md5 from 'md5'
-export default function ( resourcePool, $q) {
+export default function ( resourcePool, $q,$ionicPopup,$location) {
     'ngInject'
-
-
     return {
         'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
         'headHost': 'http://api.pubar.me/Uploads/png/',
@@ -36,7 +34,7 @@ export default function ( resourcePool, $q) {
          * @param type 1:好友关注 2：酒局申请 3：同意加入酒吧，4：拒绝加入酒局 5：酒吧已接单 6：酒吧不接单，7：酒局邀请提醒  8：酒局过期通知  9：拒绝邀请酒局
          */
         'sendMsg': function (reid, type,partyid, action, content) {
-            return resourcePool.sendMsg.request({
+            resourcePool.sendMsg.request({
                 reid: reid,
                 type: type,
                 partyid:partyid,
@@ -93,28 +91,40 @@ export default function ( resourcePool, $q) {
                 })
             }
         },
+        'wxConfig':function(url){
+            resourcePool.wxConfig.request({
+                url:url
+            }).then(res=>{
+                var appInfo = JSON.parse(res.data.info);
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: appInfo['appId'], // 必填，公众号的唯一标识
+                    timestamp:appInfo.timestamp.toString() , // 必填，生成签名的时间戳
+                    nonceStr: appInfo.nonceStr, // 必填，生成签名的随机串
+                    signature: appInfo.signType,// 必填，签名，见附录1
+                    jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+            })
+
+        },
         'wechatPay': function (appInfo, success, failed) {
-            WeixinJSBridge.invoke(
-                'getBrandWCPayRequest', {
-                    "appId": appInfo['appId'],
-                    "timeStamp": appInfo.timeStamp.toString(),
-                    "nonceStr": appInfo.nonceStr,
-                    "package": appInfo.package,
-                    "signType": appInfo.signType,
-                    "paySign": appInfo.paySign
+
+            wx.chooseWXPay({
+                "appId": appInfo['appId'],
+                "timeStamp": appInfo.timeStamp.toString(),
+                "nonceStr": appInfo.nonceStr,
+                "package": appInfo.package,
+                "signType": appInfo.signType,
+                "paySign": appInfo.paySign,
+                success: function (res) {
+                    // 支付成功后的回调函数
+                    if (success && typeof success == 'function') success(res);
                 },
-                function (res) {
-                    if (res.err_msg == "get_brand_wcpay_request:ok") {
-                        if (success && typeof success == 'function') success();
-                    }
-                    else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
-                        if (failed && typeof failed == 'function') failed();
-                    }
-                    else {
-                        if (failed && typeof failed == 'function') failed();
-                    }
+                fail:function(res){
+                    if (failed && typeof failed == 'function') failed(res.err_msg);
                 }
-            );
+            });
+
         },
         getAmap() {
             let defer = $q.defer();
@@ -156,6 +166,22 @@ export default function ( resourcePool, $q) {
                 });
                 return defer.promise;
             })
+        },
+        info:function(title,content,callback){
+            var alertPop = $ionicPopup.alert({
+                title: title,
+                template: content
+            });
+            alertPop.then(res=>{
+                if(callback && typeof callback==='function')callback(res)
+            })
+        },
+        platform:function(){
+            let ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger" ) {
+                return 'wechat'
+            }
         }
+
     }
 }

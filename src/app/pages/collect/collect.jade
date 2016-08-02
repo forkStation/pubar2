@@ -1,6 +1,7 @@
 div(hide-tabs='true')
     ion-content
         div.bar-list-stores
+            nodata(ng-if='!vm.collects || vm.collects.length==0')
             div.store( ng-repeat='item in vm.collects track by $index')
                 nodata(ng-if='vm.collects.length==0 || !vm.collects')
                 collect(ng-class='{"ion-ios-star":true}')

@@ -44,6 +44,7 @@ import messageMemberView from './messageMemberView/messageMemberView'
 import accountList from './accountList/accountList'
 import addAccount from './addAccount/addAccount'
 import inviteDetail from './inviteDetail/inviteDetail'
+import successInfo from './successInfo/successInfo'
 //@import
 
 export default angular.module('app.pages', [
@@ -88,5 +89,6 @@ export default angular.module('app.pages', [
     messageMemberView.name,
     accountList.name,
     addAccount.name,
-    inviteDetail.name//@register
+    inviteDetail.name,
+    successInfo.name//@register
 ]);

@@ -8,7 +8,7 @@ div.onme_detail.create.apply(hide-tabs='true')
                     img.avatar(ng-src='{{vm.headHost +vm.partyInfo.user.headIcon}}')
                 p.name(ng-bind='vm.partyInfo.user.nickname')
                 //p.msg 锅锅能让我参加么...
-                s-btn(text='勾搭她' ng-href='/member_view')
+                s-btn(text='勾搭她' ng-click='vm.chat(vm.partyInfo.user.id)')
         nav-tip-bar(title='{{vm.barInfo.name}}')
         .hoz-item
             span.l-content <i class='ion ion-android-bar'></i>  {{vm.partyInfo.party.subject || '暂无标题'}}

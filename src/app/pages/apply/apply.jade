@@ -9,7 +9,7 @@ div.apply.create(hide-tabs='true')
                     img.avatar(ng-src='{{vm.headHost + vm.userInfo.headIcon}}')
                 p.name(ng-bind='vm.userInfo.nickname')
                 p.msg {{vm.userInfo.nickname}} 申请加入你的酒局
-                s-btn(text='勾搭她' ng-href='/chat/{{vm.userInfo.id}}')
+                s-btn(text='勾搭她' ng-click='vm.chat(vm.userInfo.id)')
         nav-tip-bar(title='{{vm.barInfo.name}}')
         ul.group-list
             li
@@ -19,7 +19,7 @@ div.apply.create(hide-tabs='true')
                             img(ng-src='{{vm.headHost + vm.partyInfo.user.headIcon}}')
                             p.name {{vm.partyInfo.user.nickname}}
                         div.group-info
-                            p {{vm.partyInfo.subject}}
+                            p {{vm.partyInfo.party.subject}}
                             div.type(style='margin-bottom:.2rem')
                                 span <i class='icon ion-person-stalker'></i> {{vm.currentCount}}/{{vm.partyInfo.party.partyCount}}
                                 span <i class='icon ion-ios-pricetag-outline'></i> {{vm.partyInfo.party.type}}

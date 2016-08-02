@@ -16,7 +16,7 @@ export default angular.module('recharge',[ionic])
 
 
 class RechargeController {
-    constructor ($ionicModal,$ionicLoading,$ionicPopup,$scope,resourcePool,application) {
+    constructor ($ionicModal,$ionicLoading,$ionicPopup,$scope,resourcePool,application,$state) {
         "ngInject"
         this.name = 'recharge';
 
@@ -28,6 +28,7 @@ class RechargeController {
         this.passowrd = '';
         this.resourcePool = resourcePool;
         this.application = application;
+        this.state = $state;
         this.form = {
             money:''
         };
@@ -40,58 +41,20 @@ class RechargeController {
     changePay(type){
         this.payWay = type;
     }
-    openModal(){
-        let $loading = this.loading;
-        let $modal = this.ionicModal;
-        let $popup = this.popup;
-        let $scope = this.scope;
 
-        if(!/^\d+$/.test(this.form.money)){
+
+    confirm(){
+        let $loading = this.loading;
+        let t = this;
+        if(t.form.money){
+            this.state.go('createOrder',{money:t.form.money,orderid:0,genre:3})
+        }else{
             $loading.show({
                 template:'请输入正确的充值金额',
                 duration:1000
-            });
-            return false;
+            })
         }
-        $scope.modal = $modal.fromTemplate('<password on-hide="vm.hideModal()" password="password" ></password>',{
-            scope: $scope,
-            animation: 'slide-in-up'
-        });
-        $scope.modal.show();
 
-    }
-
-    hideModal(){
-        this.scope.modal.hide();
-    }
-    confirm(){
-        let resourcePool = this.resourcePool;
-        let form = this.form;
-        let $loading = this.loading;
-        let t = this;
-
-        resourcePool.recharge.request({
-            money:form.money
-        }).then(res=>{
-            if(res.data.status ===1){
-                var appInfo = JSON.parse(res.data.info);
-                t.application.wechatPay(appInfo,()=>{
-                    $loading.show({
-                        template:'充值成功',
-                        duration:1000
-                    });
-                    window.setTimeout(function(){
-                        window.history.go(-1);
-                    },1000)
-
-                },()=>{
-                    $loading.show({
-                        template:'充值失败或取消',
-                        duration:1000
-                    })
-                })
-            }
-        })
     }
 
 

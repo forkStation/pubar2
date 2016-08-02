@@ -11,20 +11,12 @@ export default angular.module('index',[ionic])
                 url: '/index',
                 controllerAs: 'vm',
                 controller: IndexController,
-                template: tpl(),
-                resolve: {
-
-                    partyList:function(resourcePool,application){
-                        return resourcePool.getPartyList.request({
-                            city:application.getMyCity()
-                        });
-                    }
-                }
+                template: tpl()
             })
     });
 
 class IndexController {
-    constructor($scope,$ionicSlideBoxDelegate,$state,application,partyList,resourcePool,$ionicLoading){
+    constructor($scope,$ionicSlideBoxDelegate,$state,application,resourcePool,$ionicLoading){
         "ngInject"
         this.name = 'index';
         this.state = $state;
@@ -33,25 +25,39 @@ class IndexController {
         this.scope = $scope;
         let t = this;
         this.barPages = 1;
-        this.barLoadMore = true;
         this.partyPages = 1;
+        this.barLoadMore = true;
+        this.partyLoadMore = true;
         this.ionicSlide = $ionicSlideBoxDelegate;
         this.cityName = application.getMyCity();
         this.imgHost = application.imgHost;
-        this.partyList = partyList.data.info;
         this.headHost = application.headHost;
         this.resource = resourcePool;
         this.application = application;
         this.loading = $ionicLoading;
         this.sortKey = 'sort_order';
         this.bars = [];
+        this.parties = [];
         this.sortHeight = 0;
+
+
+        /**
+         * 解决安卓初始化无法下拉加载的bug
+         */
+        this.loadMoreBars(true);
+        this.loadMoreParty(true);
+
     }
     goSlide = function (index){
         this.ionicSlide.slide(index);
         this.slideIndex = index;
     };
-    loadMoreBars(){
+    loadMoreBars(init){
+
+        this.initBars = init || false;
+        if(!this.initBars){
+            return false;
+        }
         let _this = this;
         let resourcePool = _this.resource;
         let $scope = _this.scope;
@@ -60,15 +66,42 @@ class IndexController {
             city:application.getMyCity(),
             page:_this.barPages
         }).then(res =>{
-            _this.bars = _this.bars.concat(res.data.info || []);
-            console.log(_this.bars);
-            _this.barPages = _this.barPages + 1;
             if(_this.barPages >= ~~res.data.pageCount){
                 _this.barLoadMore = false;
             }
+            _this.bars = _this.bars.concat(res.data.info || []);
+            console.log(_this.bars);
+            _this.barPages = _this.barPages + 1;
+
         });
 
         $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
+    loadMoreParty(init){
+        this.initParty = init || false;
+        if(!this.initParty){
+            return false;
+        }
+        let _this = this;
+        let resourcePool = _this.resource;
+        let application = _this.application;
+        resourcePool.getPartyList.request({
+            city:application.getMyCity(),
+            page:_this.partyPages,
+            size:10
+        }).then(res =>{
+            if(_this.partyPages >= ~~res.data.pageCount){
+                _this.partyLoadMore = false;
+            }
+            _this.parties = _this.parties.concat(res.data.info || []);
+            console.log(_this.parties);
+            for(var i = 0;i<_this.parties.length;i++){
+                _this.parties[i].amount = ~~_this.parties[i]['girlCount'] + ~~_this.parties[i]['boyCount'];
+            }
+
+            _this.partyPages = _this.partyPages + 1;
+
+        });
     }
     goGroupDetail(id){
         let t = this;
@@ -117,6 +150,7 @@ class IndexController {
         this.openSort = true;
         this.sortHeight = 2;
     }
+   
 }
 
 

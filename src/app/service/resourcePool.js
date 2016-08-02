@@ -28,6 +28,7 @@ export default function(resource){
         'getDrinkCate':resource.drink('get_drink_cate'),
         // meb
         'getSmsCode':resource.Meb('regsms'),
+        'validSmsCode':resource.wallet('wallet_sms'),
         'register':resource.Meb('reg'),
         'login':resource.Meb('login'),
         // order
@@ -54,6 +55,8 @@ export default function(resource){
         //weixin
         'wxLogin':resource.wx('wx_login'),
         'wxBind':resource.wx('bind'),
+        //wxconfig
+        'wxConfig':resource.wx('getJSSDK'),
 
         //friend
         'rejectFriend':resource.friend('un_friend'),
@@ -74,6 +77,7 @@ export default function(resource){
         'getMsgList':resource.msg('msg_list'),
         'sendMsg':resource.msg('msg_send'),
         'getMsgCount':resource.msg('msg_count'),
+        'updateMsg':resource.msg('msg_update'),
 
         //msgChat
         'getMsgRecord':resource.msgchat('record'),
@@ -99,6 +103,8 @@ export default function(resource){
 
         //根据授权信息返回的结果,取得关注人的微信资料
         'getTokenUser':resource.getToken('out_token'),
+
+
 
         //
         'searchUser':resource.search('find_friend'),

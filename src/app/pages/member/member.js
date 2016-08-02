@@ -36,7 +36,7 @@ class MemberController {
             this.userInfo = userInfo.data.info;
         }else{
             $ionicLoading.show({
-                template:'系统繁忙，请稍后再试',
+                template:res.data.info,
                 duration:2000
             })
         }

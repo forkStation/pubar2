@@ -41,12 +41,13 @@ export default angular.module('barDetail',[ionic])
 
 
 class BarDetailController {
-    constructor ($ionicSlideBoxDelegate,$state,detail,application,groupList,getBarFriendList,$ionicScrollDelegate) {
+    constructor ($ionicSlideBoxDelegate,$state,detail,application,groupList,getBarFriendList) {
         "ngInject"
         this.barAvatarDemo=imgResource.barAvatarDemo;
         this.name = 'barDetail';
         this.slideIndex = 0;
         this.state = $state;
+        this.windowHeight = document.documentElement.clientHeight - document.getElementById('store').clientHeight;
         this.goSlide = function(index){
             $ionicSlideBoxDelegate.$getByHandle('listSlide').slide(index);
         };
@@ -75,7 +76,12 @@ class BarDetailController {
         this.headHost = application.headHost;
         this.imgHost = application.imgHost;
         this.groupList = groupList.data.info;
+
         this.friends = getBarFriendList.data.info;
+        let _this = this;
+        for(var i = 0;i<_this.groupList.length;i++){
+            _this.groupList[i].amount = ~~_this.groupList[i]['girlCount'] + ~~_this.groupList[i]['boyCount'];
+        }
 
     }
     applyMe(){

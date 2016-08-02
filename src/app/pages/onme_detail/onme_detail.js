@@ -23,7 +23,7 @@ export default angular.module('onme_detail',[ionic])
 
 
 class Onme_detailController {
-    constructor (application,getPartyInfo,resourcePool,$stateParams,$ionicLoading) {
+    constructor (application,getPartyInfo,resourcePool,$stateParams,$ionicLoading,$state) {
         "ngInject"
         this.name = 'onme_detail';
         this.headHost = application.headHost;
@@ -32,6 +32,7 @@ class Onme_detailController {
         this.partyId = $stateParams.partyid;
         this.resourcePool = resourcePool;
         this.loading = $ionicLoading;
+        this.state = $state;
         let t = this;
         resourcePool.getBarInfo.request({
             barid:t.partyInfo.party.barID
@@ -47,14 +48,12 @@ class Onme_detailController {
             partyid:partyid
         }).then(res=>{
             if(res.data.status ==1){
-                t.loading.show({
-                    template:res.data.info,
-                    duration:1000
+
+                t.application.info('提示',res.data.info,function(){
+                    window.history.go(-1)
                 });
                 t.application.sendMsg(t.partyInfo.user.id,3,partyid,0);
-                setTimeout(function () {
-                    window.history.go(-1)
-                },1000)
+
             }else{
                 t.loading.show({
                     template:res.data.info,
@@ -70,14 +69,12 @@ class Onme_detailController {
             partyid:partyid
         }).then(res=>{
             if(res.data.status ==1){
-                t.loading.show({
-                    template:res.data.info,
-                    duration:1500
+
+                t.application.info('提示',res.data.info,function(){
+                    window.history.go(-1)
                 });
                 t.application.sendMsg(t.partyInfo.user.id,9,partyid,0);
-                setTimeout(function () {
-                    window.history.go(-1)
-                },1000)
+
             }else{
                 t.loading.show({
                     template:res.data.info,
@@ -85,5 +82,8 @@ class Onme_detailController {
                 })
             }
         })
+    }
+    chat(id){
+        this.state.go('chat',{id})
     }
 }

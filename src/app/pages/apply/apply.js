@@ -28,7 +28,7 @@ export default angular.module('apply',[ionic])
 
 
 class ApplyController {
-    constructor ($ionicActionSheet,getPartyInfo,getUserInfo,application,resourcePool,$ionicLoading,$stateParams) {
+    constructor ($ionicActionSheet,getPartyInfo,getUserInfo,application,resourcePool,$ionicLoading,$stateParams,$state) {
         "ngInject"
         this.name = 'apply';
         this.headHost = application.headHost;
@@ -42,30 +42,30 @@ class ApplyController {
         this.partyid = this.partyInfo.party.id;
         this.currentCount = ~~this.partyInfo.party.boyCount + ~~this.partyInfo.party.girlCount;
         this.fid = $stateParams.fid;
+        this.state = $state;
         resourcePool.getBarInfo.request({
             barid : t.partyInfo.party.barID
         }).then(res=>{
             if(res.data.status ==1){
                 t.barInfo = res.data.info;
             }
-        })
+        });
+        this.application = application;
     }
 
     resolve(){
         let _this = this;
         _this.resourcePool.agreeUserJoin.request({
             partyid:_this.partyid,
-            fid : _this.fid
+            fid :_this.fid
         }).then(res=>{
             if(res.data.status ==1) {
-                _this.loading.show({
-                    template:res.data.info,
-                    duration:1500
+           
+                _this.application.info('提示',res.data.info,function () {
+                    window.history.go(-1);
                 });
                 _this.application.sendMsg(_this.fid,3,_this.partyid);
-                window.setTimeout(function () {
-                    window.history.go(-1);
-                },1500)
+
             }else{
                 _this.loading.show({
                     template:res.data.info,
@@ -99,18 +99,24 @@ class ApplyController {
                     fid : _this.fid
                 }).then(res=>{
                     if(res.data.status ==1) {
-                        _this.loading.show({
-                            template:'已拒绝',
-                            duration:1500
+
+                        _this.application.info('提示',res.data.info,function(){
+                            window.history.go(-1);
                         });
                         _this.application.sendMsg(_this.fid,4,_this.partyid);
-                        window.setTimeout(function () {
-                            window.history.go(-1);
-                        },1500)
+
+                    }else{
+                        _this.loading.show({
+                            template:res.data.info,
+                            duration:1000
+                        })
                     }
                 });
                 return true;
             }
         });
+    }
+    chat(id){
+        this.state.go('chat',{id:id});
     }
 }

@@ -7,6 +7,9 @@
 
 ### 第二步:全局安装工具
 
+    npm install bower -g
+    npm install gulp
+
     npm install cnpm  -g //淘宝镜像环境
 
 

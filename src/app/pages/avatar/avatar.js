@@ -1,7 +1,6 @@
 import tpl from './avatar.jade'
 import './avatar.scss'
 import { angular, ionic } from 'library'
-import cropper from 'cropper'
 
 export default angular.module('avatar',[ionic])
     .config(function ($stateProvider) {

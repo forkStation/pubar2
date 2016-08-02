@@ -9,7 +9,7 @@ div.myGroup(hide-tabs='true')
                 ion-content
                     nodata(ng-if='!vm.getMyCreateParty || vm.getMyCreateParty.length==0')
                     ul.group-list
-                        li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.getMyCreateParty track by $index')
+                        li(ng-repeat='item in vm.getMyCreateParty track by $index')
                             div.group
                                 div.pub-user
                                     div.avatar-section
@@ -20,10 +20,10 @@ div.myGroup(hide-tabs='true')
                                         div.type
                                             span <i class='icon ion-person-stalker'></i> {{item.userCount}}
                                             span {{item.money | currency : '￥'}}
-                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日 HH:mm'}}
                                 div.status-bar
                                     span 状态:{{item.step}}
-                                    button.find-detail 查看酒局
+                                    a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局
             ion-slide(style='height:{{vm.windowHeight}}px')
                 ion-content
                     nodata(ng-if='!vm.getMyJoinParty || vm.getMyJoinParty.length==0')

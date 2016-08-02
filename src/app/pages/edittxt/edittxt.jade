@@ -1,4 +1,9 @@
 div.edittxt(hide-tabs='true')
     input.edit(placeholder='{{vm.tips}}' id='txtbox' ng-model='vm.form.content')
+    div.row(ng-if='vm.params.type=="bind"')
+        div.col
+            input.edit(placeholder='手机验证码'  ng-model='vm.form.code')
+        div.col
+            button.button.button-active.button-block(ng-click='vm.sendCode()' ng-class='{"button-disabled":!vm.sending}') {{vm.form.codeDesc}}
     div.tips(ng-bind='vm.resultTip')
     a.button.button-block.button-active(ng-click='vm.SaveInfo()') 保存

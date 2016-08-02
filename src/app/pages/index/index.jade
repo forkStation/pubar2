@@ -31,7 +31,7 @@ div.index
                                 div.bar-name(ng-bind='item.name')
                                 div.bar-position(ng-bind='item.address')
                                     span(ng-if='item.distance' ng-bind='item.distance')
-                    ion-infinite-scroll(on-infinite="vm.loadMoreBars()" ng-if='vm.barLoadMore' delegate-handle="barHandle")
+                    ion-infinite-scroll(on-infinite="vm.loadMoreBars()" delegate-handle="barHandle")
             ion-slide(style='height:{{vm.windowHeight}}px')
                 ion-content.has-footer(delegate-handle="mainScroll" )
                     //div.sort-section(style='margin-top:10px')
@@ -45,9 +45,9 @@ div.index
                     //    div.content-item.on  珠江北
                     //    div.content-item  淘金
                     //    div.content-item  更多...
-                    nodata(ng-if='vm.partyList.length==0 || !vm.partyList')
+                    nodata(ng-if='vm.parties.length==0 || !vm.parties')
                     ul.group-list
-                        li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.partyList')
+                        li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.parties')
                             div.group
                                 div.pub-user
                                     div.avatar-section
@@ -56,10 +56,10 @@ div.index
                                     div.group-info
                                         p(ng-bind='item.subject')
                                         div.type
-                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}} / {{item.partyCount}}
                                             span {{item.money | currency : '￥'}}
                                         div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date:'MM-dd HH:mm'}}
                                 div.status-bar
                                     span 状态:{{item.step}}
                                     button.find-detail 查看酒局
-                    ion-infinite-scroll(on-infinite="vm.loadMoreParty()" delegate-handle="partyHandle")
+                    ion-infinite-scroll(on-infinite="vm.loadMoreParty()" ng-if='vm.partyLoadMore')

@@ -114,7 +114,10 @@ $assetUrl:'http://h5.pubar.me/lib/images/';
   }
 }
 
-
+@mixin disabled-button{
+  background: #999;
+  color: #fff;
+}
 
 
 a{

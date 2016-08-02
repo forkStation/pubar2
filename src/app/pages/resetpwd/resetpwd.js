@@ -16,7 +16,7 @@ export default angular.module('resetpwd',[ionic])
 
 
 class ResetpwdController {
-    constructor ($ionicLoading,$timeout,$interval,$ionicPopup,$location,$ionicHistory) {
+    constructor ($ionicLoading,$timeout,$interval,$ionicPopup,$ionicHistory) {
         "ngInject"
         this.name = 'resetpwd';
         this.loading = $ionicLoading;

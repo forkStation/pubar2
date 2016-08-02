@@ -24,6 +24,7 @@ module.exports = {
         extensions: ['', '.js'],
         alias: {
             ionic: path.resolve(__dirname, 'bower_components/ionic/release/js'),
+            jquery: path.resolve(__dirname, 'bower_components/jquery/dist/jquery.min'),
             ng: path.resolve(__dirname, 'bower_components/angular/angular'),
             ngAnimate: path.resolve(__dirname, 'bower_components/angular-animate/angular-animate.min'),
             ngSanitize: path.resolve(__dirname, 'bower_components/angular-sanitize/angular-sanitize.min'),

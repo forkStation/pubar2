@@ -19,19 +19,23 @@ export default angular.module('edittxt',[ionic])
 
 
 class EdittxtController {
-    constructor ($stateParams,resourcePool,application,$ionicLoading,$timeout,$state) {
+    constructor ($stateParams,resourcePool,application,$ionicLoading,$timeout,$state,$interval) {
         "ngInject"
         this.name = 'edittxt';
         let t = this;
         t.params = $stateParams;
         t.form = {
-            content:$stateParams.content
+            content:$stateParams.content,
+            codeDesc:'获取验证码',
+            code:''
         };
         t.resource = resourcePool;
         t.application = application;
         t.loading = $ionicLoading;
         t.timeout = $timeout;
         t.state = $state;
+        t.interval = $interval;
+        t.sending = true;
         switch (t.params.type){
             case 'nickname':
                 t.tips = '请输入昵称';
@@ -78,18 +82,29 @@ class EdittxtController {
                     });
                     return false;
                 }
-                t.resource.wxBind.request({
-                    user:t.form.content,
-                    openid:JSON.parse(window.localStorage.getItem('userInfo')).openid
+                t.resource.validSmsCode.request({
+                    mobile:t.form.content,
+                    code:t.form.code
                 }).then(res=>{
-                    if(res.data.status == 1){
-                        t.loading.show({
-                            template:'手机绑定成功'
+                    if(res.data.status ==1){
+                        t.resource.userEdit.request({
+                            tel:t.form.content
+                        }).then(res=>{
+                            if(res.data.status == 1){
+                                t.loading.show({
+                                    template:'手机绑定成功'
+                                });
+                                t.timeout(function(){
+                                    t.loading.hide();
+                                    window.history.go(-1);
+                                },1500)
+                            }else{
+                                t.loading.show({
+                                    template:res.data.info,
+                                    duration:1500
+                                });
+                            }
                         });
-                        t.timeout(function(){
-                            t.loading.hide();
-                            window.history.go(-1);
-                        },1500)
                     }else{
                         t.loading.show({
                             template:res.data.info,
@@ -97,8 +112,49 @@ class EdittxtController {
                         });
                     }
                 });
+
                 break;
 
+        }
+    }
+    sendCode(){
+        let _this = this;
+        if(_this.sending){
+            let sec = 60;
+            if(/^1\d{10}$/.test(_this.form.content)){
+                _this.sending = false;
+                _this.resource.getSmsCode.request({
+                    user:_this.form.content
+                }).then(res=>{
+                    if(res.data.status==1){
+                        _this.loading.show({
+                            template:'验证码发送成功',
+                            duration:1000
+                        });
+
+                        _this.form.codeDesc = '重新获取'+sec;
+                        let interval = _this.interval(function(){
+                            sec--;
+                            _this.form.codeDesc = '重新获取'+sec;
+                            if(sec==0){
+                                _this.form.timeStatus = true;
+                                _this.form.codeDesc = '获取验证码';
+                                _this.interval.cancel(interval);
+                            }
+                        },1000)
+                    }else{
+                        _this.loading.show({
+                            template:'系统繁忙,请稍后重试',
+                            duration:1000
+                        })
+                    }
+                })
+            }else{
+                _this.loading.show({
+                    template:'请输入正确的11位手机号码',
+                    duration:1000
+                })
+            }
         }
     }
 }

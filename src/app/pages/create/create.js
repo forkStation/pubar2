@@ -58,7 +58,7 @@ class CreateController {
             {id:0,text:'无需审核'},
             {id:1,text:'需要我的审核'}
         ];
-        t.borgValue = {id:3, text:'无限制'};
+        t.borgValue = {id:0, text:'无限制'};
         t.typeValue = {id:0,text:'本大爷请客'};
         t.auditValue = {id:0,text:'无需审核'};
         console.log(t.auditValue);
@@ -107,7 +107,7 @@ class CreateController {
                     duration:1500
                 });
 
-                window.location.replace('/productList/'+t.params.barid+'?partyid='+res.data.info.partyid);
+                window.location.href='/productList/'+t.params.barid+'?partyid='+res.data.info.partyid;
 
 
             }else if(res.data.status == '0007'){

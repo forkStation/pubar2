@@ -5,7 +5,7 @@
 export default function () {
     return {
         restrict: 'E',
-        template: '<div id="map" style="height:400px;"></div>',
+        template: '<div id="map" style="height:144px;"></div>',
         controllerAs: 'vm',
         controller: mapController,
         replace: true,

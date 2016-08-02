@@ -47,7 +47,9 @@ class ProductListController {
         this.category[0].isActive = true;
         this.getData(this.category[0]['id']);
         this.getTotal();
+        this.application = application;
         let t = this;
+
 
         $scope.$on('updateStorage',function(){
             t.getTotal();
@@ -78,6 +80,10 @@ class ProductListController {
         let $state = this.$state;
         let $stateParams = this.stateParams;
         let t = this;
+        if(!$stateParams.partyid){
+            this.application.info('温馨提示','您需要先创建酒局才可以点酒');
+            return false;
+        }
         this.resourcePool.createNewOrder.request({
             barid:$stateParams.id,
             cartItem:JSON.stringify(storageData),
@@ -85,7 +91,7 @@ class ProductListController {
             partyid:$stateParams.partyid
         }).then(res=>{
             if(res.data.status==1){
-                $state.go('createOrder',{orderid:res.data.info.id,genre:0})
+                $state.go('createOrder',{orderid:res.data.info.id,genre:0});
                 window.localStorage.removeItem('bar'+t.barInfo.id)
             }
         });

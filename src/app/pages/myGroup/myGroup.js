@@ -36,8 +36,8 @@ class MyGroupController {
             $ionicSlideBoxDelegate.slide(index);
         };
         console.log(getMyCreateParty);
-        this.getMyCreateParty = getMyCreateParty.data.info;
-        this.getMyJoinParty = getMyJoinParty.data.info;
+        this.getMyCreateParty = getMyCreateParty.data.info || [];
+        this.getMyJoinParty = getMyJoinParty.data.info || [];
         this.imgHost = application.imgHost;
         this.headHost = application.headHost;
         this.windowHeight = document.documentElement.clientHeight - document.getElementById('group-tabs').clientHeight;
@@ -53,8 +53,5 @@ class MyGroupController {
         console.log(_this.getMyJoinParty);
 
     }
-    goGroupDetail(id){
-        let t = this;
-        t.state.go('groupDetail',{id:id});
-    }
+
 }
