@@ -1,0 +1,30 @@
+div.successInfo(hide-tabs='true')
+    .tips
+        i.icon.ion-checkmark-circled
+        h2 支付成功
+        p 支付金额: {{vm.orderInfo.money | currency:'￥'}}元
+
+    ul.group-list
+        li
+            div.group
+                div.pub-user
+                    div.avatar-section
+                        img(ng-src='{{vm.headHost + vm.orderInfo.user.headIcon}}')
+                        p.name {{vm.orderInfo.user.nickname}}
+                    div.group-info
+                        p {{vm.orderInfo.partyinfo.subject}}
+                        div.type
+                            span <i class='icon ion-person-stalker'></i> {{vm.amount}}/{{vm.orderInfo.partyinfo.userCount}}
+                            span {{vm.orderInfo.money | currency:'￥'}}
+                        div.type <i class='icon ion-ios-clock-outline'></i> {{vm.orderInfo.partyinfo.startTime*1000 | date:'MM-dd HH:mm'}}
+                div.status-bar
+                    span 状态:{{vm.orderInfo.partyinfo.step}}
+                    a.find-detail(ng-href='/groupDetail/{{vm.orderInfo.partyinfo.id}}') 查看酒局
+
+    div.button-are
+        button.button.button-block.button-active 分享酒局邀请你的朋友来参加
+        div.row
+            div.col
+                a.button.button-block.button-active(ng-click='vm.backGroup()') 我的酒局
+            div.col
+                a.button.button-block.button-disabled(ng-click='vm.backBar()') 回到酒吧
