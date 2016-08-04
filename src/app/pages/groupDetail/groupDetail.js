@@ -140,7 +140,8 @@ class GroupDetailController {
                              * 如果不需要审核,并且是需要支付的
                              */
                             if(res.data.info.topay == 1){
-                                location.replace('/createOrder/0/1?partyid='+t.detail.party.id)
+                                location.href='/createOrder?orderid=0&genre=1&partyid='+t.detail.party.id;
+
                             }
 
 

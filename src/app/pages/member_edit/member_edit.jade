@@ -2,30 +2,19 @@ div.member_edit(hide-tabs='true')
     ion-content
         div.gallery-wall
             div.opa
-                input(type='file' accept='images/*')
+
                 a.change-wall
+                    input(type='file' id='uploadBackground' onchange='angular.element(this).scope().uploadBackground()')
                     i.icon.ion-image
                     em 更换背景
-            img(ng-src='{{vm.wall}}')
+            img(ng-src='{{vm.headHost + vm.pics[0]}}')
             div.gallery
-                div.row
-                    div.col-25
-                        img
-                    div.col-25
-                        img
-                    div.col-25
-                        img
-                    div.col-25
-                        img
-                div.row
-                    div.col-25
-                        img
-                    div.col-25
-                        img
-                    div.col-25
-                        img
-                    div.col-25
-                        img
+                div.row(style='flex-wrap:wrap')
+                    div.col-25(ng-repeat ='item in vm.pics' ng-if='vm.pics.length>0 && vm.pics')
+                        img(ng-src='{{vm.headHost + item}}' on-hold='vm.showMenu(item)')
+                    div.col-25(ng-if='vm.pics.length<8')
+                        i.icon.add-gallery
+                        input(type='file' id='uploadImages' onchange='angular.element(this).scope().uploadImages()')
 
         nav-tip-bar(title='基本资料')
         div.list
@@ -35,8 +24,8 @@ div.member_edit(hide-tabs='true')
             a.item.item-icon-right(ng-href='/edittxt/nickname/{{vm.userInfo.nickname}}') 昵称
                 span.item-note(ng-bind='vm.userInfo.nickname')
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 年龄
-                span.item-note 22
+            a.item.item-icon-right(ng-href='/edittxt/age/{{vm.userInfo.age}}') 年龄
+                span.item-note {{vm.userInfo.age || "未设置"}}
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 性别
                 span.item-note(ng-bind='vm.userInfo.sex==1?"男":"女"' ng-click='vm.changeSex()')
@@ -52,8 +41,8 @@ div.member_edit(hide-tabs='true')
             a.item.item-icon-right(ng-href='/longText/sign/{{vm.userInfo.sign}}') 个人签名
                 span.item-note(ng-bind='vm.userInfo.sign')
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 兴趣爱好
-                span.item-note 时间是一把杀猪刀
+            a.item.item-icon-right(ng-href='/longText/hobby/{{vm.userInfo.hobby}}') 兴趣爱好
+                span.item-note {{vm.userInfo.hobby || "未设置"}}
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right 活跃酒吧
                 span.item-note.bars 本色酒吧

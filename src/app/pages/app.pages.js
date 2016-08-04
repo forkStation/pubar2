@@ -45,6 +45,7 @@ import accountList from './accountList/accountList'
 import addAccount from './addAccount/addAccount'
 import inviteDetail from './inviteDetail/inviteDetail'
 import successInfo from './successInfo/successInfo'
+import payRedirect from './payRedirect/payRedirect'
 //@import
 
 export default angular.module('app.pages', [
@@ -90,5 +91,6 @@ export default angular.module('app.pages', [
     accountList.name,
     addAccount.name,
     inviteDetail.name,
-    successInfo.name//@register
+    successInfo.name,
+    payRedirect.name//@register
 ]);

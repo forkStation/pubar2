@@ -7,10 +7,18 @@ import md5 from 'md5'
 export default function ( resourcePool, $q,$ionicPopup,$location) {
     'ngInject'
     return {
+        /**
+         * 酒吧商品图片host
+         */
         'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
+        // 头像host
         'headHost': 'http://api.pubar.me/Uploads/png/',
+
+        //产品host
         'productHost': 'http://h5admin.pubar.me/public/images/drinkImg/',
         'assets': 'http://h5.pubar.me/lib/images/',
+
+        //开启高德地图的配置
         'map': {
             open: function (args) {
                 var map = new AMap.Map(args.container, {
@@ -42,6 +50,12 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                 content: content
             });
         },
+        /**
+         * socket聊天应用
+         * 一` 开启socket
+         * 二` 开启观察者模式
+         * 三` 发送消息
+         */
         'im': {
             getSocket: function () {
                 let socket = io.connect("http://h5.pubar.me:3000");
@@ -58,9 +72,6 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                     defer.resolve(result);
                 });
                 return defer.promise;
-            },
-            loadMsg:function(){
-
             },
 
             send: function (to, content) {
@@ -91,30 +102,34 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                 })
             }
         },
-        'wxConfig':function(url){
+        'wxConfig':function(url,callback){
             resourcePool.wxConfig.request({
                 url:encodeURIComponent(url)
             }).then(res=>{
                 var appInfo = res.data.info;
                 wx.config({
-                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: appInfo['appId'], // 必填，公众号的唯一标识
                     timestamp:appInfo.timestamp , // 必填，生成签名的时间戳
                     nonceStr: appInfo.nonceStr, // 必填，生成签名的随机串
                     signature: appInfo.signature,// 必填，签名，见附录1
-                    jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    jsApiList: ['chooseWXPay'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    success:function () {
+                        if(callback && typeof callback === 'function') callback()
+                    }
                 });
             })
 
         },
         'wechatPay': function (appInfo, success, failed) {
 
+
             wx.chooseWXPay({
-                "appId": appInfo['appId'],
-                "timeStamp": appInfo.timeStamp.toString(),
+                "appId":appInfo.appId,
                 "nonceStr": appInfo.nonceStr,
                 "package": appInfo.package,
                 "signType": appInfo.signType,
+                "timestamp": appInfo.timestamp,
                 "paySign": appInfo.paySign,
                 success: function (res) {
                     // 支付成功后的回调函数

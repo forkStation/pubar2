@@ -69,9 +69,28 @@
 .gallery{
   .row{
     div{
+      margin-bottom: .1rem;
+      position: relative;
       img{
         width:1.44rem;
         height:1.44rem;
+      }
+      .add-gallery{
+        display: block;
+        width: 1.44rem;
+        height: 1.44rem;
+        background: url('http://h5.pubar.me/lib/images/add-gallary.png') no-repeat;
+        background-size: 100%;
+      }
+
+      input[type="file"]{
+        display: block;
+        width: 1.44rem;
+        height: 1.44rem;
+        position: absolute;
+        top:0;
+        left: 0;
+        z-index: 3;
       }
     }
   }

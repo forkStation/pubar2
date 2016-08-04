@@ -7,7 +7,7 @@ export default angular.module('createOrder',[ionic])
         "ngInject"
         $stateProvider
             .state('createOrder', {
-                url: '/createOrder/:orderid/:genre?partyid?money',
+                url: '/toPay/orderPay?orderid?genre?partyid?money',
                 controllerAs: 'vm',
                 controller: CreateOrderController,
                 template: tpl()
@@ -90,7 +90,6 @@ class CreateOrderController {
          * 开启默认微信支付
          */
         if(_this.isWechat){
-            _this.application.wxConfig($location.absUrl());
             _this.payWays = 2;
         }
 
@@ -123,56 +122,63 @@ class CreateOrderController {
         let $loading = this.loading;
         let t = this;
 
+
+
         /**
-         * 微信支付
+         * 微信支付 -- 充值操作
          */
         if(t.payWays == 2 && t.stateParams.money){
-            resourcePool.recharge.request({
-                money:t.stateParams.money
-            }).then(res=>{
-                if(res.data.status ===1){
-                    var appInfo = res.data.info;
-                    t.application.wechatPay(appInfo,()=>{
-                        t.application.info('提示','充值成功',function(){
-                            window.history.go(-1);
-                        })
-
-                    },(res)=>{
-                        $loading.show({
-                            template:res,
-                            duration:1000
-                        })
-                    })
-                }
-            })
+            window.location.replace('/createOrder/payRedirect?type=recharge&id='+t.stateParams.money);
+            // resourcePool.recharge.request({
+            //     money:t.stateParams.money
+            // }).then(res=>{
+            //     if(res.data.status ===1){
+            //         var appInfo = res.data.info;
+            //         t.application.wechatPay(appInfo,()=>{
+            //             t.application.info('提示','充值成功',function(){
+            //                 window.history.go(-1);
+            //             })
+            //         },(res)=>{
+            //             $loading.show({
+            //                 template:res,
+            //                 duration:1000
+            //             })
+            //         })
+            //     }
+            // })
         }
 
         if(t.payWays == 2 && !t.stateParams.money){
-            resourcePool.setOrderPay.request({
-                id:t.payId
-            }).then(res=>{
-                if(res.data.status ==1){
-                    var appInfo = res.data.info;
-                    t.application.wechatPay(appInfo,()=>{
-                        t.application.info('温馨提示','支付成功',function(){
-                            window.location.href = '/successInfo/'+t.stateParams.orderId+'/'+t.stateParams.genre
-                      
-                        });
+            if(this.genre ==1){
+                window.location.href='/createOrder/payRedirect?type=order&id='+t.payId+'&to='+t.userInfo.id+'&orderid='+t.stateParams.orderid+'&genre='+t.stateParams.genre;
+            }else{
+                window.location.href='/createOrder/payRedirect?type=order&id='+t.payId+'&orderid='+t.stateParams.orderid+'&genre='+t.stateParams.genre;
+            }
 
-                        t.application.sendMsg(t.userInfo.id,10,0,0)
-                    },(res)=>{
-                        $loading.show({
-                            template:res,
-                            duration:1000
-                        })
-                    })
-                }else{
-                    t.loading.show({
-                        template:res.data.info,
-                        duration:1000
-                    })
-                }
-            });
+            // resourcePool.setOrderPay.request({
+            //     id:t.payId
+            // }).then(res=>{
+            //     if(res.data.status ==1){
+            //         var appInfo = res.data.info;
+            //         t.application.wechatPay(appInfo,()=>{
+            //             t.application.info('温馨提示','支付成功',function(){
+            //                 window.location.href = '/successInfo/'+t.stateParams.orderid+'/'+t.stateParams.genre
+            //
+            //             });
+            //             t.application.sendMsg(t.userInfo.id,10,0,0)
+            //         },(res)=>{
+            //             $loading.show({
+            //                 template:res,
+            //                 duration:1000
+            //             })
+            //         })
+            //     }else{
+            //         t.loading.show({
+            //             template:res.data.info,
+            //             duration:1000
+            //         })
+            //     }
+            // });
         }
     }
 }

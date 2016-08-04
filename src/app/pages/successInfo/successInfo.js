@@ -40,7 +40,6 @@ class SuccessInfoController {
         this.orderInfo = orderInfo.data.info;
         this.stateParams = $stateParams;
         this.headHost = application.headHost;
-        this.amount = ~~this.orderInfo.partyinfo.boyCount + ~~this.orderInfo.partyinfo.girlCount
     }
 
 

@@ -48,5 +48,5 @@ div.myGroup(hide-tabs='true')
                                     // 待付款
                                     span(ng-if='item.ispay == 1 && item.isaduit==2') 状态:{{item.ispayDetail}}
                                     a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局
-                                    a.find-detail(ng-if='item.ispay == 1 && item.isaduit==2' ng-href='/createOrder/{{0}}/1?partyid={{item.id}}') 立即支付
+                                    a.find-detail(ng-if='item.ispay == 1 && item.isaduit==2' ng-click='vm.goPay(item.id)') 立即支付
 

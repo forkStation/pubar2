@@ -73,6 +73,8 @@ export default function(resource){
         'getUserInfo':resource.user('user_info'),
         'userEdit':resource.user('user_edit'),
         'uploadHeadIcon':resource.user('upload_headIcon'),
+        'uploadGallery':resource.user('upload_pic'),
+        'deleteUserImg':resource.user('del_img'),
         //msg
         'getMsgList':resource.msg('msg_list'),
         'sendMsg':resource.msg('msg_send'),

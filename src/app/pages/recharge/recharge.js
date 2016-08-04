@@ -20,29 +20,17 @@ class RechargeController {
         "ngInject"
         this.name = 'recharge';
 
-        this.payWay = 1;
         this.ionicModal = $ionicModal;
         this.loading = $ionicLoading;
         this.popup = $ionicPopup;
         this.scope = $scope;
-        this.passowrd = '';
         this.resourcePool = resourcePool;
         this.application = application;
         this.state = $state;
         this.form = {
             money:''
         };
-        let t = this;
-        $scope.$on('password.confirm',function(event,args){
-            t.passowrd = args;
-            t.confirm();
-        })
     }
-    changePay(type){
-        this.payWay = type;
-    }
-
-
     confirm(){
         let $loading = this.loading;
         let t = this;
@@ -54,8 +42,5 @@ class RechargeController {
                 duration:1000
             })
         }
-
     }
-
-
 }

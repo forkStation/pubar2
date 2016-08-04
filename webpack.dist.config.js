@@ -7,11 +7,11 @@ config.output = {
     publicPath: '',
     path: path.resolve(__dirname, 'dist')
 };
-config.module.loaders[0] = {
-    test: /\.js$/,
-    exclude: [/app\/lib/, /library/, /node_modules/, /bower_components/],
-    loader: 'strip-debug!ng-annotate!babel'
-};
+// config.module.loaders[0] = {
+//     test: /\.js$/,
+//     exclude: [/app\/lib/, /library/, /node_modules/, /bower_components/],
+//     loader: 'strip-debug!ng-annotate!babel'
+// };
 
 config.module.loaders.push({
         test: /\.(gif|jpg|png)\??.*$/,

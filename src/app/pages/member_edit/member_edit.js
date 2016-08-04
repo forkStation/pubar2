@@ -24,14 +24,18 @@ export default angular.module('member_edit',[ionic])
 
 
 class Member_editController {
-    constructor ($ionicActionSheet,userInfo,$ionicLoading,resourcePool,application) {
+    constructor ($ionicActionSheet,userInfo,$ionicLoading,resourcePool,application,$http,$scope) {
         "ngInject"
         this.name = 'member_edit';
-        this.wall = imgSrc.barAvatarDemo;
         this.actionSheet = $ionicActionSheet;
         this.resource = resourcePool;
         this.loading = $ionicLoading;
         this.headHost = application.headHost;
+        this.http = $http;
+        this.background = userInfo.data.info.bgpic;
+        this.pics = userInfo.data.info.pic || [];
+        this.actionSheet = $ionicActionSheet;
+        let _this = this;
         if(userInfo.data.status==1){
             this.userInfo = userInfo.data.info;
         }else{
@@ -40,7 +44,52 @@ class Member_editController {
                 duration:2000
             })
         }
-        console.log(this.userInfo.sign);
+        $scope.uploadImages = function(){
+            console.log('1');
+            var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            console.log(userInfo);
+            var form = new FormData();
+            form.append('uploadFile',document.getElementById('uploadImages').files[0]);
+
+            $http({
+                url:'api/user/upload_pic',
+                params:{
+                    userid:userInfo.id
+                },
+                data:form,
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity,
+                method:'post'
+            }).then(res=>{
+                if(res.data.status ==1){
+                    _this.pics.push(res.data.info) ;
+                }
+            });
+        };
+        $scope.uploadBackground = function(){
+            console.log('1');
+            let t = this;
+            var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+            console.log(userInfo);
+            var form = new FormData();
+            form.append('uploadFile',document.getElementById('uploadBackground').files[0]);
+
+            $http({
+                url:'api/user/upload_bgpic',
+                params:{
+                    userid:userInfo.id
+                },
+                data:form,
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity,
+                method:'post'
+            }).then(res=>{
+
+                if(res.data.status ==1){
+
+                }
+            });
+        }
     }
     changeSex(){
         let t = this;
@@ -82,4 +131,34 @@ class Member_editController {
         });
 
     }
+    showMenu(name){
+        let $ionicActionSheet = this.actionSheet;
+        let resourcePool = this.resource;
+        let _this = this;
+        $ionicActionSheet.show({
+            destructiveText: '删除',
+            titleText: '删除此张照片吗?',
+            cancelText: '取消',
+            destructiveButtonClicked:function(){
+                resourcePool.deleteUserImg.request({
+                    pic:name
+                }).then(res=>{
+                    if(res.data.status ==1){
+                        for(var i =0;i<_this.pics.length;i++){
+                            if(_this.pics[i] == name){
+                                _this.pics.splice(i,1);
+                            }
+                        }
+                    }else{
+                        _this.loading.show({
+                            template:res.data.info,
+                            duration:1000
+                        })
+                    }
+                });
+                return true;
+            }
+        });
+    }
+
 }

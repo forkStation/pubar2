@@ -14,7 +14,7 @@ div.successInfo(hide-tabs='true')
                     div.group-info
                         p {{vm.orderInfo.partyinfo.subject}}
                         div.type
-                            span <i class='icon ion-person-stalker'></i> {{vm.amount}}/{{vm.orderInfo.partyinfo.userCount}}
+                            span <i class='icon ion-person-stalker'></i> {{vm.orderInfo.partyinfo.userCount}}/{{vm.orderInfo.partyinfo.partyCount}}
                             span {{vm.orderInfo.money | currency:'￥'}}
                         div.type <i class='icon ion-ios-clock-outline'></i> {{vm.orderInfo.partyinfo.startTime*1000 | date:'MM-dd HH:mm'}}
                 div.status-bar

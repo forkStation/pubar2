@@ -44,6 +44,9 @@ class EdittxtController {
                 t.tips = '请输入手机号码';
                 t.resultTip = '请谨慎输入您绑定的手机号码';
                 break;
+            case 'age':
+                t.tips ='请输入您的年龄';
+                break;
         }
     }
     SaveInfo(){
@@ -51,7 +54,6 @@ class EdittxtController {
         switch (t.params.type){
             case 'nickname':
                 t.resource.userEdit.request({
-                    userid:t.application.userId,
                     nickname:t.form.content
                 }).then(res=>{
                     if(res.data.status==1){
@@ -114,6 +116,32 @@ class EdittxtController {
                 });
 
                 break;
+            case 'age':
+                if(!/^\d+$/.test(t.form.content)){
+                    t.loading.show({
+                        template:'请输入正确的年龄',
+                        duration:1500
+                    });
+                }else{
+                    t.resource.userEdit.request({
+                        age:t.form.content
+                    }).then(res=>{
+                        if(res.data.status == 1){
+                            t.loading.show({
+                                template:'年龄修改成功'
+                            });
+                            t.timeout(function(){
+                                t.loading.hide();
+                                window.history.go(-1);
+                            },1500)
+                        }else{
+                            t.loading.show({
+                                template:res.data.info,
+                                duration:1500
+                            });
+                        }
+                    });
+                }
 
         }
     }

@@ -28,7 +28,7 @@ export default angular.module('myGroup',[ionic])
 
 
 class MyGroupController {
-    constructor ($ionicSlideBoxDelegate,getMyCreateParty,getMyJoinParty,application) {
+    constructor ($ionicSlideBoxDelegate,getMyCreateParty,getMyJoinParty,application,$stateParams,$state) {
         "ngInject"
         this.name = 'myGroup';
         this.slideIndex = 0;
@@ -50,8 +50,13 @@ class MyGroupController {
                 _this.getMyJoinParty[i]['ispayDetail'] = '待付款'
             }
         }
+        this.stateParams = $stateParams;
+        this.state = $state;
         console.log(_this.getMyJoinParty);
 
+    }
+    goPay(id){
+        this.state.go('createOrder',{orderid:0,genre:1,partyid:id})
     }
 
 }
