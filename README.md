@@ -41,3 +41,5 @@
 
     gulp page --name 模块名  新建页面
 
+## webpack打包
+    gulp webpack
