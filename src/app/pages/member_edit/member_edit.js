@@ -36,18 +36,32 @@ class Member_editController {
         this.pics = userInfo.data.info.pic || [];
         this.actionSheet = $ionicActionSheet;
         let _this = this;
-        if(userInfo.data.status==1){
-            this.userInfo = userInfo.data.info;
-        }else{
-            $ionicLoading.show({
-                template:'系统繁忙，请稍后再试',
-                duration:2000
-            })
-        }
+
+        this.userInfo = userInfo.data.info;
+
+
+        this.personStatus = [{
+            id:0,
+            text:'单身'
+        },{
+            id:1,
+            text:'已婚'
+        },{
+            id:2,
+            text:'离异'
+        },{
+            id:3,
+            text:'保密'
+        }];
+        const _status = this.userInfo.sentiment || 0;
+        this.initStatus = {id:_status};
         $scope.uploadImages = function(){
-            console.log('1');
+
+            var fileObject = document.getElementById('uploadImages');
+            // _this.tempUrl = window.URL.createObjectURL(fileObject.files[0]);
+            //
+
             var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-            console.log(userInfo);
             var form = new FormData();
             form.append('uploadFile',document.getElementById('uploadImages').files[0]);
 
@@ -67,7 +81,10 @@ class Member_editController {
             });
         };
         $scope.uploadBackground = function(){
-            console.log('1');
+
+            var fileObject = document.getElementById('uploadBackground');
+            _this.tempUrl = window.URL.createObjectURL(fileObject.files[0]);
+
             let t = this;
             var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
             console.log(userInfo);
@@ -85,8 +102,11 @@ class Member_editController {
                 method:'post'
             }).then(res=>{
 
-                if(res.data.status ==1){
-
+                if(res.data.status !=1){
+                    $ionicLoading.show({
+                        template:res.data.info,
+                        duration:1000
+                    })
                 }
             });
         }
@@ -159,6 +179,29 @@ class Member_editController {
                 return true;
             }
         });
+    }
+
+    /**
+     * 修改情感状况
+     */
+
+
+    changeStatus(){
+        let _initValue = this.initStatus;
+        let _this = this;
+        this.resource.userEdit.request({
+            sentiment:_initValue.id
+        }).then((res)=>{
+            if(res.status != 1){
+                _this.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }
+        });
+
+
+
     }
 
 }

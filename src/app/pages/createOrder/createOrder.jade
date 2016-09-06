@@ -36,10 +36,10 @@ div.createOrder(hide-tabs='true')
                 div.col {{item.price | currency :'￥'}}
             div.row(ng-if='vm.orderInfo.type==0')
                 div.col
-                    span.tr 创建者请客 您还需支付 {{vm.orderInfo.money | currency:'￥'}}
-            div.row(ng-if='vm.orderInfo.type==1')
+                    span.tr 创建者请客 您还需支付 {{vm.orderInfo.moneypay | currency:'￥'}}
+            div.row(ng-if='vm.orderInfo.type!=0')
                 div.col
-                    span.tr 由于AA支付 您还需支付 {{vm.orderInfo.money | currency:'￥'}}
+                    span.tr 由于AA支付 您还需支付 {{vm.orderInfo.moneypay | currency:'￥'}}
         div.list(ng-if='vm.isRecharge')
 
             div.row

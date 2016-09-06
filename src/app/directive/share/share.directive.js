@@ -17,11 +17,14 @@ export default function(){
 
 class shareController{
 
-    constructor(){
+    constructor($ionicModal,$scope){
         'ngInject';
         this.name='share';
         this.share = function () {
-            console.log(1);
+            $ionicModal.fromTemplate('<share-list></share-list>',{
+                scope:$scope,
+                animation:'slide-in-up'
+            }).show();
         }
         
 

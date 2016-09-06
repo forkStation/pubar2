@@ -87,11 +87,13 @@ export default function(resource){
         //wallet
         'getWalletInfo':resource.wallet('wallet_info'),
         'getWalletList':resource.wallet('wallet_list'),
+        'setWalletPay':resource.wallet('wallet_topay'),
         'addWalletAccount':resource.wallet('wallet_account'),
         'getAccountList':resource.wallet('account_list'),
         'setDefaultAccount':resource.wallet('default_acc'),
         'getDefaultAccount':resource.wallet('default_acc'),
         'getDrawInfo':resource.wallet('withdraw_money'),
+        'updatePayPwd':resource.wallet('wallet_updatepay'),
 
 
         //支付

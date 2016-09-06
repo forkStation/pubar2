@@ -2,16 +2,15 @@ div.member_edit(hide-tabs='true')
     ion-content
         div.gallery-wall
             div.opa
-
+                input(type='file' id='uploadBackground' onchange='angular.element(this).scope().uploadBackground()')
                 a.change-wall
-                    input(type='file' id='uploadBackground' onchange='angular.element(this).scope().uploadBackground()')
                     i.icon.ion-image
                     em 更换背景
-            img(ng-src='{{vm.headHost + vm.pics[0]}}')
+            img(style='background:url({{vm.tempUrl? vm.tempUrl : vm.headHost + (vm.background | img)}})' )
             div.gallery
                 div.row(style='flex-wrap:wrap')
                     div.col-25(ng-repeat ='item in vm.pics' ng-if='vm.pics.length>0 && vm.pics')
-                        img(ng-src='{{vm.headHost + item}}' on-hold='vm.showMenu(item)')
+                        img(ng-src='{{vm.headHost + item}}' images='vm.pics' ng-preview on-hold='vm.showMenu(item)')
                     div.col-25(ng-if='vm.pics.length<8')
                         i.icon.add-gallery
                         input(type='file' id='uploadImages' onchange='angular.element(this).scope().uploadImages()')
@@ -27,16 +26,12 @@ div.member_edit(hide-tabs='true')
             a.item.item-icon-right(ng-href='/edittxt/age/{{vm.userInfo.age}}') 年龄
                 span.item-note {{vm.userInfo.age || "未设置"}}
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 性别
-                span.item-note(ng-bind='vm.userInfo.sex==1?"男":"女"' ng-click='vm.changeSex()')
+            a.item.item-icon-right(ng-click='vm.changeSex()') 性别
+                span.item-note(ng-bind='vm.userInfo.sex==1?"男":"女"' )
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right(ng-click='vm.changeStatus()') 情感状况
+            a.item.item-icon-right 情感状况
                 span.item-note
-                    select
-                        option 单身
-                        option 已婚
-                        option 离异
-                        option 保密
+                    select(ng-model="vm.initStatus" ng-change='vm.changeStatus()' ng-options='option.text for option in vm.personStatus track by option.id')
                 i.icon.ion-ios-arrow-right
             a.item.item-icon-right(ng-href='/longText/sign/{{vm.userInfo.sign}}') 个人签名
                 span.item-note(ng-bind='vm.userInfo.sign')
@@ -44,6 +39,6 @@ div.member_edit(hide-tabs='true')
             a.item.item-icon-right(ng-href='/longText/hobby/{{vm.userInfo.hobby}}') 兴趣爱好
                 span.item-note {{vm.userInfo.hobby || "未设置"}}
                 i.icon.ion-ios-arrow-right
-            a.item.item-icon-right 活跃酒吧
-                span.item-note.bars 本色酒吧
+            a.item.item-icon-right(style='padding-right: .5rem' ng-href='/activeBars') 活跃酒吧
+                span.item-note.bars(ng-repeat='item in vm.userInfo.barname | limitTo:2' style='margin-right:5px') {{item.name}}
                 i.icon.ion-ios-arrow-right

@@ -46,6 +46,10 @@ import addAccount from './addAccount/addAccount'
 import inviteDetail from './inviteDetail/inviteDetail'
 import successInfo from './successInfo/successInfo'
 import payRedirect from './payRedirect/payRedirect'
+import activeBars from './activeBars/activeBars'
+import groupList from './groupList/groupList'
+import pufList from './pufList/pufList'
+import chatGroup from './chatGroup/chatGroup'
 //@import
 
 export default angular.module('app.pages', [
@@ -92,5 +96,9 @@ export default angular.module('app.pages', [
     addAccount.name,
     inviteDetail.name,
     successInfo.name,
-    payRedirect.name//@register
+    payRedirect.name,
+    activeBars.name,
+    groupList.name,
+    pufList.name,
+    chatGroup.name//@register
 ]);

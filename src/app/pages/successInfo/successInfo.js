@@ -42,12 +42,11 @@ class SuccessInfoController {
         this.headHost = application.headHost;
     }
 
-
     backGroup(){
         window.location.replace('/myGroup')
     }
     backBar(){
         let _this = this;
-        window.location.replace('/barDetail/'+_this.orderInfo.barinfo.id)
+        window.location.replace('/index')
     }
 }

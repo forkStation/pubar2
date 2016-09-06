@@ -10,8 +10,8 @@ div.chatList
         ion-list
             ion-item.item-remove-animate.item.item-avatar(type='item-text-wrap' ng-click='vm.goChat(chat.id)' ng-repeat='chat in vm.chatList track by $index')
                 img(ng-src='{{vm.headHost+chat.headIcon}}')
-                h2(ng-bind='chat.nickname')
-                    em(ng-bind='chat.genTime')
+                h2 {{chat.nickname}}
+                    em(ng-bind='chat.chatTime*1000 | date:"MM-dd H:mm"')
                 p(ng-bind='chat.content')
                 ion-option-button.button-active(ng-click='vm.deleteChat(chat.id)') 删除
 

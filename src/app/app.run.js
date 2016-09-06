@@ -1,9 +1,9 @@
-import {angular,ionic} from 'library'
+import {angular, ionic} from 'library'
 
-export default angular.module('app.run',[])
+export default angular.module('app.run', [])
 
-    .run(function(resourcePool,$location,$rootScope){
-            'ngInject'
+    .run(function (resourcePool, $location, $rootScope) {
+        'ngInject'
 
 
         /**
@@ -15,40 +15,41 @@ export default angular.module('app.run',[])
         let storage = window.localStorage;
         var userInfo = JSON.parse(storage.getItem('userInfo'));
         let ua = window.navigator.userAgent.toLowerCase();
-    
+
         // 1
-        if(!userInfo){
+        if (!userInfo) {
 
             // 2 获取参数
             let code = getParameters('code');
             let userid = getParameters('userid');
             let t = getParameters('t');
-            if(code && userid && ua.match(/MicroMessenger/i) == "micromessenger") {
+            if (code && userid && ua.match(/MicroMessenger/i) == "micromessenger") {
                 resourcePool.getTokenUser.request({
-                    code:code,
-                    userid:userid,
-                    t:t
-                }).then(res=>{
-                    if(res.data.status === 1){
-                        storage.setItem('userInfo',JSON.stringify(res.data.info));
+                    code: code,
+                    userid: userid,
+                    t: t
+                }).then(res => {
+                    if (res.data.status === 1) {
+                        storage.setItem('userInfo', JSON.stringify(res.data.info));
                     }
                 })
             }
             // 3
-            else if (ua.match(/MicroMessenger/i) == "micromessenger" ) {
+            else if (ua.match(/MicroMessenger/i) == "micromessenger") {
                 //在微信中打开
-                window.location.replace('http://api.pubar.me/index.php/weixin/wx_login');
+                window.location.replace('http://i5api.pubar.me/index.php/weixin/wx_login');
+                // window.location.replace('http://api.pubar.me/index.php/weixin/wx_login');
             }
-        }else{
+        } else {
             resourcePool.getMsgCount.request({
 
-            }).then(res=>{
+            }).then(res => {
                 $rootScope.msgCount = ~~res.data.info[0].count;
             })
         }
 
 
-        function getParameters(name){
+        function getParameters(name) {
             var location = $location.absUrl();
             var link = location.substr(location.lastIndexOf("?") + 1, location.length + 1);
             var arr = link.split("&");
@@ -57,7 +58,7 @@ export default angular.module('app.run',[])
                 obj[arr[i].substring(0, arr[i].indexOf("=")).toLowerCase()] = arr[i].substring(arr[i].indexOf("=") + 1, arr[i].length);
             }
             var returnValue = obj[name.toLowerCase()];
-            if (typeof(returnValue) == "undefined") {
+            if (typeof (returnValue) == "undefined") {
                 return "";
             } else {
                 return returnValue;

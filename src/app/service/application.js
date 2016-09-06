@@ -8,15 +8,22 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
     'ngInject'
     return {
         /**
-         * 酒吧商品图片host
+         * host 正式
          */
-        'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
-        // 头像host
-        'headHost': 'http://api.pubar.me/Uploads/png/',
+        // 'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
+        // 'headHost': 'http://api.pubar.me/Uploads/png/',
+        // 'productHost': 'http://h5admin.pubar.me/public/images/drinkImg/',
+        // 'assets': 'http://h5.pubar.me/lib/images/',
 
-        //产品host
-        'productHost': 'http://h5admin.pubar.me/public/images/drinkImg/',
-        'assets': 'http://h5.pubar.me/lib/images/',
+        /**
+         * host 测试
+         */
+
+         'imgHost': 'http://i5admin.pubar.me/public/images/pic/',
+        'headHost': 'http://i5api.pubar.me/Uploads/png/',
+        'productHost': 'http://i5admin.pubar.me/public/images/drinkImg/',
+        'assets': 'http://i5.pubar.me/lib/images/',
+
 
         //开启高德地图的配置
         'map': {
@@ -58,7 +65,10 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
          */
         'im': {
             getSocket: function () {
-                let socket = io.connect("http://h5.pubar.me:3000");
+
+                // let socket = io.connect("http://h5.pubar.me:3000");
+
+                let socket = io.connect("http://i5.pubar.me:3000");
                 //注册自己的socket
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
                 socket.emit('new user', userInfo.id);
@@ -66,19 +76,18 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
             },
             open: function () {
                 let defer = $q.defer();
-                var socket = this.getSocket();
+                let socket = this.getSocket();
                 console.log(socket);
-                socket.on('sendSid',result =>{
+                socket.on('sendSid',result => {
                     defer.resolve(result);
                 });
                 return defer.promise;
             },
-
             send: function (to, content) {
                 let defer = $q.defer();
                 let socket = this.getSocket();
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
-                var params = {
+                let params = {
                     reid: to,
                     userid: userInfo.id,
                     msg: content,
@@ -103,27 +112,27 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
             }
         },
         'wxConfig':function(url,callback){
+
+            console.log(url);
             resourcePool.wxConfig.request({
                 url:encodeURIComponent(url)
             }).then(res=>{
                 var appInfo = res.data.info;
                 wx.config({
                     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                    appId: appInfo['appId'], // 必填，公众号的唯一标识
+                    appId: appInfo.appId, // 必填，公众号的唯一标识
                     timestamp:appInfo.timestamp , // 必填，生成签名的时间戳
                     nonceStr: appInfo.nonceStr, // 必填，生成签名的随机串
                     signature: appInfo.signature,// 必填，签名，见附录1
-                    jsApiList: ['chooseWXPay'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    jsApiList: ['chooseWXPay','openLocation','onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ'], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                     success:function () {
                         if(callback && typeof callback === 'function') callback()
                     }
                 });
-            })
+            }) 
 
         },
         'wechatPay': function (appInfo, success, failed) {
-
-
             wx.chooseWXPay({
                 "appId":appInfo.appId,
                 "nonceStr": appInfo.nonceStr,
@@ -182,6 +191,69 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                 return defer.promise;
             })
         },
+        openWxMap:function (point,name,address) {
+            wx.openLocation({
+                latitude: parseFloat(point.latitude), // 纬度，浮点数，范围为90 ~ -90
+                longitude: parseFloat(point.longitude), // 经度，浮点数，范围为180 ~ -180。
+                name: name || '', // 位置名
+                address: address || '', // 地址详情说明
+                scale: 25, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+            });
+        },
+        openWxShare:function (shareType,params) {
+            let title = params.title;
+            let content = params.content;
+            let link = params.link;
+            let img = params.img;
+            switch (shareType){
+                case "wechat":
+                    wx.onMenuShareAppMessage({
+                        title: title, // 分享标题
+                        desc: content, // 分享描述
+                        link: link, // 分享链接
+                        imgUrl: img, // 分享图标
+                        success: function () {
+                            if(params.success && typeof params.success === 'function') params.success();
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                            if(params.error && typeof params.error === 'function') params.error();
+                        }
+                    });
+                    break;
+                case "issue":
+                    wx.onMenuShareTimeline({
+                        title: title, // 分享标题
+                        link: link, // 分享链接
+                        imgUrl: img, // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            if(params.success && typeof params.success === 'function') params.success();
+                        },
+                        cancel: function () {
+                            if(params.error && typeof params.error === 'function') params.error();
+                        }
+                    });
+                    break;
+                case "qq":
+                    wx.onMenuShareQQ({
+                        title: title, // 分享标题
+                        desc: content, // 分享描述
+                        link: link, // 分享链接
+                        imgUrl: img, // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                            if(params.success && typeof params.success === 'function') params.success();
+                        },
+                        cancel: function () {
+                            if(params.error && typeof params.error === 'function') params.error();
+                        }
+                    });
+
+            }
+        },
         info:function(title,content,callback){
             var alertPop = $ionicPopup.alert({
                 title: title,
@@ -197,6 +269,5 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                 return 'wechat'
             }
         }
-
     }
 }

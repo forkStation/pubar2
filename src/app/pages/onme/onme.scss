@@ -5,4 +5,20 @@
       color:#ccc;
     }
   }
+  div.list{
+    margin-bottom: 0;
+    .item{
+      border: none;
+      background: transparent;
+
+      border-bottom: 1px solid #999;
+    }
+    .input-label{
+      color: #736F78;
+    }
+    select{
+      background: transparent;
+      color: #736F78
+    }
+  }
 }

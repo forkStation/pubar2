@@ -29,11 +29,6 @@ class GroupOrderListController {
         let t = this;
         this.detail = detail.data.info;
         this.headHost = application.headHost;
-        this.total = 0;
-        angular.forEach(t.detail.drinklist,function(value,key){
-            console.log(value);
-            t.total = parseFloat(value.count) * parseFloat(value.price) + t.total
-        });
-        console.log(t.total)
+   
     }
 }

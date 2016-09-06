@@ -1,0 +1,10 @@
+@import "../../../styles/util-mixin";
+.ngPreview{
+  ion-slide{
+    @include vertical();
+    img{
+      display: block;
+      max-width: 100%;
+    }
+  }
+}

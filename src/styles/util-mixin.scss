@@ -6,6 +6,14 @@ $assetUrl:'http://h5.pubar.me/lib/images/';
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin ellipsisMulti($lineNum:1){
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $lineNum;
+    -webkit-box-orient: vertical;
+}
 @mixin vertical{
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -40,6 +48,7 @@ $assetUrl:'http://h5.pubar.me/lib/images/';
       border-radius:4px;
       margin-top:.2rem;
       position:relative;
+      min-height: .6rem;
       &:before{
         font-family: "Ionicons";
         display: block;
@@ -67,6 +76,7 @@ $assetUrl:'http://h5.pubar.me/lib/images/';
       }
       .msg-content{
         background: #736F78;
+        margin-left: 1rem;
         &:before{
           content:''
         }
@@ -94,16 +104,16 @@ $assetUrl:'http://h5.pubar.me/lib/images/';
 @mixin sex($left,$top){
   .sex{
     display: block;
-    width:.35rem;
-    height:.35rem;
+    width:.4rem;
+    height:.4rem;
     position: absolute;
     left:$left;
     top:$top;
     color:#fff;
     border-radius:50%;
-    font-size:.1rem;
+    font-size:.28rem;
     text-align:center;
-    line-height:.35rem;
+    line-height:.4rem;
     &.male{
       background: #FF6E8F;
     }

@@ -28,10 +28,10 @@ class Member_viewController {
         this.resourcePool = resourcePool;
         this.application = application;
         this.stateParams = $stateParams;
+        this.headHost = application.headHost;
         this.popup = $ionicPopup;
         this.loading = $ionicLoading;
         this.barid = $stateParams.barid;
-        console.log($stateParams.id);
     }
     addFriend(){
         let t = this;

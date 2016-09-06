@@ -3,9 +3,9 @@ div.friend.myGroup(hide-tabs='true')
         div.item-input-inset
             label.item-input-wrapper
                 i.icon.ion-search.placeholder-icon
-                input(type="search" placeholder="搜索" name="" ng-model="searchTxt" autocorrect="off")
+                input(type="search" placeholder="搜索"  ng-model="vm.searchTxt" autocorrect="off")
     ion-content(style='top:55px')
         div.list
-            a.item.item-avatar(ng-repeat='item in vm.list  | filter:searchTxt' ng-href='/member_view/{{item.id}}')
+            a.item.item-avatar(ng-repeat='item in vm.list | filter:vm.searchTxt' ng-href='/member_view/{{item.id}}')
                 img(ng-src='{{vm.headHost+item.headIcon}}')
                 h2(ng-bind='item.nickname')

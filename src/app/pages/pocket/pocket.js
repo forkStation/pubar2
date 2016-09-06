@@ -15,10 +15,6 @@ export default angular.module('pocket',[ionic])
                     walletInfo:function(resourcePool){
                         return resourcePool.getWalletInfo.request({
                         })
-                    },
-                    walletList:function(resourcePool){
-                        return resourcePool.getWalletList.request({
-                        })
                     }
                 }
             })
@@ -26,12 +22,12 @@ export default angular.module('pocket',[ionic])
 
 
 class PocketController {
-    constructor (walletInfo,walletList) {
+    constructor (walletInfo) {
         "ngInject"
         this.name = 'pocket';
 
         this.walletInfo = walletInfo.data.info.wallet;
-        this.walletList = walletList.data.info.record;
+        this.walletList = walletInfo.data.info.record;
 
 
     }

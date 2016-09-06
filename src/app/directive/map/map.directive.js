@@ -12,7 +12,8 @@ export default function () {
         scope: {
             longitude: '@longitude',
             latitude: '@latitude',
-            id: '@id'
+            id: '@id',
+            tag:'@tag'
         }
     }
 }
@@ -35,7 +36,7 @@ class mapController {
         // 设置label标签
         marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
             offset: new AMap.Pixel(20, 20),//修改label相对于maker的位置
-            content: "我是marker的label标签"
+            content: $scope.tag
         });
 
     }

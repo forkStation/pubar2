@@ -2,10 +2,13 @@ div.setting(hide-tabs='true')
     nav-tip-bar(title='安全')
     .list
 
-        a.item.item-icon-left.item-icon-right 支付密码
-            span.item-note 未设置
+        a.item.item-icon-left.item-icon-right(ng-href='/resetpwd') 支付密码
+            span.item-note {{vm.isSetPay == 1 ?"修改":"未设置"}}
             i.icon.ion-ios-arrow-right
         a.item.item-icon-right(ng-click='vm.clearCache()') 清除缓存
             i.icon.ion-ios-arrow-right
         a.item.item-icon-right 关于
             i.icon.ion-ios-arrow-right
+
+    div.block(style='margin:0 10px;')
+        button.button.button-block.button-active(ng-click='vm.quit()') 退出账号

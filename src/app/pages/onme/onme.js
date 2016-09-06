@@ -12,15 +12,14 @@ export default angular.module('onme',[ionic])
                 controller: OnmeController,
                 template: tpl(),
                 resolve:{
-                    barDetail:function(resourcePool,$stateParams){
-                        return resourcePool.getBarInfo.request({
-                            'barid':$stateParams.barid
-                        })
-                    },
+
                     userInfo:function(resourcePool,$stateParams){
                         return resourcePool.getUserInfo.request({
                             fid:$stateParams.id
                         })
+                    },
+                    getMineInfo:function (resourcePool) {
+                        return resourcePool.getUserInfo.request({})
                     }
                 }
             })
@@ -28,20 +27,42 @@ export default angular.module('onme',[ionic])
 
 
 class OnmeController {
-    constructor (application,barDetail,userInfo,resourcePool,$stateParams,$ionicLoading,$timeout,$state) {
+    constructor (application,userInfo,resourcePool,$stateParams,$ionicLoading,$timeout,$state,getMineInfo) {
         "ngInject"
         this.name = 'onme';
         this.headHost = application.headHost;
         this.imgHost = application.imgHost;
-        this.barDetail = barDetail.data.info;
         this.userInfo = userInfo.data.info;
         this.loading = $ionicLoading;
         this.timeout = $timeout;
         this.resource = resourcePool;
         this.state = $state;
         this.application = application;
+        this.stateParams = $stateParams;
+        let _this = this;
+        this.barid = $stateParams.barid;
+        if(this.barid){
+            resourcePool.getBarInfo.request({
+                barid:_this.barid
+            }).then(res=>{
+                _this.barDetail = res.data.info;
+                _this.cover = _this.imgHost + _this.barDetail.cover;
+            })
+        }else{
+            _this.cover = _this.headHost + (_this.userInfo.bgpic || 'defaultMemberBackground.png');
+        }
+        _this.creatorBars = [{
+            barid:0,
+            name:'请选择酒吧'
+        }];
+        _this.creatorBars = _this.creatorBars.concat(getMineInfo.data.info.mybar);
+
+
+
+        console.log(_this.creatorBars)
+        _this.defaultSelected = _this.creatorBars[0];
         this.form = {
-            barid:$stateParams.barid,
+            barid:_this.barid || _this.defaultSelected.barid,
             invid:$stateParams.id,
             type:0,
             subject:'',
@@ -51,15 +72,26 @@ class OnmeController {
     doActive(){
         let t = this;
 
-        var dateText = document.getElementById('startTime').value;
-        dateText = dateText.replace('T',' ');
-        dateText = dateText.replace(/\-/g,'/');
-        dateText = dateText.substr(0,dateText.lastIndexOf('.'));
-        t.form.startTime = new Date(dateText).getTime();
+
+
+        let barid = ! t.stateParams.barid ? t.defaultSelected.barid : t.stateParams.barid;
+
+
+        t.form.barid = barid;
+
+
+
+        if(!t.form.barid || t.form.barid === 0){
+            t.loading.show({
+                template:'请选择酒吧',
+                duration:1000
+            });
+            return false;
+        }
         t.resource.applyParty.request(t.form).then(res=>{
             if(res.data.status ==1){
                 t.application.sendMsg(t.form.invid,7,res.data.info.partyid);
-                window.location.replace('/productList/'+t.form.barid+'?partyid='+res.data.info.partyid);
+                window.location.replace('/productList/'+barid+'?partyid='+res.data.info.partyid);
             }else{
                 t.loading.show({
                     template:res.data.info,
@@ -68,4 +100,5 @@ class OnmeController {
             }
         })
     }
+
 }

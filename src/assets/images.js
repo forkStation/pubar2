@@ -5,11 +5,8 @@
 'use strict';
 
 export default {
-    barAvatarDemo:require('img/bar-avatar-demo.png'),
-    header:require('img/header.png'),
     ionAlipay:require('img/ion-alipay.png'),
     ionWechatPng:require('img/ion-wechat.png'),
-    memberBg:require('img/member-bg.png'),
     chatGroupImg:require('img/group-chat.png'),
     chatFansImg:require('img/group-fans.png')
 }

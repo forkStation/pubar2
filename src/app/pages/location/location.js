@@ -15,16 +15,16 @@ export default angular.module('location',[ionic])
 
 
 class LocationController {
-    constructor ($ionicPopup,$ionicViewSwitcher,$ionicLoading,$location,$ionicScrollDelegate,$state,resourcePool) {
+    constructor ($ionicPopup,$ionicViewSwitcher,$ionicLoading,$location,$state,resourcePool,$anchorScroll) {
         "ngInject"
         this.name = 'location';
         this.popup = $ionicPopup;
         this.initCity = '广州';
         this.location = $location;
-        this.scrollDelegate = $ionicScrollDelegate;
         let t = this;
         t.viewSwitcher = $ionicViewSwitcher;
         t.loading = $ionicLoading;
+        this.anchorScroll = $anchorScroll;
 
         this.storage = window.localStorage;
         let currentCity = this.storage.getItem('city');
@@ -68,10 +68,8 @@ class LocationController {
     }
     goIndex(index){
         let upperCase = angular.uppercase(index);
-        console.log(upperCase);
         let $location = this.location;
-        let $ionicScrollDelegate = this.scrollDelegate;
         $location.hash(upperCase);
-        $ionicScrollDelegate.anchorScroll(true);
+        this.anchorScroll();
     }
 }

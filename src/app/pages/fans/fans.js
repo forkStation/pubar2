@@ -29,6 +29,7 @@ class FansController {
         this.chatFansImg = img.chatFansImg;
         this.list = getFansList.data.info;
         this.headHost = application.headHost;
+        this.searchTxt = '';
 
     }
 }

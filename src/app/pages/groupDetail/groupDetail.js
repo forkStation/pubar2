@@ -1,7 +1,6 @@
 import tpl from './groupDetail.jade'
 import './groupDetail.scss'
 import { angular, ionic } from 'library'
-import imgResource from 'assets/images'
 
 export default angular.module('groupDetail',[ionic])
     .config(function ($stateProvider) {
@@ -23,9 +22,10 @@ export default angular.module('groupDetail',[ionic])
                             partyid:$stateParams.id
                         })
                     },
-                    getBarInfo:function(resourcePool,$stateParams){
-                        return resourcePool.getBarInfo.request({
-                            id:$stateParams.id
+                    msgRecord:function(resourcePool,$stateParams){
+                        return resourcePool.getMsgRecord.request({
+                            partyid:$stateParams.id,
+                            type:2
                         })
                     }
                 }
@@ -34,7 +34,7 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users,$scope) {
+    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users,$scope,socket,$stateParams,msgRecord) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -42,12 +42,16 @@ class GroupDetailController {
         this.loading = $ionicLoading;
         this.resourcePool = resourcePool;
         this.getUsers = users.data.info;
-        console.log(this.getUsers);
         this.scope = $scope;
+        this.msgList = msgRecord.data.info || [];
         var _this = this;
         _this.flag = false;
-        this.productItem = imgResource.productItem;
-        this.barAvatarDemo = imgResource.barAvatarDemo;
+
+        _this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+
+        //open socket of groupDetail
+
+        socket.emit('party',$stateParams.id,_this.userInfo.id)
 
         this.showComment = function(){
             _this.flag = true;
@@ -62,6 +66,7 @@ class GroupDetailController {
             barid:_this.detail.party.barID
         });
         xhr.then(res=>{
+            _this.barInfo = res.data.info;
             _this.barAddress = res.data.info.address;
         },res=>{
             // error
@@ -69,31 +74,26 @@ class GroupDetailController {
         this.chatsMsg = [{
             id:'1',
             msg:'你好',
-            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'你好啊',
-            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna Sui'
         },{
             id:'1',
             msg:'怎么称呼,美女?',
-            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         },{
             id:'1',
             msg:'Anna',
-            avatar:this.productItem,
             user_id:'00',
             nickname:'Anna sui'
         },{
             id:'1',
             msg:'Anna你好',
-            avatar:this.productItem,
             user_id:'1124',
             nickname:'李锋染'
         }];
@@ -102,12 +102,11 @@ class GroupDetailController {
             user_id:'00',
             nickname:'Anna sui',
             msg:'',
-            avatar:this.productItem,
             id:'sdf'
         };
     }
-    goChat(){
-        this.state.go('chat')
+    goChat(id){
+        this.state.go('chat',{id:id})
     }
     joinParty(item){
         let t = this;
@@ -135,16 +134,13 @@ class GroupDetailController {
 
 
                             }
-
                             /**
                              * 如果不需要审核,并且是需要支付的
                              */
                             if(res.data.info.topay == 1){
-                                location.href='/createOrder?orderid=0&genre=1&partyid='+t.detail.party.id;
+                                location.href='/toPay/orderPay?orderid=0&genre=1&partyid='+t.detail.party.id;
 
                             }
-
-
                             /**
                              *  需要创建者审核的
                              */

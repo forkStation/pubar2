@@ -1,6 +1,6 @@
 div.member
-    .user-section
-        a.settings(href='/setting')
+    .user-section(style='background:url({{vm.headHost + (vm.userInfo.bgpic | img)}})')
+        a.settings(href='/setting' )
             i.ion.ion-ios-gear-outline
         div.list
             a.item.item-avatar.item-icon-right(href='/member_edit')
@@ -27,7 +27,7 @@ div.member
         //    i.ion.ion-wineglass
         //    span 酒库
             i.icon.ion-ios-arrow-right
-        a.item.item-icon-left.item-icon-right
+        a.item.item-icon-left.item-icon-right(ng-href='/couponList')
             i.ion.ion-pricetag
             span 电子券
             i.icon.ion-ios-arrow-right

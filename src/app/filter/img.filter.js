@@ -3,6 +3,6 @@
  */
 export default function () {
     return function (src) {
-        return src||'/assets/img/product-item.png'
+        return src||'defaultMemberBackground.png'
     }
 }

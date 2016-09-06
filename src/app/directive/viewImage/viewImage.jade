@@ -1,0 +1,5 @@
+div.ngPreview
+    div.modal
+        ion-slide-box
+            ion-slide(style='height:{{windowHeight}}px' ng-repeat='item in vm.images track by item.id' ng-click='hideModal()')
+                img(ng-src='{{vm.headHost+item.src}}' )

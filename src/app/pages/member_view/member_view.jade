@@ -1,40 +1,27 @@
 div.member_view(hide-tabs='true')
     ion-content.has-tabs
-        div.gallery
-            div.row
-                div.col-25
-                    img
-                div.col-25
-                    img
-                div.col-25
-                    img
-                div.col-25
-                    img
-            div.row
-                div.col-25
-                    img
-                div.col-25
-                    img
-                div.col-25
-                    img
-                div.col-25
-                    img
+        div.gallery-wall
+            img.gallery-wall(style='background:url({{vm.headHost + (vm.item.bgpic | img)}})' ng-src='{{vm.headHost + (vm.item.bgpic | img)}}')
+            div.gallery(ng-if='vm.item.pic.length >0 && vm.item.pic')
+                div.row(style="flex-wrap:wrap")
+                    div.col-25(ng-repeat='item in vm.item.pic')
+                        img(ng-src='{{vm.headHost+item}}' images='vm.item.pic' ng-preview)
+
 
         div.tags
             span(ng-class='{male:vm.item.sex==0,female:vm.item.sex==1}')
                 i.icon(ng-class='{"ion-male":vm.item.sex==0,"ion-female":vm.item.sex==1}')
                 em(ng-bind='vm.item.age')
-            span 水瓶座
             span(ng-if='vm.item.career' ng-bind='vm.item.career')
         div.tags
             div.title 个人签名
-            div.desc(ng-bind='vm.item.sign')
+            div.desc(ng-bind='vm.item.sign || "对方未设置"')
         //div.tags
         //    div.title 蒲友号
         //    div.desc 188241
         div.tags
             div.title 兴趣爱好
-            div.desc(ng-bind='vm.item.hobby')
+            div.desc(ng-bind='vm.item.hobby || "对方未设置"')
         div.tags
             div.title 活跃酒吧
             div.desc.visit

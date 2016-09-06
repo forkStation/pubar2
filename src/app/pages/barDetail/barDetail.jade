@@ -1,63 +1,117 @@
 div.barDetail(hide-tabs='true')
+    ion-content.has-footer
+        div.store(style='border:none' id='store')
+            share.corner
+            ion-slide-box
+                ion-slide(ng-repeat = 'item in vm.imagesArray track by $index')
+                    img(ng-src='{{vm.imgHost + item}}')
 
-    div.store(style='border:none' id='store')
-        share.corner
-        ion-slide-box
-            ion-slide(ng-repeat = 'item in vm.imagesArray track by $index')
-                img(ng-src='{{vm.imgHost + item}}')
-
-        div.bar-info
-            div.bar-name(ng-bind='vm.barInfo.name')
-            div.bar-position(ng-bind='vm.barInfo.address')
-                span <i class='icon ion-location'></i> 4.32km
-
-
-    div.sort-section(style='margin-top:-1px')
-        div.sort-item(ng-click='vm.goSlide(0)' class="sort-item {{vm.slideIndex == 0?'on':''}}") 酒局
-        div.sort-item(ng-click='vm.goSlide(1)' class="sort-item {{vm.slideIndex == 1?'on':''}}") 蒲友
-        div.sort-item(ng-click='vm.goSlide(2)' class="sort-item {{vm.slideIndex == 2?'on':''}}") 酒吧资料
+            div.bar-info
+                div.bar-name(ng-bind='vm.barInfo.name')
+                div.hot 
+                    i.icon.ion-ios-wineglass
+                    i.icon.ion-ios-wineglass
+                    i.icon.ion-ios-wineglass
+                    em {{vm.barInfo.type}}
+                div.bar-position
+                    span <i class='icon ion-location'></i> 4.32km
 
 
-    div.list
-        ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
-            ion-slide(style='height:{{vm.windowHeight}}px')
-                ion-content.party-list
-                    nodata(ng-if='vm.groupList.length==0')
-                    ul.group-list
-                        li(ng-repeat='item in vm.groupList track by $index')
-                            a(ng-href='/groupDetail/{{item.id}}')
-                                div.group
-                                    div.pub-user
-                                        div.avatar-section
-                                            img(ng-src='{{vm.headHost+item.user.headIcon}}')
-                                            p.name(ng-bind='item.user.nickname')
-                                        div.group-info
-                                            p(ng-bind='item.subject || "暂无标题"')
-                                            div.type
-                                                span <i class='icon ion-person-stalker'></i> {{item.amount}} / {{item.partyCount}}
-                                                span  AA
-                                            div.type <i class='icon ion-clock'></i> {{item.startTime*1000 | date:'MM-dd HH:mm'}}
-                                    div.status-bar
-                                        span 状态:{{item.step}}
-                                        button.find-detail 查看酒局
-            ion-slide(style='height:{{vm.windowHeight}}px')
-                ion-content
-                    nodata(ng-if='vm.friends.length==0')
-                    ul.puf-list
-                        li(ng-repeat = 'item in vm.friends track by $index')
-                            a(ng-href='/member_view/{{item.id}}')
-                                img(ng-src='{{vm.headHost + item.headIcon}}')
-                            sex.sex(type='{{item.sex}}')
-                            p.name(ng-bind='item.nickname')
-                            p.sign(ng-bind='item.sign')
-                            a.apply(ng-href='/member_view/{{item.id}}?barid={{vm.barInfo.id}}') 请Ta喝
-            ion-slide(style='height:{{vm.windowHeight}}px')
-                ion-content
-                    div.bar-information
-                        h3.bar-name(ng-bind='vm.barInfo.name')
-                        p.desc(ng-bind='vm.barInfo.details')
-                        a.button.button-block.button-active(ng-href='/productList/{{vm.barInfo.id}}') 查看酒单
-                        map.map(longitude='{{vm.barInfo.longitude}}' latitude='{{vm.barInfo.latitude}}')
+        div.item.item-icon-left.item-icon-right.detail-item
+            i.icon.ion-ios-location.icon-left
+            em(ng-bind='vm.barInfo.address')
+            i.icon.ion-ios-arrow-forward
+        a.item.item-icon-left.item-icon-right.detail-item(ng-href='tel:{{vm.barInfo.tel}}')
+            i.icon.ion-ios-telephone.icon-left
+            em(ng-bind='vm.barInfo.tel')
+            i.icon.ion-ios-arrow-forward
+
+        div.mod-item
+            a.mod-tit(ng-href='/groupList/{{vm.barid}}')
+                span 酒吧酒局 
+                    em ({{vm.groupList.length}})
+                i.icon.ion-ios-arrow-forward
+            div.mod-list
+                nodata(ng-if='!vm.groupList || vm.groupList.length <= 0')
+                ul.group-list(ng-if='vm.groupList.length>0')
+                    li(ng-repeat='item in vm.groupList | limitTo:1 track by $index')
+                        a(ng-href='/groupDetail/{{item.id}}')
+                            div.group
+                                div.pub-user
+                                    div.avatar-section(style='background:url({{vm.headHost + (item.user.bgpic | img)}})')
+                                        img(ng-src='{{vm.headHost+item.user.headIcon}}')
+                                        p.name(ng-bind='item.user.nickname')
+                                    div.group-info
+                                        p(ng-bind='item.subject || "暂无标题"')
+                                        div.type
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}} / {{item.partyCount}}
+                                            span {{item.type}}
+                                        div.type <i class='icon ion-clock'></i> {{item.startTime*1000 | date:'MM-dd HH:mm'}}
+                                div.status-bar
+                                    span 状态:{{item.step}}
+                                    button.find-detail 查看酒局
+        div.mod-item
+            a.mod-tit(ng-href='/pufList/{{vm.barid}}')
+                span 酒吧蒲友 
+                    em ({{vm.friends.length}})
+                i.icon.ion-ios-arrow-forward
+            div.mod-list
+                ul.puf-list
+                    li(ng-repeat = 'item in vm.friends | limitTo:3 track by $index')
+                        a(ng-href='/member_view/{{item.id}}')
+                            img(ng-src='{{vm.headHost + item.headIcon}}')
+                        sex.sex(type='{{item.sex}}')
+                        p.name(ng-bind='item.nickname')
+                        p.sign(ng-bind='item.sign')
+                        a.apply(ng-href='/member_view/{{item.id}}?barid={{vm.barInfo.id}}') 请Ta喝
+                
+
+    //- div.sort-section(style='margin-top:-1px')
+    //-     div.sort-item(ng-click='vm.goSlide(0)' class="sort-item {{vm.slideIndex == 0?'on':''}}") 酒局
+    //-     div.sort-item(ng-click='vm.goSlide(1)' class="sort-item {{vm.slideIndex == 1?'on':''}}") 蒲友
+    //-     div.sort-item(ng-click='vm.goSlide(2)' class="sort-item {{vm.slideIndex == 2?'on':''}}") 酒吧资料
+
+
+    //- div.list
+    //-     ion-slide-box(show-pager='false' delegate-handle='listSlide' active-slide='vm.slideIndex')
+    //-         ion-slide(style='height:{{vm.windowHeight}}px')
+    //-             ion-content.party-list
+    //-                 nodata(ng-if='vm.groupList.length==0')
+    //-                 ul.group-list
+    //-                     li(ng-repeat='item in vm.groupList track by $index')
+    //-                         a(ng-href='/groupDetail/{{item.id}}')
+    //-                             div.group
+    //-                                 div.pub-user
+    //-                                     div.avatar-section(style='background:url({{vm.headHost + (item.user.bgpic | img)}})')
+    //-                                         img(ng-src='{{vm.headHost+item.user.headIcon}}')
+    //-                                         p.name(ng-bind='item.user.nickname')
+    //-                                     div.group-info
+    //-                                         p(ng-bind='item.subject || "暂无标题"')
+    //-                                         div.type
+    //-                                             span <i class='icon ion-person-stalker'></i> {{item.userCount}} / {{item.partyCount}}
+    //-                                             span {{item.type}}
+    //-                                         div.type <i class='icon ion-clock'></i> {{item.startTime*1000 | date:'MM-dd HH:mm'}}
+    //-                                 div.status-bar
+    //-                                     span 状态:{{item.step}}
+    //-                                     button.find-detail 查看酒局
+    //-         ion-slide(style='height:{{vm.windowHeight}}px')
+    //-             ion-content
+    //-                 nodata(ng-if='vm.friends.length==0')
+    //-                 ul.puf-list
+    //-                     li(ng-repeat = 'item in vm.friends track by $index')
+    //-                         a(ng-href='/member_view/{{item.id}}')
+    //-                             img(ng-src='{{vm.headHost + item.headIcon}}')
+    //-                         sex.sex(type='{{item.sex}}')
+    //-                         p.name(ng-bind='item.nickname')
+    //-                         p.sign(ng-bind='item.sign')
+    //-                         a.apply(ng-href='/member_view/{{item.id}}?barid={{vm.barInfo.id}}') 请Ta喝
+    //-         ion-slide(style='height:{{vm.windowHeight}}px')
+    //-             ion-content
+    //-                 div.bar-information
+    //-                     h3.bar-name(ng-bind='vm.barInfo.name')
+    //-                     p.desc(ng-bind='vm.barInfo.details')
+    //-                     a.button.button-block.button-active( ng-click='vm.openWxMap()') 查看酒单
+    //-                     map.map(longitude='{{vm.barInfo.longitude}}' tag='{{vm.barInfo.name}}' latitude='{{vm.barInfo.latitude}}' )
 
 div.active-section
     button.button.button-block.button-active(ng-click='vm.createParty(vm.barInfo.id)') 我要组局

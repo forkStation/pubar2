@@ -1,12 +1,16 @@
-div.onme.create
-
+div.onme.create(hide-tabs='true')
     ion-content( style='bottom:60px;')
         div.pic-wall
-            img.background(ng-src='{{vm.imgHost + vm.barDetail.cover}}')
+            img.background(ng-src='{{vm.cover}}')
             div.user-behavior
                 img.avatar(ng-src='{{vm.headHost + vm.userInfo.headIcon}}')
                 p.name(ng-bind='vm.userInfo.nickname')
-        nav-tip-bar(title='{{vm.barDetail.name}}')
+        nav-tip-bar(ng-if='vm.barid' title='{{vm.barDetail.name}}')
+        div.list(ng-if='!vm.barid')
+            label.item.item-input.item-select
+                div.input-label 请选择酒吧
+                select.select-bar(ng-if='!vm.barid' ng-model='vm.defaultSelected' ng-options='option.name for option in vm.creatorBars track by option.barid')
+
         div.comment-form
             dl
                 dt 主题
@@ -15,7 +19,7 @@ div.onme.create
             dl
                 dt 日期
                 dd
-                    input(placeholder='请选择日期' value='date' id='startTime' type='datetime-local')
+                    input(placeholder='请选择日期' value='date' ng-model='vm.form.startTime' type='datetime-local')
             dl
                 dt 付款
                 dd

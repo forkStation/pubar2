@@ -10,16 +10,25 @@ export default angular.module('setting',[ionic])
                 url: '/setting',
                 controllerAs: 'vm',
                 controller: SettingController,
-                template: tpl()
+                template: tpl(),
+                resolve:{
+                    getUserInfo:function (resourcePool) {
+                        return resourcePool.getUserInfo.request({
+
+                        })
+                    }
+                }
             })
     });
 
 
 class SettingController {
-    constructor ($ionicActionSheet) {
+    constructor ($ionicActionSheet,getUserInfo) {
         "ngInject"
         this.name = 'setting';
         this.actionSheet = $ionicActionSheet;
+        this.userInfo = getUserInfo.data.info;
+        this.isSetPay = this.userInfo.hpd;
     }
     clearCache(){
 
@@ -35,5 +44,17 @@ class SettingController {
             }
         });
 
+    }
+    quit(){
+         let $actionSheet = this.actionSheet;
+        $actionSheet.show({
+            destructiveText: '确定',
+            titleText: '确定退出账号吗?',
+            cancelText: '取消',
+            destructiveButtonClicked:function(){
+                window.localStorage.removeItem('userInfo');
+                window.location.replace('/index')
+            }
+        });
     }
 }

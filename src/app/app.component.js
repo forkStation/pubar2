@@ -14,6 +14,8 @@ import map from './directive/map/map.directive'
 import nodata from './directive/nodata/nodata'
 import codebox from './directive/codeBox/codebox.directive'
 import password from './directive/password/password.directive'
+import shareList from './directive/shareList/share.list'
+import preview from  './directive/viewImage/viewImage.directive'
 
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
@@ -28,3 +30,5 @@ export default angular.module('app.component', [ionic])
     .directive('nodata',nodata)
     .directive('codebox',codebox)
     .directive('password',password)
+    .directive('shareList',shareList)
+    .directive('ngPreview',preview)

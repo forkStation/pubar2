@@ -1,19 +1,22 @@
-ion-content.body.has-tabs(hide-tabs='true' delegate-handle='chatBox')
-    div.chat
-        .comment-box
-            ul
-                li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.sender==vm.userInfo.id}')
-                    a(ng-href='/member_view/{{vm.friendInfo.id}}' ng-if='chat.sender!=vm.userInfo.id')
-                        img.avatar(ng-src='{{vm.headHost+vm.friendInfo.headIcon}}')
-                    a( ng-if='chat.sender==vm.userInfo.id')
-                        img.avatar(ng-src='{{vm.headHost+vm.userInfo.headIcon}}')
+div.chats
+    div.bar-header.bar.bar-dark
+        h1.title {{vm.friendInfo.nickname}}
+    ion-content.body.has-tabs.has-header(hide-tabs='true' delegate-handle='chatBox')
+        div.chat
+            .comment-box
+                ul
+                    li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.sender==vm.userInfo.id}')
+                        a(ng-href='/member_view/{{vm.friendInfo.id}}' ng-if='chat.sender!=vm.userInfo.id')
+                            img.avatar(ng-src='{{vm.headHost+vm.friendInfo.headIcon}}')
+                        a( ng-if='chat.sender==vm.userInfo.id')
+                            img.avatar(ng-src='{{vm.headHost+vm.userInfo.headIcon}}')
 
-                    div.nickname {{chat.createtime*1000 | date:'MM-dd HH:mm'}}
-                    div.msg-content {{::chat.content}}
+                        div.nickname {{chat.createtime*1000 | date:'MM-dd HH:mm'}}
+                        div.msg-content {{::chat.content}}
 
-div.bar.bar-footer.bc
-    div.col-80
-        form.comment-form(ng-submit='vm.sendMsg()' action='javascript:;')
-            input(type='text' class='textComment' placeholder='说点什么吧' id='textComment' ng-model='vm.msgInfo.content')
-    div.col-20
-        s-btn(text='发送' ng-click='vm.sendMsg()')
+    div.bar.bar-footer.bc
+        div.col-80
+            form.comment-form(ng-submit='vm.sendMsg()' action='javascript:;')
+                input(type='text' class='textComment' placeholder='说点什么吧' id='textComment' ng-model='vm.msgInfo.content')
+        div.col-20
+            s-btn(text='发送' ng-click='vm.sendMsg()')

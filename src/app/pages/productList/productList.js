@@ -91,7 +91,7 @@ class ProductListController {
             partyid:$stateParams.partyid
         }).then(res=>{
             if(res.data.status==1){
-                $state.go('createOrder',{orderid:res.data.info.id,genre:0});
+                $state.go('createOrder',{orderid:res.data.info.id,genre:0,partyid:$stateParams.partyid});
                 window.localStorage.removeItem('bar'+t.barInfo.id)
             }
         });
@@ -139,10 +139,13 @@ class ProductListController {
 
 
     setActive (cate) {
+        //清空集合的active
         this.category.forEach(function (val, key) {
             val.isActive = false;
         });
         cate.isActive = true;
+
+
         this.activeCate = cate.name;
         this.getData(cate.id);
 

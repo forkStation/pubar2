@@ -1,6 +1,6 @@
 div.resetpwd(hide-tabs='true')
     div.sending(ng-show='vm.codeState')
-        p.tit 验证码已发送到137****5203
+        p.tit 验证码将会发送到{{vm.telephone}}
         div.row
             div.col-67
                 input(type='text' placeholder='请输入验证码' ng-model='vm.formData.valid')

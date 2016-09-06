@@ -24,7 +24,7 @@ export default class Resource {
         let t = this;
         return {
             request: (params, method = 'get', config)=> {
-                var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms','wx_login','bind'];
+                var defaultAllowApi = ['bar_list','bar_info','barfriend_list','get_city','drink_info','drink_list','drink_cate','party_list','wx_login','login','regsms','wx_login','bind','msg_count'];
                 var userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
 
                 var userId = userInfo ? userInfo.id : 0;

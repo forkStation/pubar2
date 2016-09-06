@@ -44,20 +44,22 @@ class IndexController {
         /**
          * 解决安卓初始化无法下拉加载的bug
          */
-        this.loadMoreBars(true);
-        this.loadMoreParty(true);
+
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.indexOf('android')>0){
+            this.loadMoreBars();
+            this.loadMoreParty();
+        }
+
+
 
     }
-    goSlide = function (index){
+    
+    goSlide(index){
         this.ionicSlide.slide(index);
         this.slideIndex = index;
-    };
+    }
     loadMoreBars(init){
-
-        this.initBars = init || false;
-        if(!this.initBars){
-            return false;
-        }
         let _this = this;
         let resourcePool = _this.resource;
         let $scope = _this.scope;
@@ -66,23 +68,24 @@ class IndexController {
             city:application.getMyCity(),
             page:_this.barPages
         }).then(res =>{
-            if(_this.barPages >= ~~res.data.pageCount){
+            
+            if(_this.barPages > ~~res.data.pageCount){
                 _this.barLoadMore = false;
-            }
-            _this.bars = _this.bars.concat(res.data.info || []);
-            console.log(_this.bars);
-            _this.barPages = _this.barPages + 1;
+            }else{
+                _this.bars = _this.bars.concat(res.data.info || []);
+                console.log(_this.bars);
+                _this.barPages = _this.barPages + 1;
 
+            }
+            $scope.$broadcast('scroll.infiniteScrollComplete');
         });
 
-        $scope.$broadcast('scroll.infiniteScrollComplete');
+
     }
     loadMoreParty(init){
-        this.initParty = init || false;
-        if(!this.initParty){
-            return false;
-        }
+
         let _this = this;
+        let $scope = _this.scope;
         let resourcePool = _this.resource;
         let application = _this.application;
         resourcePool.getPartyList.request({
@@ -94,13 +97,9 @@ class IndexController {
                 _this.partyLoadMore = false;
             }
             _this.parties = _this.parties.concat(res.data.info || []);
-            console.log(_this.parties);
-            for(var i = 0;i<_this.parties.length;i++){
-                _this.parties[i].amount = ~~_this.parties[i]['girlCount'] + ~~_this.parties[i]['boyCount'];
-            }
 
             _this.partyPages = _this.partyPages + 1;
-
+            $scope.$broadcast('scroll.infiniteScrollComplete');
         });
     }
     goGroupDetail(id){

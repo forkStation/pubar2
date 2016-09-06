@@ -1,28 +1,23 @@
 div.pocket(hide-tabs='true')
-    nav-tip-bar(title='当前余额')
-    div.item.item-avatar
-        h1(ng-bind='vm.walletInfo.money | number:2')
-        div.row
-            div.col-50
-                a.button.button-block.get(href='/takeCash') 提现
-            div.col-50
-                a.button.button-block.set(href='/recharge') 充值
-    nav-tip-bar(title='最近30天收支明细')
+    ion-content
+        nav-tip-bar(title='当前余额')
+        div.item.item-avatar
+            h1(ng-bind='vm.walletInfo.money | number:2')
+            div.row
+                div.col-50
+                    a.button.button-block.get(href='/takeCash') 提现
+                div.col-50
+                    a.button.button-block.set(href='/recharge') 充值
+        nav-tip-bar(title='最近30天收支明细')
 
-    div.list
-        a.item 用户提现
-            span.item-note.time 2015-05-22
-        a.item
-            em.change 余额:50.00
-            span.item-note.out -50.00
+        div.list(ng-repeat='item in vm.walletList')
+            a.item {{!item.wa_account?"充值":"提现"}}
+                span.item-note.time {{item.createtime*1000 | date:'yyyy-MM-dd hh:mm'}}
+            a.item
+                span.item-note(ng-class='{out:item.wa_account,in:!item.wa_account}')  {{!item.wa_account?"+"+item.money:"-"+item.money}}
 
-    div.list
-        a.item 收入
-            span.item-note.time 2015-05-22
-        a.item
-            em.change 余额:50.00
-            span.item-note.in -50.00
 
-    div.no-data
-        i.ion.ion-ios-list-outline
-        p 无收支明细
+
+        div.no-data(ng-if='vm.walletList.length==0 || !vm.walletList')
+            i.ion.ion-ios-list-outline
+            p 无收支明细

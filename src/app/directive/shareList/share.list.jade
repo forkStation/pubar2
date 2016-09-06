@@ -1,0 +1,19 @@
+div.shareList
+    div.modal
+        div.content-title 分享到
+        div.row
+            div.col-20(ng-click='vm.shareTo("pubar")')
+                img(ng-src='http://h5.pubar.me/lib/images/share-pubar.png')
+                p.name 蒲友
+            div.col-20(ng-click='vm.shareTo("wechat")')
+                img(ng-src='http://h5.pubar.me/lib/images/share-wechat.png')
+                p.name 微信
+            div.col-20(ng-click='vm.shareTo("issue")')
+                img(ng-src='http://h5.pubar.me/lib/images/share-wechat-issue.png')
+                p.name 朋友圈
+            div.col-20(ng-click='vm.shareTo("qq")')
+                img(ng-src='http://h5.pubar.me/lib/images/share-qq.png')
+                p.name QQ
+            div.col-20(ng-click='vm.shareTo("sina")')
+                img(ng-src='http://h5.pubar.me/lib/images/share-sina-t.png')
+                p.name 微博

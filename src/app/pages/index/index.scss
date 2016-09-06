@@ -100,8 +100,7 @@ ul.group-list{
     .avatar-section{
       width:1.96rem;
       height:1.96rem;
-      background: url('../../../assets/img/member-bg.png') no-repeat;
-      background-size:cover ;
+      background-size:cover !important;
       position: absolute;
       left:0;
       top:0;
@@ -185,6 +184,16 @@ ul.group-list{
       font-size:.3rem;
       margin-bottom:5px;
     }
+     .hot{
+      color: #fff;
+      .icon{
+        font-size: .32rem;
+        margin-right: .1rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
 
   }
   .bar-position{

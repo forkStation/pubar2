@@ -6,7 +6,7 @@ div.search(hide-tabs='true')
             label.item-input-wrapper
                 i.icon.ion-search.placeholder-icon
                 form(ng-submit='vm.search()')
-                    input(type="search" placeholder="请输入城市名" name="" ng-model="vm.form.word" autocorrect="off")
+                    input(type="search" placeholder="查询关键字" name="" ng-model="vm.form.word" autocorrect="off")
             button.button.button-clear(ng-click='vm.goBack()') 返回
 
     ion-content(style='top:70px' delegate-handle='searchScroll')
@@ -52,16 +52,16 @@ div.search(hide-tabs='true')
                     div.group
                         div.pub-user
                             div.avatar-section
-                                img(ng-src='{{vm.barAvatarDemo}}')
-                                p.name 大彬大大彬
+                                img(ng-src='{{vm.headHost + item.userinfo.headIcon}}')
+                                p.name {{item.userinfo.nickname}}
                             div.group-info
                                 p {{item.subject}}
                                 div.type
-                                    span <i class='icon ion-person-stalker'></i> {{parseInt(item.girlCount)+parseInt(item.boyCount)}}/6
+                                    span <i class='icon ion-person-stalker'></i>  {{item.userCount}}/{{item.partyCount}}
                                     span  {{item.type}}
                                 div.type
-                                    span <i class='icon ion-clock'></i> {{item.startTime | date:'MM月dd日 HH:mm'}}
-                                    span <i class='icon ion-location'></i> 3km
+                                    span <i class='icon ion-clock'></i> {{item.startTime*1000 | date:'MM月dd日 HH:mm'}}
+                                    span <i class='icon ion-location'></i>
                         div.status-bar
                             span 状态:{{item.step}}
                             a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局

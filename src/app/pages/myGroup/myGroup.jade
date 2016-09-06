@@ -18,9 +18,10 @@ div.myGroup(hide-tabs='true')
                                     div.group-info
                                         p(ng-bind='item.subject')
                                         div.type
-                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}/{{item.partyCount}}
                                             span {{item.money | currency : '￥'}}
-                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日 HH:mm'}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日'}}
+                                            span {{item.type}}
                                 div.status-bar
                                     span 状态:{{item.step}}
                                     a.find-detail(ng-href='/groupDetail/{{item.id}}') 查看酒局
@@ -37,9 +38,10 @@ div.myGroup(hide-tabs='true')
                                     div.group-info
                                         p(ng-bind='item.subject')
                                         div.type
-                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}
+                                            span <i class='icon ion-person-stalker'></i> {{item.userCount}}/{{item.partyCount}}
                                             span {{item.money | currency : '￥'}}
-                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日 HH:mm'}}
+                                        div.type <i class='icon ion-ios-clock-outline'></i> {{item.startTime*1000 | date :'MM月dd日'}}
+                                            span {{item.type}}
                                 div.status-bar
                                     //已付款
                                     span(ng-if='item.ispay == 2 && item.isaduit==2') 状态:{{item.step}}

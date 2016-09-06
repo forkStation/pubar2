@@ -44,7 +44,6 @@ angular
             template:'<div class="nav-tip-bar">{{title}}</div>'
         }
     })
-
     .directive('hideTabs', function($rootScope) {
         'ngInject';
         return {

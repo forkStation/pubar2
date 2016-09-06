@@ -61,6 +61,7 @@ export default function () {
             scope.clearAll = function(){
                 scope.cartItem = [];  //清除已加载数据
                 window.localStorage.removeItem('bar'+scope.barid);  //清除当前酒吧的缓存
+                window.location.reload();
             }
         }
     }

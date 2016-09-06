@@ -7,32 +7,34 @@ export default angular.module('payRedirect',[ionic])
         "ngInject"
         $stateProvider
             .state('payRedirect', {
-                url: '/createOrder/payRedirect',
+                url: '/createOrder/payRedirect?type?genre?id?orderid?to',
                 controllerAs: 'vm',
                 controller: PayRedirectController,
-                template: tpl(),
-                resolve:{
-                    app:function(application,$location){
-                        application.wxConfig($location.absUrl());
-                        return 11
-                    }
-                }
+                template: tpl()
             })
     });
 
 
 class PayRedirectController {
-    constructor (resourcePool,$ionicLoading,application,$location) {
+    constructor (resourcePool,$ionicLoading,application,$location,$stateParams) {
         "ngInject"
         this.name = 'payRedirect';
         this.url = $location.absUrl();
-        this.type = this.getParams('type');
-        this.resultID = this.getParams('id');
-        this.to = this.getParams('to');
-        this.orderid = this.getParams('orderid');
-        this.genre = this.getParams('genre');
-        let _this = this;
+        // this.type = this.getParams('type');
+        // this.resultID = this.getParams('id');
+        // this.to = this.getParams('to');
+        // this.orderid = this.getParams('orderid');
+        // this.genre = this.getParams('genre');
 
+        application.wxConfig($location.absUrl());
+
+        this.type = $stateParams.type || this.getParams('type');
+        this.resultID =$stateParams.id || this.getParams('id');
+        this.to = $stateParams.to || this.getParams('to');
+        this.orderid = $stateParams.orderid || this.getParams('orderid');
+        this.genre = $stateParams.genre || this.getParams('genre');
+        this.partyid = $stateParams.partyid || this.getParams('partyid');
+        let _this = this;
         if(_this.type === 'recharge'){
             resourcePool.recharge.request({
                 money:_this.resultID
@@ -41,16 +43,10 @@ class PayRedirectController {
                     var appInfo = res.data.info;
                     application.wechatPay(appInfo,()=>{
                         application.info('提示','充值成功',function(){
-                            window.history.go(-1);
+                            window.location.replace('/pocket')
                         })
-                    },(res)=>{
-                        $ionicLoading.show({
-                            template:res.data.info,
-                            duration:1000
-                        });
-                        window.setTimeout(function () {
-                            window.history.go(-1)
-                        },1000);
+                    },res=>{
+                       window.history.go(-1)
                     })
                 }
             })
@@ -63,7 +59,7 @@ class PayRedirectController {
                     var appInfo = res.data.info;
                     application.wechatPay(appInfo,()=>{
                         application.info('温馨提示','支付成功',function(){
-                            window.location.href = '/successInfo/'+_this.orderid+'/'+_this.genre
+                            window.location.replace('/successInfo/'+_this.orderid+'/'+_this.genre+'/'+_this.partyid);
                         });
                         if(_this.genre == 1){
                             application.sendMsg(_this.to,10,0,0)
@@ -71,7 +67,7 @@ class PayRedirectController {
 
                     },(res)=>{
                         $ionicLoading.show({
-                            template:res.data.info,
+                            template:res,
                             duration:1000
                         });
                         window.setTimeout(function () {

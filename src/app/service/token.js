@@ -6,11 +6,13 @@
  */
 'use strict'
 import md5 from 'md5'
+import {angular,ionic} from 'library'
 
 
 class Token {
     // 用户名默认为0
     constructor(){
+        'ngInject';
         this._userId = 0
         this._token = ''
     }
@@ -36,12 +38,18 @@ class Token {
     // setter and getter for loginToken
     // 也许要从localStorage 里面取值
     set loginToken(t){
-        console.log(`set loginToken [${t}]`);
+        var token = JSON.parse(window.localStorage.getItem('userInfo'));
+        if(!token) token = '0';
+        token = token.token;
+        console.log(`set loginToken [${token}]`);
         this._token = t
     }
 
     get loginToken(){
-        return this._token
+        var token = JSON.parse(window.localStorage.getItem('userInfo'));
+        if(!token) token = '0';
+        token = token.token;
+        return token;
     }
 
     set userId(id){

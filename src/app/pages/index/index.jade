@@ -31,7 +31,7 @@ div.index
                                 div.bar-name(ng-bind='item.name')
                                 div.bar-position(ng-bind='item.address')
                                     span(ng-if='item.distance' ng-bind='item.distance')
-                    ion-infinite-scroll(on-infinite="vm.loadMoreBars()" delegate-handle="barHandle")
+                    ion-infinite-scroll(on-infinite="vm.loadMoreBars()" ng-if='vm.barLoadMore' delegate-handle="barHandle")
             ion-slide(style='height:{{vm.windowHeight}}px')
                 ion-content.has-footer(delegate-handle="mainScroll" )
                     //div.sort-section(style='margin-top:10px')
@@ -50,7 +50,7 @@ div.index
                         li(ng-click='vm.goGroupDetail(item.id)' ng-repeat='item in vm.parties')
                             div.group
                                 div.pub-user
-                                    div.avatar-section
+                                    div.avatar-section(style='background:url({{vm.headHost + (item.user.bgpic | img)}})')
                                         img(ng-src='{{vm.headHost + item.user.headIcon}}')
                                         p.name(ng-bind='item.user.nickname')
                                     div.group-info

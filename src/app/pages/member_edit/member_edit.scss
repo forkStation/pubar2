@@ -2,12 +2,30 @@
 .member_edit{
   .gallery-wall{
     position:relative;
-    img{
-      width:6.4rem;
-      height:4.8rem;
+    .add-gallery{
       display: block;
+      width: 1.44rem;
+      height: 1.44rem;
+      background: url('http://h5.pubar.me/lib/images/add-gallary.png') no-repeat;
+      background-size: 100%;
     }
 
+    input[type="file"]{
+      display: block;
+      width: 1.44rem;
+      height: 1.44rem;
+      position: absolute;
+      top:0;
+      left: 0;
+      z-index: 3;
+      opacity: 0;
+    }
+    img{
+      width:6.4rem;
+      height: 6.4rem;
+      display: block;
+      background-size: cover !important;
+    }
     .gallery{
       position: absolute;
       bottom:0;
@@ -19,25 +37,29 @@
       top:.2rem;
       left:50%;
       display: inline-block;
-      padding:0 .1rem;
+      width: 1.6rem;
+      height: .66rem;
+      text-align: center;
+      line-height: .6rem;
       margin:0 auto 0 -34px;
       color:#fff;
       border-radius: 3px;
       border:1px solid #ccc;
       background: rgba(0,0,0,0.4);
-      font-size:.1rem;
+      font-size:.2rem;
       i{
         font-size:.3rem;
         margin-right:3px;
       }
     }
-    input[type=file]{
+    #uploadBackground{
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      left: 50%;
+      top: .2rem;
+      width: 1.6rem;
+      height: .66rem;
       z-index:5;
+      margin:0 auto 0 -34px;
       opacity: 0;
     }
   }
@@ -76,8 +98,8 @@
           padding:0.05rem .3rem;
           background: $assistant-color;
           color:#000;
-          font-size:.1rem;
-          width:inherit;;
+          font-size:.24rem;
+          width:inherit;
           border-radius:2px;
         }
         select{
@@ -89,6 +111,7 @@
           padding:0;
           margin:0;
         }
+      
       }
     }
   }

@@ -17,19 +17,18 @@ div.onme_detail.create.apply(hide-tabs='true')
             a.ctrl-btn(ng-href='/barDetail/{{vm.barInfo.id}}') 详情
 
         .hoz-item
-            span.l-content <i class='ion ion-ios-bell-outline'></i>  2015-05-22 15:22
+            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.partyInfo.party.startTime | date:'yyyy-MM-dd hh:mm'}}
 
         .hoz-item
-            span.l-content <i class='ion'>&yen;</i>  男A女免
+            span.l-content <i class='ion'>&yen;</i>  {{vm.partyInfo.party.type}}
 
         .hoz-item
-            span.l-content <i class='ion ion-ios-wineglass'></i>  酒单总价 &yen;3888.0
+            span.l-content <i class='ion ion-ios-wineglass'></i>  酒单总价 {{vm.partyInfo.party.money | currency:'￥'}}
             a.ctrl-btn 酒单详情
 
     div.bar.bar-footer
-        div.col-33
-            a.button.button-block.button-gray 加入黑名单
-        div.col-33
+
+        div.col
             a.button.button-block.button-gray(ng-click='vm.doReject()') 拒绝
-        div.col-33
+        div.col
             a.button.button-block.button-active(ng-click='vm.doJoin()') 同意

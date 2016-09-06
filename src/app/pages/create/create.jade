@@ -3,7 +3,7 @@ div.create(hide-tabs='true')
         div.pic-wall
             img.background(ng-src='{{vm.imgHost + vm.barDetail.cover}}')
             div.user-behavior
-                img.avatar(ng-src='vm.headHost + vm.createUserInfo.headIcon')
+                img.avatar(ng-src='{{vm.headHost + vm.createUserInfo.headIcon}}')
                 p.name(ng-bind='vm.createUserInfo.nickname')
         nav-tip-bar(title='{{vm.barDetail.name}}')
         div.comment-form

@@ -1,5 +1,7 @@
-@import "../../../sass/color";
+@import "../../../styles/color";
+@import "../../../styles/util-mixin";
 .barDetail{
+ 
   ion-content.party-list{
     bottom:5.5rem;
   }
@@ -26,13 +28,84 @@
     background: $active-background-color;
     color:$title-color;
   }
+  .detail-item{
+    background: #444;
+    border: none;
+    border-bottom: 1px solid #505050;
+    margin: 0;
+    padding: .3rem .4rem .3rem .55rem;
+    .icon{
+      color: #999;
+      font-size: .3rem;
+    }
+    .ion-ios-arrow-forward{
+      right: .05rem;
+    }
+    .icon-left{
+      left: .05rem;
+    }
+    em{
+      color: #999;
+      font-size: .28rem;
+    }
+  }
+  .mod-item{
+    background: #444;
+    margin-top: .2rem;
+    .mod-tit{
+      display: block;
+      position: relative;
+      padding: .2rem .4rem .2rem .2rem;
+      color: #999;
+      border-bottom: 1px solid #505050;
+      font-size: .28rem;
+      .icon{
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -moz-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          -moz-align-items: center;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          height: 100%;
+          position: absolute;
+          right: .28rem;
+          font-size: .32rem;
+      }
+      span{
+        font-size: .24rem
+      }
+      em{
+        font-size: .24rem;
+      }
+    }
+    .mod-list{
+      padding-bottom: .2rem;
+      .group-list{
+        li{
+          margin: 0;
+          padding: .2rem;
+          .group{
+            border: none;
+            border-bottom: 1px solid #505050;
+          }
+        }
+      }
+    }
+  }
 }
 ul.puf-list{
 
   li{
     position:relative;
     padding:.2rem .15rem .2rem 1.2rem;
-    border-bottom: $border-line;
+    border-bottom: 1px solid #505050;
     min-height:1.4rem;
     .sex{
       position: absolute;
@@ -80,5 +153,5 @@ ul.puf-list{
   bottom:0;
   left:0;
   background: #736F78;
-  z-index:20;
+  z-index:2;
 }

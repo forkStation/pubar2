@@ -2,7 +2,7 @@
  * Created by wj on 2016/5/26.
  */
 import  'ng'
-import 'ionic/ionic.min'
+import 'ionic/ionic'
 import 'ngAnimate';
 import 'ngSanitize';
 import 'uiRouter'

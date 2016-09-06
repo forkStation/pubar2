@@ -8,4 +8,4 @@ div.groupOrderList(hide-tabs='true')
             div.col-50(ng-bind='item.name')
             div.col-25(ng-bind='"x"+item.count')
             div.col-25(ng-bind='item.price | currency :"￥"')
-        div.total 合计: {{vm.total | currency :'￥'}}
+        div.total 合计: {{vm.detail.party.money | currency :'￥'}}

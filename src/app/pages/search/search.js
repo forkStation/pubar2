@@ -21,6 +21,7 @@ class SearchController {
         this.name = 'search';
         this.application = application;
         this.resourcePool = resourcePool;
+        this.headHost = application.headHost;
         this.imgHost = application.imgHost;
         this.form = {
             word:''
