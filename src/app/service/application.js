@@ -7,22 +7,22 @@ import md5 from 'md5'
 export default function ( resourcePool, $q,$ionicPopup,$location) {
     'ngInject'
     return {
-        /**
-         * host 正式
-         */
-        // 'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
-        // 'headHost': 'http://api.pubar.me/Uploads/png/',
-        // 'productHost': 'http://h5admin.pubar.me/public/images/drinkImg/',
-        // 'assets': 'http://h5.pubar.me/lib/images/',
+        // /**
+        //  * host 正式
+        //  */
+        'imgHost': 'http://h5admin.pubar.me/public/images/pic/',
+        'headHost': 'http://api.pubar.me/Uploads/png/',
+        'productHost': 'http://h5admin.pubar.me/public/images/drinkImg/',
+        'assets': 'http://h5.pubar.me/lib/images/',
 
         /**
          * host 测试
          */
 
-         'imgHost': 'http://i5admin.pubar.me/public/images/pic/',
-        'headHost': 'http://i5api.pubar.me/Uploads/png/',
-        'productHost': 'http://i5admin.pubar.me/public/images/drinkImg/',
-        'assets': 'http://i5.pubar.me/lib/images/',
+        // 'imgHost': 'http://i5admin.pubar.me/public/images/pic/',
+        // 'headHost': 'http://i5api.pubar.me/Uploads/png/',
+        // 'productHost': 'http://i5admin.pubar.me/public/images/drinkImg/',
+        // 'assets': 'http://i5.pubar.me/lib/images/',
 
 
         //开启高德地图的配置
@@ -66,9 +66,9 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
         'im': {
             getSocket: function () {
 
-                // let socket = io.connect("http://h5.pubar.me:3000");
+                let socket = io.connect("http://h5.pubar.me:3000");
 
-                let socket = io.connect("http://i5.pubar.me:3000");
+                // let socket = io.connect("http://i5.pubar.me:3000");
                 //注册自己的socket
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
                 socket.emit('new user', userInfo.id);
@@ -87,11 +87,13 @@ export default function ( resourcePool, $q,$ionicPopup,$location) {
                 let defer = $q.defer();
                 let socket = this.getSocket();
                 let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+                var time = new Date().getTime();
                 let params = {
                     reid: to,
                     userid: userInfo.id,
                     msg: content,
-                    token: md5(to + userInfo.id + 'usertoken')
+                    token: md5(to + userInfo.id + userInfo.token + time),
+                    t:time
                 };
                 socket.emit('chat', params, res => {
                     if (res == 1 || res == 0) {

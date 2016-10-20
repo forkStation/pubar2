@@ -17,6 +17,7 @@ import password from './directive/password/password.directive'
 import shareList from './directive/shareList/share.list'
 import preview from  './directive/viewImage/viewImage.directive'
 
+
 export default angular.module('app.component', [ionic])
     .directive('cart', cart)
     .directive('numberPick',numberPick)

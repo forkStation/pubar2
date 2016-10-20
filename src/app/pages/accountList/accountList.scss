@@ -10,10 +10,11 @@
     }
   }
   .paylist{
-    padding-left:.2rem;
-    background: #444;
+    .list{
+      margin-bottom: .2rem
+    }
     .item{
-      background: transparent;
+      background: #444;
       border:none;
       border-bottom:1px solid #000;
       &:last-child{
@@ -24,6 +25,10 @@
         font-size:.28rem;
         color:#fff;
       }
+    }
+    .item-content{
+      background: transparent;
+      border-bottom:1px solid #282828;
     }
   }
   .ico{

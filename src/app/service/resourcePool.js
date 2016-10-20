@@ -37,6 +37,7 @@ export default function(resource){
         'getOrderList':resource.order('order_list'),
         'getOrderPayList':resource.order('order_paylist'),
         'getOrderDetail':resource.order('order_info'),
+        'getMyOrderList':resource.order('my_order'),
 
         // party
         'createNewOrder':resource.party('party_drink'),
@@ -68,6 +69,7 @@ export default function(resource){
         'receiveFreind':resource.friend('add_friend'),
         'getFollowList':resource.friend('friend_list'),
         'getFansList':resource.friend('fans_list'),
+        'cancelFriendFollow':resource.friend('up_friend_follow'),
 
         //user
         'getUserInfo':resource.user('user_info'),
@@ -86,14 +88,17 @@ export default function(resource){
         'getMsgChatList':resource.msgchat('chater'),
         //wallet
         'getWalletInfo':resource.wallet('wallet_info'),
+        'getWalletRecord':resource.wallet('wallet_record'),
         'getWalletList':resource.wallet('wallet_list'),
         'setWalletPay':resource.wallet('wallet_topay'),
         'addWalletAccount':resource.wallet('wallet_account'),
         'getAccountList':resource.wallet('account_list'),
         'setDefaultAccount':resource.wallet('default_acc'),
         'getDefaultAccount':resource.wallet('default_acc'),
+        'deleteAccount':resource.wallet('delete_account'),
         'getDrawInfo':resource.wallet('withdraw_money'),
         'updatePayPwd':resource.wallet('wallet_updatepay'),
+        'getWithdrawMoney':resource.wallet('get_withdraw_money'),
 
 
         //支付
@@ -107,7 +112,6 @@ export default function(resource){
 
         //根据授权信息返回的结果,取得关注人的微信资料
         'getTokenUser':resource.getToken('out_token'),
-
 
 
         //

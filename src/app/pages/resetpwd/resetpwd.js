@@ -35,12 +35,13 @@ class ResetpwdController {
             valid:''
         };
         this.resourcePool = resourcePool;
-
         this.userInfo = getUserInfo.data.info;
         this.telephone = this.userInfo.tel.substr(0,3)+'****'+this.userInfo.tel.substr(8,11);
         this.initPwd = [];
         this.codeState = true;
         this.application = application;
+        this.resetKey = '';
+        this.resetMobile = '';
 
     }
 
@@ -91,7 +92,9 @@ class ResetpwdController {
                 mobile:_t.userInfo.tel
             }).then(res=>{
                 if(res.data.status ==1){
-                    _t.codeState = false
+                    _t.codeState = false;
+                    _t.resetKey = res.data.info.key;
+                    _t.resetMobile = res.data.info.mobile;
                 }else{
                     _t.loading.show({
                         template:res.data.info,
@@ -116,7 +119,9 @@ class ResetpwdController {
     resetPwd(){
         let _t = this;
         this.resourcePool.updatePayPwd.request({
-            paypwd:_t.initPwd.join('')
+            paypwd:_t.initPwd.join(''),
+            key:_t.resetKey,
+            mobile:_t.resetMobile
         }).then(res=>{
             if(res.data.status ==1){
                 _t.application.info('微信提示','支付密码已重置',function () {

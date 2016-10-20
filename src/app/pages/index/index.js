@@ -108,7 +108,7 @@ class IndexController {
     }
 
     goBarDetail(id){
-        this.state.go('barDetail',{id:id});
+        location.href='/barDetail/'+id;
     }
     collect(item){
         var status = item.isfollow;

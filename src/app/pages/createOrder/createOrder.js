@@ -7,7 +7,7 @@ export default angular.module('createOrder',[ionic])
         "ngInject"
         $stateProvider
             .state('createOrder', {
-                url: '/toPay/orderPay?orderid?genre?partyid?money',
+                url: '/toPay/orderPay?orderid?genre?partyid?money?barid',
                 controllerAs: 'vm',
                 controller: CreateOrderController,
                 template: tpl()
@@ -27,8 +27,7 @@ class CreateOrderController {
         $scope.password = '';
         this.resourcePool = resourcePool;
         this.stateParams = $stateParams;
-
-
+        this.barid = $stateParams.barid;
         this.application = application;
         this.ionicModal = $ionicModal;
         this.genre = $stateParams.genre;
@@ -42,7 +41,6 @@ class CreateOrderController {
          * @type {*|string}
          */
         this.rechargeMoney = this.stateParams.money;
-        console.log(this.rechargeMoney);
         if(this.rechargeMoney > 0 && this.rechargeMoney){
             _this.isRecharge = true;
 
@@ -54,7 +52,7 @@ class CreateOrderController {
                 }).then(res=>{
                     _this.orderInfo = res.data.info
                     _this.orderInfo.orderId = $stateParams.orderid;
-                    _this.orderId = _this.orderInfo.head;
+                    
                     _this.payId = _this.orderInfo.id;
                 })
             }
@@ -65,7 +63,7 @@ class CreateOrderController {
                 }).then(res=>{
                     _this.orderInfo = res.data.info
                     _this.orderInfo.orderId = $stateParams.orderid;
-                    _this.orderId = _this.orderInfo.head;
+                    
                     _this.payId = _this.orderInfo.id;
                 })
             }
@@ -73,7 +71,6 @@ class CreateOrderController {
 
         this.state = $state;
         let t = this;
-        console.log(this.stateParams.money);
         $scope.$on('password.confirm',function(event,args){
             $scope.passowrd = args;
             t.confirm(args);
@@ -150,8 +147,11 @@ class CreateOrderController {
         if(t.payWays == 2 && !t.stateParams.money){
             if(this.genre ==1){
                 if(ua.indexOf('iphone')>=0){
+                    window.localStorage.removeItem('bar'+t.barid)
                     window.location.replace('/createOrder/payRedirect?type=order&id='+t.payId+'&to='+t.userInfo.id+'&orderid='+t.stateParams.orderid+'&genre='+t.stateParams.genre+'&partyid='+t.stateParams.partyid);
+                
                 }else{
+                    window.localStorage.removeItem('bar'+t.barid)
                     t.state.go('payRedirect',{
                         type:'order',
                         id:t.payId,
@@ -164,8 +164,10 @@ class CreateOrderController {
 
             }else{
                 if(ua.indexOf('iphone')>=0){
+                    window.localStorage.removeItem('bar'+t.barid)
                     window.location.replace('/createOrder/payRedirect?type=order&id='+t.payId+'&orderid='+t.stateParams.orderid+'&genre='+t.stateParams.genre);
                 }else{
+                    window.localStorage.removeItem('bar'+t.barid)
                     t.state.go('payRedirect',{
                         type:'order',
                         id:t.payId,
@@ -188,8 +190,9 @@ class CreateOrderController {
                 id:t.payId
             }).then( res=>{
                 if(res.data.status ==1 ){
-                    console.log(t.orderId,t.genre,t.partyid);
-                    // window.location.replace('/successInfo/'+t.orderId+'/'+t.genre+'/'+t.partyid);
+                    
+                    window.localStorage.removeItem('bar'+t.barid)
+                    window.location.replace('/successInfo/'+t.stateParams.orderid+'/'+t.genre+'?partyid='+t.partyid);
                 }else{
                     t.loading.show({
                         template:res.data.info,
@@ -197,7 +200,6 @@ class CreateOrderController {
                     })
                 }
             })
-
         }
     }
 }

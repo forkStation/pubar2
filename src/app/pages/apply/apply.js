@@ -40,7 +40,7 @@ class ApplyController {
         this.loading = $ionicLoading;
         let t = this;
         this.partyid = this.partyInfo.party.id;
-        this.currentCount = ~~this.partyInfo.party.boyCount + ~~this.partyInfo.party.girlCount;
+    
         this.fid = $stateParams.fid;
         this.state = $state;
         resourcePool.getBarInfo.request({

@@ -17,13 +17,14 @@ export default angular.module('successInfo',[ionic])
                         if(genre == 0){
                             return resourcePool.getConfirmOrderInfo.request({
                                 id:$stateParams.orderid,
-                                genre:$stateParams.genre
+                                genre:$stateParams.genre,
+                                partyid:$stateParams.partyid
                             })
                         }
                         if(genre == 1){
                             return resourcePool.getConfirmOrderInfo.request({
                                 genre:$stateParams.genre,
-                                partyid:$stateParams.partyid
+                                partyid:$stateParams.partyid,
                             })
                         }
                     }

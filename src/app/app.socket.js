@@ -4,8 +4,8 @@
 
 export default function($rootScope){
     'ngInject'
-    // let socket = io.connect("http://h5.pubar.me:3000");
-    let socket = io.connect("http://i5.pubar.me:3000");
+    let socket = io.connect("http://h5.pubar.me:3000");
+    // let socket = io.connect("http://i5.pubar.me:3000");
     let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
     socket.emit('new user', userInfo.id);
     return {

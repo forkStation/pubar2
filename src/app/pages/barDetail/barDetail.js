@@ -109,7 +109,6 @@ class BarDetailController {
                 duration:1500
             })
         }
-        
     }
     openWxMap(){
         let _application = this.application;

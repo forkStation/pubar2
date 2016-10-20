@@ -58,13 +58,12 @@ class PayRedirectController {
                 if(res.data.status ==1){
                     var appInfo = res.data.info;
                     application.wechatPay(appInfo,()=>{
-                        application.info('温馨提示','支付成功',function(){
-                            window.location.replace('/successInfo/'+_this.orderid+'/'+_this.genre+'/'+_this.partyid);
+                        application.info('温馨提示','支付成功'+_this.partyid,function(){
+                            window.location.replace('/successInfo/'+_this.orderid+'/'+_this.genre+'?partyid='+_this.partyid);
                         });
                         if(_this.genre == 1){
                             application.sendMsg(_this.to,10,0,0)
                         }
-
                     },(res)=>{
                         $ionicLoading.show({
                             template:res,
@@ -73,7 +72,6 @@ class PayRedirectController {
                         window.setTimeout(function () {
                             window.history.go(-1)
                         },1000);
-
                     })
                 }else{
                     $ionicLoading.show({
@@ -83,7 +81,6 @@ class PayRedirectController {
                 }
             });
         }
-
     }
 
     getParams(name){

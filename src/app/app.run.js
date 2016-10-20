@@ -37,8 +37,9 @@ export default angular.module('app.run', [])
             // 3
             else if (ua.match(/MicroMessenger/i) == "micromessenger") {
                 //在微信中打开
-                window.location.replace('http://i5api.pubar.me/index.php/weixin/wx_login');
-                // window.location.replace('http://api.pubar.me/index.php/weixin/wx_login');
+                
+                window.location.replace('http://api.pubar.me/index.php/weixin/wx_login');
+                // window.location.replace('http://i5api.pubar.me/index.php/weixin/wx_login');
             }
         } else {
             resourcePool.getMsgCount.request({

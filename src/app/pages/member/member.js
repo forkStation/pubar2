@@ -1,7 +1,6 @@
 import tpl from './member.jade'
 import './member.scss'
 import { angular, ionic } from 'library'
-import imgResource from 'assets/images'
 
 export default angular.module('member',[ionic])
     .config(function ($stateProvider) {
@@ -26,11 +25,12 @@ export default angular.module('member',[ionic])
 
 
 class MemberController {
-    constructor (userInfo,$ionicLoading,application,getMsgCount) {
+    constructor (userInfo,$ionicLoading,application,getMsgCount,$state) {
         "ngInject"
         this.name = 'member';
-        this.productItem = imgResource.productItem;
+        
         this.headHost = application.headHost;
+
         this.msgCounts = getMsgCount.data.info[0]['count'];
         if(userInfo.data.status==1){
             this.userInfo = userInfo.data.info;
@@ -39,6 +39,7 @@ class MemberController {
                 template:res.data.info,
                 duration:2000
             })
+            
         }
     }
 }

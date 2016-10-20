@@ -21,7 +21,7 @@ div.apply.create(hide-tabs='true')
                         div.group-info
                             p {{vm.partyInfo.party.subject}}
                             div.type(style='margin-bottom:.2rem')
-                                span <i class='icon ion-person-stalker'></i> {{vm.currentCount}}/{{vm.partyInfo.party.partyCount}}
+                                span <i class='icon ion-person-stalker'></i> {{vm.partyInfo.party.userCount}}/{{vm.partyInfo.party.partyCount}}
                                 span <i class='icon ion-ios-pricetag-outline'></i> {{vm.partyInfo.party.type}}
                             div.type
                                 span <i class='icon ion-ios-clock-outline'></i> {{vm.partyInfo.party.startTime*1000 | date:'MM月dd日 HH:mm'}}

@@ -42,10 +42,10 @@ div.message(hide-tabs='true')
                                 h2 {{item.content}}
 
                         div.card(ng-if='(item.type==8 || item.type==9 || item.type ==10 || item.type==11 || item.type==12)')
-                            div.item.item-divider
+                            a.item.item-divider(ng-href='/groupDetail/{{item.partyid}}')
                                 i.icon.ion-record(ng-if='item.status ==0 && item.receiver == vm.userInfo.id')
                                 em {{item.title}}
-                            div.item.item-text-wrap {{item.content}}
+                            a.item.item-text-wrap(ng-href='/groupDetail/{{item.partyid}}') {{item.content}}
 
 
                         //   酒局的消息提醒

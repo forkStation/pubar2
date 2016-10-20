@@ -8,14 +8,16 @@ div.pocket(hide-tabs='true')
                     a.button.button-block.get(href='/takeCash') 提现
                 div.col-50
                     a.button.button-block.set(href='/recharge') 充值
-        nav-tip-bar(title='最近30天收支明细')
+        nav-tip-bar(title='最近30天的账单记录')
 
         div.list(ng-repeat='item in vm.walletList')
-            a.item {{!item.wa_account?"充值":"提现"}}
+            a.item {{item.rdesc}} 
                 span.item-note.time {{item.createtime*1000 | date:'yyyy-MM-dd hh:mm'}}
-            a.item
-                span.item-note(ng-class='{out:item.wa_account,in:!item.wa_account}')  {{!item.wa_account?"+"+item.money:"-"+item.money}}
-
+            a.item(ng-if='item.ptype')
+                span.item-note {{item.ptype}}
+            a.item 
+                span.item-note.out(ng-if='item.rtype==1 || item.rtype==4') - {{item.money}}  
+                span.item-note.in(ng-if='item.rtype==2 || item.rtype==3') + {{item.money}}  
 
 
         div.no-data(ng-if='vm.walletList.length==0 || !vm.walletList')

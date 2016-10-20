@@ -29,8 +29,11 @@ class Token {
         if(!!this._userId && !this.loginToken) throw new Error('没有取到loginToken，请检查');
 
         let timeStamp = this.timeStamp;
-        let str = module + this._userId + timeStamp + this.loginToken;
-        console.log(this.loginToken);
+        let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+        let userid = userInfo ? userInfo.id : 0;
+        // let str = module + timeStamp + userid + this.loginToken;
+        let str = module + timeStamp + userid + this.loginToken;
+        console.log(`module:${module}  userid:${userid}  timeStamp:${timeStamp}  loginToken:${this.loginToken}`)
         let token = md5(str.trim());
         return { token,timeStamp }
     }
@@ -38,10 +41,7 @@ class Token {
     // setter and getter for loginToken
     // 也许要从localStorage 里面取值
     set loginToken(t){
-        var token = JSON.parse(window.localStorage.getItem('userInfo'));
-        if(!token) token = '0';
-        token = token.token;
-        console.log(`set loginToken [${token}]`);
+     
         this._token = t
     }
 

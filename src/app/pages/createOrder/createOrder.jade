@@ -1,7 +1,7 @@
 div.createOrder(hide-tabs='true')
     ion-content.has-footer
 
-        h1.title(ng-if='!vm.isRecharge') 订单号: {{vm.orderId}}
+        h1.title(ng-if='!vm.isRecharge') 订单号: {{vm.orderInfo.head}}
         h1.title(ng-if='vm.isRecharge') 钱包余额充值
         nav-tip-bar(title='支付方式')
         div.list

@@ -91,8 +91,10 @@ class ProductListController {
             partyid:$stateParams.partyid
         }).then(res=>{
             if(res.data.status==1){
-                $state.go('createOrder',{orderid:res.data.info.id,genre:0,partyid:$stateParams.partyid});
-                window.localStorage.removeItem('bar'+t.barInfo.id)
+                $state.go('createOrder',{orderid:res.data.info.id,genre:0,partyid:$stateParams.partyid,barid:t.barInfo.id});
+                
+            }else{
+                t.application.info('提示',res.data.info)
             }
         });
     }

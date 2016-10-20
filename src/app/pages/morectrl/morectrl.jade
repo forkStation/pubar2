@@ -4,9 +4,9 @@ div.morectrl(hide-tabs='true')
             span 设置备注名
             span.item-note 王二麻子
             i.icon.ion-ios-arrow-right
-        a.item.item-icon-right(ng-click='vm.openAction()')
-            span 拉黑
-            i.icon.ion-ios-arrow-right
+        //- a.item.item-icon-right(ng-click='vm.openAction()')
+        //-     span 拉黑
+        //-     i.icon.ion-ios-arrow-right
     div.ctrl
-        a.button.button-block.button-active 取消关注
-        a.button.button-block.button-gray 移除粉丝
+        a.button.button-block.button-active(ng-click='vm.cancelFriend()') 取消关注
+        //- a.button.button-block.button-gray 移除粉丝

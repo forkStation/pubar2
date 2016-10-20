@@ -26,7 +26,7 @@ div.member_view(hide-tabs='true')
             div.title 活跃酒吧
             div.desc.visit
                 span(ng-repeat='bar in vm.item.barname | limitTo:3') <em>#</em>{{bar.name}}
-        a.tags.item-icon-right(ng-href='/morectrl' ng-if='vm.item.isfriend==1') 更多
+        a.tags.item-icon-right(ng-href='/morectrl/{{vm.item.id}}' ng-if='vm.item.isfriend==1') 更多
             i.icon.ion-ios-arrow-right
         div.add(ng-if='false')
            button.button-block.button.button-active(ng-click='vm.addFriend()') 加为好友

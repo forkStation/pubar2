@@ -20,11 +20,10 @@ div.successInfo(hide-tabs='true')
                 div.status-bar
                     span 状态:{{vm.orderInfo.partyinfo.step}}
                     a.find-detail(ng-href='/groupDetail/{{vm.orderInfo.partyinfo.id}}') 查看酒局
-
     div.button-are
         button.button.button-block.button-active 分享酒局邀请你的朋友来参加
         div.row
             div.col
                 a.button.button-block.button-active(ng-click='vm.backGroup()') 我的酒局
             div.col
-                a.button.button-block.button-disabled(ng-click='vm.backBar()') 回到酒吧
+                a.button.button-block.button-disabled(ng-click='vm.backBar()') 回到首页

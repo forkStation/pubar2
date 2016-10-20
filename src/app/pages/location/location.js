@@ -55,7 +55,7 @@ class LocationController {
                 onTap:function(){
                     t.initCity = city;
                     t.storage.setItem('city',city);
-                    window.history.go(-1);
+                    window.location.replace('/index')
                     return true;
                 }
             },{

@@ -22,10 +22,9 @@ export default angular.module('groupDetail',[ionic])
                             partyid:$stateParams.id
                         })
                     },
-                    msgRecord:function(resourcePool,$stateParams){
-                        return resourcePool.getMsgRecord.request({
-                            partyid:$stateParams.id,
-                            type:2
+                    getUserInfo:function(resourcePool,$stateParams){
+                        return resourcePool.getUserInfo.request({
+
                         })
                     }
                 }
@@ -34,7 +33,7 @@ export default angular.module('groupDetail',[ionic])
 
 
 class GroupDetailController {
-    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users,$scope,socket,$stateParams,msgRecord) {
+    constructor ($state,detail,application,resourcePool,$ionicPopup,$ionicLoading,users,$scope,socket,$stateParams,getUserInfo,$location) {
         "ngInject"
         this.name = 'groupDetail';
         this.state = $state;
@@ -43,15 +42,37 @@ class GroupDetailController {
         this.resourcePool = resourcePool;
         this.getUsers = users.data.info;
         this.scope = $scope;
-        this.msgList = msgRecord.data.info || [];
         var _this = this;
         _this.flag = false;
+        
 
-        _this.userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        _this.userInfo = getUserInfo.data.info;
 
         //open socket of groupDetail
 
         socket.emit('party',$stateParams.id,_this.userInfo.id)
+
+       resourcePool.getMsgRecord.request({
+            partyid: $stateParams.id,
+            type: 2
+        }).then((res) => {
+            if (res.data.status == 1) {
+                _this.chatsMsg = res.data.info || [];
+                if (res.data.info) {
+                    console.log(res.data.info)
+                    for (let i = 0; i < res.data.info.length; i++) {
+                        _this.chatsMsg[i]['avatar'] = res.data.info[i]['sinfo']['headIcon'];
+                        _this.chatsMsg[i]['nickname'] = res.data.info[i]['sinfo']['nickname'];
+                    }
+                }
+            }
+        })
+        application.openWxShare('wechat',{
+            title:_this.userInfo.nickname+'分享了一个酒局给你',
+            content:'我在蒲吧网发现了一个很有趣的酒局，跟我一起加入吧',
+            link:$location.absUrl(),
+            img:application.assets+'bar-logo.png'
+        })
 
         this.showComment = function(){
             _this.flag = true;
@@ -71,39 +92,7 @@ class GroupDetailController {
         },res=>{
             // error
         });
-        this.chatsMsg = [{
-            id:'1',
-            msg:'你好',
-            user_id:'1124',
-            nickname:'李锋染'
-        },{
-            id:'1',
-            msg:'你好啊',
-            user_id:'00',
-            nickname:'Anna Sui'
-        },{
-            id:'1',
-            msg:'怎么称呼,美女?',
-            user_id:'1124',
-            nickname:'李锋染'
-        },{
-            id:'1',
-            msg:'Anna',
-            user_id:'00',
-            nickname:'Anna sui'
-        },{
-            id:'1',
-            msg:'Anna你好',
-            user_id:'1124',
-            nickname:'李锋染'
-        }];
-
-        this.msgInfo = {
-            user_id:'00',
-            nickname:'Anna sui',
-            msg:'',
-            id:'sdf'
-        };
+    
     }
     goChat(id){
         this.state.go('chat',{id:id})
@@ -158,6 +147,9 @@ class GroupDetailController {
                 }
             },{text:'取消'}]
         })
+    }
+    goPay(party){
+        location.href='/toPay/orderPay?orderid=0&genre=1&partyid='+party.id;
     }
 
 

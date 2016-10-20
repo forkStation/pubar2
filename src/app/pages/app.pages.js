@@ -50,6 +50,9 @@ import activeBars from './activeBars/activeBars'
 import groupList from './groupList/groupList'
 import pufList from './pufList/pufList'
 import chatGroup from './chatGroup/chatGroup'
+import chatGroupList from './chatGroupList/chatGroupList'
+import order from './order/order'
+import orderDetail from './orderDetail/orderDetail'
 //@import
 
 export default angular.module('app.pages', [
@@ -100,5 +103,8 @@ export default angular.module('app.pages', [
     activeBars.name,
     groupList.name,
     pufList.name,
-    chatGroup.name//@register
+    chatGroup.name,
+    chatGroupList.name,
+    order.name,
+    orderDetail.name//@register
 ]);

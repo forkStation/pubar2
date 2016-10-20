@@ -9,15 +9,12 @@ div.barDetail(hide-tabs='true')
             div.bar-info
                 div.bar-name(ng-bind='vm.barInfo.name')
                 div.hot 
-                    i.icon.ion-ios-wineglass
-                    i.icon.ion-ios-wineglass
-                    i.icon.ion-ios-wineglass
                     em {{vm.barInfo.type}}
                 div.bar-position
                     span <i class='icon ion-location'></i> 4.32km
 
 
-        div.item.item-icon-left.item-icon-right.detail-item
+        div.item.item-icon-left.item-icon-right.detail-item(ng-click='vm.openWxMap()')
             i.icon.ion-ios-location.icon-left
             em(ng-bind='vm.barInfo.address')
             i.icon.ion-ios-arrow-forward

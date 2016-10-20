@@ -58,4 +58,29 @@ class AccountListController {
             }
         })
     }
+    deleteAcc(item){
+        let t = this;
+        this.resourcePool.deleteAccount.request({
+            id:item.id
+        }).then((res)=>{
+            if(res.data.status === 1){
+                t.loading.show({
+                    template:'删除成功',
+                    duration:1000
+                });
+                for(let i =0;i<t.list.length;i++){
+                    if(t.list[i]===item){
+                        t.list.splice(i,1);
+                    }
+                }
+                
+            }else{
+                t.loading.show({
+                    template:res.data.info,
+                    duration:1000
+                })
+            }
+        })
+    }
+
 }

@@ -2,9 +2,9 @@ div.takeCash(hide-tabs='true')
 
     div.tit 可提现金额:<span>{{vm.info.wallet.money}}</span>元
     div.con
-        input(type=number placeholder='请输入提现金额')
+        input(type=number placeholder='请输入提现金额' ng-model='vm.money')
     div.list
-        a.item.item-icon-right(ng-href='/accountList') 到账账户:{{vm.info.auser.account_name}}({{vm.info.auser.account}})
+        a.item.item-icon-right(ng-href='/accountList') 到账账户:{{vm.info.auser.account_name}}({{vm.info.auser.account ||"请添加账号"}})
             i.icon.ion-ios-arrow-right
 
     div.tip-box
@@ -13,4 +13,4 @@ div.takeCash(hide-tabs='true')
             span 2个工作日内退回至最近消费的账户中
         div.ctx 银行处理可能有延迟，具体以账户的到账时间为准
     div.card
-        button.button.button-active.button-block 确认提现
+        button.button.button-active.button-block(ng-click='vm.takeMoney()') 确认提现

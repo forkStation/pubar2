@@ -99,8 +99,11 @@
           background: $assistant-color;
           color:#000;
           font-size:.24rem;
-          width:inherit;
+          width:1.8rem;
+          text-align :center;
+          @include ellipsis();
           border-radius:2px;
+          
         }
         select{
           -webkit-appearance: none;

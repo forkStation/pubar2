@@ -2,12 +2,10 @@
  * Created by apple on 16/5/30.
  */
 
-
 export default function(){
     'ngInject';
     return{
-        restrict:'E',
-        replace:true,
+        restrict:'EA',
         scope:true,
         controllerAs:'vm',
         controller:shareController,
@@ -16,17 +14,18 @@ export default function(){
 }
 
 class shareController{
-
     constructor($ionicModal,$scope){
         'ngInject';
         this.name='share';
         this.share = function () {
-            $ionicModal.fromTemplate('<share-list></share-list>',{
+            $scope.modal = $ionicModal.fromTemplate('<share-list></share-list>',{
                 scope:$scope,
                 animation:'slide-in-up'
-            }).show();
+            });
+            $scope.modal.show();
         }
-        
-
+        $scope.$on('share.hide',function(){
+            $scope.modal.hide();
+        })
     }
 }

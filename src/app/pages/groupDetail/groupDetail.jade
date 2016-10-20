@@ -8,7 +8,6 @@ div.groupDetail.has-tabs(hide-tabs='true')
                 .intro {{vm.detail.user.nickname}}
                 s-btn(text='勾搭局长' ng-click='vm.goChat(vm.detail.user.id)')
                 share(class='corner')
-
         .joiner
             i.ion.ion-ios-heart-outline
             div.userlist
@@ -29,15 +28,28 @@ div.groupDetail.has-tabs(hide-tabs='true')
         .hoz-item
             span.l-content <i class='ion ion-ios-wineglass'></i>  酒单总价{{vm.detail.party.money | currency:'￥'}}
             a.ctrl-btn(ng-href='/groupOrderList/{{vm.detail.party.id}}') 酒单详情
-
-
+        div.chats(style='height:5rem;overflow:auto;position:relative;margin: .2rem')
+            ion-content
+                div.chat
+                    .comment-box
+                        nodata(ng-if='!vm.chatsMsg || vm.chatsMsg.length==0' text='该酒局暂没人员聊天')
+                        ul
+                            li(ng-repeat='chat in vm.chatsMsg track by $index' ng-class='{my:chat.sender==vm.userInfo.id}')
+                                a(ng-href='/member_view/chat.sender}}' ng-if='chat.sender!=vm.userInfo.id')
+                                    img.avatar(ng-src='{{vm.headHost+chat.avatar}}')
+                                a( ng-if='chat.sender==vm.userInfo.id')
+                                    img.avatar(ng-src='{{vm.headHost+vm.userInfo.headIcon}}')
+                                div.nickname {{chat.createtime*1000 | date:'MM-dd HH:mm'}}
+                                div.msg-content {{::chat.content}}
     div.bar.bar-footer.bc(ng-show='!vm.flag')
         div.col.status(ng-click='vm.showComment()')
                 a(ng-href='/chatGroup/{{vm.detail.party.id}}?type=2')
                     i.ion.ion-android-textsms
                 h2 {{vm.detail.party.step}}
                 p {{vm.detail.party.startTime*1000 | date:'MM月dd日 HH:mm'}}
-        div.col-33.on(ng-click='vm.joinParty(vm.detail.party)' ng-if='vm.detail.party.join==2') 参与酒局
+        div.col-33.on(ng-click='vm.joinParty(vm.detail.party)' ng-if='vm.detail.party.join==0') 参与酒局
+        div.col-33.on(ng-click='vm.goPay(vm.detail.party)' ng-if='vm.detail.party.join==2 && vm.detail.party.needpay == 1') 去付款
+        div.col-33.on( ng-if='vm.detail.party.join==1') 审核中
 
     div.bar.bar-footer.comment.bc(ng-show='vm.flag')
         div.col-75

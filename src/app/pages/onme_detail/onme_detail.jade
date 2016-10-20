@@ -17,7 +17,7 @@ div.onme_detail.create.apply(hide-tabs='true')
             a.ctrl-btn(ng-href='/barDetail/{{vm.barInfo.id}}') 详情
 
         .hoz-item
-            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.partyInfo.party.startTime | date:'yyyy-MM-dd hh:mm'}}
+            span.l-content <i class='ion ion-ios-bell-outline'></i>  {{vm.partyInfo.party.startTime*1000 | date:'yyyy-MM-dd hh:mm'}}
 
         .hoz-item
             span.l-content <i class='ion'>&yen;</i>  {{vm.partyInfo.party.type}}
